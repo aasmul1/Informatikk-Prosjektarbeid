@@ -1,16 +1,16 @@
 package core;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Note {
     private String title;
     private String text;
-    private Date date;
+    private LocalDate date;
     
-    public Note(String title, String text, Date date) {
+    public Note(String title, String text) {
         this.title = title;
         this.text = text;
-        this.date = date;
+        this.date = LocalDate.now();
     }
 
     public String getTitle() {
@@ -29,11 +29,11 @@ public class Note {
         this.text = text;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
     
-    public void setDate(Date date) {
-        this.date = date;
+    public void updateDate() {
+        this.date = LocalDate.now();
     }    
 }
