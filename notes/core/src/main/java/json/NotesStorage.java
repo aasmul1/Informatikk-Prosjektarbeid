@@ -1,6 +1,8 @@
-package core;
+package json;
 
 import java.io.File;
+
+import core.NoteOverview;
 
 public class NotesStorage {
     private File file;
