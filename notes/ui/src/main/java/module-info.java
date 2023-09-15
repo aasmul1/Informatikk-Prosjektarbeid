@@ -1,4 +1,5 @@
 module notes.ui {
+    requires com.fasterxml.jackson.databind;
     requires notes.core;
     requires javafx.controls;
     requires javafx.fxml;
