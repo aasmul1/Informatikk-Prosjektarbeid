@@ -5,14 +5,21 @@ import java.io.File;
 import core.NoteOverview;
 
 public class NotesStorage {
-    private File file;
     
     public NoteOverview readNoteOverview() {
         //TODO
-    return null;
+        return null;
     }
-
     public void writeNoteOverview(NoteOverview noteOverview) {
-        //TODO
-    }
+        // var mapper = new ObjectMapper();
+
+        // try {
+        //     var json = mapper.writeValueAsString(noteOverview);
+        //     System.out.println(json);
+        // }
+        // catch (JsonProcessingException e) {
+        //     e.printStackTrace();
+        // }   
+        // return null;
+       }
 }
