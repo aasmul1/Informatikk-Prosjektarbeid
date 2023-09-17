@@ -17,7 +17,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="652.0" prefWidth="408.0">
+      <AnchorPane fx:id="noteoverviewpane" prefHeight="652.0" prefWidth="408.0">
          <children>
             <Text layoutX="22.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" wrappingWidth="63.6142578125">
                <font>

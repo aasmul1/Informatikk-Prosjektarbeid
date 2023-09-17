@@ -67,8 +67,8 @@ public class NoteController{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AppController.fxml"));
         Parent root = loader.load();
 
-        AppController appController = loader.getController();
-        //skal vi sende noe informasjon 
+        //AppController appController = loader.getController();
+        //skal vi sende noe informasjon?
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

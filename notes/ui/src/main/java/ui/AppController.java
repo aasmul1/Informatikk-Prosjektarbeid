@@ -47,10 +47,11 @@ public class AppController {
 
         Stage currentStage = (Stage) noteoverviewpane.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("NoteController.fxml"));
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("NoteController.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/Note.fxml"));
         Parent root = loader.load();
 
-        AppController appController = loader.getController();
+        //AppController appController = loader.getController();
         //skal vi sende noe informasjon 
 
         Stage stage = new Stage();
