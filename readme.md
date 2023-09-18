@@ -1,6 +1,6 @@
 # Note beskrivelse 
 
-
+![Picture of UI](pictures/Notes.jpg)
  
 ## Readme som beskriver
 
