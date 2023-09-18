@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 import core.Note;
-import core.NoteOverview;
 
 public class NoteSerializer extends JsonSerializer<Note> {
     public static final String TITLE_FIELD_NAME = "title";
