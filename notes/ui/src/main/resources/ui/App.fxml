@@ -17,7 +17,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="652.0" prefWidth="408.0">
+      <AnchorPane fx:id="noteoverviewpane" prefHeight="652.0" prefWidth="408.0">
          <children>
             <Text layoutX="22.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" wrappingWidth="63.6142578125">
                <font>
@@ -25,7 +25,7 @@
                </font>
             </Text>
             <ListView fx:id="NoteListView" layoutY="81.0" prefHeight="570.0" prefWidth="400.0" />
-            <Button fx:id="NewNoteButton" layoutX="289.0" layoutY="26.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="81.0" text="New Note" />
+            <Button fx:id="NewNoteButton" layoutX="289.0" layoutY="26.0" mnemonicParsing="false" onAction="#newNote" prefHeight="40.0" prefWidth="81.0" text="New Note" />
          </children>
       </AnchorPane>
    </children>
