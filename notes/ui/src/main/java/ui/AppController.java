@@ -43,16 +43,27 @@ public class AppController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        startScene();
+    }
+
+    public void startScene(){
         NoteListView.getItems().clear();
-        if(notesStorage.readNoteOverview() != null){
-            NoteListView.getItems().addAll(searchList(notesStorage.readNoteOverview().getNotes()));
+            if(notesStorage.readNoteOverview() != null){
+        NoteListView.getItems().addAll(searchList(notesStorage.readNoteOverview().getNotes()));
         }
-        
+
     }
 
     @FXML
     public void newNote(ActionEvent event) throws IOException {  
         sendToNoteScene();
+    }
+
+    public void updateinfo(Note note){
+        NoteOverview noteOverview = notesStorage.readNoteOverview();
+        notesStorage.writeNoteOverview(noteOverview);
+
+        startScene();
     }
 
     private List<String> searchList(List<Note> list){
