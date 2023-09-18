@@ -37,7 +37,7 @@ public class NoteOverview {
         return this.notes;
     }
 
-    public Iterator notesIterator() {
+    public Iterator<Note> notesIterator() {
         return this.notes.iterator();
     }
 
