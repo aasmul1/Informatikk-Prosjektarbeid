@@ -3,12 +3,19 @@ package ui;
 import java.io.IOException;
 // import java.net.URL;
 // import java.util.ResourceBundle;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 import core.Note;
-// import core.Note;
+import core.NoteOverview;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,11 +23,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import json.NotesStorage;
 
-public class AppController {
+public class AppController implements Initializable{
 
     private Note note; 
-
+    private NotesStorage notesStorage = new NotesStorage();
+    
 
     @FXML
     private AnchorPane noteoverviewpane; 
@@ -32,16 +41,31 @@ public class AppController {
     private Button NewNoteButton;
 
 
-    // @Override
-    // public void initialize(URL location, ResourceBundle resources) {
-    //     NoteListView.getItems().clear();
-    //     NoteListView.getItems().addAll(searchList(file.load(), search.getText().toLowerCase()));
-    // }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        NoteListView.getItems().clear();
+        if(notesStorage.readNoteOverview() != null){
+            NoteListView.getItems().addAll(searchList(notesStorage.readNoteOverview().getNotes()));
+        }
+        
+    }
 
     @FXML
     public void newNote(ActionEvent event) throws IOException {  
         sendToNoteScene();
     }
+
+    private List<String> searchList(List<Note> list){
+        List<String> notes = new ArrayList<String>();
+        
+        for (Note note : list) {
+            String title = note.getTitle();
+            notes.add(title);
+        }
+        
+        return notes;
+    }
+    
 
     public void sendToNoteScene() throws IOException{
 
