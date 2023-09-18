@@ -8,6 +8,14 @@ import java.util.List;
 public class NoteOverview {
     private List<Note> notes = new ArrayList<Note>();
 
+    
+
+    public NoteOverview(List<Note> notes) {
+        this.notes = notes;
+    }
+
+    public NoteOverview() {
+    }
 
     public void addNote(Note note) {
         if (note == null) return;
