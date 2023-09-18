@@ -14,6 +14,8 @@ public class NotesStorage {
 
     public NotesStorage() {
         this.mapper = new ObjectMapper();
+        mapper.registerModule(new NoteOverviewModule());
+
     }
 
     public NoteOverview readNoteOverview() {
