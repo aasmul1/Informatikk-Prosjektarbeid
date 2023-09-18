@@ -60,8 +60,8 @@ public class AppController implements Initializable{
     }
 
     public void updateinfo(Note note){
-        NoteOverview noteOverview = notesStorage.readNoteOverview();
-        notesStorage.writeNoteOverview(noteOverview);
+        // NoteOverview noteOverview = notesStorage.readNoteOverview();
+        // notesStorage.writeNoteOverview(noteOverview);
 
         startScene();
     }
