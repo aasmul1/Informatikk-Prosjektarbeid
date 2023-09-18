@@ -16,9 +16,9 @@ public class NoteSerializer extends JsonSerializer<Note> {
     public void serialize(Note note, JsonGenerator jsonGen, SerializerProvider provider) throws IOException {
         jsonGen.writeStartObject();
         jsonGen.writeFieldName(TITLE_FIELD_NAME);
-        jsonGen.writeObjectField(TITLE_FIELD_NAME, note.getTitle());
+        jsonGen.writeString(note.getTitle());
         jsonGen.writeFieldName(TEXT_FIELD_NAME);
-        jsonGen.writeObjectField(TEXT_FIELD_NAME, note.getText());
+        jsonGen.writeString(note.getText());
         jsonGen.writeEndObject();
     }
    
