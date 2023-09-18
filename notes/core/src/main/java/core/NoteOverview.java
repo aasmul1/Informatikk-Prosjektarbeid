@@ -2,6 +2,7 @@ package core;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class NoteOverview {
@@ -34,6 +35,10 @@ public class NoteOverview {
 
     public List<Note> getNotes() {
         return this.notes;
+    }
+
+    public Iterator notesIterator() {
+        return this.notes.iterator();
     }
 
     public static void main(String[] args) {
