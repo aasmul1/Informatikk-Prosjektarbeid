@@ -23,12 +23,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import json.NotesStorage;
+import json.NotesPersistence;
 
 public class AppController implements Initializable{
 
     private Note note; 
-    private NotesStorage notesStorage = new NotesStorage();
+    private NotesPersistence notesPersistence = new NotesPersistence();
     
 
     @FXML
@@ -43,16 +43,27 @@ public class AppController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        startScene();
+    }
+
+    public void startScene(){
         NoteListView.getItems().clear();
-        if(notesStorage.readNoteOverview() != null){
-            NoteListView.getItems().addAll(searchList(notesStorage.readNoteOverview().getNotes()));
+            if(notesPersistence.readNoteOverview() != null){
+        NoteListView.getItems().addAll(searchList(notesPersistence.readNoteOverview().getNotes()));
         }
-        
+
     }
 
     @FXML
     public void newNote(ActionEvent event) throws IOException {  
         sendToNoteScene();
+    }
+
+    public void updateinfo(Note note){
+        // NoteOverview noteOverview = notesPersistence.readNoteOverview();
+        // notesPersistence.writeNoteOverview(noteOverview);
+
+        startScene();
     }
 
     private List<String> searchList(List<Note> list){

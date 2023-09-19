@@ -51,8 +51,12 @@ public class NoteController{
             this.handleWrongInput("Feil input, fyll alle felt med rikitg input");
             return;
         }
-        //skriv til fil
-        sendToAppScene();
+
+        Note newnote = new Note(title, noteText); 
+
+
+        //send scene back to first scene 
+        sendToAppScene(newnote);
     }
 
     public void handleWrongInput(String message){
@@ -60,15 +64,15 @@ public class NoteController{
         alert.show();
     }
 
-    public void sendToAppScene() throws IOException{
+    public void sendToAppScene(Note newnote) throws IOException{
 
         Stage currentStage = (Stage) notepane.getScene().getWindow();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/App.fxml"));
         Parent root = loader.load();
 
-        //AppController appController = loader.getController();
-        //skal vi sende noe informasjon?
+        AppController appController = loader.getController();
+        appController.updateinfo(newnote);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
