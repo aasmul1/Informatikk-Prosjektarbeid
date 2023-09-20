@@ -57,4 +57,5 @@ public class AppTest extends ApplicationTest {
     private ObservableList<String> getNotes() {
         return getNoteView().getItems();
 
+    }
 }
