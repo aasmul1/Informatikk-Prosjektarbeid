@@ -18,9 +18,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import json.NotesPersistence;
@@ -60,7 +62,7 @@ public class AppController implements Initializable{
         sendToNoteScene();
     }
 
-    public void updateinfo(Note note){
+    public void updateinfo2(Note note){
         NoteOverview noteOverview = notesPersistence.readNoteOverview();
         noteOverview.addNote(note);
         notesPersistence.writeNoteOverview(noteOverview);
@@ -68,7 +70,24 @@ public class AppController implements Initializable{
         startScene();
     }
 
-    private List<String> searchList(List<Note> list){
+    
+
+    public void updateinfo(Note note){
+        NoteOverview noteOverview = notesPersistence.readNoteOverview();
+                    try {
+            noteOverview.addNote(note);
+        } catch (IllegalArgumentException e) {
+            Alert alert = new Alert(AlertType.WARNING, e.getMessage());
+            alert.show();
+        }
+
+        notesPersistence.writeNoteOverview(noteOverview);
+
+        startScene();
+    }
+
+    
+        private List<String> searchList(List<Note> list){
         List<String> notes = new ArrayList<String>();
         
         for (Note note : list) {
