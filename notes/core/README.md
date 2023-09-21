@@ -55,8 +55,7 @@ mvn test
 ```
 
 ## User Stories
-
-
+User Stories can you find [here](../../notes/core/UserStories.md). They are linked up with the issues in GitLab.
 
 
 
