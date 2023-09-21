@@ -25,6 +25,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import json.NotesPersistence;
 
+
 public class AppController implements Initializable{
 
     private Note note; 
@@ -71,8 +72,10 @@ public class AppController implements Initializable{
         List<String> notes = new ArrayList<String>();
         
         for (Note note : list) {
-            String title = note.getTitle();
-            notes.add(title);
+            String title = note.getTitle().toUpperCase();
+            String text = note.getText();
+
+            notes.add(title+"\n\n"+text+"\n\n");
         }
         
         return notes;
