@@ -21,5 +21,6 @@ Here is a image of the project structure:
 ![Alt text](docs/pictures/Structure.jpg)
 
 
-
-
+## Java and Maven versions
+Java version: 19.0.1
+Maven version: 3.8.7
