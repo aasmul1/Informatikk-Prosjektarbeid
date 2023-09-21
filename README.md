@@ -24,3 +24,6 @@ Here is a image of the project structure:
 ## Java and Maven versions
 Java version: 19.0.1
 Maven version: 3.8.7
+
+## Code quality
+JaCoCo gathers and presents information about testcode coverage
