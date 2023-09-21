@@ -5,7 +5,8 @@ The Notes-App is a simple application designed to help users create, edit, and m
 
 ## Project Structure
 
-The coding projekt is located in the notes folder, which you can access with `cd notes` from root level. 
+
+The coding projekt is located in the notes subdirectory, which you can access with `cd notes` from root level in the terminal. 
 
 The coding project is organized as follows:
 
@@ -13,10 +14,12 @@ The coding project is organized as follows:
 
 - The user interface of the project is located in the `notes/ui/src/main/java/ui` directory.
 
+The app is build with Maven standard directory layout, and we use Maven commands to run the project. You can find more information about this in the [README.md in notes](/notes/core/README.md).
+
 Here is a image of the project structure:
 
 ![Alt text](docs/pictures/Structure.jpg)
 
-The app is build with Maven standard directory layout, and we use Maven commands to run the project. You can find more information about this in[README.md in notes](/notes/core/README.md).
+
 
 
