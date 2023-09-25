@@ -1,8 +1,10 @@
 package ui;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -18,6 +20,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.control.LabeledMatchers;
+
+import core.Note;
 
 /**
  * TestFX App test
@@ -38,5 +42,20 @@ public class AppTest extends ApplicationTest {
 
     public Parent getRootNode() {
         return root;
+    }
+
+    private void click(String... labels) {
+        for (String label: labels) {
+            clickOn(LabeledMatchers.hasText(label));
+        }
+    }
+
+    private ListView<String> getNoteView() {
+        return (ListView<String>) getRootNode().lookup("#operandsView");
+    }
+
+    private ObservableList<String> getNotes() {
+        return getNoteView().getItems();
+
     }
 }
