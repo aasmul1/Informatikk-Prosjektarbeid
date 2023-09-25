@@ -17,6 +17,7 @@ public class Note {
         this.title = title;
         this.text = text;
         this.created = LocalDate.now();
+        this.edited = LocalDate.now();
     }
 
     /**
