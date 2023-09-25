@@ -62,19 +62,9 @@ public class AppController implements Initializable{
         sendToNoteScene();
     }
 
-    public void updateinfo2(Note note){
-        NoteOverview noteOverview = notesPersistence.readNoteOverview();
-        noteOverview.addNote(note);
-        notesPersistence.writeNoteOverview(noteOverview);
-
-        startScene();
-    }
-
-    
-
     public void updateinfo(Note note){
         NoteOverview noteOverview = notesPersistence.readNoteOverview();
-                    try {
+        try {
             noteOverview.addNote(note);
         } catch (IllegalArgumentException e) {
             Alert alert = new Alert(AlertType.WARNING, e.getMessage());
@@ -83,10 +73,10 @@ public class AppController implements Initializable{
 
         notesPersistence.writeNoteOverview(noteOverview);
 
-        startScene();
+       startScene();
     }
 
-    
+
         private List<String> searchList(List<Note> list){
         List<String> notes = new ArrayList<String>();
         
@@ -115,6 +105,28 @@ public class AppController implements Initializable{
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Create note stage");
+        stage.show();
+
+        currentStage.close();    
+    }
+
+
+    
+
+    public void sendToNoteEditingScene() throws IOException{
+
+        Stage currentStage = (Stage) noteoverviewpane.getScene().getWindow();
+
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("NoteController.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/NoteEdit.fxml"));
+        Parent root = loader.load();
+
+        //AppController appController = loader.getController();
+        //skal vi sende noe informasjon 
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Note edit stage");
         stage.show();
 
         currentStage.close();    
