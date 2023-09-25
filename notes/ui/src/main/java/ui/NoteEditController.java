@@ -13,23 +13,39 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class NoteEditController {
+public class NoteEditController{
+
+    private Note note; 
 
     @FXML
     private AnchorPane noteeditpane; 
 
     @FXML
-    private TextField newNoteInputTitle; 
+    private TextField noteInputTitle; 
 
     @FXML
     private Button addNewNote;
 
     @FXML
-    private TextArea newNoteInputText;
+    private TextArea noteInputText;
+
+    @FXML
+    public void initialize(){
+        String titel = note.getTitle();
+        String text = note.getText();
+
+        noteInputTitle.setText(titel);
+        noteInputText.setText(text); 
+        
+    }
+
+    public void updateinfo(Note note){
+        this.note = note;    
+    }
 
 
 
-    public void sendToAppScene(Note newnote) throws IOException{
+    public void sendToAppScene(Note note) throws IOException{
 
         Stage currentStage = (Stage) noteeditpane.getScene().getWindow();
 
@@ -37,7 +53,7 @@ public class NoteEditController {
         Parent root = loader.load();
 
         AppController appController = loader.getController();
-        appController.updateinfo(newnote);
+        appController.updateinfo(note);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -46,6 +62,9 @@ public class NoteEditController {
 
         currentStage.close();    
     }
+
+    
+
 
 
     

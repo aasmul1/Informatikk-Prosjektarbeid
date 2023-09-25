@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 import core.Note;
+import core.NoteListener;
 import core.NoteOverview;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +30,7 @@ import javafx.stage.Stage;
 import json.NotesPersistence;
 
 
-public class AppController implements Initializable{
+public class AppController implements Initializable, NoteListener{
 
     private Note note; 
     private NotesPersistence notesPersistence = new NotesPersistence();
@@ -113,7 +115,7 @@ public class AppController implements Initializable{
 
     
 
-    public void sendToNoteEditingScene() throws IOException{
+    public void sendToNoteEditingScene(Note note) throws IOException{
 
         Stage currentStage = (Stage) noteoverviewpane.getScene().getWindow();
 
@@ -121,8 +123,8 @@ public class AppController implements Initializable{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/NoteEdit.fxml"));
         Parent root = loader.load();
 
-        //AppController appController = loader.getController();
-        //skal vi sende noe informasjon 
+        NoteEditController noteEditController = loader.getController();
+        noteEditController.updateinfo(note);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -131,4 +133,12 @@ public class AppController implements Initializable{
 
         currentStage.close();    
     }
+
+    @Override
+    public void noteChanged(Collection<NoteListener> listeners, Note note) {
+        updateinfo(note);
+       
+    }
+
+
 }

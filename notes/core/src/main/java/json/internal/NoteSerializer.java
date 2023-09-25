@@ -11,6 +11,9 @@ import core.Note;
 public class NoteSerializer extends JsonSerializer<Note> {
     public static final String TITLE_FIELD_NAME = "title";
     public static final String TEXT_FIELD_NAME = "text";
+    public static final String CREATED_FIELD_NAME = "created";
+    public static final String EDITED_FIELD_NAME = "edited";
+
 
     @Override
     public void serialize(Note note, JsonGenerator jsonGen, SerializerProvider provider) throws IOException {
@@ -19,6 +22,10 @@ public class NoteSerializer extends JsonSerializer<Note> {
         jsonGen.writeString(note.getTitle());
         jsonGen.writeFieldName(TEXT_FIELD_NAME);
         jsonGen.writeString(note.getText());
+        jsonGen.writeFieldName(CREATED_FIELD_NAME);
+        jsonGen.writeString(note.getCreatedDate().toString());
+        jsonGen.writeFieldName(EDITED_FIELD_NAME);
+        jsonGen.writeString(note.getEditedDate().toString());
         jsonGen.writeEndObject();
     }
    
