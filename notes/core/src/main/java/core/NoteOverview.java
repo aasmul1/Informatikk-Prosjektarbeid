@@ -1,14 +1,11 @@
 package core;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 public class NoteOverview {
     private List<Note> notes = new ArrayList<Note>();
-
-    
 
     public NoteOverview(List<Note> notes) {
         this.notes = notes;
@@ -32,8 +29,6 @@ public class NoteOverview {
     public void deleteNote(Note note) {
         if (!notes.contains(note)) throw new IllegalArgumentException();
         notes.remove(note);
-        
-
     }
 
     public void deleteNote(int index) {
@@ -47,6 +42,18 @@ public class NoteOverview {
 
     public Iterator<Note> notesIterator() {
         return this.notes.iterator();
+    }
+
+    public void sortNotesByCreatedDate() {
+        notes.sort(new CreatedDateComparator().reversed());
+    }
+
+    public void sortNotesByLastEditedDate() {
+        notes.sort(new EditedDateComparator().reversed());
+    }
+
+    public void sortNotesByTitle() {
+        notes.sort(new TitleComparator());
     }
 
     public static void main(String[] args) {
