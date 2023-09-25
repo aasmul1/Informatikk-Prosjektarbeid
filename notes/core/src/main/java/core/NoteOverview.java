@@ -45,11 +45,11 @@ public class NoteOverview {
     }
 
     public void sortNotesByCreatedDate() {
-        notes.sort(new CreatedDateComparator());
+        notes.sort(new CreatedDateComparator().reversed());
     }
 
     public void sortNotesByLastEditedDate() {
-        notes.sort(new EditedDateComparator());
+        notes.sort(new EditedDateComparator().reversed());
     }
 
     public void sortNotesByTitle() {
