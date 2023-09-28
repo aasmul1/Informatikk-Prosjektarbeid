@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 
 public class NoteController{
 
+
     @FXML
     private AnchorPane notepane; 
 
@@ -37,10 +38,6 @@ public class NoteController{
     private TextArea newNoteInputText;
 
 
-    @FXML
-    public void initialize(){
-        
-    }
 
     @FXML
     public void newNote(ActionEvent event) throws IOException {  
@@ -63,6 +60,7 @@ public class NoteController{
         Alert alert = new Alert(AlertType.WARNING, message);
         alert.show();
     }
+
 
     public void sendToAppScene(Note newnote) throws IOException{
 

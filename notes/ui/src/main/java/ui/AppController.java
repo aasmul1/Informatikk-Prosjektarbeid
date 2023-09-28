@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 import core.Note;
+import core.NoteListener;
 import core.NoteOverview;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +30,7 @@ import javafx.stage.Stage;
 import json.NotesPersistence;
 
 
-public class AppController implements Initializable{
+public class AppController implements Initializable, NoteListener{
 
     private Note note; 
     private NotesPersistence notesPersistence = new NotesPersistence();
@@ -62,19 +64,9 @@ public class AppController implements Initializable{
         sendToNoteScene();
     }
 
-    public void updateinfo2(Note note){
-        NoteOverview noteOverview = notesPersistence.readNoteOverview();
-        noteOverview.addNote(note);
-        notesPersistence.writeNoteOverview(noteOverview);
-
-        startScene();
-    }
-
-    
-
     public void updateinfo(Note note){
         NoteOverview noteOverview = notesPersistence.readNoteOverview();
-                    try {
+        try {
             noteOverview.addNote(note);
         } catch (IllegalArgumentException e) {
             Alert alert = new Alert(AlertType.WARNING, e.getMessage());
@@ -83,10 +75,10 @@ public class AppController implements Initializable{
 
         notesPersistence.writeNoteOverview(noteOverview);
 
-        startScene();
+       startScene();
     }
 
-    
+
         private List<String> searchList(List<Note> list){
         List<String> notes = new ArrayList<String>();
         
@@ -119,4 +111,34 @@ public class AppController implements Initializable{
 
         currentStage.close();    
     }
+
+
+    
+
+    public void sendToNoteEditingScene(Note note) throws IOException{
+
+        Stage currentStage = (Stage) noteoverviewpane.getScene().getWindow();
+
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("NoteController.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/NoteEdit.fxml"));
+        Parent root = loader.load();
+
+        NoteEditController noteEditController = loader.getController();
+        noteEditController.updateinfo(note);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Note edit stage");
+        stage.show();
+
+        currentStage.close();    
+    }
+
+    @Override
+    public void noteChanged(Collection<NoteListener> listeners, Note note) {
+        updateinfo(note);
+       
+    }
+
+
 }

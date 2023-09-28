@@ -1,4 +1,7 @@
 {
+<<<<<<< HEAD
+    "java.configuration.updateBuildConfiguration": "interactive"
+=======
     "java.configuration.updateBuildConfiguration": "automatic",
     "[java]": {
         "editor.tabSize": 2
@@ -16,4 +19,5 @@
     "java.test.defaultConfig": "modules-template testing",
     "java.compile.nullAnalysis.mode": "automatic",
     "java.debug.settings.onBuildFailureProceed": true
+>>>>>>> dev
 }

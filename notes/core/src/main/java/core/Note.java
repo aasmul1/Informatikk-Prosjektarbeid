@@ -1,13 +1,17 @@
 package core;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Note {
     private String title;
     private String text;
     private LocalDate created;
     private LocalDate edited;
-    
+    private Collection<NoteListener> listeners = new ArrayList<>();
+
+
     /**
      * 
      * @param title
@@ -49,6 +53,7 @@ public class Note {
      */
     public void setTitle(String title) {
         this.title = title;
+        fireNoteChanged(listeners);
     }
 
     /**
@@ -61,6 +66,7 @@ public class Note {
 
     public void setText(String text) {
         this.text = text;
+        fireNoteChanged(listeners);
     }
 
     /**
@@ -82,9 +88,30 @@ public class Note {
 
     public void setEditedDate() {
         this.edited = LocalDate.now();
+        fireNoteChanged(listeners);
     } 
+
+    public void addNoteListener(NoteListener listener){
+        if(!listeners.contains(listener)){
+            listeners.add(listener);
+        }
+    }
+
+    public void removeNoteListener(NoteListener listener){
+        if(listeners.contains(listener)){
+            listeners.remove(listener);
+        }
+    }
+
+    public void fireNoteChanged(Collection<NoteListener> listeners){
+        for (NoteListener listener : listeners) {
+            listener.noteChanged(listeners, this);
+        }
+    }
 
     public static void main(String[] args) {
 
     }
+
+    
 }
