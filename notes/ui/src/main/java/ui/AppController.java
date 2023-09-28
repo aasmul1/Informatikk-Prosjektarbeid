@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import json.NotesPersistence;
@@ -34,6 +35,7 @@ public class AppController implements Initializable, NoteListener{
 
     private Note note; 
     private NotesPersistence notesPersistence = new NotesPersistence();
+    NoteOverview noteOverview = notesPersistence.readNoteOverview();
     
 
     @FXML
@@ -44,6 +46,9 @@ public class AppController implements Initializable, NoteListener{
 
     @FXML
     private Button NewNoteButton;
+
+    @FXML
+    private Button DeleteNoteButton;
 
 
     @Override
@@ -64,13 +69,48 @@ public class AppController implements Initializable, NoteListener{
         sendToNoteScene();
     }
 
+    @FXML public void listViewMouseClick(MouseEvent arg0) {
+        String note = NoteListView.getSelectionModel().getSelectedItem();
+        getNote(note);
+    }
+
+    public void getNote(String listViewNote){
+        String title = listViewNote.substring(0, listViewNote.indexOf('\n'));
+        Note matchedNote = null;
+        for (Note existingNote : noteOverview.getNotes()) {
+            if(existingNote.getTitle().equals(title)){
+                matchedNote = existingNote;
+            }
+        }
+        if(matchedNote != null){
+            this.note = matchedNote;
+        }
+        else{
+            this.note = null;
+        }
+    }
+
+    @FXML
+    public void deleteNote(ActionEvent event) throws IOException {
+        if(this.note == null){
+            this.handleWrongInput("Choose a note you want to delete");
+            return;
+        }
+        deleteNote(note);
+    }
+
+    public void deleteNote(Note note){
+        noteOverview.deleteNote(note);
+        noteOverview = notesPersistence.readNoteOverview();
+    }
+
     public void updateinfo(Note note){
-        NoteOverview noteOverview = notesPersistence.readNoteOverview();
+        noteOverview = notesPersistence.readNoteOverview();
         try {
             noteOverview.addNote(note);
         } catch (IllegalArgumentException e) {
-            Alert alert = new Alert(AlertType.WARNING, e.getMessage());
-            alert.show();
+            this.handleWrongInput("Fill inn all fields");
+            return;
         }
 
         notesPersistence.writeNoteOverview(noteOverview);
@@ -140,5 +180,9 @@ public class AppController implements Initializable, NoteListener{
        
     }
 
+    public void handleWrongInput(String message){
+        Alert alert = new Alert(AlertType.WARNING, message);
+        alert.show();
+    }
 
 }
