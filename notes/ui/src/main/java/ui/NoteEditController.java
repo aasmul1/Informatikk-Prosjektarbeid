@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import core.Note;
 import javafx.event.ActionEvent;
@@ -40,17 +41,45 @@ public class NoteEditController{
         
     }
 
-
     public void updateinfo(Note note){
         this.note = note;    
+    }
+
+    @FXML
+    public void saveNote(ActionEvent event) throws IOException {  
+        String title = noteInputTitle.getText();
+        String noteText = noteInputText.getText();
+
+        LocalDate createdDate = note.getCreatedDate();
+        LocalDate editedDate = LocalDate.now();
+
+        if (title.isEmpty() || noteText.isEmpty()) { //if the text is removed, the note is deleted
+            //TODO slette!!
+            return;
+        }
+         
+        String oldTitle = note.getTitle();
+        String oldText = note.getText(); 
+
+        //sjekker hvis notatet ikke har blitt endret
+        if(oldTitle.equals(title) && oldText.equals(noteText)) {
+            sendToAppScene(new Note(oldTitle, oldText, createdDate, createdDate));
+            return;
+        }
+
+        //if note is edited, creates a new Note object and sends it to AppController
+        Note editNote = new Note(title, noteText, createdDate, editedDate); 
+        
+        //TODO slette old note i noteoverview 
+        
+        //send scene back to first scene 
+        sendToAppScene(editNote);
     }
 
 
 
 
-
-
-    public void sendToAppScene(Note note) throws IOException{
+    public void sendToAppScene(Note editnote) throws IOException{
 
         Stage currentStage = (Stage) noteeditpane.getScene().getWindow();
 
@@ -58,7 +87,7 @@ public class NoteEditController{
         Parent root = loader.load();
 
         AppController appController = loader.getController();
-        appController.updateinfo(note);
+        appController.updateinfo(editnote);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -67,10 +96,5 @@ public class NoteEditController{
 
         currentStage.close();    
     }
-
-    
-
-
-
     
 }
