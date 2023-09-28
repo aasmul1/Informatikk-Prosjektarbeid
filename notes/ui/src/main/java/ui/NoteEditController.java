@@ -3,6 +3,7 @@ package ui;
 import java.io.IOException;
 
 import core.Note;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,7 +25,7 @@ public class NoteEditController{
     private TextField noteInputTitle; 
 
     @FXML
-    private Button addNewNote;
+    private Button saveNoteButton;
 
     @FXML
     private TextArea noteInputText;
@@ -39,9 +40,13 @@ public class NoteEditController{
         
     }
 
+
     public void updateinfo(Note note){
         this.note = note;    
     }
+
+
+
 
 
 
