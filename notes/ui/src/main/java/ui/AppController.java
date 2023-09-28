@@ -92,6 +92,10 @@ public class AppController implements Initializable, NoteListener{
 
     @FXML
     public void deleteNote(ActionEvent event) throws IOException {
+        if(this.note == null){
+            this.handleWrongInput("Choose a note you want to delete");
+            return;
+        }
         deleteNote(note);
     }
 
@@ -105,8 +109,8 @@ public class AppController implements Initializable, NoteListener{
         try {
             noteOverview.addNote(note);
         } catch (IllegalArgumentException e) {
-            Alert alert = new Alert(AlertType.WARNING, e.getMessage());
-            alert.show();
+            this.handleWrongInput("Fill inn all fields");
+            return;
         }
 
         notesPersistence.writeNoteOverview(noteOverview);
@@ -176,5 +180,9 @@ public class AppController implements Initializable, NoteListener{
        
     }
 
+    public void handleWrongInput(String message){
+        Alert alert = new Alert(AlertType.WARNING, message);
+        alert.show();
+    }
 
 }
