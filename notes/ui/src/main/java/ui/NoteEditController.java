@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -53,31 +56,28 @@ public class NoteEditController{
         LocalDate createdDate = note.getCreatedDate();
         LocalDate editedDate = LocalDate.now();
 
-        if (title.isEmpty() || noteText.isEmpty()) { //if the text is removed, the note is deleted
-            //TODO slette!!
-            return;
+        if (title.isEmpty() || noteText.isEmpty()) { //if the text or title is removed, an alert shows
+            Alert alert = new Alert(AlertType.WARNING, "Du kan ikke slette titel eller te");
+            alert.show();
         }
          
         String oldTitle = note.getTitle();
         String oldText = note.getText(); 
 
-        //sjekker hvis notatet ikke har blitt endret
+        //check if note not is changed
         if(oldTitle.equals(title) && oldText.equals(noteText)) {
             sendToAppScene(new Note(oldTitle, oldText, createdDate, createdDate));
             return;
         }
 
         //if note is edited, creates a new Note object and sends it to AppController
-        Note editNote = new Note(title, noteText, createdDate, editedDate); 
+        Note editNote = new Note(title, noteText, createdDate, editedDate);
         
         //TODO slette old note i noteoverview 
         
         //send scene back to first scene 
         sendToAppScene(editNote);
     }
-
-
-
 
     public void sendToAppScene(Note editnote) throws IOException{
 
