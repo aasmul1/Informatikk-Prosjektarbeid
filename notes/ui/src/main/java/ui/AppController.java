@@ -35,7 +35,7 @@ public class AppController implements Initializable, NoteListener{
 
     private Note note; 
     private NotesPersistence notesPersistence = new NotesPersistence();
-    NoteOverview noteOverview = notesPersistence.readNoteOverview();
+    protected NoteOverview noteOverview = notesPersistence.readNoteOverview();
     
 
     @FXML
