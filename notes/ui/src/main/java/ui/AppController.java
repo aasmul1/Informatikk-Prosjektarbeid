@@ -50,6 +50,8 @@ public class AppController implements Initializable, NoteListener{
     @FXML
     private Button DeleteNoteButton;
 
+    
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,7 +60,7 @@ public class AppController implements Initializable, NoteListener{
 
     public void startScene(){
         NoteListView.getItems().clear();
-            if(notesPersistence.readNoteOverview() != null){
+        if(notesPersistence.readNoteOverview() != null){
         NoteListView.getItems().addAll(searchList(notesPersistence.readNoteOverview().getNotes()));
         }
 
@@ -71,11 +73,12 @@ public class AppController implements Initializable, NoteListener{
 
     @FXML public void listViewMouseClick(MouseEvent arg0) {
         String note = NoteListView.getSelectionModel().getSelectedItem();
+        
         getNote(note);
     }
 
     public void getNote(String listViewNote){
-        String title = listViewNote.substring(0, listViewNote.indexOf('\n'));
+        String title = listViewNote.substring(0, listViewNote.indexOf('\n')).toLowerCase();
         Note matchedNote = null;
         for (Note existingNote : noteOverview.getNotes()) {
             if(existingNote.getTitle().equals(title)){
@@ -93,6 +96,7 @@ public class AppController implements Initializable, NoteListener{
     @FXML
     public void deleteNote(ActionEvent event) throws IOException {
         if(this.note == null){
+
             this.handleWrongInput("Choose a note you want to delete");
             return;
         }
@@ -100,8 +104,17 @@ public class AppController implements Initializable, NoteListener{
     }
 
     public void deleteNote(Note note){
-        noteOverview.deleteNote(note);
         noteOverview = notesPersistence.readNoteOverview();
+        try {
+        noteOverview.deleteNote(note);        
+    } catch (IllegalArgumentException e) {
+            this.handleWrongInput("No more notes to delete");
+            return;
+        }
+        
+        
+        notesPersistence.writeNoteOverview(noteOverview);
+        startScene();
     }
 
     public void updateinfo(Note note){
