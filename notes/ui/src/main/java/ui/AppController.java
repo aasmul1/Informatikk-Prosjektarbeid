@@ -93,6 +93,11 @@ public class AppController implements Initializable, NoteListener{
         }
     }
 
+    /** Method for deleting a Note in the ListView. 
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void deleteNote(ActionEvent event) throws IOException {
         int selectedNoteIndex = NoteListView.getSelectionModel().getSelectedIndex(); 
