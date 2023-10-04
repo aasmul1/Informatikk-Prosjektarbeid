@@ -95,27 +95,16 @@ public class AppController implements Initializable, NoteListener{
 
     @FXML
     public void deleteNote(ActionEvent event) throws IOException {
-        if(this.note == null){
-
-            this.handleWrongInput("Choose a note you want to delete");
+        int selectedNoteIndex = NoteListView.getSelectionModel().getSelectedIndex(); 
+        if (selectedNoteIndex == -1) {
+            handleWrongInput("Choose a note you want to delete");
             return;
         }
-        deleteNote(note);
-    }
-
-    public void deleteNote(Note note){
-        noteOverview = notesPersistence.readNoteOverview();
-        try {
-        noteOverview.deleteNote(note);        
-    } catch (IllegalArgumentException e) {
-            this.handleWrongInput("No more notes to delete");
-            return;
-        }
-        
-        
+        noteOverview.deleteNote(selectedNoteIndex);
         notesPersistence.writeNoteOverview(noteOverview);
         startScene();
     }
+
 
     public void updateinfo(Note note){
         noteOverview = notesPersistence.readNoteOverview();
