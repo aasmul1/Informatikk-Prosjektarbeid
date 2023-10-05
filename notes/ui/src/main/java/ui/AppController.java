@@ -71,27 +71,34 @@ public class AppController implements Initializable, NoteListener{
         sendToNoteScene();
     }
 
-    @FXML public void listViewMouseClick(MouseEvent arg0) {
-        String note = NoteListView.getSelectionModel().getSelectedItem();
+    // @FXML public void listViewMouseClick(MouseEvent arg0) {
+    //     try {
+    //         String note = NoteListView.getSelectionModel().getSelectedItem();
+    //         getNote(note);
+    //     } catch (IllegalArgumentException e) {
+    //         this.handleWrongInput("No notes to choose");
+    //         return;
+    //     }
         
-        getNote(note);
-    }
+        
+        
+    // }
 
-    public void getNote(String listViewNote){
-        String title = listViewNote.substring(0, listViewNote.indexOf('\n')).toLowerCase();
-        Note matchedNote = null;
-        for (Note existingNote : noteOverview.getNotes()) {
-            if(existingNote.getTitle().equals(title)){
-                matchedNote = existingNote;
-            }
-        }
-        if(matchedNote != null){
-            this.note = matchedNote;
-        }
-        else{
-            this.note = null;
-        }
-    }
+    // public void getNote(String listViewNote){
+    //     String title = listViewNote.substring(0, listViewNote.indexOf('\n')).toLowerCase();
+    //     Note matchedNote = null;
+    //     for (Note existingNote : noteOverview.getNotes()) {
+    //         if(existingNote.getTitle().equals(title)){
+    //             matchedNote = existingNote;
+    //         }
+    //     }
+    //     if(matchedNote != null){
+    //         this.note = matchedNote;
+    //     }
+    //     else{
+    //         this.note = null;
+    //     }
+    // }
 
     /** Method for deleting a Note in the ListView. 
      * 
