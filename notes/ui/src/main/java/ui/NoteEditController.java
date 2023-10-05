@@ -28,7 +28,7 @@ public class NoteEditController{
     private TextField noteInputTitle; 
 
     @FXML
-    private Button saveNoteButton;
+    private Button saveNoteButton, undoChangesButton;
 
     @FXML
     private TextArea noteInputText;
@@ -78,6 +78,11 @@ public class NoteEditController{
         //if note is edited, creates a new Note object and sends it to AppController
         Note editedNote = new Note(title, noteText, createdDate, editedDate);
         sendToAppScene(editedNote);
+    }
+
+    @FXML
+    public void undo(ActionEvent event) throws IOException{
+        sendToAppScene(this.note);
     }
 
     public void handleWrongInput(String message){
