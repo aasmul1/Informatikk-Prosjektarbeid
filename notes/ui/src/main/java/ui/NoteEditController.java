@@ -34,17 +34,22 @@ public class NoteEditController{
     private TextArea noteInputText;
 
     @FXML
-    public void initialize(){
+    public void initialize(){   
+    }
+
+    public void updateinfo(Note note){
+        this.note = note;  
+        setText(note);
+
+    }
+
+    public void setText(Note note){
         String titel = note.getTitle();
         String text = note.getText();
 
         noteInputTitle.setText(titel);
-        noteInputText.setText(text); 
-        
-    }
+        noteInputText.setText(text);
 
-    public void updateinfo(Note note){
-        this.note = note;    
     }
 
     @FXML

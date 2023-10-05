@@ -110,6 +110,20 @@ public class AppController implements Initializable, NoteListener{
         startScene();
     }
 
+        @FXML
+    public void editNote(ActionEvent event) throws IOException {
+        int selectedNoteIndex = NoteListView.getSelectionModel().getSelectedIndex(); 
+        if (selectedNoteIndex == -1) {
+            handleWrongInput("Choose a note you want to edit");
+            return;
+        }
+        Note editNote = noteOverview.getNotes().get(selectedNoteIndex);
+        noteOverview.deleteNote(selectedNoteIndex);
+        notesPersistence.writeNoteOverview(noteOverview);
+
+        sendToNoteEditingScene(editNote);
+    }
+
 
     public void updateinfo(Note note){
         noteOverview = notesPersistence.readNoteOverview();
