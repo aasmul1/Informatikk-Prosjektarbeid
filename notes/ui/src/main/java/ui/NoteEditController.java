@@ -52,6 +52,7 @@ public class NoteEditController{
 
     }
 
+    
     @FXML
     public void saveNote(ActionEvent event) throws IOException {  
         String title = noteInputTitle.getText();
@@ -61,7 +62,8 @@ public class NoteEditController{
         LocalDate editedDate = LocalDate.now();
 
         if (title.isEmpty() || noteText.isEmpty()) { //if the text or title is removed, an alert shows
-            handleWrongInput("Du kan ikke slette titel eller tekst");
+            this.handleWrongInput("Du kan ikke slette titel eller tekst");
+            return;
         }
          
         String oldTitle = note.getTitle();
@@ -82,6 +84,7 @@ public class NoteEditController{
         Alert alert = new Alert(AlertType.WARNING, message);
         alert.show();
     }
+    
 
     public void sendToAppScene(Note editnote) throws IOException{
 
