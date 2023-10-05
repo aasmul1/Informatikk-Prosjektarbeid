@@ -110,7 +110,12 @@ public class AppController implements Initializable, NoteListener{
         startScene();
     }
 
-        @FXML
+    /** Method for editing a Note in the ListView, deletes note and sends it. 
+     * 
+     * @param event
+     * @throws IOException
+     */
+    @FXML
     public void editNote(ActionEvent event) throws IOException {
         int selectedNoteIndex = NoteListView.getSelectionModel().getSelectedIndex(); 
         if (selectedNoteIndex == -1) {
