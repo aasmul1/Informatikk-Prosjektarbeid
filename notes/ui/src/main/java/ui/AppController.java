@@ -35,7 +35,7 @@ public class AppController implements Initializable, NoteListener{
 
     private Note note; 
     private NotesPersistence notesPersistence = new NotesPersistence();
-    NoteOverview noteOverview = notesPersistence.readNoteOverview();
+    protected NoteOverview noteOverview = notesPersistence.readNoteOverview();
     
 
     @FXML
@@ -108,6 +108,25 @@ public class AppController implements Initializable, NoteListener{
         noteOverview.deleteNote(selectedNoteIndex);
         notesPersistence.writeNoteOverview(noteOverview);
         startScene();
+    }
+
+    /** Method for editing a Note in the ListView, deletes note and sends it. 
+     * 
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    public void editNote(ActionEvent event) throws IOException {
+        int selectedNoteIndex = NoteListView.getSelectionModel().getSelectedIndex(); 
+        if (selectedNoteIndex == -1) {
+            handleWrongInput("Choose a note you want to edit");
+            return;
+        }
+        Note editNote = noteOverview.getNotes().get(selectedNoteIndex);
+        noteOverview.deleteNote(selectedNoteIndex);
+        notesPersistence.writeNoteOverview(noteOverview);
+
+        sendToNoteEditingScene(editNote);
     }
 
 

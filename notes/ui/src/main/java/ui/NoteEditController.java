@@ -1,12 +1,16 @@
 package ui;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import core.Note;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -24,28 +28,70 @@ public class NoteEditController{
     private TextField noteInputTitle; 
 
     @FXML
-    private Button addNewNote;
+    private Button saveNoteButton, undoChangesButton;
 
     @FXML
     private TextArea noteInputText;
 
     @FXML
-    public void initialize(){
+    public void initialize(){   
+    }
+
+    public void updateinfo(Note note){
+        this.note = note;  
+        setText(note);
+
+    }
+
+    public void setText(Note note){
         String titel = note.getTitle();
         String text = note.getText();
 
         noteInputTitle.setText(titel);
-        noteInputText.setText(text); 
-        
+        noteInputText.setText(text);
+
     }
 
-    public void updateinfo(Note note){
-        this.note = note;    
+    
+    @FXML
+    public void saveNote(ActionEvent event) throws IOException {  
+        String title = noteInputTitle.getText();
+        String noteText = noteInputText.getText();
+
+        LocalDate createdDate = note.getCreatedDate();
+        LocalDate editedDate = LocalDate.now();
+
+        if (title.isEmpty() || noteText.isEmpty()) { //if the text or title is removed, an alert shows
+            this.handleWrongInput("Du kan ikke slette titel eller tekst");
+            return;
+        }
+         
+        String oldTitle = note.getTitle();
+        String oldText = note.getText(); 
+
+        //check if note not is changed
+        if(oldTitle.equals(title) && oldText.equals(noteText)) {
+            sendToAppScene(new Note(oldTitle, oldText, createdDate, createdDate));
+            return;
+        }
+
+        //if note is edited, creates a new Note object and sends it to AppController
+        Note editedNote = new Note(title, noteText, createdDate, editedDate);
+        sendToAppScene(editedNote);
     }
 
+    @FXML
+    public void undo(ActionEvent event) throws IOException{
+        sendToAppScene(this.note);
+    }
 
+    public void handleWrongInput(String message){
+        Alert alert = new Alert(AlertType.WARNING, message);
+        alert.show();
+    }
+    
 
-    public void sendToAppScene(Note note) throws IOException{
+    public void sendToAppScene(Note editnote) throws IOException{
 
         Stage currentStage = (Stage) noteeditpane.getScene().getWindow();
 
@@ -53,7 +99,7 @@ public class NoteEditController{
         Parent root = loader.load();
 
         AppController appController = loader.getController();
-        appController.updateinfo(note);
+        appController.updateinfo(editnote);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -61,11 +107,5 @@ public class NoteEditController{
         stage.show();
 
         currentStage.close();    
-    }
-
-    
-
-
-
-    
+    } 
 }
