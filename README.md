@@ -1,6 +1,8 @@
 
 ## Description of the Notes-App
 
+[Open in eclipse-che](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2311/gr2311?new)
+
 The Notes-App is a simple application designed to help users create, edit, and manage their notes. For a more detailed description, please refer to this README file [this README file](/notes/core/README.md).
 
 ## Project Structure
