@@ -50,6 +50,8 @@ public class AppController implements Initializable, NoteListener{
     @FXML
     private Button DeleteNoteButton;
 
+    
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,7 +60,7 @@ public class AppController implements Initializable, NoteListener{
 
     public void startScene(){
         NoteListView.getItems().clear();
-            if(notesPersistence.readNoteOverview() != null){
+        if(notesPersistence.readNoteOverview() != null){
         NoteListView.getItems().addAll(searchList(notesPersistence.readNoteOverview().getNotes()));
         }
 
@@ -71,11 +73,12 @@ public class AppController implements Initializable, NoteListener{
 
     @FXML public void listViewMouseClick(MouseEvent arg0) {
         String note = NoteListView.getSelectionModel().getSelectedItem();
+        
         getNote(note);
     }
 
     public void getNote(String listViewNote){
-        String title = listViewNote.substring(0, listViewNote.indexOf('\n'));
+        String title = listViewNote.substring(0, listViewNote.indexOf('\n')).toLowerCase();
         Note matchedNote = null;
         for (Note existingNote : noteOverview.getNotes()) {
             if(existingNote.getTitle().equals(title)){
@@ -90,19 +93,23 @@ public class AppController implements Initializable, NoteListener{
         }
     }
 
+    /** Method for deleting a Note in the ListView. 
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void deleteNote(ActionEvent event) throws IOException {
-        if(this.note == null){
-            this.handleWrongInput("Choose a note you want to delete");
+        int selectedNoteIndex = NoteListView.getSelectionModel().getSelectedIndex(); 
+        if (selectedNoteIndex == -1) {
+            handleWrongInput("Choose a note you want to delete");
             return;
         }
-        deleteNote(note);
+        noteOverview.deleteNote(selectedNoteIndex);
+        notesPersistence.writeNoteOverview(noteOverview);
+        startScene();
     }
 
-    public void deleteNote(Note note){
-        noteOverview.deleteNote(note);
-        noteOverview = notesPersistence.readNoteOverview();
-    }
 
     public void updateinfo(Note note){
         noteOverview = notesPersistence.readNoteOverview();
