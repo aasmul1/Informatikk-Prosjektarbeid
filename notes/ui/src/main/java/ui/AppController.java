@@ -95,7 +95,7 @@ public class AppController implements Initializable, NoteOverviewListener{
     //     }
     // }
 
-    /** Method for deleting a Note in the ListView. 
+    /** Method for deleting a Note. 
      * 
      * @param event
      * @throws IOException
@@ -110,7 +110,7 @@ public class AppController implements Initializable, NoteOverviewListener{
         noteOverview.deleteNote(selectedNoteIndex);
     }
 
-    /** Method for editing a Note in the ListView, deletes note and sends it. 
+    /** Method for editing a Note, deletes note and sends it to NoteEditingScene. 
      * 
      * @param event
      * @throws IOException
@@ -128,7 +128,10 @@ public class AppController implements Initializable, NoteOverviewListener{
         sendToNoteEditingScene(editNote);
     }
 
-
+    /** Method for adding note
+     * 
+     * @param note
+     */
     public void updateinfo(Note note){
         try {
             noteOverview.addNote(note);
@@ -139,7 +142,7 @@ public class AppController implements Initializable, NoteOverviewListener{
     }
 
 
-        private List<String> searchList(List<Note> list){
+    private List<String> searchList(List<Note> list){
         List<String> notes = new ArrayList<String>();
         
         for (Note note : list) {
@@ -172,9 +175,6 @@ public class AppController implements Initializable, NoteOverviewListener{
         currentStage.close();    
     }
 
-
-    
-
     public void sendToNoteEditingScene(Note note) throws IOException{
 
         Stage currentStage = (Stage) noteoverviewpane.getScene().getWindow();
@@ -194,17 +194,11 @@ public class AppController implements Initializable, NoteOverviewListener{
         currentStage.close();    
     }
 
-    // @Override
-    // public void noteChanged(Collection<NoteListener> listeners, Note note) {
-    //     updateinfo(note);
-       
-    // }
-
     public void handleWrongInput(String message){
         Alert alert = new Alert(AlertType.WARNING, message);
         alert.show();
     }
-
+    
     @Override
     public void noteOverviewChanged() {
         updateJson();

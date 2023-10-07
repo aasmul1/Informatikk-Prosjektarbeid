@@ -103,15 +103,13 @@ public class Note {
         }
     }
 
+    /** Fire changes in Note to all listeners
+     * 
+     * @param listeners
+     */
     public void fireNoteChanged(Collection<NoteListener> listeners){
         for (NoteListener listener : listeners) {
             listener.noteChanged();
         }
-    }
-
-    public static void main(String[] args) {
-
-    }
-
-    
+    }    
 }
