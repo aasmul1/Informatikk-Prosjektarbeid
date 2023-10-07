@@ -105,7 +105,7 @@ public class Note {
 
     public void fireNoteChanged(Collection<NoteListener> listeners){
         for (NoteListener listener : listeners) {
-            listener.noteChanged(listeners, this);
+            listener.noteChanged();
         }
     }
 
