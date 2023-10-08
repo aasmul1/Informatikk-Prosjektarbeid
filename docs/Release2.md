@@ -16,5 +16,8 @@ In Release 1, we focused on establishing the core structure and functionality of
 ![Image Alt Text](/docs/pictures/architecture.png)
 
 ## Work habits 
+During this release, we effectively navigated a structured workflow. Every development task is initiated through issues and carried out in its specific branch, ensuring an organized development path. To gauge our progress towards key deliverables, we consistently utilize milestones, this submission is linked to "Innlevering 2" milestone. Crucially, all merge requests must be marked as ready and then undergo thorough peer review to ensure the code's correctness before being approved. Additionally, we champion pair programming, with team members alternating roles, and this collaborative spirit is transparently documented in our commits writing "Co-authored".
+
+
 
 ## Code quality
