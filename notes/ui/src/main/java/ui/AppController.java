@@ -12,6 +12,8 @@ import java.util.ResourceBundle;
 import core.Note;
 import core.NoteOverview;
 import core.NoteOverviewListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +50,7 @@ public class AppController implements Initializable, NoteOverviewListener{
 
     @FXML
     private ComboBox<String> sortComboBox;
+    
 
     private List<String> sortList = Arrays.asList("Date created", "Last edited date", "Title (A-Z)");
 
@@ -58,6 +61,24 @@ public class AppController implements Initializable, NoteOverviewListener{
     public void initialize(URL location, ResourceBundle resources) {
         startScene();
         sortComboBox.getItems().addAll(sortList);
+        sortComboBox.valueProperty().addListener(new ChangeListener<String>() {
+
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                String sort = newValue;
+                if (sort.equals(null)) return;
+                if(sort.equals(sortList.get(0))) { //"Created date"
+                    noteOverview.sortNotesByCreatedDate();
+                }
+                else if(sort.equals(sortList.get(1))) { //"Last edited date"
+                    noteOverview.sortNotesByCreatedDate();
+                }
+                else if(sort.equals(sortList.get(2))) { //"Title (A-Z)"
+                    noteOverview.sortNotesByCreatedDate();
+                }
+            }
+            
+        });
     }
 
     public void startScene(){
@@ -138,13 +159,14 @@ public class AppController implements Initializable, NoteOverviewListener{
     @FXML
     public void sortNoteOverview(){
         String sort = sortComboBox.getValue();
-        if(sort != null && sort.equals(sortList.get(0))) { //"Created date"
+        if (sort.equals(null)) return;
+        if(sort.equals(sortList.get(0))) { //"Created date"
             noteOverview.sortNotesByCreatedDate();
         }
-        else if(sort != null && sort.equals(sortList.get(1))) { //"Last edited date"
+        else if(sort.equals(sortList.get(1))) { //"Last edited date"
             noteOverview.sortNotesByCreatedDate();
         }
-        else if(sort != null && sort.equals(sortList.get(2))) { //"Title (A-Z)"
+        else if(sort.equals(sortList.get(2))) { //"Title (A-Z)"
             noteOverview.sortNotesByCreatedDate();
         }
     }
