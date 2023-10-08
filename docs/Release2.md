@@ -13,6 +13,8 @@ In Release 1, we focused on establishing the core structure and functionality of
 
 ## Architecture
 
+![Image Alt Text](/docs/pictures/architecture.png)
+
 ## Work habits 
 
 ## Code quality
