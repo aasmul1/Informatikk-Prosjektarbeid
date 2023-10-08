@@ -11,11 +11,11 @@ component jackson {
 notes.json ..> jackson
 
 component ui {
- 	package notes.src
+ 	package notes.ui
 }
 
-notes.ui ..> simpleex.core
-notes.ui ..> simpleex.json
+notes.ui ..> notes.core
+notes.ui ..> notes.json
 
 component javafx {
  	component fxml {
