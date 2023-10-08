@@ -5,15 +5,12 @@ import java.io.IOException;
 // import java.util.ResourceBundle;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import core.Note;
-import core.NoteListener;
 import core.NoteOverview;
+import core.NoteOverviewListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,16 +19,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import json.NotesPersistence;
 
 
-public class AppController implements Initializable, NoteListener{
+public class AppController implements Initializable, NoteOverviewListener{
 
     private Note note; 
     private NotesPersistence notesPersistence = new NotesPersistence();
@@ -55,15 +50,15 @@ public class AppController implements Initializable, NoteListener{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         startScene();
     }
 
     public void startScene(){
+        noteOverview = notesPersistence.readNoteOverview();
+        noteOverview.addListener(this);
         NoteListView.getItems().clear();
-        if(notesPersistence.readNoteOverview() != null){
-        NoteListView.getItems().addAll(searchList(notesPersistence.readNoteOverview().getNotes()));
-        }
-
+        NoteListView.getItems().addAll(searchList(noteOverview.getNotes()));
     }
 
     @FXML
@@ -100,7 +95,7 @@ public class AppController implements Initializable, NoteListener{
     //     }
     // }
 
-    /** Method for deleting a Note in the ListView. 
+    /** Method for deleting a Note. 
      * 
      * @param event
      * @throws IOException
@@ -113,11 +108,9 @@ public class AppController implements Initializable, NoteListener{
             return;
         }
         noteOverview.deleteNote(selectedNoteIndex);
-        notesPersistence.writeNoteOverview(noteOverview);
-        startScene();
     }
 
-    /** Method for editing a Note in the ListView, deletes note and sends it. 
+    /** Method for editing a Note, deletes note and sends it to NoteEditingScene. 
      * 
      * @param event
      * @throws IOException
@@ -131,28 +124,25 @@ public class AppController implements Initializable, NoteListener{
         }
         Note editNote = noteOverview.getNotes().get(selectedNoteIndex);
         noteOverview.deleteNote(selectedNoteIndex);
-        notesPersistence.writeNoteOverview(noteOverview);
 
         sendToNoteEditingScene(editNote);
     }
 
-
+    /** Method for adding note
+     * 
+     * @param note
+     */
     public void updateinfo(Note note){
-        noteOverview = notesPersistence.readNoteOverview();
         try {
             noteOverview.addNote(note);
         } catch (IllegalArgumentException e) {
             this.handleWrongInput("Fill inn all fields");
             return;
         }
-
-        notesPersistence.writeNoteOverview(noteOverview);
-
-       startScene();
     }
 
 
-        private List<String> searchList(List<Note> list){
+    private List<String> searchList(List<Note> list){
         List<String> notes = new ArrayList<String>();
         
         for (Note note : list) {
@@ -185,9 +175,6 @@ public class AppController implements Initializable, NoteListener{
         currentStage.close();    
     }
 
-
-    
-
     public void sendToNoteEditingScene(Note note) throws IOException{
 
         Stage currentStage = (Stage) noteoverviewpane.getScene().getWindow();
@@ -207,15 +194,18 @@ public class AppController implements Initializable, NoteListener{
         currentStage.close();    
     }
 
-    @Override
-    public void noteChanged(Collection<NoteListener> listeners, Note note) {
-        updateinfo(note);
-       
-    }
-
     public void handleWrongInput(String message){
         Alert alert = new Alert(AlertType.WARNING, message);
         alert.show();
     }
+    
+    @Override
+    public void noteOverviewChanged() {
+        updateJson();
+    }
 
+    public void updateJson() {
+        notesPersistence.writeNoteOverview(noteOverview);
+        startScene();
+    }
 }
