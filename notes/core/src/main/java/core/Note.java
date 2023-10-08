@@ -35,6 +35,9 @@ public class Note {
     public Note(String title, String text, LocalDate created, LocalDate edited) {
         this.title = title;
         this.text = text;
+        if(created.isAfter(edited)){
+            throw new IllegalArgumentException();
+        }
         this.created = created;
         this.edited = edited;
     }
