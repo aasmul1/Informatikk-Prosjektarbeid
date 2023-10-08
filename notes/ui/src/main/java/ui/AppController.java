@@ -48,6 +48,17 @@ public class AppController implements Initializable, NoteOverviewListener{
     @FXML
     private ComboBox<String> sortComboBox;
     
+    public AppController(boolean isTestMode) {
+        if (isTestMode) {
+            notesPersistence = new NotesPersistence(new File("src/main/resources/testOverview.json"));
+            System.out.println("New file (test)");
+            noteOverview = notesPersistence.readNoteOverview();
+        }
+    }
+
+    public AppController() {
+        
+    }
 
     private List<String> sortList = Arrays.asList("Date created", "Last edited date", "Title (A-Z)");
 
@@ -229,5 +240,5 @@ public class AppController implements Initializable, NoteOverviewListener{
     public void updateJson() {
         notesPersistence.writeNoteOverview(noteOverview);
         startScene();
-    }
+    } 
 }
