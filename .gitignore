@@ -10,3 +10,4 @@ org.eclipse.*.prefs
 
 # ignore NoteOverview.json to avoid merge conflicts
 notes/ui/src/main/resources/noteOverview.json
+notes/ui/src/main/resources/testOverview.json
