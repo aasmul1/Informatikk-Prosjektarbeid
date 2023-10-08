@@ -58,4 +58,18 @@ public class NoteTest {
         assertEquals(LocalDate.now(), note.getEditedDate());
 
     }
+
+    @Test
+    public void testSetTitle(){
+        note.setTitle("New Title");
+        assertEquals("New Title", note.getTitle());
+    }
+
+    @Test
+    public void testSetText(){
+        note.setText("New text");
+        assertEquals("New text", note.getText());
+    }
+
+
 }
