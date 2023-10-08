@@ -1,4 +1,6 @@
 
+For the second release, we aimed to enhance the MVP from the initial release by adding new features such as the possibilty for editing and deleting notes, and sorting the notes based on date or title. We've enriched our test suite with additional tests and introduced UI testing. The project maintains its modularity and is built upon a complete three-layer architecture.
+
 ## New Features 
 
 In Release 1, we focused on establishing the core structure and functionality of the application (MVN). Therefore, the new features introduced in this release are foundational. These features include:
