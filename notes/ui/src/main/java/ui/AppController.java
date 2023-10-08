@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -28,7 +29,8 @@ import json.NotesPersistence;
 
 public class AppController implements Initializable, NoteOverviewListener{
 
-    private NotesPersistence notesPersistence = new NotesPersistence();
+    private Note note; 
+    private NotesPersistence notesPersistence = new NotesPersistence(new File("src/main/resources/noteOverview.json"));
     protected NoteOverview noteOverview = notesPersistence.readNoteOverview();
     
     @FXML
