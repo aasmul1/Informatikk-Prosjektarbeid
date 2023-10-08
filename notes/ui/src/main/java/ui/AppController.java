@@ -1,8 +1,6 @@
 package ui;
 
 import java.io.IOException;
-// import java.net.URL;
-// import java.util.ResourceBundle;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,8 +10,6 @@ import java.util.ResourceBundle;
 import core.Note;
 import core.NoteOverview;
 import core.NoteOverviewListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,7 +28,6 @@ import json.NotesPersistence;
 
 public class AppController implements Initializable, NoteOverviewListener{
 
-    private Note note; 
     private NotesPersistence notesPersistence = new NotesPersistence();
     protected NoteOverview noteOverview = notesPersistence.readNoteOverview();
     
@@ -54,31 +49,10 @@ public class AppController implements Initializable, NoteOverviewListener{
 
     private List<String> sortList = Arrays.asList("Date created", "Last edited date", "Title (A-Z)");
 
-    
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         startScene();
         sortComboBox.getItems().addAll(sortList);
-        sortComboBox.valueProperty().addListener(new ChangeListener<String>() {
-
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                String sort = newValue;
-                if (sort.equals(null)) return;
-                if(sort.equals(sortList.get(0))) { //"Created date"
-                    noteOverview.sortNotesByCreatedDate();
-                }
-                else if(sort.equals(sortList.get(1))) { //"Last edited date"
-                    noteOverview.sortNotesByCreatedDate();
-                }
-                else if(sort.equals(sortList.get(2))) { //"Title (A-Z)"
-                    noteOverview.sortNotesByCreatedDate();
-                }
-            }
-            
-        });
     }
 
     public void startScene(){
@@ -156,6 +130,9 @@ public class AppController implements Initializable, NoteOverviewListener{
     }
 
 
+    /** Method for sorting NoteOverview with choosen sorting algoritm 
+     * 
+     */
     @FXML
     public void sortNoteOverview(){
         String sort = sortComboBox.getValue();
@@ -167,7 +144,7 @@ public class AppController implements Initializable, NoteOverviewListener{
             noteOverview.sortNotesByCreatedDate();
         }
         else if(sort.equals(sortList.get(2))) { //"Title (A-Z)"
-            noteOverview.sortNotesByCreatedDate();
+            noteOverview.sortNotesByTitle();
         }
     }
 
