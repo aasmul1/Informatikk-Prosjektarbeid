@@ -11,7 +11,7 @@ The app has two main functions
 
 ## The application
 
-![Image Alt Text](../docs/pictures/Notes.jpg)
+![Image Alt Text](../docs/pictures/Notes2.jpg)
 
 ## Build and running of project
 
