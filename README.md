@@ -20,7 +20,6 @@ The app is build with Maven standard directory layout, and we use Maven commands
 
 Here is a image of the project structure:
 
-![Alt text](docs/pictures/Structure.jpg)
 
 
 ## Java and Maven versions
