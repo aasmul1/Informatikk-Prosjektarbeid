@@ -138,16 +138,13 @@ public class AppController implements Initializable, NoteOverviewListener{
     @FXML
     public void sortNoteOverview(){
         String sort = sortComboBox.getValue();
-        if(sort == null) {
-            return;
-        }
-        if(sort.equals(sortList.get(0))) { //"Created date"
+        if(sort != null && sort.equals(sortList.get(0))) { //"Created date"
             noteOverview.sortNotesByCreatedDate();
         }
-        else if(sort.equals(sortList.get(1))) { //"Last edited date"
+        else if(sort != null && sort.equals(sortList.get(1))) { //"Last edited date"
             noteOverview.sortNotesByCreatedDate();
         }
-        else if(sort.equals(sortList.get(2))) { //"Title (A-Z)"
+        else if(sort != null && sort.equals(sortList.get(2))) { //"Title (A-Z)"
             noteOverview.sortNotesByCreatedDate();
         }
     }
