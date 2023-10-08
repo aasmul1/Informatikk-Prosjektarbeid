@@ -66,7 +66,34 @@ public class NoteOverviewTest {
 
     @Test
     public void testDelete(){
+      Note note = new Note("Title3", "Content");
+      noteOverview.addNote(note);
+      noteOverview.deleteNote(note);
+      assertFalse(noteOverview.getNotes().contains(note));
 
+      // Test deleting a null note
+      assertThrows(IllegalArgumentException.class, () -> noteOverview.deleteNote(null));
+
+      // Test deleting a non-existing note
+      Note nonExistingNote = new Note("Non-Existing Title", "Non-Existing Content");
+      assertThrows(IllegalArgumentException.class, () -> noteOverview.deleteNote(nonExistingNote));
+
+      Note note1 = new Note("Title 1", "Content 1");
+      Note note2 = new Note("Title 2", "Content 2");
+      noteOverview.addNote(note1);
+      noteOverview.addNote(note2);
+
+      noteOverview.deleteNote(0);
+      assertFalse(noteOverview.getNotes().contains(note));
+      assertTrue(noteOverview.getNotes().contains(note1));
+
+
+      // Test deleting an invalid index (out of bounds)
+      assertThrows(IllegalArgumentException.class, () -> noteOverview.deleteNote(3));
+
+      
+
+  
     }
 
     @Test
@@ -76,10 +103,7 @@ public class NoteOverviewTest {
     
 
     
-    //delete
-    //add
-    //delete int
-    //get notes
+
     //sortbycreated
     //sortbyedited
     //sortbytitle
