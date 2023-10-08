@@ -1,11 +1,13 @@
 # Notes description 
 
-Our app is an intuitive note-taking application. Users can easily create new notes and later return to make changes or delete them entirely. All notes are presented in a clear list, organized chronologically based on when they were created.
+Our app is an intuitive note-taking application designed for ease and efficiency. Users can swiftly create new notes, and when they return, making modifications or deleting notes is easy. All notes are initially presented in a clear list, organized chronologically based on their creation date. To cater to individual preferences, we've incorporated a sorting feature. Users can choose to sort their notes based on 'Created Date', 'Last Edited Date', or alphabetically by 'Title (A-Z)'. This added functionality ensures that users have quick access to their information, streamlining their note management process.
 
 The app has two main functions
 
- - Creating a new note
-- Editing old notes
+ - Creating notes
+- Editing notes
+- Deleting notes
+- Sorting the list of notes
 
 ## The application
 
