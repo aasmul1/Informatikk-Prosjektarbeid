@@ -5,6 +5,7 @@ import java.io.IOException;
 // import java.util.ResourceBundle;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -19,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -32,7 +34,6 @@ public class AppController implements Initializable, NoteOverviewListener{
     private NotesPersistence notesPersistence = new NotesPersistence();
     protected NoteOverview noteOverview = notesPersistence.readNoteOverview();
     
-
     @FXML
     private AnchorPane noteoverviewpane; 
 
@@ -45,13 +46,18 @@ public class AppController implements Initializable, NoteOverviewListener{
     @FXML
     private Button DeleteNoteButton;
 
+    @FXML
+    private ComboBox<String> sortComboBox;
+
+    private List<String> sortList = Arrays.asList("Date created", "Last edited date", "Title (A-Z)");
+
     
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         startScene();
+        sortComboBox.getItems().addAll(sortList);
     }
 
     public void startScene(){
@@ -126,6 +132,24 @@ public class AppController implements Initializable, NoteOverviewListener{
         noteOverview.deleteNote(selectedNoteIndex);
 
         sendToNoteEditingScene(editNote);
+    }
+
+
+    @FXML
+    public void sortNoteOverview(){
+        String sort = sortComboBox.getValue();
+        if(sort == null) {
+            return;
+        }
+        if(sort.equals(sortList.get(0))) { //"Created date"
+            noteOverview.sortNotesByCreatedDate();
+        }
+        else if(sort.equals(sortList.get(1))) { //"Last edited date"
+            noteOverview.sortNotesByCreatedDate();
+        }
+        else if(sort.equals(sortList.get(2))) { //"Title (A-Z)"
+            noteOverview.sortNotesByCreatedDate();
+        }
     }
 
     /** Method for adding note
