@@ -9,7 +9,7 @@ The app has two main functions
 
 ## The application
 
-![Image Alt Text](../../docs/pictures/Notes.jpg)
+![Image Alt Text](../docs/pictures/Notes.jpg)
 
 ## Build and running of project
 
@@ -55,7 +55,7 @@ mvn test
 ```
 
 ## User Stories
-User Stories can you find [here](../../notes/core/UserStories.md). They are linked up with the issues in GitLab.
+User Stories can you find [here](../notes/UserStories.md). They are linked up with the issues in GitLab.
 
 
 
