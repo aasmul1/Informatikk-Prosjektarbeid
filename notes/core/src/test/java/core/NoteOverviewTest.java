@@ -19,15 +19,18 @@ public class NoteOverviewTest {
     private List<Note> list = new ArrayList<Note>();
     LocalDate editedDate = LocalDate.parse("2023-10-06");
     LocalDate createdDate = LocalDate.parse("2023-10-05");
+    Note noteStart = new Note("ATitle", "Chores i have to do", createdDate, editedDate);
+    Note noteStart2 = new Note("BTitle2", "Chores i have to do");
     // Note("Title", "Chores i have to do", createdDate, editedDate);
     //     this.note2 = new Note("Title2", "Here i want to test");
 
     @BeforeEach
     void setUp() {
-      Note noteStart = new Note("Title", "Chores i have to do", createdDate, editedDate);
-      Note noteStart2 = new Note("Title2", "Chores i have to do");
+      
+      
       list.add(noteStart);
       list.add(noteStart2);
+      
       this.noteOverview = new NoteOverview(list);
         
         
@@ -98,13 +101,18 @@ public class NoteOverviewTest {
 
     @Test
     public void testSort(){
+        noteOverview.sortNotesByCreatedDate();
+        assertEquals(this.noteStart2, noteOverview.getNotes().get(0));
+        Note note = new Note("CTitleee", "TExt", LocalDate.parse("2023-10-05"), LocalDate.parse("2023-10-07"));
+        noteOverview.addNote(note);
+        noteOverview.sortNotesByLastEditedDate();
+        assertEquals(note, noteOverview.getNotes().get(1));
+        assertEquals(this.noteStart2, noteOverview.getNotes().get(0));
+        noteOverview.sortNotesByTitle();
+        assertEquals(note, noteOverview.getNotes().get(2));
+        assertEquals(this.noteStart, noteOverview.getNotes().get(0));
 
     }
     
 
-    
-
-    //sortbycreated
-    //sortbyedited
-    //sortbytitle
 }
