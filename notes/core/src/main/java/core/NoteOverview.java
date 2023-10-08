@@ -52,7 +52,7 @@ public class NoteOverview implements NoteListener {
     }
 
     public List<Note> getNotes() {
-        return this.notes;
+        return new ArrayList<Note>(this.notes);
     }
 
     public Iterator<Note> notesIterator() {
