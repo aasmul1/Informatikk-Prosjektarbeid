@@ -11,18 +11,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class NoteController{
+
 
     @FXML
     private AnchorPane notepane; 
@@ -36,12 +31,12 @@ public class NoteController{
     @FXML
     private TextArea newNoteInputText;
 
-
-    @FXML
-    public void initialize(){
-        
-    }
-
+    /**
+     * Method to handle the creation of a new note when the "Save Note" button is clicked.
+     *
+     * @param event the ActionEvent triggered by the "Save Note" button click.
+     * @throws IOException
+     */
     @FXML
     public void newNote(ActionEvent event) throws IOException {  
         String title = newNoteInputTitle.getText();
@@ -51,19 +46,28 @@ public class NoteController{
             this.handleWrongInput("Feil input, fyll alle felt med rikitg input");
             return;
         }
-
         Note newnote = new Note(title, noteText); 
-
 
         //send scene back to first scene 
         sendToAppScene(newnote);
     }
 
+    /**
+     * Method for displaying a warning message in the form of an Alert.
+     *
+     * @param message to display in the warning.
+     */
     public void handleWrongInput(String message){
         Alert alert = new Alert(AlertType.WARNING, message);
         alert.show();
     }
 
+    /**
+     * Transistions to the main scene and updates it with the newly created note.
+     *
+     * @param newnote the newly created Note object
+     * @throws IOException if an error occurs while loading the application scene.
+     */
     public void sendToAppScene(Note newnote) throws IOException{
 
         Stage currentStage = (Stage) notepane.getScene().getWindow();
@@ -81,6 +85,4 @@ public class NoteController{
 
         currentStage.close();    
     }
-
-
 }

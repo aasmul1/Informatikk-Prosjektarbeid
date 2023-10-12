@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="9.3">
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/EditedDateComparator.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/TitleComparator.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/NoteOverview.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/NoteOverviewListener.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/Note.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/NoteListener.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/CreatedDateComparator.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/NotesPersistence.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NoteDeserializer.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NoteOverviewSerializer.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NoteSerializer.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NoteOverviewDeserializer.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NoteOverviewModule.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NotesStorage.java">
+</file>
+</checkstyle>

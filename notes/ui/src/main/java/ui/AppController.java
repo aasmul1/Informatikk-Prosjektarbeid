@@ -1,17 +1,16 @@
 package ui;
 
+import java.io.File;
 import java.io.IOException;
-// import java.net.URL;
-// import java.util.ResourceBundle;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import core.Note;
 import core.NoteOverview;
+import core.NoteOverviewListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -28,12 +27,14 @@ import javafx.stage.Stage;
 import json.NotesPersistence;
 
 
-public class AppController implements Initializable{
+public class AppController implements Initializable, NoteOverviewListener{
 
-    private Note note; 
-    private NotesPersistence notesPersistence = new NotesPersistence();
+    private NotesPersistence notesPersistence = new NotesPersistence(new File("src/main/resources/noteOverview.json"));
     
+    protected NoteOverview noteOverview = notesPersistence.readNoteOverview();
 
+    private List<String> sortList = Arrays.asList("Date created", "Last edited date", "Title (A-Z)");
+    
     @FXML
     private AnchorPane noteoverviewpane; 
 
@@ -43,51 +44,127 @@ public class AppController implements Initializable{
     @FXML
     private Button NewNoteButton;
 
+    @FXML
+    private Button DeleteNoteButton;
+
+    @FXML
+    private ComboBox<String> sortComboBox;
+    
+    /**
+     * Constructor for the AppController when in test mode.
+     *
+     * @param isTestMode Indicates whether the application is in test mode.
+     */
+    public AppController(boolean isTestMode) {
+        if (isTestMode) {
+            notesPersistence = new NotesPersistence(new File("src/main/resources/testOverview.json"));
+            System.out.println("New file (test)");
+            noteOverview = notesPersistence.readNoteOverview();
+        }
+    }
+
+    public AppController() {  
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         startScene();
+        sortComboBox.getItems().addAll(sortList);
     }
 
+    /**
+     * Initializes the main scene, including loading notes and setting up listeners
+     */
     public void startScene(){
+        noteOverview = notesPersistence.readNoteOverview();
+        noteOverview.addListener(this);
         NoteListView.getItems().clear();
-            if(notesPersistence.readNoteOverview() != null){
-        NoteListView.getItems().addAll(searchList(notesPersistence.readNoteOverview().getNotes()));
-        }
-
+        NoteListView.getItems().addAll(searchList(noteOverview.getNotes()));
     }
 
     @FXML
     public void newNote(ActionEvent event) throws IOException {  
         sendToNoteScene();
     }
+        
+        
 
-    public void updateinfo2(Note note){
-        NoteOverview noteOverview = notesPersistence.readNoteOverview();
-        noteOverview.addNote(note);
-        notesPersistence.writeNoteOverview(noteOverview);
-
-        startScene();
+   /**
+     * Deletes a selected note.
+     * 
+     * @param event the ActionEvent triggered by the "Delete" button click.
+     * @throws IOException if an error occurs during note deletion
+     */
+    @FXML
+    public void deleteNote(ActionEvent event) throws IOException {
+        int selectedNoteIndex = NoteListView.getSelectionModel().getSelectedIndex(); 
+        if (selectedNoteIndex == -1) {
+            handleWrongInput("Choose a note you want to delete");
+            return;
+        }
+        noteOverview.deleteNote(selectedNoteIndex);
     }
 
-    
+    /**
+     * Edits a selected note by deleting it and sending it to the note editing scene.
+     * 
+     * @param event the ActionEvent triggered by the "Edit" button click.
+     * @throws IOException if an error occurs during the transition to the note editing scene.
+     */
+    @FXML
+    public void editNote(ActionEvent event) throws IOException {
+        int selectedNoteIndex = NoteListView.getSelectionModel().getSelectedIndex(); 
+        if (selectedNoteIndex == -1) {
+            handleWrongInput("Choose a note you want to edit");
+            return;
+        }
+        Note editNote = noteOverview.getNotes().get(selectedNoteIndex);
+        noteOverview.deleteNote(selectedNoteIndex);
 
+        sendToNoteEditingScene(editNote);
+    }
+
+
+    /** 
+     * Sorts the NoteOverview using the selected sorting algorithm.
+     */
+    @FXML
+    public void sortNoteOverview(){
+        String sort = sortComboBox.getValue();
+        if (sort.equals(null)) return;
+        if(sort.equals(sortList.get(0))) { //"Created date"
+            noteOverview.sortNotesByCreatedDate();
+        }
+        else if(sort.equals(sortList.get(1))) { //"Last edited date"
+            noteOverview.sortNotesByCreatedDate();
+        }
+        else if(sort.equals(sortList.get(2))) { //"Title (A-Z)"
+            noteOverview.sortNotesByTitle();
+        }
+    }
+
+    /** 
+     * Adds a new note to the NoteOverview.
+     * 
+     * @param note to be added
+     */
     public void updateinfo(Note note){
-        NoteOverview noteOverview = notesPersistence.readNoteOverview();
-                    try {
+        try {
             noteOverview.addNote(note);
         } catch (IllegalArgumentException e) {
-            Alert alert = new Alert(AlertType.WARNING, e.getMessage());
-            alert.show();
+            this.handleWrongInput("Fill inn all fields");
+            return;
         }
-
-        notesPersistence.writeNoteOverview(noteOverview);
-
-        startScene();
     }
 
-    
-        private List<String> searchList(List<Note> list){
+
+    /**
+     * Generates a list of display strings from a list of Note objects.
+     *
+     * @param list A list of Note objects.
+     * @return A list of formatted strings, each containing the title and text from the notes.
+     */
+    private List<String> searchList(List<Note> list){
         List<String> notes = new ArrayList<String>();
         
         for (Note note : list) {
@@ -96,21 +173,21 @@ public class AppController implements Initializable{
 
             notes.add(title+"\n\n"+text+"\n\n");
         }
-        
         return notes;
     }
     
-
+    /**
+     * Method for transitioning to the "Create Note" scene by loading the "Note.fxml" file.
+     * Closes the current stage and opens a new one for creating a new note.
+     * 
+     * @throws IOException if there is an issue loading the FXML file.
+     */
     public void sendToNoteScene() throws IOException{
 
         Stage currentStage = (Stage) noteoverviewpane.getScene().getWindow();
 
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("NoteController.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/Note.fxml"));
         Parent root = loader.load();
-
-        //AppController appController = loader.getController();
-        //skal vi sende noe informasjon 
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -119,4 +196,57 @@ public class AppController implements Initializable{
 
         currentStage.close();    
     }
+
+    /**
+     * Method for transitioning to the "Note Editing" scene by loading the "NoteEdit.fxml" file.
+     * Closes the current stage, opens new one, and initializes the NoteEditController
+     * to edit a selected note.
+     * 
+     * @param note The selected note to edit.
+     * @throws IOException if there is an issue loading the FXML file.
+     */
+    public void sendToNoteEditingScene(Note note) throws IOException{
+
+        Stage currentStage = (Stage) noteoverviewpane.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/NoteEdit.fxml"));
+        Parent root = loader.load();
+
+        NoteEditController noteEditController = loader.getController();
+        noteEditController.updateinfo(note);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Note edit stage");
+        stage.show();
+
+        currentStage.close();    
+    }
+
+    /**
+     * Method for displaying a warning message in the form of an Alert.
+     * 
+     * @param message The message to display in the warning.
+     */
+    public void handleWrongInput(String message){
+        Alert alert = new Alert(AlertType.WARNING, message);
+        alert.show();
+    }
+    
+    /**
+     * Callback method triggered when the NoteOverview is changed. It updates the JSON representation
+     * of the NoteOverview and refreshes the scene.
+     */
+    @Override
+    public void noteOverviewChanged() {
+        updateJson();
+    }
+
+    /**
+     * Method for updating the JSON representation of the Note Overview and refreshing the scene.
+     */
+    public void updateJson() {
+        notesPersistence.writeNoteOverview(noteOverview);
+        startScene();
+    } 
 }
