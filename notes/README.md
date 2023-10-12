@@ -13,6 +13,20 @@ The app has two main functions
 
 ![Image Alt Text](../docs/pictures/Notes2.jpg)
 
+
+## JSON File Format
+
+Our project utilizes JSON (JavaScript Object Notation) as the data interchange format for storing and retrieving information. JSON is a lightweight and human-readable data format that is widely supported in various programming languages. This section provides an overview of the JSON file format used in our project.
+
+### File Structure
+
+In our project, JSON files are structured as follows:
+
+```
+{"title":"Titel ","text":"text", "created":"createdDate","edited":"editedDate"}
+
+```
+
 ## Build and running of project
 
 

@@ -23,7 +23,7 @@ In Release 2, alongside the introduction of new features, we enhanced the code q
     - This ensures that updates are first applied to the core before being reflected in the user interface, and contributes significantly to the overall code quality and user experience. 
 
   
-- **File Management**: Our approach to file management is to implement an implicit storage strategy, ensuring that user data is stored within the application directory. This approach is platform-independent, ensuring versatility across various operating systems and devices. In addition, implicit storage provides a more user-friendly experience by removing the burden of selecting specific storage locations or managing complex document hierarchies.
+- **File Management**: Our approach to file management is to implement an implicit storage strategy, ensuring that user data is stored within the application directory. This approach is platform-independent, ensuring versatility across various operating systems and devices. In addition, implicit storage provides a more user-friendly experience by removing the burden of selecting specific storage locations or managing complex document hierarchies. For file format, see this [README.md](/notes/README.md).
 - **Checkstyle**: We have implemented Checkstyle in the code.  By using it, we can maintain a consistent code style, making the code easier to read and reducing potential errors.
 
 - **Spotbugs**: Similarly, we have also integrated SpotBugs. With its help, we can catch hard-to-detect issues early on, enhancing the reliability and security of our code.
