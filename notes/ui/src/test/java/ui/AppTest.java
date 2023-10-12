@@ -79,7 +79,7 @@ public class AppTest extends ApplicationTest {
 
     @Test
     public void checkVisibleButtons() {
-        sleep(3000);
+        sleep(2000);
         assertFalse(lookup("New Note").queryAll().isEmpty());
         assertFalse(lookup("Edit").queryAll().isEmpty());
         assertFalse(lookup("Delete Note").queryAll().isEmpty());

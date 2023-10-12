@@ -60,7 +60,7 @@ public class NoteTest extends ApplicationTest {
         clickOn("#saveNoteButton");
         sleep(3000);
         verifyThat("Edit", isVisible());
-        // verifyThat("#newNoteInputText", hasText("Text"));
+        
     }  
 }
 

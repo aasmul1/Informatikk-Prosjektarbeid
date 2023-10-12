@@ -5,7 +5,10 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.control.LabeledMatchers;
+import org.testfx.service.query.NodeQuery;
 import org.testfx.matcher.base.NodeMatchers;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.isVisible;
 
@@ -34,20 +37,21 @@ public class EditNoteTest extends ApplicationTest {
         clickOn(LabeledMatchers.hasText(label));
     }
 
-    // @Test
-    // public void testEditNote() throws IOException {
+    @Test
+    public void testEditNote() {
  
-    //     clickOn("#noteInputTitle").write("Title");
-    //     clickOn("#noteInputText").write("Text");
-    //     clickOn("#saveNoteButton");
+        click("Title");
+        write("");
+        click("#saveNoteButton");
+        sleep(500); // Delay
+        verifyThat("Warning", isVisible());
+        click("OK");
+        sleep(500);
+        NodeQuery query = lookup("Warning"); // Looks up "Warning"
+        assertTrue(query.queryAll().isEmpty());
         
-    //     verifyThat("Save Note", isVisible());
-
-
-    //     // verifyThat("#newNoteInputTitle", "Title");
-    //     // clickOn("newNoteInputTitle").write("Title");
-    //     // clickOn("newNoteInputText").write("Text");
-    // }
+        
+    }
 
 
 
