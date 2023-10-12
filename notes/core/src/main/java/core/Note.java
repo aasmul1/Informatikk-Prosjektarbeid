@@ -11,7 +11,6 @@ public class Note {
     private LocalDate edited;
     private Collection<NoteListener> listeners = new ArrayList<>();
 
-
     /**
      * 
      * @param title
@@ -25,12 +24,16 @@ public class Note {
     }
 
     /**
+     * Constructs a new Note with the specified title, text, creation date, and edited date. 
+     * The creation date must not be after the edited date. It it is, an IllegalArgumentExeption
+     * will be thrown
      * LocalDate format: year-month-day
      * Example: 2023-09-25
-     * @param title
-     * @param text
+     * @param title title of note
+     * @param text text describing the note
      * @param created local date when the Note was created
      * @param edited local date when the Note was last edited
+     * @throws IllegalArgumentException if the creation date is after the edited date
      */
     public Note(String title, String text, LocalDate created, LocalDate edited) {
         this.title = title;
@@ -67,6 +70,10 @@ public class Note {
         return text;
     }
 
+    /**
+     * 
+     * @param text text in the note
+     */
     public void setText(String text) {
         this.text = text;
         fireNoteChanged(listeners);
@@ -89,26 +96,37 @@ public class Note {
         return edited;
     } 
 
+    /**
+     * If note is edited, this method sets edited date to todays date
+     */
     public void setEditedDate() {
         this.edited = LocalDate.now();
         fireNoteChanged(listeners);
     } 
 
+    /**
+     * Adds a specified NoteListener to this objects list of listeners, if its not already present
+     * @param listener to be added
+     */
     public void addNoteListener(NoteListener listener){
         if(!listeners.contains(listener)){
             listeners.add(listener);
         }
     }
 
+    /**
+     * Removes the specified NoteListener from this objects list of listeners
+     * @param listener to be removed
+     */
     public void removeNoteListener(NoteListener listener){
         if(listeners.contains(listener)){
             listeners.remove(listener);
         }
     }
 
-    /** Fire changes in Note to all listeners
-     * 
-     * @param listeners
+    /** 
+     * Fire changes in Note to all listeners
+     * @param listeners a collection of NoteListeners to be notified 
      */
     public void fireNoteChanged(Collection<NoteListener> listeners){
         for (NoteListener listener : listeners) {
