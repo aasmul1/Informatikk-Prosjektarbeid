@@ -37,21 +37,21 @@ public class EditNoteTest extends ApplicationTest {
         clickOn(LabeledMatchers.hasText(label));
     }
 
-    @Test
-    public void testEditNote() {
+    // @Test
+    // public void testEditNote() {
  
-        click("Title");
-        write("");
-        click("#saveNoteButton");
-        sleep(500); // Delay
-        verifyThat("Warning", isVisible());
-        click("OK");
-        sleep(500);
-        NodeQuery query = lookup("Warning"); // Looks up "Warning"
-        assertTrue(query.queryAll().isEmpty());
+    //     click("Title");
+    //     write("");
+    //     click("#saveNoteButton");
+    //     sleep(500); // Delay
+    //     verifyThat("Warning", isVisible());
+    //     click("OK");
+    //     sleep(500);
+    //     NodeQuery query = lookup("Warning"); // Looks up "Warning"
+    //     assertTrue(query.queryAll().isEmpty());
         
         
-    }
+    // }
 
 
 

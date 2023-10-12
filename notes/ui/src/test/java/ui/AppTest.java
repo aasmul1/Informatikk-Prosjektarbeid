@@ -121,6 +121,24 @@ public class AppTest extends ApplicationTest {
     }
 
     @Test
+    public void testAddNewNote(){
+
+        String label = "New Note";
+        click(label);
+        sleep(500); // Delay
+        verifyThat("Save Note", isVisible());
+        
+        clickOn("#newNoteInputTitle").write("Title");
+        clickOn("#newNoteInputText").write("Text");
+
+        verifyThat("Title", isVisible());
+        verifyThat("Text", isVisible());
+        clickOn("#saveNoteButton");
+        sleep(3000);
+        verifyThat("Edit", isVisible());
+    }
+
+    @Test
     public void deleteWithoutNote(){
         String label = "Delete Note";
         click(label);
@@ -131,6 +149,10 @@ public class AppTest extends ApplicationTest {
         NodeQuery query = lookup("Warning"); // Looks up "Warning"
         assertTrue(query.queryAll().isEmpty());
     }
+
+    
+
+    
 
     // @Test
     // public void sortNotes(){
