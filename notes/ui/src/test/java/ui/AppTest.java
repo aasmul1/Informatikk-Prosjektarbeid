@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -142,50 +144,60 @@ public class AppTest extends ApplicationTest {
         verifyThat("Edit", isVisible());
     }
 
-    // @Test
-    // public void testChooseNote(){
-    //     verifyThat("#NoteListView", ListViewMatchers.isEmpty());
-    //     String label = "New Note";
-    //     click(label);
-    //     sleep(500); // Delay
-    //     verifyThat("Save Note", isVisible());
+    @Test
+    public void testChooseNote(){
+        ListView<String> node2 = lookup("#NoteListView").query();
         
-    //     clickOn("#newNoteInputTitle").write("Title");
-    //     clickOn("#newNoteInputText").write("Text");
+        verifyThat("#NoteListView", ListViewMatchers.hasItems(1));
+        String label = "New Note";
+        click(label);
+        sleep(500); // Delay
+        verifyThat("Save Note", isVisible());
+        
+        clickOn("#newNoteInputTitle").write("New Title");
+        clickOn("#newNoteInputText").write("Text two");
 
-    //     verifyThat("Title", isVisible());
-    //     verifyThat("Text", isVisible());
-    //     clickOn("#saveNoteButton");
-    //     sleep(3000);
-    //     verifyThat("Edit", isVisible());
+        verifyThat("New Title", isVisible());
+        verifyThat("Text two", isVisible());
+        clickOn("#saveNoteButton");
+        sleep(3000);
+        verifyThat("Edit", isVisible());
 
-    //     waitForFxEvents();
+        waitForFxEvents();
 
-    //     // Add an item to the ListView using the controller
-    //     verifyThat("#NoteListView", ListViewMatchers.hasItems(1));
+        // Add an item to the ListView using the controller
+        verifyThat("#NoteListView", ListViewMatchers.hasItems(2));
+        Node node = node2.lookup(".thumb");
+        clickOn(node, MouseButton.PRIMARY);
+
+        // Wait for JavaFX events to be processed
         
 
-    //     // Wait for JavaFX events to be processed
+        // Verify that the ListView now contains the added item
         
 
-    //     // Verify that the ListView now contains the added item
-        
-
-    //     // Select the newly added item
+        // Select the newly added item
        
 
-    //     // Now, you can perform actions on the selected item as needed
-    //     // For example, assert that the selected item matches the added item
-        
-    //     clickOn(TextMatchers.hasText("TITLE"));
+        // Now, you can perform actions on the selected item as needed
+        // For example, assert that the selected item matches the added item
         
         
-    //     sleep(500);
-    //     click("Edit");
-    //     sleep(500); // Delay
-    //     NodeQuery query = lookup("Warning"); // Looks up "Warning"
-    //     assertTrue(query.queryAll().isEmpty());
-    // }
+        
+        sleep(500);
+        click("Edit");
+        sleep(500); // Delay
+        NodeQuery query = lookup("Warning"); // Looks up "Warning"
+        assertTrue(query.queryAll().isEmpty());
+
+        clickOn("#noteInputTitle").write("Changed Title");
+        clickOn("#noteInputText").write("Changed Text");
+        clickOn("#saveNoteButton");
+        sleep(1000);
+        verifyThat("New Note", isVisible());
+        click("Sort");
+
+    }
 
     
 
@@ -200,6 +212,16 @@ public class AppTest extends ApplicationTest {
         NodeQuery query = lookup("Warning"); // Looks up "Warning"
         assertTrue(query.queryAll().isEmpty());
     }
+
+    // @Test
+    // public void testSortNotes(){
+    //     click("Sort");
+    //     ComboBox<String> sortComboBox = lookup("#sortComboBox").query();
+    //     Node node = sortComboBox.lookup(".thumb");
+    //     clickOn(node, MouseButton.PRIMARY);
+
+        
+    // }
 
     
 
