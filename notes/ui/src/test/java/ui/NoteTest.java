@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
@@ -49,18 +50,23 @@ public class NoteTest extends ApplicationTest {
         clickOn(LabeledMatchers.hasText(label));
     }
 
-    @Test
-    public void testNewNote() throws IOException {
+    // @Test
+    // public void testNewNote() throws IOException {
  
-        clickOn("#newNoteInputTitle").write("Title");
-        clickOn("#newNoteInputText").write("Text");
+    //     clickOn("#newNoteInputTitle").write("Title");
+    //     clickOn("#newNoteInputText").write("Text");
 
-        verifyThat("Title", isVisible());
-        verifyThat("Text", isVisible());
-        clickOn("#saveNoteButton");
-        sleep(3000);
-        verifyThat("Edit", isVisible());
+    //     verifyThat("Title", isVisible());
+    //     verifyThat("Text", isVisible());
+    //     clickOn("#saveNoteButton");
+    //     sleep(3000);
+    //     verifyThat("Warning", isVisible());
+    //     click("OK");
+    //     sleep(500);
+    //     NodeQuery query = lookup("Warning"); // Looks up "Warning"
+    //     assertTrue(query.queryAll().isEmpty());
+    //     verifyThat("Edit", isVisible());
         
-    }  
+    // }  
 }
 

@@ -23,6 +23,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.control.LabeledMatchers;
+import org.testfx.matcher.control.ListViewMatchers;
+import org.testfx.matcher.control.TextMatchers;
 import org.testfx.service.query.NodeQuery;
 
 import core.Note;
@@ -32,6 +34,8 @@ import org.testfx.framework.junit5.ApplicationTest;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.*;
 import org.testfx.api.FxRobot;
+import static org.testfx.util.WaitForAsyncUtils.waitForFxEvents;
+
 
 /**
  * TestFX App test
@@ -137,6 +141,53 @@ public class AppTest extends ApplicationTest {
         sleep(3000);
         verifyThat("Edit", isVisible());
     }
+
+    // @Test
+    // public void testChooseNote(){
+    //     verifyThat("#NoteListView", ListViewMatchers.isEmpty());
+    //     String label = "New Note";
+    //     click(label);
+    //     sleep(500); // Delay
+    //     verifyThat("Save Note", isVisible());
+        
+    //     clickOn("#newNoteInputTitle").write("Title");
+    //     clickOn("#newNoteInputText").write("Text");
+
+    //     verifyThat("Title", isVisible());
+    //     verifyThat("Text", isVisible());
+    //     clickOn("#saveNoteButton");
+    //     sleep(3000);
+    //     verifyThat("Edit", isVisible());
+
+    //     waitForFxEvents();
+
+    //     // Add an item to the ListView using the controller
+    //     verifyThat("#NoteListView", ListViewMatchers.hasItems(1));
+        
+
+    //     // Wait for JavaFX events to be processed
+        
+
+    //     // Verify that the ListView now contains the added item
+        
+
+    //     // Select the newly added item
+       
+
+    //     // Now, you can perform actions on the selected item as needed
+    //     // For example, assert that the selected item matches the added item
+        
+    //     clickOn(TextMatchers.hasText("TITLE"));
+        
+        
+    //     sleep(500);
+    //     click("Edit");
+    //     sleep(500); // Delay
+    //     NodeQuery query = lookup("Warning"); // Looks up "Warning"
+    //     assertTrue(query.queryAll().isEmpty());
+    // }
+
+    
 
     @Test
     public void deleteWithoutNote(){
