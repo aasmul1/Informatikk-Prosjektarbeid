@@ -1,5 +1,5 @@
 ## Eclicse-Che
-Open this [this](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2311/gr2311?new) link. 
+Open [this](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2311/gr2311?new) link. 
 
 ## Description of the Notes-App
 
@@ -9,7 +9,7 @@ The Notes-App is a simple application designed to help users create, edit, and m
 ## Project Structure
 
 
-The coding projekt is located in the notes subdirectory, which you can access with `cd notes` from root level in the terminal. 
+The coding projekt is located in the **`notes`** subdirectory, which you can access with `cd notes` from root level in the terminal. 
 
 The coding project is organized as follows:
 
