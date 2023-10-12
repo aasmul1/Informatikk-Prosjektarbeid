@@ -105,27 +105,32 @@ public class AppTest extends ApplicationTest {
 
     }
 
-    // @Test
-    // public void testOpenEditNoteScene(){
-        
-    //     controller.updateinfo(new Note("testTitle", "testText"));
-    //     sleep(20000);
-    //     click("testTitle");
-    //     click("Edit");
-    //     sleep(1000); // Adjust the delay as needed
-    //     verifyThat("Undo changes", isVisible());
-    //     clickOn("#saveNoteButton");
-    //     sleep(1000); // Adjust the delay as needed
-    //     verifyThat("Sort", isVisible());
-    // }
 
-    // @Test
-    // public void deleteWithoutNote(){
-    //     clickOn("DeleteNoteButton");
-    //     verifyThat("Warning", isVisible());
-    //     clickOn("OK");
-    //     verifyThat("Delete Note", isVisible());
-    // }
+
+    @Test
+    public void testOpenEditNoteSceneWarning(){
+        
+        String label = "Edit";
+        click(label);
+        sleep(500); // Delay
+        verifyThat("Warning", isVisible());
+        click("OK");
+        sleep(500);
+        NodeQuery query = lookup("Warning"); // Looks up "Warning"
+        assertTrue(query.queryAll().isEmpty());
+    }
+
+    @Test
+    public void deleteWithoutNote(){
+        String label = "Delete Note";
+        click(label);
+        sleep(500); // Delay
+        verifyThat("Warning", isVisible());
+        click("OK");
+        sleep(500);
+        NodeQuery query = lookup("Warning"); // Looks up "Warning"
+        assertTrue(query.queryAll().isEmpty());
+    }
 
     // @Test
     // public void sortNotes(){

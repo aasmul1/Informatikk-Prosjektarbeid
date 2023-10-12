@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.control.LabeledMatchers;
 import org.testfx.matcher.control.TextInputControlMatchers;
+import org.testfx.service.query.NodeQuery;
+
 import static org.testfx.matcher.base.NodeMatchers.*;
 import org.testfx.matcher.control.LabeledMatchers;
 import org.testfx.api.FxToolkit;
@@ -55,6 +57,9 @@ public class NoteTest extends ApplicationTest {
 
         verifyThat("Title", isVisible());
         verifyThat("Text", isVisible());
+        clickOn("#saveNoteButton");
+        sleep(3000);
+        verifyThat("Edit", isVisible());
         // verifyThat("#newNoteInputText", hasText("Text"));
     }  
 }
