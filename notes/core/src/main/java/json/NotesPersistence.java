@@ -16,11 +16,12 @@ import json.internal.NoteOverviewModule;
 public class NotesPersistence {
     
     private ObjectMapper mapper = new ObjectMapper().registerModule(new NoteOverviewModule());
-    private final File storageFile = new File("src/main/resources/noteOverview.json");
+    private final File storageFile;
     private final File exampleFile = new File("src/main/resources/example_noteOverview.json");
     
 
-    public NotesPersistence() {
+    public NotesPersistence(File storageFile) {
+        this.storageFile = storageFile;
         initializeStorage();
     }
 
