@@ -22,7 +22,7 @@ In Release 2, alongside the introduction of new features, we enhanced the code q
     - This approach not only guarantees a responsive user interface but also contributes significantly to the overall code quality and user experience.
 
   
-- **File Manegment**!!!!
+- **File Management**: Our approach to file management is to implement an implicit storage strategy, ensuring that user data is stored within the application directory. This approach is platform-independent, ensuring versatility across various operating systems and devices. In addition, implicit storage provides a more user-friendly experience by removing the burden of selecting specific storage locations or managing complex document hierarchies.
 
 
 
