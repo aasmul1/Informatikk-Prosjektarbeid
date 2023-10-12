@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="9.3">
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/ui/src/main/java/ui/NoteController.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/ui/src/main/java/ui/NoteEditController.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/ui/src/main/java/ui/AppController.java">
+</file>
+<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/ui/src/main/java/ui/App.java">
+</file>
+</checkstyle>
