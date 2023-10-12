@@ -24,6 +24,9 @@ In Release 2, alongside the introduction of new features, we enhanced the code q
 
   
 - **File Management**: Our approach to file management is to implement an implicit storage strategy, ensuring that user data is stored within the application directory. This approach is platform-independent, ensuring versatility across various operating systems and devices. In addition, implicit storage provides a more user-friendly experience by removing the burden of selecting specific storage locations or managing complex document hierarchies.
+- **Checkstyle**: We have implemented Checkstyle in the code.  By using it, we can maintain a consistent code style, making the code easier to read and reducing potential errors.
+
+- **Spotbugs**: Similarly, we have also integrated SpotBugs. With its help, we can catch hard-to-detect issues early on, enhancing the reliability and security of our code.
 
 
 
@@ -37,9 +40,9 @@ For a more detailed description of stucture, see [README](/README.md).
 During this release, we effectively navigated a structured workflow. 
 
 ### Milestones, issues and merge requests
-Every development task is initiated through issues and carried out in its specific branch, ensuring an organized development path. To gauge our progress towards key deliverables, we consistently utilize milestones, this submission is linked to "Innlevering 2" milestone. 
+Every development task is initiated through issues, and for each issue, we use labels to indicate various attributes, such as difficulty level and the type of task, whether it's Core or UI. Each task is carried out in its specific branch, ensuring an organized development path. To gauge our progress towards key deliverables, we consistently utilize milestones. This submission is linked to the "Innlevering 2" milestone.
 
-Crucially, all merge requests must be marked as ready and then undergo thorough peer review to ensure the code's correctness before being approved. 
+It's crucial that all merge requests are marked as ready and then undergo thorough peer review to ensure the code's correctness before being approved. We carefully check each other's merge requests
 
 
 ### Pair programming 
