@@ -10,9 +10,12 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -20,6 +23,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.control.LabeledMatchers;
+import org.testfx.service.query.NodeQuery;
+
+import core.Note;
+
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 import static org.testfx.api.FxAssert.verifyThat;
@@ -71,90 +78,58 @@ public class AppTest extends ApplicationTest {
     }
 
     @Test
+    public void checkVisibleButtons() {
+        sleep(3000);
+        assertFalse(lookup("New Note").queryAll().isEmpty());
+        assertFalse(lookup("Edit").queryAll().isEmpty());
+        assertFalse(lookup("Delete Note").queryAll().isEmpty());
+        assertFalse(lookup("Sort").queryAll().isEmpty());
+        assertFalse(lookup("Notes").queryAll().isEmpty());
+    }
+
+    @Test
     public void testOpenNewNoteScene() {
         
         String label = "New Note";
         click(label);
-        
-        
-
-        // Wait for the "Note.fxml" scene to appear (you may need to adjust the delay)
-        sleep(1000); // Adjust the delay as needed
-
-        // Verify that an element in the "Note.fxml" scene is displayed (use a unique element ID)
-        verifyThat("Save Note", isVisible());
-
-        // Optionally, you can verify that elements from the "App.fxml" scene are no longer visible
-        verifyThat("New Note", isInvisible());
-        // Assertions.assertEquals(operand, operand, "Wrong value at #" + " of operand stack");
+        sleep(500); // Delay
+        verifyThat("Save Note", isVisible());  
+        clickOn("#saveNoteButton");    
+        sleep(500); // Delay
+        verifyThat("Warning", isVisible());
+        click("OK");
+        sleep(500);
+        NodeQuery query = lookup("Warning"); // Looks up "Warning"
+        assertTrue(query.queryAll().isEmpty());
         
 
     }
 
-    @Test
-    public void testNewNote() throws IOException {
-        // FxRobot robot = new FxRobot();
-        String label = "New Note";
-        click(label);
-        sleep(1000); // Adjust the delay as needed
-        // Load the "Note.fxml" file
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Note.fxml"));
+    // @Test
+    // public void testOpenEditNoteScene(){
         
-        Parent noteRoot = fxmlLoader.load();
-        // You may need to initialize a controller for the "Note.fxml" file if necessary
-        // NoteController noteController = fxmlLoader.getController();
-        
-        // Set the "Note.fxml" root as the current scene's root
-        root.getScene().setRoot(noteRoot);
-        write("hei");
-        moveTo("newNoteInputText").moveBy(0, 100);
-        clickOn("newNoteInputText");
-        write("yoo");
+    //     controller.updateinfo(new Note("testTitle", "testText"));
+    //     sleep(20000);
+    //     click("testTitle");
+    //     click("Edit");
+    //     sleep(1000); // Adjust the delay as needed
+    //     verifyThat("Undo changes", isVisible());
+    //     clickOn("#saveNoteButton");
+    //     sleep(1000); // Adjust the delay as needed
+    //     verifyThat("Sort", isVisible());
+    // }
 
-        // click("title");
-        
-        // Optionally, you can verify that elements from the "App.fxml" scene are no longer visible
-        // verifyThat("New Note", isInvisible());
-        // robot.clickOn("newNoteInputTitle").write("Hei");
-        // Now, you can interact with elements from the "Note.fxml" file and perform your tests
-        // For example:
-        // verifyThat("Save Note", isVisible());
-        
-        
+    // @Test
+    // public void deleteWithoutNote(){
+    //     clickOn("DeleteNoteButton");
+    //     verifyThat("Warning", isVisible());
+    //     clickOn("OK");
+    //     verifyThat("Delete Note", isVisible());
+    // }
 
-    }
-    
+    // @Test
+    // public void sortNotes(){
+    //     clickOn("sortComboBox");
+
+    // }
 }
-//         // Verify that an element in the "Note.fxml" scene is displayed (use a unique element ID)
-//         verifyThat("#noteElement", isVisible());
-
-//         // Optionally, you can verify that elements from the "App.fxml" scene are no longer visible
-//         verifyThat("#appElement", isInvisible());
-//         // Assertions.assertEquals(operand, operand, "Wrong value at #" + " of operand stack");
-//     }
-//     @Test
-//     public void testClicksOperand2() {
-//         String label = "#EditNoteButton";
-//         click(label);
-//         // Assertions.assertEquals(operand, operand, "Wrong value at #" + " of operand stack");
-//     }
-//     @Test
-//     public void testClicksOperand3() {
-//         String label = "#DeleteNoteButton";
-//         click(label);
-//         // Assertions.assertEquals(operand, operand, "Wrong value at #" + " of operand stack");
-//     }
-
-//     private void checkView(String operand) {
-//         Assertions.assertEquals(operand, operand, "Wrong value at #" + " of operand stack");
-//     }
-
-//     private void testNoteView() {
-        
-//     }
-
-
-//     public Parent getRootNode() {
-//         return root;
-//     }
-// }
