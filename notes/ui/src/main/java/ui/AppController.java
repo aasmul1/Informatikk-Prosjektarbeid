@@ -3,10 +3,12 @@ package ui;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+
+
+import javafx.util.Callback;
 
 import core.Note;
 import core.NoteOverview;
@@ -20,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -39,7 +42,7 @@ public class AppController implements Initializable, NoteOverviewListener{
     private AnchorPane noteoverviewpane; 
 
     @FXML
-    private ListView<String> NoteListView; 
+    private ListView<Note> NoteListView; 
 
     @FXML
     private Button NewNoteButton;
@@ -79,15 +82,20 @@ public class AppController implements Initializable, NoteOverviewListener{
         noteOverview = notesPersistence.readNoteOverview();
         noteOverview.addListener(this);
         NoteListView.getItems().clear();
-        NoteListView.getItems().addAll(searchList(noteOverview.getNotes()));
+        NoteListView.getItems().addAll(noteOverview.getNotes());
+        NoteListView.setCellFactory(new Callback<ListView<Note>, ListCell<Note>>() {
+            @Override
+            public ListCell<Note> call(ListView<Note> listView) {
+                return new CustomListCell();
+            }
+        });
+        
     }
 
     @FXML
     public void newNote(ActionEvent event) throws IOException {  
         sendToNoteScene();
     }
-        
-        
 
    /**
      * Deletes a selected note.
@@ -155,25 +163,6 @@ public class AppController implements Initializable, NoteOverviewListener{
             this.handleWrongInput("Fill inn all fields");
             return;
         }
-    }
-
-
-    /**
-     * Generates a list of display strings from a list of Note objects.
-     *
-     * @param list A list of Note objects.
-     * @return A list of formatted strings, each containing the title and text from the notes.
-     */
-    private List<String> searchList(List<Note> list){
-        List<String> notes = new ArrayList<String>();
-        
-        for (Note note : list) {
-            String title = note.getTitle().toUpperCase();
-            String text = note.getText();
-
-            notes.add(title+"\n\n"+text+"\n\n");
-        }
-        return notes;
     }
     
     /**
