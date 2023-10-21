@@ -6,9 +6,15 @@ import javafx.scene.control.TextField;
 
 public class LoginController {
 
+  /**
+   * Input fields
+   */
   @FXML
   private TextField username, password; 
 
+  /**
+   * Button to initialize login
+   */
   @FXML
   private Button loginButton; 
   
