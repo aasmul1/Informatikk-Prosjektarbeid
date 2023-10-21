@@ -1,5 +1,7 @@
 package core;
 
+import java.util.List;
+
 public class User {
     private String username;
     private String password;
@@ -27,5 +29,31 @@ public class User {
     public void setPassword(String password) {
         UserValidation.checkValidPassword(password);
         this.password = password;
+    }
+
+    public List<Note> getNoteOverview() {
+        return noteOverview.getNotes();
+    }
+
+    public Note getNote(Note note) {
+        return getNoteOverview().stream().filter(n -> n.getTitle().equals(note.getTitle()))
+                                 .findAny()
+                                 .orElse(null); 
+    }
+
+    public void addNote(Note note) {
+        if(!noteExists(note)) {
+            noteOverview.addNote(note);
+            //evt observer her
+        }
+    }
+
+    public boolean noteExists(Note note) {
+        for (Note n : noteOverview.getNotes()) {
+            if(note.getTitle().equals(n.getTitle())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
