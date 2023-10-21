@@ -6,8 +6,6 @@ target/
 .classpath
 org.eclipse.*.prefs
 
-.DS_Store
-
 # ignore NoteOverview.json to avoid merge conflicts
 notes/ui/src/main/resources/noteOverview.json
 notes/ui/src/main/resources/testOverview.json
@@ -15,3 +13,9 @@ notes/ui/src/main/resources/testOverview.json
 
 notes/core/checkstyle-results.txt
 notes/ui/checkstyle-results.txt
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
