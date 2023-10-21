@@ -6,6 +6,14 @@ public class User {
     private String username;
     private String password;
     private NoteOverview noteOverview;
+
+    /**
+     * Constructor that is used to create a instance of this class.
+     * 
+     * @param username users username
+     * @param password users password
+     * @param noteOverview the users note overview
+     */
     
     public User(String username, String password, NoteOverview noteOverview) {
         this.username = username;
@@ -13,34 +21,72 @@ public class User {
         this.noteOverview = new NoteOverview();
     }
 
+    /**
+     * Access method for username.
+     * 
+     * @return the username
+     */
     public String getUsername() {
         return username;
     }
 
+
+    /**
+     * Mutation method for new username.
+     * 
+     * @param username users username
+     */
     public void setUsername(String username) {
         UserValidation.checkValidUsername(username);
         this.username = username;
     }
 
+
+    /**
+     * Access method for users password
+     * 
+     * @return users password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Mutation method for new password
+     * 
+     * @param password users password
+     */
     public void setPassword(String password) {
         UserValidation.checkValidPassword(password);
         this.password = password;
     }
 
+    /**
+     * Access method for users notes
+     * 
+     * @return a copy of users noteoverview-list
+     */
     public List<Note> getNoteOverview() {
         return noteOverview.getNotes();
     }
 
+    /**
+     * Access method for a specified note
+     * 
+     * @param note to be accessed
+     * @return the note 
+     */
     public Note getNote(Note note) {
         return getNoteOverview().stream().filter(n -> n.getTitle().equals(note.getTitle()))
                                  .findAny()
                                  .orElse(null); 
     }
 
+    /**
+     * Adds note to users noteoverview
+     * 
+     * @param note to be added 
+     */
     public void addNote(Note note) {
         if(!noteExists(note)) {
             noteOverview.addNote(note);
@@ -48,6 +94,12 @@ public class User {
         }
     }
 
+    /**
+     * Checks if the note exists in noteoverview
+     * 
+     * @param note the note to check
+     * @return boolean
+     */
     public boolean noteExists(Note note) {
         for (Note n : noteOverview.getNotes()) {
             if(note.getTitle().equals(n.getTitle())) {
