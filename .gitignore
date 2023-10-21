@@ -19,3 +19,7 @@ notes/ui/checkstyle-results.txt
 .DS_Store
 .AppleDouble
 .LSOverride
+
+### macOS Patch ###
+# iCloud generated files
+*.icloud
