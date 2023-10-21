@@ -1,6 +1,7 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Accounts {
@@ -118,7 +119,7 @@ public class Accounts {
    */
 
   public User getUser(String username) {
-    return getAccounts().stream().filter(u -> u.username().equals(username))
+    return getAccounts().stream().filter(u -> u.getUsername().equals(username))
                                  .findAny()
                                  .orElse(null);
   }
