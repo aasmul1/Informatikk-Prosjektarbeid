@@ -94,5 +94,6 @@
     <modules>
         <module>core</module>
         <module>ui</module>
+        <module>rest</module>
     </modules>
 </project>
