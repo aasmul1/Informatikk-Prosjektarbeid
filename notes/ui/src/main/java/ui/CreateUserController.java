@@ -6,7 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import core.UserValidation;
+import core.User;
 
 /**
  * This is the class for controlling CreateUser scene.
@@ -19,6 +21,7 @@ public class CreateUserController {
     @FXML private TextField inputUsername;
     @FXML private TextField inputConfirmPassword;
     @FXML private Button createUser;
+    @FXML private Text errorMessageDisplay;
 
     private String username;
     private String password;
@@ -36,8 +39,10 @@ public class CreateUserController {
             
             UserValidation.checkValidUsername(username);
             UserValidation.checkValidPassword(password);
-        } catch (Exception e) {
-            // TODO: handle exception
+            UserValidation.checkEqualPassword(password, confirmPassword);
+            User ny = new User(username, password, null);
+        } catch (IllegalArgumentException e) {
+            errorMessageDisplay.setText(e.getMessage());
         }
 
 
