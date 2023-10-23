@@ -13,7 +13,7 @@ module notes.rest {
     // requires transitive notes.json;
     requires transitive com.fasterxml.jackson.databind;
 
-    opens notes.rest to spring.beans, spring.context, spring.web, spring.core;
+    opens rest to spring.beans, spring.context, spring.web, spring.core;
     // exports notes.rest.properties to spring.beans, spring.boot;
-    exports notes.rest;
+    exports rest;
 }

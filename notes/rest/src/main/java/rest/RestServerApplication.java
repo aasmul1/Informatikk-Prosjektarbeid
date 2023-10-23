@@ -1,4 +1,4 @@
-package notes.rest;
+package rest;
 
 public class RestServerApplication {
 
