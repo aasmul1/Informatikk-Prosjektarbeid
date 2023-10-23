@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class NoteEditController{
+public class NoteEditController extends AbstractController{
 
     private Note note; 
 

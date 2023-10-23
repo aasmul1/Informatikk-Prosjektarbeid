@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 import json.NotesPersistence;
 
 
-public class AppController implements Initializable, NoteOverviewListener{
+public class AppController extends AbstractController implements Initializable, NoteOverviewListener{
 
     private NotesPersistence notesPersistence = new NotesPersistence(new File("src/main/resources/noteOverview.json"));
     

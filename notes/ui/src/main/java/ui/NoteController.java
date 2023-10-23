@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class NoteController{
+public class NoteController extends AbstractController{
 
 
     @FXML
