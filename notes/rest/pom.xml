@@ -136,11 +136,11 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
                 <version>3.1.5</version>
 				<executions>
-                    <!-- <execution>
+                    <execution>
                         <configuration>
-                            <mainClass>notes.rest.RestServerApplication</mainClass>
+                            <mainClass>rest.RestServerApplication</mainClass>
                         </configuration>
-                    </execution> -->
+                    </execution>
                 </executions>
 			</plugin>
     </plugins>
