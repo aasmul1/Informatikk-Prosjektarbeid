@@ -77,6 +77,12 @@ public class UserValidation {
         checkValidPassword(password);
     }
 
+    public static void checkEqualPassword(String password, String confirmedPassword){
+        if(!password.equals(confirmedPassword)){
+            throw new IllegalArgumentException(Errors.NOT_EQUAL_PASSWORD.getMessage());
+        }
+    }
+
     /**
      * Checks if all fields are empty
      * @param username to check
