@@ -18,7 +18,7 @@ public class User {
     public User(String username, String password, NoteOverview noteOverview) {
         this.username = username;
         this.password = password;
-        this.noteOverview = new NoteOverview();
+        this.noteOverview = noteOverview;
     }
 
     /**
