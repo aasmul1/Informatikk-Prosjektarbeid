@@ -28,9 +28,9 @@ public class NoteDeserializer extends JsonDeserializer<Note> {
     }
 
     public Note deserialize(JsonNode node) throws IOException, JacksonException {
-        final ObjectNode objectNode = (ObjectNode) node;
-        final String title = objectNode.get(NoteSerializer.TITLE_FIELD_NAME).asText();
-        final String text =objectNode.get(NoteSerializer.TEXT_FIELD_NAME).asText();
+        ObjectNode objectNode = (ObjectNode) node;
+        String title = objectNode.get(NoteSerializer.TITLE_FIELD_NAME).asText();
+        String text =objectNode.get(NoteSerializer.TEXT_FIELD_NAME).asText();
         String createdText = objectNode.get(NoteSerializer.CREATED_FIELD_NAME).asText();
         String editedText = objectNode.get(NoteSerializer.EDITED_FIELD_NAME).asText();
         LocalDate created = LocalDate.parse(createdText);
