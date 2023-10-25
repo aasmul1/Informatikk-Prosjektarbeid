@@ -1,4 +1,4 @@
-package ui;
+package ui.controllers;
 
 public abstract class AbstractController{
 
@@ -28,6 +28,8 @@ public abstract class AbstractController{
       return this.fxml;
     }
     }
+
+
 
 
 }

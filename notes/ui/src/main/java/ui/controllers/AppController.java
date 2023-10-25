@@ -1,4 +1,4 @@
-package ui;
+package ui.controllers;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +28,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import json.NotesPersistence;
+import ui.CustomListCell;
 
 
 public class AppController extends AbstractController implements Initializable, NoteOverviewListener{
