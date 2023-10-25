@@ -10,17 +10,19 @@ import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 
+import core.Accounts;
 import core.NoteOverview;
-import json.internal.NoteOverviewModule;
+import core.User;
+import json.internal.AccountsModule;
 
-public class NotesPersistence {
+public class AccountsPersistence {
     
-    private ObjectMapper mapper = new ObjectMapper().registerModule(new NoteOverviewModule());
+    private ObjectMapper mapper = new ObjectMapper().registerModule(new AccountsModule());
     private final File storageFile;
     private final File exampleFile = new File("src/main/resources/example_noteOverview.json");
     
 
-    public NotesPersistence(File storageFile) {
+    public AccountsPersistence(File storageFile) {
         this.storageFile = storageFile;
         initializeStorage();
     }
@@ -37,58 +39,58 @@ public class NotesPersistence {
         }
     }
 
-    // public void writeNoteOverview(NoteOverview noteOverview) {
-    //     try {
-    //         mapper.writeValue(new File("src/main/resources/noteOverview.json"), noteOverview);
-    //     } catch (IOException e) {
-    //         System.out.println("Failed to write to file.");
-    //         e.printStackTrace();
-    //     }
-    // }
-
-    public void writeNoteOverview(NoteOverview noteOverview) {
+    public void writeAccounts(Accounts accounts) {
         try {
-            mapper.writeValue(storageFile, noteOverview);
+            mapper.writeValue(storageFile, accounts);
         } catch (IOException e) {
             System.out.println("Failed to write to file.");
             e.printStackTrace();
         }
     }
 
-    public NoteOverview readNoteOverview() {
-        NoteOverview noteOverview;
+    public Accounts readAccounts() {
+        Accounts accounts;
         try {
-            noteOverview = mapper.readValue(new File("src/main/resources/noteOverview.json"), NoteOverview.class);
+            accounts = mapper.readValue(new File("src/main/resources/noteOverview.json"), Accounts.class);
         } 
         catch (MismatchedInputException x) {
-            NoteOverview newNoteOverview = new NoteOverview();
-            writeNoteOverview(newNoteOverview);
+            Accounts newAccounts = new Accounts();
+            writeAccounts(newAccounts);
             System.out.println("File was empty, added new NoteOverview");
-            return newNoteOverview;
+            return newAccounts;
         }
         catch (IOException e) {
             System.out.println("Failed to read from file.");
             e.printStackTrace();
             return null;
         }
-        return noteOverview;
+        return accounts;
     }
+    // public void writeNoteOverview(NoteOverview noteOverview) {
+    //     try {
+    //         mapper.writeValue(storageFile, noteOverview);
+    //     } catch (IOException e) {
+    //         System.out.println("Failed to write to file.");
+    //         e.printStackTrace();
+    //     }
+    // }
 
     // public NoteOverview readNoteOverview() {
     //     NoteOverview noteOverview;
     //     try {
-    //         noteOverview = mapper.readValue(storageFile, NoteOverview.class);
-    //     } catch (IOException e) {
+    //         noteOverview = mapper.readValue(new File("src/main/resources/noteOverview.json"), NoteOverview.class);
+    //     } 
+    //     catch (MismatchedInputException x) {
+    //         NoteOverview newNoteOverview = new NoteOverview();
+    //         writeNoteOverview(newNoteOverview);
+    //         System.out.println("File was empty, added new NoteOverview");
+    //         return newNoteOverview;
+    //     }
+    //     catch (IOException e) {
     //         System.out.println("Failed to read from file.");
     //         e.printStackTrace();
     //         return null;
     //     }
     //     return noteOverview;
     // }
-
-
-    public static void main(String[] args) throws StreamReadException, DatabindException, IOException {
-    }
-
-
 }
