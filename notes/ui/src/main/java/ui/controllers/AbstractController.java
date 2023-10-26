@@ -27,7 +27,7 @@ public abstract class AbstractController{
         private final AbstractController abstractController;
 
     Controllers(String fxml, AbstractController abstractController) {
-      	this.fxml = "ui/" + fxml;
+      	this.fxml = "/ui/" + fxml;
       	this.abstractController = abstractController;
     }
 
