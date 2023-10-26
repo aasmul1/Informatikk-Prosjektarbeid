@@ -23,7 +23,6 @@ public class AccountsDeserializer extends JsonDeserializer<Accounts> {
         Accounts accounts = new Accounts();
         if (jsonNode instanceof ArrayNode) {
             ArrayNode userArray = (ArrayNode) jsonNode;
-            System.out.println("Check");
             for (JsonNode userNode : userArray) {
                 User user = userDeserializer.deserialize(userNode);
                 accounts.addUser(user);

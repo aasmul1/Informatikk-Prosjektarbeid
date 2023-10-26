@@ -36,7 +36,6 @@ public class NoteOverviewDeserializer extends JsonDeserializer<NoteOverview> {
     
     public NoteOverview deserialize(JsonNode node) throws IOException, JacksonException {
         if (node instanceof ArrayNode) {
-            System.out.println("Check");
             final ArrayNode noteArray = (ArrayNode) node;
             final ArrayList<Note> notes = new ArrayList<>(noteArray.size());
                 for (final JsonNode noteNode : noteArray) {

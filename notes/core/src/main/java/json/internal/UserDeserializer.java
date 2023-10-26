@@ -33,7 +33,6 @@ public class UserDeserializer extends JsonDeserializer<User> {
         ObjectNode objectNode = (ObjectNode) node;
         String username = objectNode.get(UserSerializer.USERNAME_FIELD_NAME).asText();
         String password =objectNode.get(UserSerializer.PASSWORD_FIELD_NAME).asText();
-        System.out.println("userDe");
         NoteOverview noteOverview = noteOverviewDeserializer.deserialize(objectNode.get(UserSerializer.NOTEOVERVIEW_FIELD_NAME));
 
 
