@@ -1,21 +1,16 @@
 package ui.controllers;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import core.Note;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class NoteEditController extends AbstractController{
 
@@ -33,9 +28,7 @@ public class NoteEditController extends AbstractController{
     @FXML
     private TextArea noteInputText;
 
-    @FXML
-    public void initialize(){   
-    }
+    
 
     /**
      * Sets the current note for editing to the selected note from AppController 
@@ -43,7 +36,7 @@ public class NoteEditController extends AbstractController{
      *
      * @param note the Note object to be edited.
      */
-    public void updateinfo(Note note){
+    public void loadEditInfo(Note note){
         this.note = note;  
         setText(note);
     }
@@ -73,26 +66,19 @@ public class NoteEditController extends AbstractController{
         String title = noteInputTitle.getText();
         String noteText = noteInputText.getText();
 
-        LocalDate createdDate = note.getCreatedDate();
-        LocalDate editedDate = LocalDate.now();
+        // LocalDate createdDate = note.getCreatedDate();
+        // LocalDate editedDate = LocalDate.now();
+        
 
         if (title.isEmpty() || noteText.isEmpty()) { //if the text or title is removed, an alert shows
             this.handleWrongInput("Du kan ikke slette titel eller tekst");
             return;
         }
-         
-        String oldTitle = note.getTitle();
-        String oldText = note.getText(); 
 
-        //check if note not is changed
-        if(oldTitle.equals(title) && oldText.equals(noteText)) {
-            sendToAppScene(new Note(oldTitle, oldText, createdDate, createdDate));
-            return;
-        }
-
-        //if note is edited, creates a new Note object and sends it to AppController
-        Note editedNote = new Note(title, noteText, createdDate, editedDate);
-        sendToAppScene(editedNote);
+        note.setTitle(title);
+        note.setText(noteText);
+        note.setEditedDate();
+        setScene(Controllers.NOTEOVERVIEW, event, dataAccess, note);
     }
 
     /**
@@ -103,7 +89,7 @@ public class NoteEditController extends AbstractController{
      */
     @FXML
     public void undo(ActionEvent event) throws IOException{
-        sendToAppScene(this.note);
+        setScene(Controllers.NOTEOVERVIEW, event, dataAccess, note);
     }
 
      /**
@@ -122,21 +108,21 @@ public class NoteEditController extends AbstractController{
      * @param editnote the edited Note object.
      * @throws IOException if an error occurs while loading the application scene.
      */
-    public void sendToAppScene(Note editnote) throws IOException{
+    // public void sendToAppScene(Note editnote) throws IOException{
 
-        Stage currentStage = (Stage) noteeditpane.getScene().getWindow();
+    //     Stage currentStage = (Stage) noteeditpane.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/App.fxml"));
-        Parent root = loader.load();
+    //     FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/App.fxml"));
+    //     Parent root = loader.load();
 
-        AppController appController = loader.getController();
-        appController.updateinfo(editnote);
+    //     AppController appController = loader.getController();
+    //     appController.updateinfo(editnote);
 
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle("NoteBook Overview");
-        stage.show();
+    //     Stage stage = new Stage();
+    //     stage.setScene(new Scene(root));
+    //     stage.setTitle("NoteBook Overview");
+    //     stage.show();
 
-        currentStage.close();    
-    } 
+    //     currentStage.close();    
+    // } 
 }
