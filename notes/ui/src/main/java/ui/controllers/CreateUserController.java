@@ -17,10 +17,9 @@ import core.User;
 
 public class CreateUserController extends AbstractController{
     
-    
-    @FXML private TextField inputPassword;
-    @FXML private TextField inputUsername;
-    @FXML private TextField inputConfirmPassword;
+    @FXML private TextField createUsernameInput;
+    @FXML private TextField createPasswordInput;
+    @FXML private TextField confirmPasswordInput;
     @FXML private Button createUser;
     @FXML private Text errorMessageDisplay;
 
@@ -32,20 +31,19 @@ public class CreateUserController extends AbstractController{
     private void createUser(ActionEvent event) throws IOException {
         
         try {
-            UserValidation.allFieldsEmpty(inputUsername.getText(), inputPassword.getText());
-            UserValidation.checkValidUsername(inputUsername.getText());
-            UserValidation.checkValidPassword(inputPassword.getText());
-            confirmPassword = inputConfirmPassword.getText();
-            UserValidation.checkEqualPassword(password, confirmPassword);
-            username = inputUsername.getText();
-            password = inputPassword.getText();
-
+            UserValidation.checkValidUsername(username); 
+            username = createUsernameInput.getText();
+            UserValidation.checkValidPassword(password); 
+            password = createPasswordInput.getText();
+            confirmPassword = confirmPasswordInput.getText().trim();
+            UserValidation.checkEqualPassword(password, confirmPassword); 
+            
             NoteOverview noteOverview = new NoteOverview(); //empty noteoverview
             User user = new User(username, password, noteOverview);
 
-            getDataAccess().createUser(user);
+            // getDataAccess().createUser(user); denne trenger vi, ikke ferdige enda
 
-            setScene(Controllers.LOGIN, event, dataAccess, null);
+            setScene(Controllers.LOGIN, event, getDataAccess(), null);
 
         } catch (IllegalArgumentException e) {
             errorMessageDisplay.setText(e.getMessage());
