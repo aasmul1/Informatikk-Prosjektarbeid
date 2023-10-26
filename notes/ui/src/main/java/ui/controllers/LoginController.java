@@ -11,48 +11,47 @@ import javafx.scene.control.TextField;
 
 public class LoginController extends AbstractController{
 
-  /**
-   * Input fields
-   */
-  @FXML
-  private TextField usernameInput, passwordInput; 
+    /**
+    * Input fields
+    */
+    @FXML
+    private TextField usernameInput, passwordInput; 
 
-  @FXML 
-  private TextArea errorMessage;
+    @FXML 
+    private TextArea errorMessage;
 
-  /**
-   * Button to initialize login
-   */
-  @FXML
-  private Button loginButton; 
+    /**
+    * Button to initialize login
+    */
+    @FXML
+    private Button loginButton; 
 
-  @FXML private Button createUserButton;
+    @FXML private Button createUserButton;
 
-  @FXML
-  public void createUserActionButton(ActionEvent event) throws IOException{
-    
-  }
+    @FXML
+    public void createUserAction(ActionEvent event) throws IOException{
+        setScene(Controllers.CREATE_USER, event, getDataAccess(), null);
+    }
   
-  @FXML
-  public void loginUser(ActionEvent event) throws IOException{
+    @FXML
+    public void loginUserAction(ActionEvent event) throws IOException{
 
-    String username = usernameInput.getText();
-    String password = passwordInput.getText();
-    try{
-    UserValidation.checkValidUsername(username);
-    UserValidation.checkValidPassword(password);
-    UserValidation.isNotExistingUser(username,
-          password, null);
-    UserValidation.isValidLogin(username, password, null);
+        String username = usernameInput.getText();
+        String password = passwordInput.getText();
+        try{
+            UserValidation.checkValidUsername(username);
+            UserValidation.checkValidPassword(password);
+            UserValidation.isNotExistingUser(username, password, null);
+            UserValidation.isValidLogin(username, password, null);
 
-    //her trengs logikk for å sette scene
-    }catch(IllegalAccessError e){
-        errorMessage.setText(e.getMessage());
+            //her trengs logikk for å sette scene
+        }catch(IllegalAccessError e){
+            errorMessage.setText(e.getMessage());
     }
   }
 
-  public void loadLoginInfo(){
+    public void loadLoginInfo(){
 
-  }
+    }
 
 }
