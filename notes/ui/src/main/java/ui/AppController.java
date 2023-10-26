@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 
 
 import javafx.util.Callback;
-
+import core.Accounts;
 import core.Note;
 import core.NoteOverview;
 import core.NoteOverviewListener;
@@ -27,14 +27,15 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import json.NotesPersistence;
+import json.AccountsPersistence;
 
 
 public class AppController implements Initializable, NoteOverviewListener{
 
-    private NotesPersistence notesPersistence = new NotesPersistence(new File("src/main/resources/noteOverview.json"));
+    private AccountsPersistence accountsPersistence = new AccountsPersistence(new File("src/main/resources/noteOverview.json"));
     
-    protected NoteOverview noteOverview = notesPersistence.readNoteOverview();
+    protected Accounts accounts = accountsPersistence.readAccounts();
+    protected NoteOverview noteOverview;
 
     private List<String> sortList = Arrays.asList("Date created", "Last edited date", "Title (A-Z)");
     
@@ -60,9 +61,10 @@ public class AppController implements Initializable, NoteOverviewListener{
      */
     public AppController(boolean isTestMode) {
         if (isTestMode) {
-            notesPersistence = new NotesPersistence(new File("src/main/resources/testOverview.json"));
+            accountsPersistence = new AccountsPersistence(new File("src/main/resources/testOverview.json"));
             System.out.println("New file (test)");
-            noteOverview = notesPersistence.readNoteOverview();
+            accounts = accountsPersistence.readAccounts();
+            noteOverview = accounts.getUser("username").getNoteOverview();
         }
     }
 
@@ -79,7 +81,8 @@ public class AppController implements Initializable, NoteOverviewListener{
      * Initializes the main scene, including loading notes and setting up listeners
      */
     public void startScene(){
-        noteOverview = notesPersistence.readNoteOverview();
+        accounts = accountsPersistence.readAccounts();
+        noteOverview = accounts.getUser("username").getNoteOverview();
         noteOverview.addListener(this);
         NoteListView.getItems().clear();
         NoteListView.getItems().addAll(noteOverview.getNotes());
@@ -235,7 +238,7 @@ public class AppController implements Initializable, NoteOverviewListener{
      * Method for updating the JSON representation of the Note Overview and refreshing the scene.
      */
     public void updateJson() {
-        notesPersistence.writeNoteOverview(noteOverview);
+        accountsPersistence.writeAccounts(accounts);
         startScene();
     } 
 }

@@ -55,6 +55,7 @@ public class AccountsPersistence {
         } 
         catch (MismatchedInputException x) {
             Accounts newAccounts = new Accounts();
+            newAccounts.addUser(new User("username","password", new NoteOverview()));
             writeAccounts(newAccounts);
             System.out.println("File was empty, added new NoteOverview");
             return newAccounts;
