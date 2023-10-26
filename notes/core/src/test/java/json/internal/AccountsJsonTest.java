@@ -9,13 +9,15 @@ import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import core.Accounts;
 import core.Note;
 import core.NoteOverview;
+import core.User;
 
-public class NoteOverviewJsonTest {
+public class AccountsJsonTest {
     private final ObjectMapper objectMapper = new ObjectMapper();
     {
-        objectMapper.registerModule(new NoteOverviewModule());
+        objectMapper.registerModule(new AccountsModule());
     }
 
     private void assertEqualsIgnoreWhitespace(final String expected, final String actual) throws Exception {
@@ -24,10 +26,10 @@ public class NoteOverviewJsonTest {
 
     @Test
     public void testNoteOverviewSerialization() throws Exception {
-        LocalDate LocalDate = java.time.LocalDate.of(2022, 1, 1);
+        LocalDate localDate = java.time.LocalDate.of(2022, 1, 1);
 
         final String actualJson = objectMapper
-                .writeValueAsString(new NoteOverview(Arrays.asList(new Note("title", "text", LocalDate, LocalDate), new Note("title2", "text2", LocalDate, LocalDate)) ));
+                .writeValueAsString(new NoteOverview(Arrays.asList(new Note("title", "text", localDate, localDate), new Note("title2", "text2", localDate, localDate)) ));
         final String expectedJson =
                 "[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"},{\"title\":\"title2\",\"text\":\"text2\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]";
         assertEqualsIgnoreWhitespace(expectedJson, actualJson);
@@ -48,4 +50,33 @@ public class NoteOverviewJsonTest {
 
     }
 
+    @Test
+    public void testAccountsSerialization() throws Exception {
+        final LocalDate localDate = java.time.LocalDate.of(2022, 1, 1);
+        final String expectedJson = 
+                "[{\"username\":\"username\",\"password\":\"password\",\"noteOverview\":[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]}]";
+
+        Accounts accounts = new Accounts();
+        NoteOverview noteOverview = new NoteOverview();
+        Note note = new Note("title", "text", localDate, localDate);
+        noteOverview.addNote(note);
+        User user = new User("username", "password", noteOverview);
+        accounts.addUser(user);
+
+        final String actualJson = objectMapper.writeValueAsString(accounts);
+        assertEqualsIgnoreWhitespace(expectedJson, actualJson);
+
+
+    }
+
+    @Test
+    public void testAccountsDeserialization() throws Exception {
+        final String json = 
+                "[{\"username\":\"username\",\"password\":\"password\",\"noteOverview\":[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]}]";
+        final Accounts accounts = objectMapper.readValue(json, Accounts.class);
+        assertEquals("username", accounts.getUser("username").getUsername());
+        assertEquals("password", accounts.getUser("username").getPassword());
+        assertEquals("title", accounts.getUser("username").getNoteOverview().getNotes().get(0).getTitle());
+
+    }
 }

@@ -95,5 +95,7 @@
         <module>core</module>
         <module>ui</module>
         <module>rest</module>
+        <module>report</module>
+        
     </modules>
 </project>
