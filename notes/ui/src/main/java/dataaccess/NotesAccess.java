@@ -37,10 +37,6 @@ public interface NotesAccess {
    */
   public User userLogin(String username, String password);
 
-  /**
-   * This is meant for set the users that can use Notes.
-   */
-  public void registerNewAccounts(Accounts accounts);
 
   /**
    * Creates a new user and adds it to Accounts.
@@ -50,13 +46,6 @@ public interface NotesAccess {
   public void createUser(User user);
 
  
-  
-  /**
-   * This method is to remove the Accounts object currently used by
-   * Notes.
-   */
-
-  public void deleteAccounts();
 
     
   public void uploadFile(File file) throws IOException, InterruptedException, URISyntaxException;  
