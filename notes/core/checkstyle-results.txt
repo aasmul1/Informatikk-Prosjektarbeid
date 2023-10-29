@@ -1,31 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="9.3">
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/EditedDateComparator.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/core/Accounts.java">
+<error line="15" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="16" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="17" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="25" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="26" column="5" severity="error" message="&apos;if&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="27" column="7" severity="error" message="&apos;if&apos; child has incorrect indentation level 6, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="28" column="5" severity="error" message="&apos;if rcurly&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="29" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="30" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="38" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="39" column="5" severity="error" message="&apos;if&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="40" column="7" severity="error" message="&apos;if&apos; child has incorrect indentation level 6, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="41" column="5" severity="error" message="&apos;if rcurly&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="42" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="43" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="50" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="51" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="52" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="59" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="60" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="61" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="69" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="70" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="71" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="80" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="81" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="83" column="5" severity="error" message="&apos;for&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="84" column="7" severity="error" message="&apos;if&apos; has incorrect indentation level 6, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="85" column="9" severity="error" message="&apos;if&apos; child has incorrect indentation level 8, expected level should be 16." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="86" column="7" severity="error" message="&apos;if rcurly&apos; has incorrect indentation level 6, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="87" column="5" severity="error" message="&apos;for rcurly&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="88" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="89" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="98" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="99" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="101" column="5" severity="error" message="&apos;for&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="102" column="7" severity="error" message="&apos;if&apos; has incorrect indentation level 6, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="103" column="9" severity="error" message="&apos;if&apos; child has incorrect indentation level 8, expected level should be 16." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="104" column="7" severity="error" message="&apos;if rcurly&apos; has incorrect indentation level 6, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="105" column="5" severity="error" message="&apos;for rcurly&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="106" column="5" severity="error" message="&apos;if&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="107" column="7" severity="error" message="&apos;if&apos; child has incorrect indentation level 6, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="108" column="5" severity="error" message="&apos;if rcurly&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="109" column="5" severity="error" message="&apos;if&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="110" column="7" severity="error" message="&apos;if&apos; child has incorrect indentation level 6, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="111" column="5" severity="error" message="&apos;if rcurly&apos; has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="112" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="113" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="121" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="122" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="125" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="136" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="137" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="138" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="146" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="147" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="148" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="149" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/TitleComparator.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/core/EditedDateComparator.java">
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/NoteOverview.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/core/UserValidation.java">
+<error line="9" column="7" severity="error" message="&apos;+&apos; has incorrect indentation level 6, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="46" column="11" severity="error" message="&apos;if&apos; child has incorrect indentation level 10, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="49" column="11" severity="error" message="&apos;if&apos; child has incorrect indentation level 10, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="64" column="11" severity="error" message="&apos;if&apos; child has incorrect indentation level 10, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/NoteOverviewListener.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/core/TitleComparator.java">
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/Note.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/core/NoteOverview.java">
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/NoteListener.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/core/NoteOverviewListener.java">
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/core/CreatedDateComparator.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/core/User.java">
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/NotesPersistence.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/core/Note.java">
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NoteDeserializer.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/core/Errors.java">
+<error line="15" column="3" severity="error" message="&apos;member def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="17" column="3" severity="error" message="&apos;ctor def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="18" column="5" severity="error" message="&apos;ctor def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="19" column="3" severity="error" message="&apos;ctor def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="21" column="3" severity="error" message="&apos;method def modifier&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="22" column="5" severity="error" message="&apos;method def&apos; child has incorrect indentation level 4, expected level should be 8." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="23" column="3" severity="error" message="&apos;method def rcurly&apos; has incorrect indentation level 2, expected level should be 4." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NoteOverviewSerializer.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/core/NoteListener.java">
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NoteSerializer.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/core/CreatedDateComparator.java">
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NoteOverviewDeserializer.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/json/internal/AccountsModule.java">
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NoteOverviewModule.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/json/internal/NoteDeserializer.java">
 </file>
-<file name="/Users/idatomineberg/Desktop/ITP/gr2311/notes/core/src/main/java/json/internal/NotesStorage.java">
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/json/internal/NoteOverviewSerializer.java">
+</file>
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/json/internal/NoteSerializer.java">
+</file>
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/json/internal/NoteOverviewDeserializer.java">
+<error line="41" column="17" severity="error" message="&apos;for&apos; has incorrect indentation level 16, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="42" column="21" severity="error" message="&apos;for&apos; child has incorrect indentation level 20, expected level should be 16." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="43" column="21" severity="error" message="&apos;for&apos; child has incorrect indentation level 20, expected level should be 16." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+<error line="44" column="17" severity="error" message="&apos;for rcurly&apos; has incorrect indentation level 16, expected level should be 12." source="com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck"/>
+</file>
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/json/internal/UserDeserializer.java">
+</file>
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/json/internal/AccountsDeserializer.java">
+</file>
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/json/internal/AccountsSerializer.java">
+</file>
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/json/internal/UserSerializer.java">
+</file>
+<file name="/Users/hedda/Documents/NTNU/ITP/gr2311/notes/core/src/main/java/json/AccountsPersistence.java">
 </file>
 </checkstyle>

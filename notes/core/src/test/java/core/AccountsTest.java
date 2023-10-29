@@ -1,7 +1,9 @@
 package core;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,6 +40,25 @@ public class AccountsTest {
         // Now, add the user and then try removing, should succeed.
         accounts.addUser(user);
         assertDoesNotThrow(() -> accounts.removeUser(user));
+    }
+
+    @Test
+    public void testValidUserLogin() {
+        NoteOverview noteOverview = new NoteOverview();
+        String username = "validUser";
+        String password = "validPassword";
+
+        User validUser = new User(username, password, noteOverview);
+        accounts.addUser(validUser);
+
+        // Test if login valid for a valid user.
+        assertTrue(accounts.checkValidUserLogin(username, password));
+
+        // Test login valid for invalid password.
+        assertFalse(accounts.checkValidUserLogin(username, "invalidPassword"));
+
+        // Test login valid for nonexistent user.
+        assertFalse(accounts.checkValidUserLogin("invalidUser", password));
     }
 
 
