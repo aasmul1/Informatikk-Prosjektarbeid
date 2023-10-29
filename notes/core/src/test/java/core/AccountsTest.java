@@ -2,6 +2,7 @@ package core;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,6 +16,12 @@ public class AccountsTest {
     @BeforeEach
     public void setUp() {
         accounts = new Accounts();
+
+    }
+
+    @Test
+    public void getAccountsTest(){
+        assertNotNull(accounts.getAccounts());
     }
 
     @Test
@@ -27,7 +34,16 @@ public class AccountsTest {
 
         // Try adding the same user again, should throw an exception because user already exists.
         assertThrows(IllegalStateException.class, () -> accounts.addUser(newUser));
+
+        //Test if accounts now contains newUser
+        assertTrue(accounts.contains(newUser));
+
     }
+
+    // @Test
+    // public void containsTest(){
+    //     assertTrue(accounts.contains(user));
+    // }
 
     @Test
     public void testRemoveUser() {
