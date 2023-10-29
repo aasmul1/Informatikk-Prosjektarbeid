@@ -34,17 +34,6 @@ public class RemoteNotesAccess implements NotesAccess{
         throw new UnsupportedOperationException("Unimplemented method 'userLogin'");
     }
 
-    @Override
-    public void registerNewAccounts(Accounts accounts) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registerNewAccounts'");
-    }
-
-    @Override
-    public void deleteAccounts() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteAccounts'");
-    }
 
     @Override
     public void uploadFile(File file) throws IOException, InterruptedException, URISyntaxException {
