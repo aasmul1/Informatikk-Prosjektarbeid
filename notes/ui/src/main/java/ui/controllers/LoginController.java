@@ -2,6 +2,7 @@ package ui.controllers;
 
 import java.io.IOException;
 
+import core.User;
 import core.UserValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,26 +33,33 @@ public class LoginController extends AbstractController{
     public void createUserAction(ActionEvent event) throws IOException{
         setScene(Controllers.CREATE_USER, event, getDataAccess(), null);
     }
-  
+
+    /**
+     * Handles the user login action
+     * Initiates the user login process by first accessing and retrieving user information .json-file
+     * Displays any issues directly on the UI.
+     * 
+     * @param event when clicking on "logg inn"
+     * @throws IOException if something goes wrong when reading from file
+     */
     @FXML
     public void loginUserAction(ActionEvent event) throws IOException{
-
         String username = usernameInput.getText();
         String password = passwordInput.getText();
-        try{
+        try {
             UserValidation.checkValidUsername(username);
             UserValidation.checkValidPassword(password);
-            UserValidation.isNotExistingUser(username, password, null);
-            UserValidation.isValidLogin(username, password, null);
+            UserValidation.isNotExistingUser(username, password, getDataAccess().readAccounts());
+            UserValidation.isValidLogin(username, password, getDataAccess().readAccounts());
 
-            //her trengs logikk for å sette scene
-        }catch(IllegalAccessError e){
+            setScene(Controllers.NOTEOVERVIEW, event, getDataAccess(), null);
+
+        } catch(IllegalAccessError e){
             errorMessage.setText(e.getMessage());
+        }
     }
-  }
 
     public void loadLoginInfo(){
 
     }
-
 }
