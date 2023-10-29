@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 public class AccountsTest {
 
     private Accounts accounts;
-    NoteOverview noteOverview = new NoteOverview();
 
     @BeforeEach
     public void setUp() {
@@ -18,6 +17,7 @@ public class AccountsTest {
 
     @Test
     public void testAddUser() {
+        NoteOverview noteOverview = new NoteOverview();
         User newUser = new User("testUser", "testPassword", noteOverview);
 
         // Try adding a new user, should succeed because user does not exist yet.
@@ -29,6 +29,7 @@ public class AccountsTest {
 
     @Test
     public void testRemoveUser() {
+        NoteOverview noteOverview = new NoteOverview();
         User user = new User("testUser", "testPassword", noteOverview);
 
         // Try removing a user that hasn't been added, should throw an exception.
@@ -38,6 +39,9 @@ public class AccountsTest {
         accounts.addUser(user);
         assertDoesNotThrow(() -> accounts.removeUser(user));
     }
+
+
+    
 
     
 }
