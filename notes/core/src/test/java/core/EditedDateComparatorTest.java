@@ -19,4 +19,19 @@ public class EditedDateComparatorTest {
     // Create an instance of your comparator
     EditedDateComparator comparator = new EditedDateComparator();
 
+    @Test
+    public void testCompare() {
+        // Test the comparison results
+
+        //Expected earlierNote to be less than laterNote
+        assertTrue(comparator.compare(earlierNote, laterNote) < 0);
+
+        //Expected laterNote to be greater than earlierNote
+        assertTrue(comparator.compare(laterNote, earlierNote) > 0);
+
+        //Expected to be equal when comparing the same note instances
+        assertEquals(0, comparator.compare(earlierNote, earlierNote));
+
+    }
+
 }
