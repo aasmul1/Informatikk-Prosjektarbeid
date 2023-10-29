@@ -75,6 +75,17 @@ public class AccountsTest {
     }
 
     @Test
+    public void testGetUser(){
+
+        assertEquals(user1, accounts.getUser("defaultUser1"));
+        assertEquals(user1, accounts.getUser("defaultUser1","defaultPassword1"));
+
+        //Wrong password to username
+        assertEquals(null, accounts.getUser("defaultUser2", "defaultPassword1"));
+    }
+
+
+    @Test
     public void testValidUserLogin() {
         NoteOverview noteOverview = new NoteOverview();
         String username = "validUser";
