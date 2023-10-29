@@ -1,6 +1,7 @@
 package core;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,11 +13,21 @@ import org.junit.jupiter.api.Test;
 public class AccountsTest {
 
     private Accounts accounts;
+    private User user1; 
+    private User user2; 
 
     @BeforeEach
     public void setUp() {
         accounts = new Accounts();
+        NoteOverview noteOverview1 = new NoteOverview();
+        NoteOverview noteOverview2 = new NoteOverview();
 
+        user1 = new User("defaultUser1", "defaultPassword1", noteOverview1); // Changed this line
+        user2 = new User("defaultUser2", "defaultPassword2", noteOverview2); // Changed this line
+    
+        // It might be a good idea to add the users here, as you had initially commented out.
+        accounts.addUser(user1);
+        accounts.addUser(user2);
     }
 
     @Test
@@ -37,12 +48,11 @@ public class AccountsTest {
 
         //Test if accounts now contains newUser
         assertTrue(accounts.contains(newUser));
-
     }
 
     // @Test
     // public void containsTest(){
-    //     assertTrue(accounts.contains(user));
+    //     assertTrue(accounts.contains(user1));
     // }
 
     @Test
@@ -57,6 +67,23 @@ public class AccountsTest {
         accounts.addUser(user);
         assertDoesNotThrow(() -> accounts.removeUser(user));
     }
+
+    @Test
+    public void testIndexOf(){
+        assertEquals(0,accounts.indexOf(user1) );
+        assertEquals(1,accounts.indexOf(user2) );
+    }
+
+    @Test
+    public void testGetUser(){
+
+        assertEquals(user1, accounts.getUser("defaultUser1"));
+        assertEquals(user1, accounts.getUser("defaultUser1","defaultPassword1"));
+
+        //Wrong password to username
+        assertEquals(null, accounts.getUser("defaultUser2", "defaultPassword1"));
+    }
+
 
     @Test
     public void testValidUserLogin() {
