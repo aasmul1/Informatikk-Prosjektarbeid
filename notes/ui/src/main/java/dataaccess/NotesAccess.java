@@ -50,7 +50,7 @@ public interface NotesAccess {
     
   public void uploadFile(File file) throws IOException, InterruptedException, URISyntaxException;  
   
-  public Note getUserNote(String title, String text);
+  public Note getUserNote(String title, String username);
 
   public User getLoggedInUser();
 }
