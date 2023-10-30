@@ -15,3 +15,5 @@ notes/ui/src/main/resources/testOverview.json
 
 notes/core/checkstyle-results.txt
 notes/ui/checkstyle-results.txt
+.vscode/launch.json
+.vscode/settings.json
