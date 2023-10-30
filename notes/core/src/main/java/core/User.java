@@ -1,7 +1,5 @@
 package core;
 
-import java.util.List;
-
 public class User {
     private String username;
     private String password;
@@ -16,6 +14,9 @@ public class User {
      */
     
     public User(String username, String password, NoteOverview noteOverview) {
+        UserValidation.checkValidUsername(username);
+        UserValidation.checkValidPassword(password);
+
         this.username = username;
         this.password = password;
         this.noteOverview = noteOverview;
@@ -30,7 +31,6 @@ public class User {
         return username;
     }
 
-
     /**
      * Mutation method for new username.
      * 
@@ -40,7 +40,6 @@ public class User {
         UserValidation.checkValidUsername(username);
         this.username = username;
     }
-
 
     /**
      * Access method for users password
