@@ -1,43 +1,26 @@
 package ui;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
-import javafx.stage.Stage;
-import json.AccountsPersistence;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import javafx.stage.Stage;
+import ui.controllers.AppController;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
-
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.control.LabeledMatchers;
-import org.testfx.matcher.control.ListViewMatchers;
-import org.testfx.matcher.control.TextMatchers;
 import org.testfx.service.query.NodeQuery;
 
-import core.Note;
-
-import org.testfx.api.FxToolkit;
-import org.testfx.framework.junit5.ApplicationTest;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.base.NodeMatchers.*;
-import org.testfx.api.FxRobot;
-import static org.testfx.util.WaitForAsyncUtils.waitForFxEvents;
+
 
 
 /**
@@ -52,7 +35,7 @@ public class AppTest extends ApplicationTest {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("App.fxml"));
         root = fxmlLoader.load();
-        controller = new AppController(true);
+        controller = new AppController();
         fxmlLoader.setController(controller);
         stage.setScene(new Scene(root));
         stage.show();

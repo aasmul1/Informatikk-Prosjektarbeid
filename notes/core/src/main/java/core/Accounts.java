@@ -89,9 +89,9 @@ public class Accounts {
   }
 
   /**
-   * Gets the user by email and password.
+   * Gets the user by username and password.
    *
-   * @param email the email
+   * @param username the username
    * @param password the password
    * @return the user
    */
@@ -111,10 +111,11 @@ public class Accounts {
     }
     return null;
   }
+
   /**
-   * get accounts by email.
+   * get accounts by username.
    *
-   * @param email the email
+   * @param username the username
    * @return accounts if they exist, null else
    */
 

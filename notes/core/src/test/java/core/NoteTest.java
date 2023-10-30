@@ -3,6 +3,7 @@ package core;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 
@@ -12,14 +13,21 @@ import org.junit.jupiter.api.Test;
 public class NoteTest {
     private Note note;
     private Note note2;
-    private Note dateNote;
     LocalDate editedDate = LocalDate.parse("2023-10-06");
     LocalDate createdDate = LocalDate.parse("2023-10-05");
+    private NoteListener listener1;
 
     @BeforeEach
     void setUp() {
         this.note = new Note("Title", "Chores i have to do", createdDate, editedDate);
         this.note2 = new Note("Title2", "Here i want to test");
+        listener1 = new NoteListener() {
+            @Override
+            public void noteChanged() {
+                // Listener 1 implementation, if needed
+            }
+        };
+        
         
     }
 
@@ -39,7 +47,7 @@ public class NoteTest {
     public void testWrongDate(){
     //created date is after edited date
         assertThrows(IllegalArgumentException.class, () -> {
-			      this.dateNote = new Note("Title", "Chores i have to do", LocalDate.parse("2023-10-08"), LocalDate.parse("2023-10-07"));;
+			      new Note("Title", "Chores i have to do", LocalDate.parse("2023-10-08"), LocalDate.parse("2023-10-07"));;
 		    }, "Created date should be before edited date!");
     }
 
@@ -69,6 +77,19 @@ public class NoteTest {
     public void testSetText(){
         note.setText("New text");
         assertEquals("New text", note.getText());
+    }
+
+    @Test
+    public void testAddNoteListener() {
+        note.addNoteListener(listener1);
+        assertTrue(note.getNoteListeners().contains(listener1));
+    }
+
+    @Test
+    public void testRemoveNoteListener() {
+        note.addNoteListener(listener1);
+        note.removeNoteListener(listener1);
+        assertFalse(note.getNoteListeners().contains(listener1));
     }
 
 
