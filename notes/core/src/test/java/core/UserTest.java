@@ -1,17 +1,29 @@
 package core;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class UserTest {
 
-    private NoteOverview noteOverview = new NoteOverview();
+    private NoteOverview noteOverview;
     private User user;
 
     @BeforeEach
     public void setUp(){
+        noteOverview = new NoteOverview();
         user = new User("Username", "Password123", noteOverview);
+    }
+
+    @Test
+    public void testConstructors() {
+        NoteOverview testOverview = new NoteOverview();
+        User smallConstructor = new User("Test", "Test", testOverview);
+        assertEquals("Test", smallConstructor.getUsername());
+        assertEquals("Test", smallConstructor.getPassword());
+        assertEquals(testOverview, smallConstructor.getNoteOverview());
     }
 
     
