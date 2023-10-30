@@ -35,4 +35,27 @@ public class UserTest {
         Assertions.assertEquals("NewPassword123", user.getPassword());
         
     }
+
+    @Test
+    public void testAddNote() {
+        // Test adding a new note to the user's note overview
+        Note note = new Note("Note", "Text");
+        user.addNote(note);
+        Assertions.assertTrue(user.noteExists(note)); // Check if the note exists
+
+        // Test adding the same note again (should not be added twice)
+        user.addNote(note);
+        Assertions.assertEquals(1, user.getNoteOverview().getNotes().size());
+    }
+
+    @Test
+    public void testNoteExists() {
+        // Test noteExists method when a note exists and when it doesn't
+        Note existingNote = new Note("Existing Note", "Text");
+        user.addNote(existingNote);
+        Assertions.assertTrue(user.noteExists(existingNote));
+
+        Note nonExistingNote = new Note("Non-Existing Note", "Text");
+        Assertions.assertFalse(user.noteExists(nonExistingNote));
+    }
 }
