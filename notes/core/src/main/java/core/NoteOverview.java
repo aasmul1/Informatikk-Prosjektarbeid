@@ -133,7 +133,4 @@ public class NoteOverview implements NoteListener {
         fireNoteOverviewChanged();
     }
 
-    public static void main(String[] args) {
-        
-    }
 }
