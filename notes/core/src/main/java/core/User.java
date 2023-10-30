@@ -16,6 +16,9 @@ public class User {
      */
     
     public User(String username, String password, NoteOverview noteOverview) {
+        UserValidation.checkValidUsername(username);
+        UserValidation.checkValidPassword(password);
+        
         this.username = username;
         this.password = password;
         this.noteOverview = noteOverview;
