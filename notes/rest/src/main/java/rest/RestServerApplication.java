@@ -21,17 +21,17 @@ public class RestServerApplication {
       }
     
 
-    // @Bean
-    // public WebMvcConfigurer corsConfigurer() {
-    //   return new WebMvcConfigurer() {
-    //     @Override
-    //       public void addCorsMappings(CorsRegistry registry) {
-    //       registry
-    //               .addMapping("/Notes/**")
-    //               .allowedOrigins("http://localhost:3000")
-    //               .allowedMethods("PUT", "POST", "GET");
-    //     }
-    //   };
-    // }
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+      return new WebMvcConfigurer() {
+        @Override
+          public void addCorsMappings(CorsRegistry registry) {
+          registry
+                  .addMapping("/notes/**")
+                  .allowedOrigins("http://localhost:3000")
+                  .allowedMethods("PUT", "POST", "GET");
+        }
+      };
+    }
 
 }
