@@ -1,6 +1,5 @@
 package ui.controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -22,15 +21,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import ui.CustomListCell;
-import javafx.stage.Stage;
-import json.AccountsPersistence;
+
 
 
 public class AppController extends AbstractController implements NoteOverviewListener{
 
-    private AccountsPersistence accountsPersistence = new AccountsPersistence(new File("src/main/resources/noteOverview.json"));
     
-    protected Accounts accounts = accountsPersistence.readAccounts();
+    protected Accounts accounts; 
     protected NoteOverview noteOverview;
 
     private List<String> sortList = Arrays.asList("Date created", "Last edited date", "Title (A-Z)");
@@ -46,17 +43,15 @@ public class AppController extends AbstractController implements NoteOverviewLis
      *
      * @param isTestMode Indicates whether the application is in test mode.
      */
-    public AppController(boolean isTestMode) {
-        if (isTestMode) {
-            accountsPersistence = new AccountsPersistence(new File("src/main/resources/testOverview.json"));
-            System.out.println("New file (test)");
-            accounts = accountsPersistence.readAccounts();
-            noteOverview = accounts.getUser("username").getNoteOverview();
+    public AppController() {
+        try {
+            accounts = dataAccess.readAccounts();
+        } catch (Exception e) {
+            accounts = new Accounts();
         }
     }
 
-    public AppController() {  
-    }
+    
 
     // @Override
     // public void initialize(URL location, ResourceBundle resources) {
@@ -68,7 +63,6 @@ public class AppController extends AbstractController implements NoteOverviewLis
      * Initializes the main scene, including loading notes and setting up listeners
      */
     public void startScene(){
-        accounts = accountsPersistence.readAccounts();
         noteOverview = accounts.getUser("username").getNoteOverview();
         noteOverview.addListener(this);
         NoteListView.getItems().clear();
