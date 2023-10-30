@@ -3,6 +3,7 @@ package core;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class Note {
     private String title;
@@ -133,4 +134,8 @@ public class Note {
             listener.noteChanged();
         }
     }    
+
+    public List<NoteListener> getNoteListeners(){
+        return new ArrayList<NoteListener>(this.listeners);
+    }
 }
