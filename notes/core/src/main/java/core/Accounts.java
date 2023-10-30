@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Accounts {
+public class Accounts implements UserListener{
     protected final List<User> accounts = new ArrayList<>();
 
     /**
@@ -129,8 +129,9 @@ public class Accounts {
      *
      * @param user        to change
      * @param indexOfUser in list
-     */
-    public void updateUserObject(User user, int indexOfUser) {
+     */ 
+    public void updateUserObject(User user) {
+        int indexOfUser = accounts.indexOf(user);
         accounts.set(indexOfUser, user);
     }
 
@@ -140,8 +141,8 @@ public class Accounts {
      *
      * @param user the user
      */
+    @Override
     public void userInfoChanged(User user) {
-        int index = accounts.indexOf(user);
-        this.updateUserObject(user, index);
+        this.updateUserObject(user);
     }
 }
