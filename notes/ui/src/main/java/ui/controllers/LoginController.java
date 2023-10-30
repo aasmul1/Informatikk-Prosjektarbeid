@@ -2,7 +2,6 @@ package ui.controllers;
 
 import java.io.IOException;
 
-import core.User;
 import core.UserValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
