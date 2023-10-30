@@ -1,22 +1,18 @@
-package ui;
+package ui.controllers;
 
 import java.io.IOException;
 
 import core.Note;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-public class NoteController{
+public class NoteController extends AbstractController{
 
 
     @FXML
@@ -48,8 +44,8 @@ public class NoteController{
         }
         Note newnote = new Note(title, noteText); 
 
-        //send scene back to first scene 
-        sendToAppScene(newnote);
+        //her må vi legge til at user legger til et not ei overviewt sitt
+        setScene(Controllers.NOTEOVERVIEW, event, dataAccess, newnote);
     }
 
     /**
@@ -62,27 +58,31 @@ public class NoteController{
         alert.show();
     }
 
+    void loadAddNoteInfo(){
+
+    }
+
     /**
      * Transistions to the main scene and updates it with the newly created note.
      *
      * @param newnote the newly created Note object
      * @throws IOException if an error occurs while loading the application scene.
      */
-    public void sendToAppScene(Note newnote) throws IOException{
+    // public void sendToAppScene(Note newnote) throws IOException{
 
-        Stage currentStage = (Stage) notepane.getScene().getWindow();
+    //     Stage currentStage = (Stage) notepane.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/App.fxml"));
-        Parent root = loader.load();
+    //     FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/App.fxml"));
+    //     Parent root = loader.load();
 
-        AppController appController = loader.getController();
-        appController.updateinfo(newnote);
+    //     AppController appController = loader.getController();
+    //     appController.updateinfo(newnote);
 
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle("NoteBook Overview");
-        stage.show();
+    //     Stage stage = new Stage();
+    //     stage.setScene(new Scene(root));
+    //     stage.setTitle("NoteBook Overview");
+    //     stage.show();
 
-        currentStage.close();    
-    }
+    //     currentStage.close();    
+    // }
 }
