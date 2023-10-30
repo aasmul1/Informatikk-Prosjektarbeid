@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import core.Note;
 import core.NoteOverview;
@@ -33,4 +34,18 @@ public class NoteOverviewDeserializer extends JsonDeserializer<NoteOverview> {
         return null;
     }
     
+    public NoteOverview deserialize(JsonNode node) throws IOException, JacksonException {
+        if (node instanceof ArrayNode) {
+            final ArrayNode noteArray = (ArrayNode) node;
+            final ArrayList<Note> notes = new ArrayList<>(noteArray.size());
+                for (final JsonNode noteNode : noteArray) {
+                    final Note note = noteDeserializer.deserialize(noteNode);
+                    notes.add(note);
+                }
+            return new NoteOverview(notes);
+        }
+        return null;
+        
+    }
+
 }

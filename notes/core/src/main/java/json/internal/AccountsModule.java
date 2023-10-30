@@ -5,14 +5,16 @@ import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
 
+import core.Accounts;
 import core.Note;
 import core.NoteOverview;
+import core.User;
 
-public class NoteOverviewModule extends Module {
+public class AccountsModule extends Module {
 
     @Override
     public String getModuleName() {
-        return "NoteOverviewModule";
+        return "AccountsModule";
     }
 
     @Override
@@ -23,11 +25,15 @@ public class NoteOverviewModule extends Module {
     private final SimpleDeserializers deserializers = new SimpleDeserializers();
     private final SimpleSerializers serializers = new SimpleSerializers();
 
-    public NoteOverviewModule() {
+    public AccountsModule() {
         serializers.addSerializer(Note.class, new NoteSerializer());
         serializers.addSerializer(NoteOverview.class, new NoteOverviewSerializer());
+        serializers.addSerializer(User.class, new UserSerializer());
+        serializers.addSerializer(Accounts.class, new AccountsSerializer());
         deserializers.addDeserializer(Note.class, new NoteDeserializer());
         deserializers.addDeserializer(NoteOverview.class, new NoteOverviewDeserializer());
+        deserializers.addDeserializer(User.class, new UserDeserializer());
+        deserializers.addDeserializer(Accounts.class, new AccountsDeserializer());
     }
 
     @Override

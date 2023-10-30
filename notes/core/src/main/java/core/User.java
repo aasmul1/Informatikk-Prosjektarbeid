@@ -18,7 +18,7 @@ public class User {
     public User(String username, String password, NoteOverview noteOverview) {
         this.username = username;
         this.password = password;
-        this.noteOverview = new NoteOverview();
+        this.noteOverview = noteOverview;
     }
 
     /**
@@ -66,8 +66,8 @@ public class User {
      * 
      * @return a copy of users noteoverview-list
      */
-    public List<Note> getNoteOverview() {
-        return noteOverview.getNotes();
+    public NoteOverview getNoteOverview() {
+        return noteOverview;
     }
 
     /**
@@ -77,7 +77,7 @@ public class User {
      * @return the note 
      */
     public Note getNote(Note note) {
-        return getNoteOverview().stream().filter(n -> n.getTitle().equals(note.getTitle()))
+        return getNoteOverview().getNotes().stream().filter(n -> n.getTitle().equals(note.getTitle()))
                                  .findAny()
                                  .orElse(null); 
     }
