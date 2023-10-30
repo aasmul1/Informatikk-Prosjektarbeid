@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Iterator;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -66,6 +68,16 @@ public class AccountsTest {
         // Now, add the user and then try removing, should succeed.
         accounts.addUser(user);
         assertDoesNotThrow(() -> accounts.removeUser(user));
+    }
+    
+    @Test
+    public void testIterator() {
+        Iterator<User> userIterator = accounts.iterator();
+        assertTrue(userIterator.hasNext());
+        assertEquals(user1, userIterator.next());
+        assertTrue(userIterator.hasNext());
+        assertEquals(user2, userIterator.next());
+        assertFalse(userIterator.hasNext());
     }
 
     @Test
