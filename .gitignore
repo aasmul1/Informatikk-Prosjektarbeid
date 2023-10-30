@@ -27,3 +27,5 @@ notes/ui/checkstyle-results.txt
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
+.vscode/launch.json
+.vscode/settings.json
