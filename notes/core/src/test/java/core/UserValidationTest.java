@@ -1,5 +1,7 @@
 package core;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Assertions;
@@ -14,6 +16,15 @@ public class UserValidationTest {
     @BeforeEach
     public void setUp() {
         testUser = new User("Username", "Pasword123", noteOverview);
+    }
+
+    @Test
+    public void testDefaultConstructor() {
+        UserValidation userVal = new UserValidation(); // Create an instance using the default constructor
+
+        // Add assertions to check the default state of the object
+        assertNotNull(userVal); // Make sure the object is not null
+        // Add more assertions as needed to verify the default state of the object
     }
     
     @Test
@@ -30,12 +41,22 @@ public class UserValidationTest {
         Assertions.assertDoesNotThrow(() -> UserValidation.checkValidUser(username, password));
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> UserValidation.checkEqualPassword("password1", "password2"));
+        Assertions.assertDoesNotThrow(() -> UserValidation.checkEqualPassword("Password1", "Password1"));
+
         Accounts accounts = new Accounts();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> UserValidation.isNotExistingUser(testUser.getUsername(), testUser.getPassword(), accounts));
+
         accounts.addUser(testUser);
         Assertions.assertDoesNotThrow(() -> UserValidation.isValidLogin(username, password, accounts));
+        Assertions.assertDoesNotThrow(() -> UserValidation.isNotExistingUser(testUser.getUsername(), testUser.getPassword(), accounts));
+
         Assertions.assertThrows(IllegalArgumentException.class, () -> UserValidation.isValidLogin("Username", "Password123", accounts));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> UserValidation.isNotExistingUser("email@emaile.com", "Password!", accounts));
+        
         assertThrows(IllegalArgumentException.class, () -> UserValidation.allFieldsEmpty("", ""));
+        assertDoesNotThrow(() -> UserValidation.allFieldsEmpty("", "Password123"));
+        assertDoesNotThrow(() -> UserValidation.allFieldsEmpty("Username", ""));
+        assertDoesNotThrow(() -> UserValidation.allFieldsEmpty("Username", "Password123"));
+
     }
     
 }
