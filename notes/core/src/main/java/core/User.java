@@ -1,9 +1,14 @@
 package core;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class User {
     private String username;
     private String password;
     private NoteOverview noteOverview;
+
+    protected Collection<UserListener> userListeners = new ArrayList<>();
 
     /**
      * Constructor that is used to create a instance of this class.
@@ -39,6 +44,9 @@ public class User {
     public void setUsername(String username) {
         UserValidation.checkValidUsername(username);
         this.username = username;
+        for (UserListener userListener : userListeners) {
+            userListener.userInfoChanged(this);
+        }
     }
 
     /**
@@ -58,6 +66,9 @@ public class User {
     public void setPassword(String password) {
         UserValidation.checkValidPassword(password);
         this.password = password;
+        for (UserListener userListener : userListeners) {
+            userListener.userInfoChanged(this);
+        }
     }
 
     /**
@@ -66,7 +77,7 @@ public class User {
      * @return a copy of users noteoverview-list
      */
     public NoteOverview getNoteOverview() {
-        return noteOverview;
+        return this.noteOverview;
     }
 
     /**
@@ -89,7 +100,10 @@ public class User {
     public void addNote(Note note) {
         if(!noteExists(note)) {
             noteOverview.addNote(note);
-            //evt observer her
+
+            for (UserListener userListener : userListeners) {
+                userListener.userInfoChanged(this);
+        }
         }
     }
 
@@ -106,5 +120,17 @@ public class User {
             }
         }
         return false;
+    }
+
+    public void addListener(UserListener listener) {
+        if (listener != null) {
+            userListeners.add(listener);
+        }
+    }
+
+    public void removeListener(UserListener listener) {
+        if(listener != null) {
+            userListeners.remove(listener);
+        }
     }
 }
