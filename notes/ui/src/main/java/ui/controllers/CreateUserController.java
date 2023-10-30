@@ -41,7 +41,7 @@ public class CreateUserController extends AbstractController{
             NoteOverview noteOverview = new NoteOverview(); //empty noteoverview
             User user = new User(username, password, noteOverview);
 
-            // getDataAccess().createUser(user); denne trenger vi, ikke ferdige enda
+            getDataAccess().createUser(user);
 
             setScene(Controllers.LOGIN, event, getDataAccess(), null);
 
