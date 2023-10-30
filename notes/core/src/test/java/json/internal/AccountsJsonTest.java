@@ -54,13 +54,13 @@ public class AccountsJsonTest {
     public void testAccountsSerialization() throws Exception {
         final LocalDate localDate = java.time.LocalDate.of(2022, 1, 1);
         final String expectedJson = 
-                "[{\"username\":\"username\",\"password\":\"password\",\"noteOverview\":[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]}]";
+                "[{\"username\":\"username\",\"password\":\"password1\",\"noteOverview\":[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]}]";
 
         Accounts accounts = new Accounts();
         NoteOverview noteOverview = new NoteOverview();
         Note note = new Note("title", "text", localDate, localDate);
         noteOverview.addNote(note);
-        User user = new User("username", "password", noteOverview);
+        User user = new User("username", "password1", noteOverview);
         accounts.addUser(user);
 
         final String actualJson = objectMapper.writeValueAsString(accounts);
@@ -72,10 +72,10 @@ public class AccountsJsonTest {
     @Test
     public void testAccountsDeserialization() throws Exception {
         final String json = 
-                "[{\"username\":\"username\",\"password\":\"password\",\"noteOverview\":[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]}]";
+                "[{\"username\":\"username\",\"password\":\"password1\",\"noteOverview\":[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]}]";
         final Accounts accounts = objectMapper.readValue(json, Accounts.class);
         assertEquals("username", accounts.getUser("username").getUsername());
-        assertEquals("password", accounts.getUser("username").getPassword());
+        assertEquals("password1", accounts.getUser("username").getPassword());
         assertEquals("title", accounts.getUser("username").getNoteOverview().getNotes().get(0).getTitle());
 
     }
