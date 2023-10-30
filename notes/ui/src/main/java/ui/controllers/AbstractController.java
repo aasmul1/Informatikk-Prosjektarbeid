@@ -60,7 +60,7 @@ public abstract class AbstractController{
       		controller.setDataAccess(dataAccess);
       		Parent parent = loader.load();
       		if (controller instanceof AppController) {
-        		((AppController) controller).loadAppInfo();
+        		((AppController) controller).startScene();
       		} else if (controller instanceof CreateUserController) {
         		((CreateUserController) controller).loadCreateUserInfo();
       		} else if (controller instanceof LoginController) {
