@@ -134,4 +134,19 @@ public class AccountsTest {
         assertEquals("updatedPassword1", updatedUserFromAccounts.getPassword()); // Check updated password
     }
 
+    @Test
+    public void testUserInfoChanged() {
+        // Update user1 attributes
+        user1.setUsername("changedUsername");
+        user1.setPassword("changedPassword1");
+
+        // Notify that the user info has changed
+        accounts.userInfoChanged(user1);
+
+        // Check that the user info in accounts is  updated
+        User updatedUser = accounts.getUser("changedUsername");
+        assertNotNull(updatedUser);
+        assertEquals("changedPassword1", updatedUser.getPassword());
+    }
+
 }
