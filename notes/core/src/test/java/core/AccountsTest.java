@@ -24,8 +24,8 @@ public class AccountsTest {
         NoteOverview noteOverview1 = new NoteOverview();
         NoteOverview noteOverview2 = new NoteOverview();
 
-        user1 = new User("defaultUser1", "defaultPassword1", noteOverview1); // Changed this line
-        user2 = new User("defaultUser2", "defaultPassword2", noteOverview2); // Changed this line
+        user1 = new User("defaultUserONE", "defaultPassword1", noteOverview1); // Changed this line
+        user2 = new User("defaultUserTWO", "defaultPassword2", noteOverview2); // Changed this line
 
         accounts.addUser(user1);
         accounts.addUser(user2);
@@ -39,7 +39,7 @@ public class AccountsTest {
     @Test
     public void testAddUser() {
         NoteOverview noteOverview = new NoteOverview();
-        User newUser = new User("testUser", "testPassword", noteOverview);
+        User newUser = new User("testUser", "testPassword1", noteOverview);
 
         // Try adding a new user, should succeed because user does not exist yet.
         assertDoesNotThrow(() -> accounts.addUser(newUser));
@@ -60,7 +60,7 @@ public class AccountsTest {
     @Test
     public void testRemoveUser() {
         NoteOverview noteOverview = new NoteOverview();
-        User user = new User("testUser", "testPassword", noteOverview);
+        User user = new User("testUser", "testPassword1", noteOverview);
 
         // Try removing a user that hasn't been added, should throw an exception.
         assertThrows(IllegalArgumentException.class, () -> accounts.removeUser(user));
@@ -89,18 +89,18 @@ public class AccountsTest {
     @Test
     public void testGetUser() {
 
-        assertEquals(user1, accounts.getUser("defaultUser1"));
-        assertEquals(user1, accounts.getUser("defaultUser1", "defaultPassword1"));
+        assertEquals(user1, accounts.getUser("defaultUserONE"));
+        assertEquals(user1, accounts.getUser("defaultUserONE", "defaultPassword1"));
 
         // Wrong password to username
-        assertEquals(null, accounts.getUser("defaultUser2", "defaultPassword1"));
+        assertEquals(null, accounts.getUser("defaultUserTWO", "defaultPassword1"));
     }
 
     @Test
     public void testValidUserLogin() {
         NoteOverview noteOverview = new NoteOverview();
         String username = "validUser";
-        String password = "validPassword";
+        String password = "validPassword1";
 
         User validUser = new User(username, password, noteOverview);
         accounts.addUser(validUser);
@@ -109,7 +109,7 @@ public class AccountsTest {
         assertTrue(accounts.checkValidUserLogin(username, password));
 
         // Test login valid for invalid password.
-        assertFalse(accounts.checkValidUserLogin(username, "invalidPassword"));
+        assertFalse(accounts.checkValidUserLogin(username, "invalidPassword1"));
 
         // Test login valid for nonexistent user.
         assertFalse(accounts.checkValidUserLogin("invalidUser", password));
