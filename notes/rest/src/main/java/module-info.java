@@ -7,7 +7,7 @@ module notes.rest {
     requires spring.data.rest.core;
     requires spring.data.commons;
     requires spring.web;
-    requires spring.webmvc;
+    requires transitive spring.webmvc;
 
     requires transitive notes.core;
     // requires transitive notes.json;
