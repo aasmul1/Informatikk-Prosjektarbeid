@@ -133,7 +133,7 @@ public class NoteOverview implements NoteListener {
         fireNoteOverviewChanged();
     }
 
-    public static void main(String[] args) {
-        
+    public List<NoteOverviewListener> getNoteListeners(){
+        return new ArrayList<NoteOverviewListener>(this.listeners);
     }
 }
