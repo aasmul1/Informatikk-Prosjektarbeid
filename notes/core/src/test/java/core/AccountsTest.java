@@ -50,10 +50,10 @@ public class AccountsTest {
         assertTrue(accounts.contains(newUser));
     }
 
-    // @Test
-    // public void containsTest(){
-    //     assertTrue(accounts.contains(user1));
-    // }
+    @Test
+    public void containsTest(){
+        assertTrue(accounts.contains(user1));
+    }
 
     @Test
     public void testRemoveUser() {
