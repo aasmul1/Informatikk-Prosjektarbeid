@@ -7,29 +7,27 @@ import java.net.URISyntaxException;
 import core.Accounts;
 import core.Note;
 import core.User;
-import json.NotesPersistence;
+import json.AccountsPersistence;
 
 public class LocalNotesAccess implements NotesAccess{
 
     private Accounts accounts;
     private User user = new User(null, null, null);
     private File test;
-    private final NotesPersistence persistence = new NotesPersistence(test);
+    private final AccountsPersistence persistence = new AccountsPersistence();
 
     /**
    * Loads accounts from json-file.
    */
     public LocalNotesAccess(){
-        // persistence.setFilePath("Accounts.json");
+        persistence.setFilePath("Accounts.json");
         try {
-            // this.accounts = persistence.initializeStorage();
-        } catch (IllegalStateException e) {
-            this.accounts = new Accounts();
-            try {
-                // persistence.saveAccounts(accounts);
-            } catch (IllegalStateException e1) {
-                System.out.println(e1.getMessage());
-        }
+            this.accounts = persistence.loadAccounts();
+            if (this.accounts == null) {
+                this.accounts = new Accounts();
+            }
+        } catch (IllegalArgumentException | IOException e) {
+            
     }
     }
     
@@ -41,16 +39,15 @@ public class LocalNotesAccess implements NotesAccess{
             accounts.addUser(user);
           }
           try {
-            // persistence.saveAccounts(accounts);
-          } catch (IllegalStateException e) {
+            persistence.saveAccounts(accounts);;
+          } catch (IllegalStateException | IOException e) {
             e.printStackTrace();
           }
     }
 
     @Override
     public Accounts readAccounts() throws IOException {
-        persistence.readNoteOverview();
-        return accounts; // må fikse
+        return persistence.loadAccounts();
     }
 
     @Override
@@ -70,14 +67,14 @@ public class LocalNotesAccess implements NotesAccess{
 
     @Override
     public void uploadFile(File file) throws IOException, InterruptedException, URISyntaxException {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'uploadFile'");
     }
 
     @Override
     public Note getUserNote(String title, String username) {
         User user = accounts.getUser(username);
-        for (Note note : user.getNoteOverview()) {
+
+        for (Note note : user.getNoteOverview().getNotes()) {
             if(note.getTitle().equals(title)){
                 return note;
             }
