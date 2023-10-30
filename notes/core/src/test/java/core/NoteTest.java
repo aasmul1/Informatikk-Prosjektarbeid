@@ -13,11 +13,9 @@ import org.junit.jupiter.api.Test;
 public class NoteTest {
     private Note note;
     private Note note2;
-    private Note dateNote;
     LocalDate editedDate = LocalDate.parse("2023-10-06");
     LocalDate createdDate = LocalDate.parse("2023-10-05");
     private NoteListener listener1;
-    private NoteListener listener2;
 
     @BeforeEach
     void setUp() {
@@ -29,12 +27,7 @@ public class NoteTest {
                 // Listener 1 implementation, if needed
             }
         };
-        listener2 = new NoteListener() {
-            @Override
-            public void noteChanged() {
-                // Listener 2 implementation, if needed
-            }
-        };
+        
         
     }
 
@@ -54,7 +47,7 @@ public class NoteTest {
     public void testWrongDate(){
     //created date is after edited date
         assertThrows(IllegalArgumentException.class, () -> {
-			      this.dateNote = new Note("Title", "Chores i have to do", LocalDate.parse("2023-10-08"), LocalDate.parse("2023-10-07"));;
+			      new Note("Title", "Chores i have to do", LocalDate.parse("2023-10-08"), LocalDate.parse("2023-10-07"));;
 		    }, "Created date should be before edited date!");
     }
 
