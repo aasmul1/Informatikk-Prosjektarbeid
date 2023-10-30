@@ -7,14 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Iterator;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class AccountsTest {
 
     private Accounts accounts;
-    private User user1; 
-    private User user2; 
+    private User user1;
+    private User user2;
 
     @BeforeEach
     public void setUp() {
@@ -24,14 +26,13 @@ public class AccountsTest {
 
         user1 = new User("defaultUser1", "defaultPassword1", noteOverview1); // Changed this line
         user2 = new User("defaultUser2", "defaultPassword2", noteOverview2); // Changed this line
-    
-        // It might be a good idea to add the users here, as you had initially commented out.
+
         accounts.addUser(user1);
         accounts.addUser(user2);
     }
 
     @Test
-    public void getAccountsTest(){
+    public void getAccountsTest() {
         assertNotNull(accounts.getAccounts());
     }
 
@@ -43,15 +44,16 @@ public class AccountsTest {
         // Try adding a new user, should succeed because user does not exist yet.
         assertDoesNotThrow(() -> accounts.addUser(newUser));
 
-        // Try adding the same user again, should throw an exception because user already exists.
+        // Try adding the same user again, should throw an exception because user
+        // already exists.
         assertThrows(IllegalStateException.class, () -> accounts.addUser(newUser));
 
-        //Test if accounts now contains newUser
+        // Test if accounts now contains newUser
         assertTrue(accounts.contains(newUser));
     }
 
     @Test
-    public void containsTest(){
+    public void containsTest() {
         assertTrue(accounts.contains(user1));
     }
 
@@ -69,21 +71,30 @@ public class AccountsTest {
     }
 
     @Test
-    public void testIndexOf(){
-        assertEquals(0,accounts.indexOf(user1) );
-        assertEquals(1,accounts.indexOf(user2) );
+    public void testIterator() {
+        Iterator<User> userIterator = accounts.iterator();
+        assertTrue(userIterator.hasNext());
+        assertEquals(user1, userIterator.next());
+        assertTrue(userIterator.hasNext());
+        assertEquals(user2, userIterator.next());
+        assertFalse(userIterator.hasNext());
     }
 
     @Test
-    public void testGetUser(){
-
-        assertEquals(user1, accounts.getUser("defaultUser1"));
-        assertEquals(user1, accounts.getUser("defaultUser1","defaultPassword1"));
-
-        //Wrong password to username
-        assertEquals(null, accounts.getUser("defaultUser2", "defaultPassword1"));
+    public void testIndexOf() {
+        assertEquals(0, accounts.indexOf(user1));
+        assertEquals(1, accounts.indexOf(user2));
     }
 
+    @Test
+    public void testGetUser() {
+
+        assertEquals(user1, accounts.getUser("defaultUser1"));
+        assertEquals(user1, accounts.getUser("defaultUser1", "defaultPassword1"));
+
+        // Wrong password to username
+        assertEquals(null, accounts.getUser("defaultUser2", "defaultPassword1"));
+    }
 
     @Test
     public void testValidUserLogin() {
@@ -104,8 +115,23 @@ public class AccountsTest {
         assertFalse(accounts.checkValidUserLogin("invalidUser", password));
     }
 
+    @Test
+    public void testUpdateUserObject() {
 
-    
+        // Updates user1 info
+        user1.setUsername("updatedUsername");
+        user1.setPassword("updatedPassword1");
 
-    
+        // Update the user1 object in the accounts
+        int index = accounts.indexOf(user1);
+        accounts.updateUserObject(user1, index);
+
+        // Retrieve the updated user based on the changed username
+        User updatedUserFromAccounts = accounts.getUser("updatedUsername");
+
+        assertNotNull(updatedUserFromAccounts); // Ensure the user is retrieved successfully
+        assertEquals("updatedUsername", updatedUserFromAccounts.getUsername()); // Check updated username
+        assertEquals("updatedPassword1", updatedUserFromAccounts.getPassword()); // Check updated password
+    }
+
 }
