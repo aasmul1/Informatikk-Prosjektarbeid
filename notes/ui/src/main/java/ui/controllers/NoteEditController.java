@@ -12,15 +12,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class NoteEditController extends AbstractController{
+public class NoteEditController extends AbstractController {
 
-    private Note note; 
-
-    @FXML
-    private AnchorPane noteeditpane; 
+    private Note note;
 
     @FXML
-    private TextField noteInputTitle; 
+    private AnchorPane noteeditpane;
+
+    @FXML
+    private TextField noteInputTitle;
 
     @FXML
     private Button saveNoteButton, undoChangesButton;
@@ -28,16 +28,15 @@ public class NoteEditController extends AbstractController{
     @FXML
     private TextArea noteInputText;
 
-    
-
     /**
-     * Sets the current note for editing to the selected note from AppController 
-     * and updates the text fields in the with the details of the provided note object.
+     * Sets the current note for editing to the selected note from AppController
+     * and updates the text fields in the with the details of the provided note
+     * object.
      *
      * @param note the Note object to be edited.
      */
-    public void loadEditInfo(Note note){
-        this.note = note;  
+    public void loadEditInfo() {
+        this.note = dataAccess.getNoteToEdit();
         setText(note);
     }
 
@@ -47,7 +46,7 @@ public class NoteEditController extends AbstractController{
      *
      * @param note from which to extract title and text.
      */
-    public void setText(Note note){
+    public void setText(Note note) {
         String titel = note.getTitle();
         String text = note.getText();
 
@@ -56,21 +55,21 @@ public class NoteEditController extends AbstractController{
     }
 
     /**
-     * Handles the save action for a edited note, validating and saving changes made to the note.
+     * Handles the save action for a edited note, validating and saving changes made
+     * to the note.
      *
      * @param event the ActionEvent triggered by the "Save" button click.
      * @throws IOException if an error occurs during scene transition.
      */
     @FXML
-    public void saveNote(ActionEvent event) throws IOException {  
+    public void saveNote(ActionEvent event) throws IOException {
         String title = noteInputTitle.getText();
         String noteText = noteInputText.getText();
 
         // LocalDate createdDate = note.getCreatedDate();
         // LocalDate editedDate = LocalDate.now();
-        
 
-        if (title.isEmpty() || noteText.isEmpty()) { //if the text or title is removed, an alert shows
+        if (title.isEmpty() || noteText.isEmpty()) { // if the text or title is removed, an alert shows
             this.handleWrongInput("Du kan ikke slette titel eller tekst");
             return;
         }
@@ -78,7 +77,10 @@ public class NoteEditController extends AbstractController{
         note.setTitle(title);
         note.setText(noteText);
         note.setEditedDate();
-        setScene(Controllers.NOTEOVERVIEW, event, dataAccess, note);
+
+        dataAccess.updateNote();
+
+        setScene(Controllers.NOTEOVERVIEW, event, dataAccess);
     }
 
     /**
@@ -88,41 +90,17 @@ public class NoteEditController extends AbstractController{
      * @throws IOException If an error occurs during scene transition.
      */
     @FXML
-    public void undo(ActionEvent event) throws IOException{
-        setScene(Controllers.NOTEOVERVIEW, event, dataAccess, note);
+    public void undo(ActionEvent event) throws IOException {
+        setScene(Controllers.NOTEOVERVIEW, event, dataAccess);
     }
 
-     /**
+    /**
      * Method for displaying a warning message in the form of an Alert.
      *
      * @param message the message to display in the warning.
      */
-    public void handleWrongInput(String message){
+    public void handleWrongInput(String message) {
         Alert alert = new Alert(AlertType.WARNING, message);
         alert.show();
     }
-    
-    /**
-     * Transitions to the main application scene and updates it with the edited note.
-     *
-     * @param editnote the edited Note object.
-     * @throws IOException if an error occurs while loading the application scene.
-     */
-    // public void sendToAppScene(Note editnote) throws IOException{
-
-    //     Stage currentStage = (Stage) noteeditpane.getScene().getWindow();
-
-    //     FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/App.fxml"));
-    //     Parent root = loader.load();
-
-    //     AppController appController = loader.getController();
-    //     appController.updateinfo(editnote);
-
-    //     Stage stage = new Stage();
-    //     stage.setScene(new Scene(root));
-    //     stage.setTitle("NoteBook Overview");
-    //     stage.show();
-
-    //     currentStage.close();    
-    // } 
 }

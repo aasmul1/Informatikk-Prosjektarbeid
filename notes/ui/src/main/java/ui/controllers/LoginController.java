@@ -9,40 +9,42 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class LoginController extends AbstractController{
+public class LoginController extends AbstractController {
 
     /**
-    * Input fields
-    */
+     * Input fields
+     */
     @FXML
-    private TextField usernameInput, passwordInput; 
+    private TextField usernameInput, passwordInput;
 
-    @FXML 
+    @FXML
     private TextArea errorMessage;
 
     /**
-    * Button to initialize login
-    */
+     * Button to initialize login
+     */
     @FXML
-    private Button loginButton; 
-
-    @FXML private Button createUserButton;
+    private Button loginButton;
 
     @FXML
-    public void createUserAction(ActionEvent event) throws IOException{
-        setScene(Controllers.CREATE_USER, event, getDataAccess(), null);
+    private Button createUserButton;
+
+    @FXML
+    public void createUserAction(ActionEvent event) throws IOException {
+        setScene(Controllers.CREATE_USER, event, getDataAccess());
     }
 
     /**
      * Handles the user login action
-     * Initiates the user login process by first accessing and retrieving user information .json-file
+     * Initiates the user login process by first accessing and retrieving user
+     * information .json-file
      * Displays any issues directly on the UI.
      * 
      * @param event when clicking on "logg inn"
      * @throws IOException if something goes wrong when reading from file
      */
     @FXML
-    public void loginUserAction(ActionEvent event) throws IOException{
+    public void loginUserAction(ActionEvent event) throws IOException {
         String username = usernameInput.getText();
         String password = passwordInput.getText();
         try {
@@ -50,15 +52,12 @@ public class LoginController extends AbstractController{
             UserValidation.checkValidPassword(password);
             UserValidation.isNotExistingUser(username, password, getDataAccess().readAccounts());
             UserValidation.isValidLogin(username, password, getDataAccess().readAccounts());
+            dataAccess.userLogin(username, password);
 
-            setScene(Controllers.NOTEOVERVIEW, event, getDataAccess(), null);
+            setScene(Controllers.NOTEOVERVIEW, event, getDataAccess());
 
-        } catch(IllegalAccessError e){
+        } catch (IllegalAccessError e) {
             errorMessage.setText(e.getMessage());
         }
-    }
-
-    public void loadLoginInfo(){
-
     }
 }
