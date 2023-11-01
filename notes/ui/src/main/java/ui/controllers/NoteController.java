@@ -58,10 +58,6 @@ public class NoteController extends AbstractController{
         alert.show();
     }
 
-    void loadAddNoteInfo(){
-
-    }
-
     /**
      * Transistions to the main scene and updates it with the newly created note.
      *
