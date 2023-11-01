@@ -17,9 +17,12 @@ import core.User;
 
 public class CreateUserController extends AbstractController{
     
-    @FXML private TextField createUsernameInput;
-    @FXML private TextField createPasswordInput;
-    @FXML private TextField confirmPasswordInput;
+    @FXML 
+    private TextField createUsernameInput;
+    @FXML 
+    private TextField createPasswordInput;
+    @FXML 
+    private TextField confirmPasswordInput;
     @FXML private Button createUser;
     @FXML private Text errorMessageDisplay;
 
@@ -31,9 +34,9 @@ public class CreateUserController extends AbstractController{
     private void createUser(ActionEvent event) throws IOException {
         
         try {
-            UserValidation.checkValidUsername(username); 
+            UserValidation.checkValidUsername(createUsernameInput.getText()); 
             username = createUsernameInput.getText();
-            UserValidation.checkValidPassword(password); 
+            UserValidation.checkValidPassword(createPasswordInput.getText()); 
             password = createPasswordInput.getText();
             confirmPassword = confirmPasswordInput.getText().trim();
             UserValidation.checkEqualPassword(password, confirmPassword); 
@@ -48,9 +51,5 @@ public class CreateUserController extends AbstractController{
         } catch (IllegalArgumentException e) {
             errorMessageDisplay.setText(e.getMessage());
         }
-    }
-
-    public void loadCreateUserInfo(){
-
     }
 }
