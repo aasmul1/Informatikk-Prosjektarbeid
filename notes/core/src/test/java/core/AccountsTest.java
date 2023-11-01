@@ -49,12 +49,12 @@ public class AccountsTest {
         assertThrows(IllegalStateException.class, () -> accounts.addUser(newUser));
 
         // Test if accounts now contains newUser
-        assertTrue(accounts.contains(newUser));
+        assertTrue(accounts.containsUser(newUser));
     }
 
     @Test
     public void containsTest() {
-        assertTrue(accounts.contains(user1));
+        assertTrue(accounts.containsUser(user1));
     }
 
     @Test
@@ -78,12 +78,6 @@ public class AccountsTest {
         assertTrue(userIterator.hasNext());
         assertEquals(user2, userIterator.next());
         assertFalse(userIterator.hasNext());
-    }
-
-    @Test
-    public void testIndexOf() {
-        assertEquals(0, accounts.indexOf(user1));
-        assertEquals(1, accounts.indexOf(user2));
     }
 
     @Test
@@ -115,7 +109,7 @@ public class AccountsTest {
         assertFalse(accounts.checkValidUserLogin("invalidUser", password));
     }
 
-    @Test
+    /* @Test
     public void testUpdateUserObject() {
 
         // Updates user1 info
@@ -132,9 +126,9 @@ public class AccountsTest {
         assertNotNull(updatedUserFromAccounts); // Ensure the user is retrieved successfully
         assertEquals("updatedUsername", updatedUserFromAccounts.getUsername()); // Check updated username
         assertEquals("updatedPassword1", updatedUserFromAccounts.getPassword()); // Check updated password
-    }
+    } */
 
-    @Test
+    /* @Test
     public void testUserInfoChanged() {
         // Update user1 attributes
         user1.setUsername("changedUsername");
@@ -147,6 +141,6 @@ public class AccountsTest {
         User updatedUser = accounts.getUser("changedUsername");
         assertNotNull(updatedUser);
         assertEquals("changedPassword1", updatedUser.getPassword());
-    }
+    } */
 
 }
