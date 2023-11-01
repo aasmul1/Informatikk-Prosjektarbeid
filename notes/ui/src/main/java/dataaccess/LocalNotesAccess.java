@@ -27,12 +27,9 @@ public class LocalNotesAccess implements NotesAccess{
                 this.accounts = new Accounts();
             }
         } catch (IllegalArgumentException | IOException e) {
-            
-    }
+        }
     }
     
-    
-
     @Override
     public void createUser(User user) {
         if (user != null) {
@@ -64,7 +61,6 @@ public class LocalNotesAccess implements NotesAccess{
         
     }
 
-
     @Override
     public void uploadFile(File file) throws IOException, InterruptedException, URISyntaxException {
         throw new UnsupportedOperationException("Unimplemented method 'uploadFile'");
@@ -86,11 +82,4 @@ public class LocalNotesAccess implements NotesAccess{
     public User getLoggedInUser() {
         return this.user;
     }
-
-
-
-    
-
-
-    
 }
