@@ -1,7 +1,5 @@
 package core;
 
-import java.util.List;
-
 public class User {
     private String username;
     private String password;
@@ -16,6 +14,9 @@ public class User {
      */
     
     public User(String username, String password, NoteOverview noteOverview) {
+        UserValidation.checkValidUsername(username);
+        UserValidation.checkValidPassword(password);
+
         this.username = username;
         this.password = password;
         this.noteOverview = noteOverview;
@@ -30,9 +31,8 @@ public class User {
         return username;
     }
 
-
     /**
-     * Mutation method for new username.
+     * Set method for new username.
      * 
      * @param username users username
      */
@@ -40,7 +40,6 @@ public class User {
         UserValidation.checkValidUsername(username);
         this.username = username;
     }
-
 
     /**
      * Access method for users password
@@ -52,7 +51,7 @@ public class User {
     }
 
     /**
-     * Mutation method for new password
+     * Set method for new password
      * 
      * @param password users password
      */
@@ -67,7 +66,7 @@ public class User {
      * @return a copy of users noteoverview-list
      */
     public NoteOverview getNoteOverview() {
-        return noteOverview;
+        return this.noteOverview;
     }
 
     /**
@@ -90,7 +89,6 @@ public class User {
     public void addNote(Note note) {
         if(!noteExists(note)) {
             noteOverview.addNote(note);
-            //evt observer her
         }
     }
 
@@ -108,4 +106,5 @@ public class User {
         }
         return false;
     }
+
 }

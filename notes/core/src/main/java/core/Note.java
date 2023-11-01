@@ -3,6 +3,7 @@ package core;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class Note {
     private String title;
@@ -39,7 +40,7 @@ public class Note {
         this.title = title;
         this.text = text;
         if(created.isAfter(edited)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Errors.INVALID_CREATE_DATE.getMessage());
         }
         this.created = created;
         this.edited = edited;
@@ -133,4 +134,8 @@ public class Note {
             listener.noteChanged();
         }
     }    
+
+    public List<NoteListener> getNoteListeners(){
+        return new ArrayList<NoteListener>(this.listeners);
+    }
 }

@@ -90,7 +90,8 @@ public class UserValidation {
      * @throws IllegalArgumentException if all fields are empty
      */
     public static void allFieldsEmpty(String username, String password) {
-        if(isEmpty(username) && isEmpty(password)) {
+        System.out.println(username+ password);
+        if(isEmpty(username) && isEmpty(password)){
             throw new IllegalArgumentException(Errors.EVERYTHING_EMPTY.getMessage());
         }
     }
@@ -103,6 +104,9 @@ public class UserValidation {
      * @throws IllegalArgumentException if user dont exist
      */
     public static void isValidLogin(String username, String password, Accounts accounts) {
+        checkValidUsername(username);
+        checkValidPassword(password);
+
         if(!accounts.checkValidUserLogin(username, password)) {
             throw new IllegalArgumentException(Errors.INVALID_USERNAME_AND_OR_PWD.getMessage());
         }
