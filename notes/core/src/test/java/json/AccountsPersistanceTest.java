@@ -1,7 +1,12 @@
 package json;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Iterator;
 
@@ -32,7 +37,11 @@ public class AccountsPersistanceTest {
     accounts.addUser(hammad);
 
     try {
+        assertThrows(IllegalArgumentException.class, () -> persistence.loadAccounts());
+        assertThrows(IllegalStateException.class, () -> persistence.saveAccounts(accounts));
+		Path path = Paths.get(System.getProperty("user.home"), "AccountsTest.json");
         persistence.setFilePath("AccountsTest.json");
+        assertEquals(path, persistence.getSaveFilePath());
         persistence.saveAccounts(accounts);
         Accounts accounts2 = persistence.loadAccounts();
         Assertions.assertTrue(accounts2.iterator().hasNext());
@@ -48,7 +57,6 @@ public class AccountsPersistanceTest {
         Assertions.assertTrue(hammad2.getNoteOverview().getNotes().get(0).getEditedDate().equals(edDate));
         Assertions.assertTrue(hammad2.getNoteOverview().getNotes().get(0).getCreatedDate().equals(crDate));
 
-      
     } catch (IOException e) {
       Assertions.fail();
     }
