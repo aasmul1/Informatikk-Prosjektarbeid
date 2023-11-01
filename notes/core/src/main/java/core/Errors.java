@@ -10,7 +10,13 @@ public enum Errors {
   INVALID_USERNAME_AND_OR_PWD("Invalid username address or password."),
   NOT_REGISTERED("This user is not registered."),
   NOT_EQUAL_PASSWORD("Passwords does not match."),
-  NOT_EQUAL_USERNAME("Username do not match");
+  NOT_EQUAL_USERNAME("Username do not match"),
+  EQUAL_NOTE_TITLE("Note with that title already exist"),
+  NOTE_DOESNT_EXIST("This note was not deleted since it doesn't exist"),
+  INVALID_CREATE_DATE("Note cannot be created after it was edited"),
+  EXISTING_USER("User already exists"),
+  NOT_EXISTING_USER("User does not exist!");
+
 
   private final String errorMessage;
 

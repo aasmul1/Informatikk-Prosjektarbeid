@@ -7,144 +7,111 @@ import java.util.List;
 public class Accounts {
     protected final List<User> accounts = new ArrayList<>();
 
-  /**
-   * Access method for accounts.
-   *
-   * @return the accounts
-   */
-  public List<User> getAccounts() {
-    return new ArrayList<>(accounts);
-  }
-
-  /**
-   * Adds new User to this list of Users.
-   *
-   * @param user the user to add
-   * @throws IllegalStateException if the user already exists.
-   */
-  public void addUser(User user) {
-    if (contains(user)) {
-      throw new IllegalStateException("User already exists!");
+    /**
+     * Access method for accounts.
+     *
+     * @return the accounts
+     */
+    public List<User> getAccounts() {
+        return new ArrayList<>(accounts);
     }
-    this.accounts.add(user);
-  }
 
-  /**
-   * Removes already existing User.
-   *
-   * @param user the user to remove
-   * @throws IllegalStateException if the user dosen't already exists.
-   */
-  public void removeUser(User user) {
-    if (!contains(user)) {
-      throw new IllegalArgumentException("User does not exists!");
+    /**
+     * Adds new user to this list of users.
+     *
+     * @param user the user to add
+     * @throws IllegalStateException if the user already exists.
+     */
+    public void addUser(User user) {
+        if (containsUser(user)) {
+            throw new IllegalStateException(Errors.EXISTING_USER.getMessage());
+        }
+        this.accounts.add(user);
     }
-    this.accounts.remove(user);
-  }
 
-  /**
-   * Iterator to easilly move between objects in list.
-   *
-   * @return iterator of accounts
-   */
-  public Iterator<User> iterator() {
-    return accounts.iterator();
-  }
-
-  /**
-   * Finds the index of the user in list.
-   *
-   * @param user to find index for
-   */
-  public int indexOf(User user) {
-    return accounts.indexOf(user);
-  }
-
-  /**
-   * Checks if the given user exists in the list of users.
-   *
-   * @param user to check
-   * @return true or false based on if the user exists
-   */
-  public boolean contains(User user) {
-    return accounts.stream().anyMatch(u -> u.getUsername().equals(user.getUsername()));
-  }
-
-  /**
-   * Checks if the user login is valid.
-   *
-   * @param email email to check
-   * @param password password to check
-   * @return boolean
-   */
-  public boolean checkValidUserLogin(String username, String password) {
-    User user = null;
-
-    for (User ab : accounts) {
-      if (ab.getUsername().equals(username)) {
-        user = ab;
-      }
+    /**
+     * Removes already existing user
+     *
+     * @param user the user to remove
+     * @throws IllegalStateException if the user dosen't already exists.
+     */
+    public void removeUser(User user) {
+        if (!containsUser(user)) {
+            throw new IllegalArgumentException(Errors.NOT_EXISTING_USER.getMessage());
+        }
+        this.accounts.remove(user);
     }
-    return user != null && user.getPassword().equals(password);
-  }
 
-  /**
-   * Gets the user by email and password.
-   *
-   * @param email the email
-   * @param password the password
-   * @return the user
-   */
-  public User getUser(String username, String password) {
-    User user = null;
-
-    for (User ab : accounts) {
-      if (ab.getUsername().equals(username)) {
-        user = ab;
-      }
+    /**
+     * Iterator to iterate over objects in list
+     *
+     * @return iterator of accounts
+     */
+    public Iterator<User> iterator() {
+        return accounts.iterator();
     }
-    if (user == null) {
-      return null;
+
+    /**
+     * Checks if the given user already exists in the list of users.
+     *
+     * @param user to check
+     * @return true or false based on if the user exists
+     */
+    public boolean containsUser(User user) {
+        return accounts.stream().anyMatch(u -> u.getUsername().equals(user.getUsername()));
     }
-    if (user.getPassword().equals(password)) {
-      return user;
+
+    /**
+     * Checks if the user login is valid.
+     * 
+     * @param username username to check
+     * @param password password to check
+     * @return boolean
+     */
+    public boolean checkValidUserLogin(String username, String password) {
+        User user = getUser(username);
+
+        if(user == null) {
+            return false; //user doesnt exist
+        }
+        return user != null && user.getPassword().equals(password);
     }
-    return null;
-  }
-  /**
-   * get accounts by email.
-   *
-   * @param email the email
-   * @return accounts if they exist, null else
-   */
 
-  public User getUser(String username) {
-    return getAccounts().stream().filter(u -> u.getUsername().equals(username))
-                                 .findAny()
-                                 .orElse(null);
-  }
-   
+    /**
+     * Gets the user by username and password.
+     *
+     * @param username the username
+     * @param password the password
+     * @return the user
+     */
+    public User getUser(String username, String password) {
+        User user = null;
 
+        for (User u : accounts) {
+            if (u.getUsername().equals(username)) {
+                user = u;
+            }
+        }
+        if (user == null) {
+            return null;
+        }
+        if (user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
+    }
 
-  /**
-   * This method is used when something is changed.
-   * The accounts object will be updated accordingly.
-   *
-   * @param user        to change
-   * @param indexOfUser in list
-   */
-  public void updateUserObject(User user, int indexOfUser) {
-    accounts.set(indexOfUser, user);
-  }
+    /**
+     * get accounts by username.
+     *
+     * @param username the username
+     * @return accounts if they exist, null else
+     */
 
-  /**
-   * This method is used to inform the observers.
-   * This method is called when anything is changed.
-   *
-   * @param user the user
-   */
-  public void userInfoChanged(User user) {
-    int index = accounts.indexOf(user);
-    this.updateUserObject(user, index);
-  }
+    public User getUser(String username) {
+        return getAccounts().stream().filter(u -> u.getUsername().equals(username))
+                .findAny()
+                .orElse(null);
+    }
+
 }
