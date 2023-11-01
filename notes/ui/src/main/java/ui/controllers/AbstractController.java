@@ -61,13 +61,8 @@ public abstract class AbstractController{
       		Parent parent = loader.load();
       		if (controller instanceof AppController) {
         		((AppController) controller).startScene();
-      		} else if (controller instanceof CreateUserController) {
-        		((CreateUserController) controller).loadCreateUserInfo();
-      		} else if (controller instanceof LoginController) {
-        		((LoginController) controller).loadLoginInfo();
-      		} else if (controller instanceof NoteController) {
-        		((NoteController) controller).loadAddNoteInfo();
-      		} else if (controller instanceof NoteEditController) {
+      		} 
+      		else if (controller instanceof NoteEditController) {
         		((NoteEditController) controller).loadEditInfo(note);
       		}
       Scene newScene = new Scene(parent);
