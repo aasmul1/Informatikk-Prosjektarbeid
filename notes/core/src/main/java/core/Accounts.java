@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Accounts implements UserListener{
+public class Accounts {
     protected final List<User> accounts = new ArrayList<>();
 
     /**
@@ -17,7 +17,7 @@ public class Accounts implements UserListener{
     }
 
     /**
-     * Adds new User to this list of Users.
+     * Adds new user to this list of users.
      *
      * @param user the user to add
      * @throws IllegalStateException if the user already exists.
@@ -30,7 +30,7 @@ public class Accounts implements UserListener{
     }
 
     /**
-     * Removes already existing User.
+     * Removes already existing user
      *
      * @param user the user to remove
      * @throws IllegalStateException if the user dosen't already exists.
@@ -43,7 +43,7 @@ public class Accounts implements UserListener{
     }
 
     /**
-     * Iterator to easilly move between objects in list.
+     * Iterator to iterate over objects in list
      *
      * @return iterator of accounts
      */
@@ -52,16 +52,7 @@ public class Accounts implements UserListener{
     }
 
     /**
-     * Finds the index of the user in list.
-     *
-     * @param user to find index for
-     */
-    public int indexOf(User user) {
-        return accounts.indexOf(user);
-    }
-
-    /**
-     * Checks if the given user exists in the list of users.
+     * Checks if the given user already exists in the list of users.
      *
      * @param user to check
      * @return true or false based on if the user exists
@@ -73,7 +64,7 @@ public class Accounts implements UserListener{
     /**
      * Checks if the user login is valid.
      * 
-     * @param email    email to check
+     * @param username username to check
      * @param password password to check
      * @return boolean
      */
@@ -96,9 +87,9 @@ public class Accounts implements UserListener{
     public User getUser(String username, String password) {
         User user = null;
 
-        for (User ab : accounts) {
-            if (ab.getUsername().equals(username)) {
-                user = ab;
+        for (User u : accounts) {
+            if (u.getUsername().equals(username)) {
+                user = u;
             }
         }
         if (user == null) {
@@ -123,26 +114,4 @@ public class Accounts implements UserListener{
                 .orElse(null);
     }
 
-    /**
-     * This method is used when something is changed.
-     * The accounts object will be updated accordingly.
-     *
-     * @param user        to change
-     * @param indexOfUser in list
-     */ 
-    public void updateUserObject(User user) {
-        int indexOfUser = accounts.indexOf(user);
-        accounts.set(indexOfUser, user);
-    }
-
-    /**
-     * This method is used to inform the observers.
-     * This method is called when anything is changed.
-     *
-     * @param user the user
-     */
-    @Override
-    public void userInfoChanged(User user) {
-        this.updateUserObject(user);
-    }
 }
