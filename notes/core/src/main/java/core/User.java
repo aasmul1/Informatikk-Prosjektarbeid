@@ -1,14 +1,9 @@
 package core;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 public class User {
     private String username;
     private String password;
     private NoteOverview noteOverview;
-
-    protected Collection<UserListener> userListeners = new ArrayList<>();
 
     /**
      * Constructor that is used to create a instance of this class.
@@ -37,16 +32,13 @@ public class User {
     }
 
     /**
-     * Mutation method for new username.
+     * Set method for new username.
      * 
      * @param username users username
      */
     public void setUsername(String username) {
         UserValidation.checkValidUsername(username);
         this.username = username;
-        for (UserListener userListener : userListeners) {
-            userListener.userInfoChanged(this);
-        }
     }
 
     /**
@@ -59,16 +51,13 @@ public class User {
     }
 
     /**
-     * Mutation method for new password
+     * Set method for new password
      * 
      * @param password users password
      */
     public void setPassword(String password) {
         UserValidation.checkValidPassword(password);
         this.password = password;
-        for (UserListener userListener : userListeners) {
-            userListener.userInfoChanged(this);
-        }
     }
 
     /**
@@ -100,10 +89,6 @@ public class User {
     public void addNote(Note note) {
         if(!noteExists(note)) {
             noteOverview.addNote(note);
-
-            for (UserListener userListener : userListeners) {
-                userListener.userInfoChanged(this);
-        }
         }
     }
 
@@ -122,15 +107,4 @@ public class User {
         return false;
     }
 
-    public void addListener(UserListener listener) {
-        if (listener != null) {
-            userListeners.add(listener);
-        }
-    }
-
-    public void removeListener(UserListener listener) {
-        if(listener != null) {
-            userListeners.remove(listener);
-        }
-    }
 }
