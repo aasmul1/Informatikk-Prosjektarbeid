@@ -1,13 +1,17 @@
 package json.internal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import core.Accounts;
 import core.Note;
@@ -37,9 +41,24 @@ public class AccountsJsonTest {
 
     @Test
     public void testNoteOverviewDeserialization() throws Exception {
+        
+        final String jsonT = "\"key\":\"value\"}"; 
+        final NoteOverview noteOverviewT = objectMapper.readValue(jsonT, NoteOverview.class);
+        assertNull(noteOverviewT); 
+        JsonNode node = objectMapper.readTree(jsonT);
+
+        // Make sure it's not an ArrayNode
+        assertFalse(node instanceof ArrayNode);
+        NoteOverviewDeserializer deserializer = new NoteOverviewDeserializer();
+        NoteOverview noteOverviewK = deserializer.deserialize(node);
+    
+        // Assertions
+        assertNull(noteOverviewK);
+
         final String json = 
                 "[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"},{\"title\":\"title2\",\"text\":\"text2\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]";
         final NoteOverview noteOverview = objectMapper.readValue(json, NoteOverview.class);
+
         assertEquals(2, noteOverview.getNotes().size());
         assertEquals("title", noteOverview.getNotes().get(0).getTitle());
         assertEquals("text", noteOverview.getNotes().get(0).getText());
@@ -71,6 +90,17 @@ public class AccountsJsonTest {
     }
 
     @Test
+    public void testUserDeserialization() throws Exception{
+        final String json = 
+        "{\"username\":\"sampleUser\",\"password\":\"samplePassword123\",\"noteOverview\":[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]}";
+
+        User user = objectMapper.readValue(json, User.class);
+        assertEquals("sampleUser", user.getUsername());
+        assertEquals("samplePassword123", user.getPassword());
+        assertNull(user.getNoteOverview());
+    }
+
+    @Test
     public void testAccountsSerialization() throws Exception {
         final LocalDate localDate = java.time.LocalDate.of(2022, 1, 1);
         final String expectedJson = 
@@ -91,6 +121,9 @@ public class AccountsJsonTest {
 
     @Test
     public void testAccountsDeserialization() throws Exception {
+        final String jsonT = "{\"key\":\"value\"}"; // This is a JSON object, not an array
+        final Accounts accountsT = objectMapper.readValue(jsonT, Accounts.class);
+        assertNull(accountsT);
         final String json = 
                 "[{\"username\":\"username\",\"password\":\"Password1\",\"noteOverview\":[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]}]";
         final Accounts accounts = objectMapper.readValue(json, Accounts.class);
