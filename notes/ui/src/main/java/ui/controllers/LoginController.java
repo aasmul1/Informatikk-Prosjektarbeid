@@ -57,8 +57,4 @@ public class LoginController extends AbstractController{
             errorMessage.setText(e.getMessage());
         }
     }
-
-    public void loadLoginInfo(){
-
-    }
 }
