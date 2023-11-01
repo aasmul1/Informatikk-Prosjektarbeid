@@ -51,6 +51,26 @@ public class AccountsJsonTest {
     }
 
     @Test
+    public void testNoteDeserialization() throws Exception{
+        final String json = 
+            "[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"},{\"title\":\"title2\",\"text\":\"text2\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]";
+
+        // Deserialize the JSON array into an array of Note objects
+        Note[] notes = objectMapper.readValue(json, Note[].class);
+
+        // Now you can access individual notes from the array
+        assertEquals("title", notes[0].getTitle());
+        assertEquals("text", notes[0].getText());
+        assertEquals(LocalDate.of(2022, 1, 1), notes[0].getCreatedDate());
+        assertEquals(LocalDate.of(2022, 1, 1), notes[0].getEditedDate());
+
+        assertEquals("title2", notes[1].getTitle());
+        assertEquals("text2", notes[1].getText());
+        assertEquals(LocalDate.of(2022, 1, 1), notes[1].getCreatedDate());
+        assertEquals(LocalDate.of(2022, 1, 1), notes[1].getEditedDate());
+    }
+
+    @Test
     public void testAccountsSerialization() throws Exception {
         final LocalDate localDate = java.time.LocalDate.of(2022, 1, 1);
         final String expectedJson = 
