@@ -118,6 +118,6 @@ public class UserValidation {
         if (string.equals("")) {
             return true;
         }
-        return true;
+        return false;
     }
 }
