@@ -24,7 +24,7 @@ public class Accounts {
    */
   public void addUser(User user) {
     if (contains(user)) {
-      throw new IllegalStateException("User already exists!");
+      throw new IllegalStateException(Errors.EXISTING_USER.getMessage());
     }
     this.accounts.add(user);
   }
@@ -37,7 +37,7 @@ public class Accounts {
    */
   public void removeUser(User user) {
     if (!contains(user)) {
-      throw new IllegalArgumentException("User does not exists!");
+      throw new IllegalArgumentException(Errors.NOT_EXISTING_USER.getMessage());
     }
     this.accounts.remove(user);
   }
