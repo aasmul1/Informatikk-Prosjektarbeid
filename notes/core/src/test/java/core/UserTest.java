@@ -20,9 +20,9 @@ public class UserTest {
     @Test
     public void testConstructors() {
         NoteOverview testOverview = new NoteOverview();
-        User smallConstructor = new User("Test", "Test", testOverview);
-        assertEquals("Test", smallConstructor.getUsername());
-        assertEquals("Test", smallConstructor.getPassword());
+        User smallConstructor = new User("Tests", "Tester123", testOverview);
+        assertEquals("Tests", smallConstructor.getUsername());
+        assertEquals("Tester123", smallConstructor.getPassword());
         assertEquals(testOverview, smallConstructor.getNoteOverview());
     }
 
