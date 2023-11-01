@@ -47,7 +47,7 @@ public class NoteOverview implements NoteListener {
     public void addNote(Note note) {
         if (note == null) return;
         if (notes.stream().anyMatch(x -> x.getTitle().equals(note.getTitle()))) {
-            throw new IllegalArgumentException("Note with that title already exist");
+            throw new IllegalArgumentException(Errors.EQUAL_NOTE_TITLE.getMessage());
         }
         note.addNoteListener(this);
         notes.add(note);
@@ -60,7 +60,7 @@ public class NoteOverview implements NoteListener {
      * @throws IllegalArgumentException if the specified note is not found in the collection
      */
     public void deleteNote(Note note) {
-        if (!notes.contains(note)) throw new IllegalArgumentException();
+        if (!notes.contains(note)) throw new IllegalArgumentException(Errors.NOTE_DOESNT_EXIST.getMessage());
         notes.remove(note);
         fireNoteOverviewChanged();
     }
@@ -71,7 +71,7 @@ public class NoteOverview implements NoteListener {
      * @throws IllegalArgumentException if the index is out of range
      */
     public void deleteNote(int index) {
-        if (notes.size()-1 < index) throw new IllegalArgumentException(); 
+        if (notes.size()-1 < index) throw new IllegalArgumentException(Errors.NOTE_DOESNT_EXIST.getMessage()); 
         notes.remove(index);
         fireNoteOverviewChanged();
     }
