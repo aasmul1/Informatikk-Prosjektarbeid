@@ -2,24 +2,27 @@ package dataaccess;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
+
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
 
 import core.Accounts;
 import core.Note;
+import core.NoteOverview;
 import core.User;
 import json.AccountsPersistence;
 
-public class LocalNotesAccess implements NotesAccess{
+public class LocalNotesAccess implements NotesAccess {
 
     private Accounts accounts;
-    private User user = new User(null, null, null);
-    private File test;
+    private User user;
+    private Note noteToEdit;
     private final AccountsPersistence persistence = new AccountsPersistence();
 
     /**
-   * Loads accounts from json-file.
-   */
-    public LocalNotesAccess(){
+     * Loads accounts from json-file.
+     */
+    public LocalNotesAccess() {
         persistence.setFilePath("Accounts.json");
         try {
             this.accounts = persistence.loadAccounts();
@@ -29,17 +32,13 @@ public class LocalNotesAccess implements NotesAccess{
         } catch (IllegalArgumentException | IOException e) {
         }
     }
-    
+
     @Override
     public void createUser(User user) {
         if (user != null) {
             accounts.addUser(user);
-          }
-          try {
-            persistence.saveAccounts(accounts);;
-          } catch (IllegalStateException | IOException e) {
-            e.printStackTrace();
-          }
+            update();
+        }
     }
 
     @Override
@@ -48,38 +47,78 @@ public class LocalNotesAccess implements NotesAccess{
     }
 
     @Override
-    public User readUser(String username) {
-        if (accounts.getUser(username) instanceof User) {
-            return (User) accounts.getUser(username);
-          }
-          return  null;
-    }
-
-    @Override
     public User userLogin(String username, String password) {
-        return accounts.getUser(username, password);
-        
-    }
+        this.user = accounts.getUser(username, password);
+        return user;
 
-    @Override
-    public void uploadFile(File file) throws IOException, InterruptedException, URISyntaxException {
-        throw new UnsupportedOperationException("Unimplemented method 'uploadFile'");
-    }
-
-    @Override
-    public Note getUserNote(String title, String username) {
-        User user = accounts.getUser(username);
-
-        for (Note note : user.getNoteOverview().getNotes()) {
-            if(note.getTitle().equals(title)){
-                return note;
-            }
-        }
-        return null;
     }
 
     @Override
     public User getLoggedInUser() {
+        if (user == null)
+            throw new IllegalArgumentException("User not logged in"); // TODO: user not logged inn error
         return this.user;
+    }
+
+    @Override
+    public void addNote(Note note) {
+        getLoggedInUser().addNote(note);
+        update();
+    }
+
+    @Override
+    public void updateNote() {
+        update();
+    }
+
+    public void update() {
+        try {
+            persistence.saveAccounts(accounts);
+        } catch (StreamWriteException e) {
+            // TODO: error
+        } catch (DatabindException e) {
+            // TODO: error
+        } catch (IOException e) {
+            // TODO: error
+        }
+    }
+
+    @Override
+    public NoteOverview getUserNoteOverview() {
+        return getLoggedInUser().getNoteOverview();
+    }
+
+    @Override
+    public void setNoteToEdit(Note noteToEdit) {
+        this.noteToEdit = noteToEdit;
+    }
+
+    @Override
+    public Note getNoteToEdit() {
+        return this.noteToEdit;
+    }
+
+    @Override
+    public void deleteNote(int index) {
+        getUserNoteOverview().deleteNote(index);
+        update();
+    }
+
+    @Override
+    public void sortNotesByCreatedDate() {
+        getUserNoteOverview().sortNotesByCreatedDate();
+        update();
+    }
+
+    @Override
+    public void sortNotesByTitle() {
+        getUserNoteOverview().sortNotesByTitle();
+        update();
+    }
+
+    @Override
+    public void sortNotesByLastEditedDate() {
+        getUserNoteOverview().sortNotesByLastEditedDate();
+        update();
     }
 }
