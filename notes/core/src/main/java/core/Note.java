@@ -40,7 +40,7 @@ public class Note {
         this.title = title;
         this.text = text;
         if(created.isAfter(edited)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Errors.INVALID_CREATE_DATE.getMessage());
         }
         this.created = created;
         this.edited = edited;
