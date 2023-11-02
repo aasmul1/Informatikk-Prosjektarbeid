@@ -5,12 +5,11 @@ import java.io.IOException;
 import core.Note;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 public class NoteController extends AbstractController {
 
@@ -26,6 +25,9 @@ public class NoteController extends AbstractController {
     @FXML
     private TextArea newNoteInputText;
 
+    @FXML
+    private Text errorMessage;
+
     /**
      * Method to handle the creation of a new note when the "Save Note" button is
      * clicked.
@@ -37,25 +39,17 @@ public class NoteController extends AbstractController {
     public void newNote(ActionEvent event) throws IOException {
         String title = newNoteInputTitle.getText();
         String noteText = newNoteInputText.getText();
+        try {
+            Note newnote = new Note(title, noteText);
 
-        if (title.isEmpty() || noteText.isEmpty()) {
-            this.handleWrongInput("Feil input, fyll alle felt med rikitg input");
-            return;
+            dataAccess.addNote(newnote);
+
+            setScene(Controllers.NOTEOVERVIEW, event, dataAccess);
+        } catch (IllegalArgumentException e) {
+            errorMessage.setText(e.getMessage());
         }
-        Note newnote = new Note(title, noteText);
 
-        dataAccess.addNote(newnote);
-
-        setScene(Controllers.NOTEOVERVIEW, event, dataAccess);
+        
     }
 
-    /**
-     * Method for displaying a warning message in the form of an Alert.
-     *
-     * @param message to display in the warning.
-     */
-    public void handleWrongInput(String message) {
-        Alert alert = new Alert(AlertType.WARNING, message);
-        alert.show();
-    }
 }

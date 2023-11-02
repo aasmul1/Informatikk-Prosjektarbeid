@@ -15,7 +15,11 @@ public enum Errors {
   NOTE_DOESNT_EXIST("This note was not deleted since it doesn't exist"),
   INVALID_CREATE_DATE("Note cannot be created after it was edited"),
   EXISTING_USER("User already exists"),
-  NOT_EXISTING_USER("User does not exist!");
+  NOT_EXISTING_USER("User does not exist!"),
+  SELECT_NOTE("Pick a note"),
+  EMPTY_TITLE("Please write a title"),
+  EMPTY_TEXT("Please write a text"),
+  INVALID_INDEX("Note doesn't exist");
 
 
   private final String errorMessage;

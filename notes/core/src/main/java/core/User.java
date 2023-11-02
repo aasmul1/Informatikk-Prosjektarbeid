@@ -107,4 +107,14 @@ public class User {
         return false;
     }
 
+    public Note getNoteByIndex(int index) {
+        if(index < 0) {
+            throw new IllegalArgumentException(Errors.SELECT_NOTE.getMessage());
+        }
+        if (index > noteOverview.getNotes().size() - 1) {
+            throw new IllegalArgumentException(Errors.INVALID_INDEX.getMessage());
+        }
+        return noteOverview.getNotes().get(index);
+    }
+
 }
