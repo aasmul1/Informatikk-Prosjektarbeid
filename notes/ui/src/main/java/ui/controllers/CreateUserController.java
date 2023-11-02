@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import core.UserValidation;
-import dataaccess.LocalNotesAccess;
 import core.NoteOverview;
 import core.User;
 
