@@ -71,6 +71,7 @@ public class NoteOverview implements NoteListener {
      * @throws IllegalArgumentException if the index is out of range
      */
     public void deleteNote(int index) {
+        if(index < 0) throw new IllegalArgumentException(Errors.SELECT_NOTE.getMessage());
         if (notes.size()-1 < index) throw new IllegalArgumentException(Errors.NOTE_DOESNT_EXIST.getMessage()); 
         notes.remove(index);
         fireNoteOverviewChanged();
