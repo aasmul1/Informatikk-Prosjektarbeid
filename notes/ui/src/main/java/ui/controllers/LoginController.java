@@ -6,8 +6,8 @@ import core.UserValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class LoginController extends AbstractController {
 
@@ -18,7 +18,7 @@ public class LoginController extends AbstractController {
     private TextField usernameInput, passwordInput;
 
     @FXML
-    private TextArea errorMessage;
+    private Text errorMessage;
 
     /**
      * Button to initialize login
@@ -56,7 +56,7 @@ public class LoginController extends AbstractController {
 
             setScene(Controllers.NOTEOVERVIEW, event, getDataAccess());
 
-        } catch (IllegalAccessError e) {
+        } catch (IllegalArgumentException e) {
             errorMessage.setText(e.getMessage());
         }
     }
