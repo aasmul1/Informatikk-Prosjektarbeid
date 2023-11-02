@@ -21,11 +21,13 @@ import ui.App;
 
 public class CreateUserControllerTest extends ApplicationTest{
 
-    private TextField usernameField;
-    private TextField passwordField;
+    private TextField createUsernameInput;
+    private TextField createPasswordInput;
+    private TextField confirmPasswordInput;
     private Button createUserButton;
-    private NotesAccess dataAccess = new LocalNotesAccess();
     private FxRobot robot = new FxRobot();
+    private NotesAccess dataAccess = new LocalNotesAccess();
+    
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -47,14 +49,18 @@ public class CreateUserControllerTest extends ApplicationTest{
      */
     @BeforeEach
     public void initFields() {
-        usernameField = lookup("#createUsernameInput").query();
-        passwordField = lookup("#createPasswordInput").query();
+        createUsernameInput = lookup("#createUsernameInput").query();
+        createPasswordInput = lookup("#createPasswordInput").query();
+        confirmPasswordInput = lookup("#confirmPasswordInput").query();
         createUserButton = lookup("#createUserButton").query();
     }
         @Test
     public void testUIComponentsExist() {
-        assertNotNull(usernameField);
-        assertNotNull(passwordField);
+        assertNotNull(createUsernameInput);
+        assertNotNull(createPasswordInput);
+        assertNotNull(confirmPasswordInput);
+        assertNotNull(createUserButton);
+        
     }
     
 }
