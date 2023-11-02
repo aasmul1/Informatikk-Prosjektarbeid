@@ -42,6 +42,9 @@ public class LoginControllerTest extends ApplicationTest {
         stage.show();
     }
 
+    /**
+     * Initializes the user interface elements before each test method.
+     */
     @BeforeEach
     public void initFields() {
         usernameField = lookup("#usernameInput").query();
@@ -50,5 +53,12 @@ public class LoginControllerTest extends ApplicationTest {
         errorMessage = lookup("#errorMessage").query();
     }
 
-    
+    @Test
+    public void testUIComponentsExist() {
+        assertNotNull(usernameField);
+        assertNotNull(passwordField);
+        assertNotNull(errorMessage);
+    }
+
+
 }
