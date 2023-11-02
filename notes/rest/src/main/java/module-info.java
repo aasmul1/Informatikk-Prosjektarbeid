@@ -10,7 +10,6 @@ module notes.rest {
     requires transitive spring.webmvc;
 
     requires transitive notes.core;
-    // requires transitive notes.json;
     requires transitive com.fasterxml.jackson.databind;
 
     opens rest to spring.beans, spring.context, spring.web, spring.core;
