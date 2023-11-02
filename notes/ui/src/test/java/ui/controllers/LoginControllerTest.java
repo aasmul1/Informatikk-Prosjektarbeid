@@ -64,6 +64,15 @@ public class LoginControllerTest extends ApplicationTest {
         assertNotNull(errorMessage);
     }
 
+    @Test
+    public void testCreateUserButtonFunctionality() {
+        //check if the button can be clicked
+        robot.clickOn("#createUserButton");
+
+        assertTrue(usernameField.getText().isEmpty());
+        assertTrue(passwordField.getText().isEmpty());
+    }
+
     //Must make a user you can test login with
 
     @Test 
