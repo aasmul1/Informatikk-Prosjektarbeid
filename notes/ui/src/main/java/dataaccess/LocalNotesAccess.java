@@ -25,14 +25,11 @@ public class LocalNotesAccess implements NotesAccess {
     public LocalNotesAccess() {
         persistence.setFilePath("Accounts.json");
         try {
-          this.accounts = persistence.loadAccounts();
-        } catch (IllegalStateException | IOException e) {
-          this.accounts = new Accounts();
-          try {
-            persistence.saveAccounts(accounts);
-          } catch (IllegalStateException | IOException e1) {
-            System.out.println(e1.getMessage());
-          }
+            this.accounts = persistence.loadAccounts();
+            if (this.accounts == null) {
+                this.accounts = new Accounts();
+            }
+        } catch (IllegalArgumentException | IOException e) {
         }
     }
 
