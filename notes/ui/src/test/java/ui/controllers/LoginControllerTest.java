@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import core.Errors;
 import core.NoteOverview;
 import core.User;
 import dataaccess.LocalNotesAccess;
@@ -24,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import ui.App;
@@ -34,7 +36,7 @@ public class LoginControllerTest extends ApplicationTest {
     private TextField passwordField;
     private Button logInButton;
     private NotesAccess dataAccess = new LocalNotesAccess();
-    private TextArea errorMessage;
+    private Text errorMessage;
     private FxRobot robot = new FxRobot();
 
     @Override
@@ -107,7 +109,7 @@ public class LoginControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testLoginButtonFunctionality() throws IOException {
+    public void testLoginButtonExistingUser() throws IOException {
         // Username and Password fields are empty
         assertTrue(usernameField.getText().isEmpty());
         assertTrue(passwordField.getText().isEmpty());
@@ -122,6 +124,24 @@ public class LoginControllerTest extends ApplicationTest {
         assertTrue(errorMessage.getText().isEmpty());
 
         //teste om overganger funker? 
+    }
+
+    @Test
+    public void testLoginButtonNonExistingUser() throws IOException {
+        // Username and Password fields are empty
+        assertTrue(usernameField.getText().isEmpty());
+        assertTrue(passwordField.getText().isEmpty());
+
+        createTestUser();
+
+        // Type into the Username and Password fields and press the Login button
+        robot.clickOn(usernameField).write("testUserNonExisting");
+        robot.clickOn(passwordField).write("testUserPassword1");
+
+        robot.clickOn("#loginButton");
+
+        assertNotNull(errorMessage, "Error message should be displayed");
+        assertEquals(Errors.NOT_REGISTERED.getMessage(), errorMessage.getText());
     }
 
     private void createTestUser() throws IOException {
