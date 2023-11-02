@@ -1,11 +1,14 @@
 package ui.controllers;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import dataaccess.LocalNotesAccess;
@@ -26,6 +29,7 @@ public class LoginControllerTest extends ApplicationTest {
     private Button logInButton;
     private NotesAccess dataAccess = new LocalNotesAccess();
     private TextArea errorMessage;
+    private FxRobot robot = new FxRobot();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -60,5 +64,20 @@ public class LoginControllerTest extends ApplicationTest {
         assertNotNull(errorMessage);
     }
 
+    //Must make a user you can test login with
+
+    @Test 
+    public void testLoginButtonFunctionality() {
+        // Username and Password fields are empty
+        assertTrue(usernameField.getText().isEmpty());
+        assertTrue(passwordField.getText().isEmpty());
+
+        //Type into the Username and Password fields and press the Login button
+        robot.clickOn(usernameField).write("testUser");
+        robot.clickOn(passwordField).write("testPassword1");
+        robot.clickOn("#loginButton");
+
+        assertFalse(errorMessage.getText().isEmpty());
+    }
 
 }
