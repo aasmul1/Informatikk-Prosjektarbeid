@@ -1,5 +1,6 @@
 package ui.controllers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,15 +12,22 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import core.Note;
+import core.NoteOverview;
+import core.User;
 import dataaccess.LocalNotesAccess;
 import dataaccess.NotesAccess;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import ui.App;
 
 public class LoginControllerTest extends ApplicationTest {
@@ -40,7 +48,7 @@ public class LoginControllerTest extends ApplicationTest {
         fxmlLoader.setController(controller);
 
         controller.setDataAccess(dataAccess);
-    
+
         final Parent parent = fxmlLoader.load();
         stage.setScene(new Scene(parent));
         stage.show();
@@ -65,28 +73,51 @@ public class LoginControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testCreateUserButtonFunctionality() {
-        //check if the button can be clicked
+    public void testCreateUserButton() {
+        // Check if the button can be clicked
         robot.clickOn("#createUserButton");
 
         assertTrue(usernameField.getText().isEmpty());
         assertTrue(passwordField.getText().isEmpty());
     }
 
-    //Must make a user you can test login with
-
-    @Test 
-    public void testLoginButtonFunctionality() {
+    @Test
+    public void testLoginButtonFunctionality() throws IOException {
         // Username and Password fields are empty
         assertTrue(usernameField.getText().isEmpty());
         assertTrue(passwordField.getText().isEmpty());
 
-        //Type into the Username and Password fields and press the Login button
+        createTestUser();
+
+        // Type into the Username and Password fields and press the Login button
         robot.clickOn(usernameField).write("testUser");
-        robot.clickOn(passwordField).write("testPassword1");
+        robot.clickOn(passwordField).write("testUserPassword1");
         robot.clickOn("#loginButton");
 
-        assertFalse(errorMessage.getText().isEmpty());
+        assertTrue(errorMessage.getText().isEmpty());
+
+        //teste om overganger funker? 
+    }
+
+    private void createTestUser() throws IOException {
+        try {
+            NoteOverview noteOverview = new NoteOverview(); 
+
+            User user = new User("testUser",
+             "testUserPassword1", noteOverview);
+
+            // Note note1 = new Note("TestUser title", "TestUser text"); 
+            // Note note2 = new Note("TestUse 2", "TestUser text 2"); 
+
+            // noteOverview.addNote(note1);
+            // noteOverview.addNote(note2);
+
+            dataAccess.createUser(user);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+
     }
 
 }
+
