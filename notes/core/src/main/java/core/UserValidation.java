@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class UserValidation {
 
-    private static final Pattern USERNAME_REGEX = Pattern.compile("^([a-åA-Å]{5,})$");
+    private static final Pattern USERNAME_REGEX = Pattern.compile("^([a-åA-Å0-9]{3,})$");
     private static final Pattern PASSWORD_REGEX = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])"
       + "(?=.*[a-zA-Z]).{8,}$");
 
