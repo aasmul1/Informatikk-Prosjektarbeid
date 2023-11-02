@@ -6,9 +6,7 @@ import java.util.List;
 
 import javafx.util.Callback;
 import core.Note;
-import core.NoteOverview;
 import core.NoteOverviewListener;
-import core.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -18,6 +16,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import ui.CustomListCell;
 
 public class AppController extends AbstractController implements NoteOverviewListener {
@@ -34,6 +33,8 @@ public class AppController extends AbstractController implements NoteOverviewLis
     private Button DeleteNoteButton;
     @FXML
     private ComboBox<String> sortComboBox;
+    @FXML
+    private Text errorMessage;
 
     /**
      * Constructor for the AppController when in test mode.
@@ -74,12 +75,12 @@ public class AppController extends AbstractController implements NoteOverviewLis
     @FXML
     public void deleteNote(ActionEvent event) throws IOException {
         int selectedNoteIndex = NoteListView.getSelectionModel().getSelectedIndex();
-        if (selectedNoteIndex == -1) {
-            handleWrongInput("Choose a note you want to delete");
-            return;
+        try {
+            dataAccess.deleteNote(selectedNoteIndex);
+            updateView();
+        } catch (IllegalArgumentException e) {
+            errorMessage.setText(e.getMessage());
         }
-        dataAccess.deleteNote(selectedNoteIndex);
-        updateView();
     }
 
     /**
@@ -93,15 +94,14 @@ public class AppController extends AbstractController implements NoteOverviewLis
     @FXML
     public void editNote(ActionEvent event) throws IOException {
         int selectedNoteIndex = NoteListView.getSelectionModel().getSelectedIndex();
-        if (selectedNoteIndex == -1) {
-            handleWrongInput("Choose a note you want to edit");
-            return;
+        try {
+            Note noteToEdit = dataAccess.getLoggedInUser().getNoteByIndex(selectedNoteIndex);
+            dataAccess.setNoteToEdit(noteToEdit);
+
+            setScene(Controllers.NOTE_EDIT, event, getDataAccess());
+        } catch (IllegalArgumentException e) {
+            errorMessage.setText(e.getMessage());
         }
-        Note noteToEdit = dataAccess.getUserNoteOverview().getNotes().get(selectedNoteIndex);
-        dataAccess.setNoteToEdit(noteToEdit);
-
-        setScene(Controllers.NOTE_EDIT, event, getDataAccess());
-
     }
 
     /**
@@ -147,5 +147,6 @@ public class AppController extends AbstractController implements NoteOverviewLis
                 return new CustomListCell();
             }
         });
+        errorMessage.setText("");
     }
 }
