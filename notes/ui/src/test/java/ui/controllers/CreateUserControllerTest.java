@@ -18,7 +18,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Labeled;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -69,6 +68,36 @@ public class CreateUserControllerTest extends ApplicationTest {
         assertNotNull(createUserButton);
         assertNotNull(errorMessageDisplay);  
     }
+
+    @Test
+    public void testCreateUserButtonNonMatchingPassword(){
+
+        robot.clickOn(createUsernameInput).write("TestUser");
+        robot.clickOn(createPasswordInput).write("TestPassword1"); 
+        robot.clickOn(confirmPasswordInput).write("TestPassword2"); //Non-matching passwords
+
+        robot.clickOn(createUserButton);
+
+        assertNotNull(errorMessageDisplay, "Error message should be displayed");
+        assertEquals(Errors.NOT_EQUAL_PASSWORD.getMessage(), errorMessageDisplay.getText());
+    }
+
+    @Test
+    public void testCreateUserButtonMatchingPassword(){
+        createUsernameInput.clear();
+        createPasswordInput.clear();
+        confirmPasswordInput.clear();
+
+        robot.clickOn(createUsernameInput).write("TestUserTwo");
+        robot.clickOn(createPasswordInput).write("TestPassword2"); 
+        robot.clickOn(confirmPasswordInput).write("TestPassword2"); //Matching passwords
+
+        robot.clickOn(createUserButton);
+
+        assertNotNull(errorMessageDisplay, "Error message should be displayed");
+        assertNotEquals(Errors.NOT_EQUAL_PASSWORD.getMessage(), errorMessageDisplay.getText());
+    }
+
 
 
 }
