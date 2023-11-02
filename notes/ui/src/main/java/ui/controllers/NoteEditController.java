@@ -5,12 +5,11 @@ import java.io.IOException;
 import core.Note;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 public class NoteEditController extends AbstractController {
 
@@ -27,6 +26,9 @@ public class NoteEditController extends AbstractController {
 
     @FXML
     private TextArea noteInputText;
+
+    @FXML
+    private Text errorMessage;
 
     /**
      * Sets the current note for editing to the selected note from AppController
@@ -65,22 +67,20 @@ public class NoteEditController extends AbstractController {
     public void saveNote(ActionEvent event) throws IOException {
         String title = noteInputTitle.getText();
         String noteText = noteInputText.getText();
+        try {
+            note.setTitle(title);
+            note.setText(noteText);
+            note.setEditedDate();
 
-        // LocalDate createdDate = note.getCreatedDate();
-        // LocalDate editedDate = LocalDate.now();
+            dataAccess.updateNote();
 
-        if (title.isEmpty() || noteText.isEmpty()) { // if the text or title is removed, an alert shows
-            this.handleWrongInput("Du kan ikke slette titel eller tekst");
-            return;
+            setScene(Controllers.NOTEOVERVIEW, event, dataAccess);
+        } catch (IllegalArgumentException e) {
+            errorMessage.setText(e.getMessage());
         }
+        
 
-        note.setTitle(title);
-        note.setText(noteText);
-        note.setEditedDate();
-
-        dataAccess.updateNote();
-
-        setScene(Controllers.NOTEOVERVIEW, event, dataAccess);
+        
     }
 
     /**
@@ -94,13 +94,4 @@ public class NoteEditController extends AbstractController {
         setScene(Controllers.NOTEOVERVIEW, event, dataAccess);
     }
 
-    /**
-     * Method for displaying a warning message in the form of an Alert.
-     *
-     * @param message the message to display in the warning.
-     */
-    public void handleWrongInput(String message) {
-        Alert alert = new Alert(AlertType.WARNING, message);
-        alert.show();
-    }
 }
