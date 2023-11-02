@@ -1,5 +1,7 @@
 package ui.controllers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
@@ -9,17 +11,20 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import core.Errors;
 import dataaccess.LocalNotesAccess;
 import dataaccess.NotesAccess;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.App;
 
-public class CreateUserControllerTest extends ApplicationTest{
+public class CreateUserControllerTest extends ApplicationTest {
 
     private TextField createUsernameInput;
     private TextField createPasswordInput;
@@ -27,7 +32,7 @@ public class CreateUserControllerTest extends ApplicationTest{
     private Button createUserButton;
     private FxRobot robot = new FxRobot();
     private NotesAccess dataAccess = new LocalNotesAccess();
-    
+    private Text errorMessageDisplay; 
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -38,7 +43,7 @@ public class CreateUserControllerTest extends ApplicationTest{
         fxmlLoader.setController(controller);
 
         controller.setDataAccess(dataAccess);
-    
+
         final Parent parent = fxmlLoader.load();
         stage.setScene(new Scene(parent));
         stage.show();
@@ -53,14 +58,17 @@ public class CreateUserControllerTest extends ApplicationTest{
         createPasswordInput = lookup("#createPasswordInput").query();
         confirmPasswordInput = lookup("#confirmPasswordInput").query();
         createUserButton = lookup("#createUserButton").query();
+        errorMessageDisplay = lookup("#errorMessageDisplay").query();
     }
-        @Test
+
+    @Test
     public void testUIComponentsExist() {
         assertNotNull(createUsernameInput);
         assertNotNull(createPasswordInput);
         assertNotNull(confirmPasswordInput);
         assertNotNull(createUserButton);
-        
+        assertNotNull(errorMessageDisplay);  
     }
-    
+
+
 }
