@@ -1,7 +1,6 @@
 package ui.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import core.Note;
 import core.NoteOverview;
 import core.User;
 import dataaccess.LocalNotesAccess;
@@ -79,6 +77,33 @@ public class LoginControllerTest extends ApplicationTest {
 
         assertTrue(usernameField.getText().isEmpty());
         assertTrue(passwordField.getText().isEmpty());
+
+         // Load the CreateUser scene
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("CreateUser.fxml"));
+        CreateUserController createUserController = new CreateUserController();
+        loader.setController(createUserController);
+        AnchorPane expectedPane;
+        try {
+            expectedPane = loader.load();
+        } catch (IOException e) {
+            throw new AssertionError("Failed to load CreateUser.fxml", e);
+        }
+
+        // Get the current window's root pane
+        Window currentWindow = robot.window(0); // the primary window
+        Scene currentScene = currentWindow.getScene();
+        Parent currentRoot = currentScene.getRoot();
+        if (!(currentRoot instanceof AnchorPane)) {
+            throw new AssertionError("Expected root to be instance of AnchorPane");
+        }
+        AnchorPane currentPane = (AnchorPane) currentRoot;
+
+        // Compare children nodes, ensure that the scene transition works as expected
+        ObservableList<Node> nodeListCurrentWindow = currentPane.getChildren();
+        ObservableList<Node> nodeListExpectedWindow = expectedPane.getChildren();
+        for (int i = 0; i < nodeListCurrentWindow.size(); i++) {
+            assertEquals(nodeListCurrentWindow.get(i).getId(), nodeListExpectedWindow.get(i).getId());
+        }
     }
 
     @Test
