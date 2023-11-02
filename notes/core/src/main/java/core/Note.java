@@ -18,7 +18,14 @@ public class Note {
      * @param text
      */
     public Note(String title, String text) {
+        if(this.title == null) {
+            throw new IllegalArgumentException(Errors.EMPTY_TITLE.getMessage());
+        }
         this.title = title;
+        
+        if(this.text == null) {
+            throw new IllegalArgumentException(Errors.EMPTY_TEXT.getMessage());
+        }
         this.text = text;
         this.created = LocalDate.now();
         this.edited = LocalDate.now();
@@ -37,8 +44,16 @@ public class Note {
      * @throws IllegalArgumentException if the creation date is after the edited date
      */
     public Note(String title, String text, LocalDate created, LocalDate edited) {
+        if(this.title == null) {
+            throw new IllegalArgumentException(Errors.EMPTY_TITLE.getMessage());
+        }
         this.title = title;
+
+        if(this.text == null) {
+            throw new IllegalArgumentException(Errors.EMPTY_TEXT.getMessage());
+        }
         this.text = text;
+
         if(created.isAfter(edited)){
             throw new IllegalArgumentException(Errors.INVALID_CREATE_DATE.getMessage());
         }
@@ -59,6 +74,9 @@ public class Note {
      * @param title of the Note
      */
     public void setTitle(String title) {
+        if(this.title == null) {
+            throw new IllegalArgumentException(Errors.EMPTY_TITLE.getMessage());
+        }
         this.title = title;
         fireNoteChanged(listeners);
     }
@@ -76,6 +94,9 @@ public class Note {
      * @param text text in the note
      */
     public void setText(String text) {
+        if(this.text == null) {
+            throw new IllegalArgumentException(Errors.EMPTY_TEXT.getMessage());
+        }
         this.text = text;
         fireNoteChanged(listeners);
     }
