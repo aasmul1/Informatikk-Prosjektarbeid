@@ -21,8 +21,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -34,7 +32,6 @@ public class LoginControllerTest extends ApplicationTest {
 
     private TextField usernameField;
     private TextField passwordField;
-    private Button logInButton;
     private NotesAccess dataAccess = new LocalNotesAccess();
     private Text errorMessage;
     private FxRobot robot = new FxRobot();
@@ -61,7 +58,6 @@ public class LoginControllerTest extends ApplicationTest {
     public void initFields() {
         usernameField = lookup("#usernameInput").query();
         passwordField = lookup("#passwordInput").query();
-        logInButton = lookup("#loginButton").query();
         errorMessage = lookup("#errorMessage").query();
     }
 
