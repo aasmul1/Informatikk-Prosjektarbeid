@@ -21,6 +21,7 @@ import core.Accounts;
 import core.Note;
 import core.NoteOverview;
 import core.User;
+import json.AccountsPersistence;
 import rest.exceptions.InvalidLoginException;
 import rest.exceptions.UserAlreadyExistsException;
 import rest.exceptions.UserNotFoundException;
@@ -134,7 +135,7 @@ public class NotesController {
      * @param username
      * @param index
      */
-    // localhost:8080/notes/delete-note?username={user}&index={index}
+    // localhost:8080/notes/delete-note?username={username}&index={index}
     @DeleteMapping(path = "delete-note")
     public void deleteNote(@RequestParam String username, @RequestParam int index) {
         // TODO: NoteNotFoundException if note is not found
@@ -198,6 +199,6 @@ public class NotesController {
     @Bean
     @Primary
     public ObjectMapper objectMapper() {
-        return notesService.getPersistence().getObjectMapper();
+        return AccountsPersistence.getObjectMapper();
     }
 }
