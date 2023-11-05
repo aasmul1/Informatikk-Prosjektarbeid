@@ -25,6 +25,11 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency> 
         <dependency>
+            <groupId>GR2311</groupId>
+            <artifactId>notes-rest</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency> 
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
         </dependency>
