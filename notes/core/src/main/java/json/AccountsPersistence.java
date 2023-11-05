@@ -33,8 +33,8 @@ public class AccountsPersistence {
         mapper = new ObjectMapper().registerModule(new AccountsModule());
     }
 
-    public ObjectMapper getObjectMapper() {
-        return mapper;
+    public static ObjectMapper getObjectMapper() {
+        return new ObjectMapper().registerModule(new AccountsModule());
     }
 
     /** Sets file path for storage (on user.home)

@@ -13,7 +13,8 @@ import javafx.scene.text.Text;
 
 public class NoteEditController extends AbstractController {
 
-    private Note note;
+    private Note oldNote;
+    private Note newNote;
 
     @FXML
     private AnchorPane noteeditpane;
@@ -38,8 +39,8 @@ public class NoteEditController extends AbstractController {
      * @param note the Note object to be edited.
      */
     public void loadEditInfo() {
-        this.note = dataAccess.getNoteToEdit();
-        setText(note);
+        this.oldNote = dataAccess.getNote(dataAccess.getLoggedInUser().getUsername(), dataAccess.getSelectedIndex());
+        setText(oldNote);
     }
 
     /**
@@ -67,12 +68,14 @@ public class NoteEditController extends AbstractController {
     public void saveNote(ActionEvent event) throws IOException {
         String title = noteInputTitle.getText();
         String noteText = noteInputText.getText();
+        newNote = new Note(title, noteText, oldNote.getCreatedDate(), oldNote.getEditedDate());
         try {
-            note.setTitle(title);
-            note.setText(noteText);
-            note.setEditedDate();
+            newNote.setTitle(title);
+            newNote.setText(noteText);
+            dataAccess.deleteNote(dataAccess.getSelectedIndex());
+            dataAccess.addNote(newNote);
 
-            dataAccess.updateNote();
+            // dataAccess.editNote(dataAccess.getLoggedInUser().getUsername(), dataAccess.getNoteToEdit(), newNote);
 
             setScene(Controllers.NOTEOVERVIEW, event, dataAccess);
         } catch (IllegalArgumentException e) {

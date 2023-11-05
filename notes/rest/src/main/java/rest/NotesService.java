@@ -4,6 +4,9 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.exc.StreamReadException;
+import com.fasterxml.jackson.databind.DatabindException;
+
 import core.Accounts;
 import core.Note;
 import core.NoteOverview;
@@ -27,12 +30,26 @@ public class NotesService {
 
     @Autowired
     public NotesService() {
-        this(manuallyCreateAccounts());
-        save();
+        PERSISTENCE.setFilePath("springbootserver-notes.json");
+        try {
+            this.accounts = loadAccounts();
+        }
+        catch (Exception e) {
+            this.accounts = manuallyCreateAccounts();
+            save();
+        }
     }
 
     public AccountsPersistence getPersistence() {
         return PERSISTENCE;
+    }
+
+    private static Accounts loadAccounts() {
+        try {
+            return PERSISTENCE.loadAccounts();
+        } catch (Exception e) {
+            throw new FileException();
+        }
     }
 
     private static Accounts manuallyCreateAccounts() {
@@ -79,9 +96,8 @@ public class NotesService {
         }
     }
 
-    public Note updateNote(Note note) {
+    public void updateNotes(String username) {
         save();
-        return note;
     }
 
     public void addNote(String username, Note note) {
@@ -120,5 +136,9 @@ public class NotesService {
     public void sortNotesByTitle(String username) {
         getNoteOverviewByUsername(username).sortNotesByTitle();
         save();
+    }
+
+    public Note getNote(String username, int index) {
+        return getUserByUsername(username).getNoteByIndex(index);
     }
 }

@@ -1,6 +1,5 @@
 package dataaccess;
 
-import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.exc.StreamWriteException;
@@ -16,7 +15,6 @@ public class LocalNotesAccess implements NotesAccess {
 
     private Accounts accounts;
     private User user;
-    private Note noteToEdit;
     private final AccountsPersistence persistence = new AccountsPersistence();
 
     /**
@@ -70,7 +68,7 @@ public class LocalNotesAccess implements NotesAccess {
     }
 
     @Override
-    public void updateNote() {
+    public void updateNotes(String username) {
         update();
     }
 
@@ -89,16 +87,6 @@ public class LocalNotesAccess implements NotesAccess {
     @Override
     public NoteOverview getUserNoteOverview() {
         return getLoggedInUser().getNoteOverview();
-    }
-
-    @Override
-    public void setNoteToEdit(Note noteToEdit) {
-        this.noteToEdit = noteToEdit;
-    }
-
-    @Override
-    public Note getNoteToEdit() {
-        return this.noteToEdit;
     }
 
     @Override
@@ -123,5 +111,22 @@ public class LocalNotesAccess implements NotesAccess {
     public void sortNotesByLastEditedDate() {
         getUserNoteOverview().sortNotesByLastEditedDate();
         update();
+    }
+
+    @Override
+    public Note getNote(String username, int index) {
+        return user.getNoteByIndex(index);
+    }
+
+    @Override
+    public void setSelectedIndex(int index) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setSelectedIndex'");
+    }
+
+    @Override
+    public int getSelectedIndex() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getSelectedIndex'");
     }
 }

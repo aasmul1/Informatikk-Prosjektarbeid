@@ -95,9 +95,7 @@ public class AppController extends AbstractController implements NoteOverviewLis
     public void editNote(ActionEvent event) throws IOException {
         int selectedNoteIndex = NoteListView.getSelectionModel().getSelectedIndex();
         try {
-            Note noteToEdit = dataAccess.getLoggedInUser().getNoteByIndex(selectedNoteIndex);
-            dataAccess.setNoteToEdit(noteToEdit);
-
+            dataAccess.setSelectedIndex(selectedNoteIndex);
             setScene(Controllers.NOTE_EDIT, event, getDataAccess());
         } catch (IllegalArgumentException e) {
             errorMessage.setText(e.getMessage());

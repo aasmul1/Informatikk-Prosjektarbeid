@@ -5,6 +5,7 @@ module notes.ui {
     requires transitive javafx.fxml;
     requires transitive javafx.base;
     requires transitive javafx.graphics;
+    requires java.net.http;
 
     opens ui.controllers to javafx.graphics, javafx.fxml;
     exports ui.controllers;
