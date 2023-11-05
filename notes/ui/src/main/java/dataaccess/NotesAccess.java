@@ -33,23 +33,69 @@ public interface NotesAccess {
      */
     public void createUser(User user);
 
+    /**
+     * Gets the logged in user.
+     * 
+     * @return logged in user
+     */
     public User getLoggedInUser();
 
+    /**
+     * Adds a new note to the logged in user
+     */
     public void addNote(Note note);
 
-    public void updateNote();
+    /**
+     * 
+     * 
+     * @param username
+     */
+    public void updateNotes(String username);
 
+    /**
+     * Gets the noteoverview of the logged in user
+     * 
+     * @return noteoverview
+     */
     public NoteOverview getUserNoteOverview();
 
-    public void setNoteToEdit(Note noteToEdit);
-
-    public Note getNoteToEdit();
-
+    /**
+     * Deletes note of the logged in user
+     * 
+     * @param index of the note
+     */
     public void deleteNote(int index);
 
+    /**
+     * Sorts notes by created date
+     */
     public void sortNotesByCreatedDate();
 
+    /**
+     * Sorts notes by title
+     */
     public void sortNotesByTitle();
 
+    /**
+     * Sorts notes by edited date
+     */
     public void sortNotesByLastEditedDate();
+
+    /**
+     * Gets note by username and index
+     * 
+     * @param username
+     * @param index
+     * @return
+     */
+    public Note getNote(String username, int index);
+
+    /**
+     * Sets selected note index
+     * 
+     * @param index
+     */
+    public void setSelectedIndex(int index);
+    
+    public int getSelectedIndex();
 }
