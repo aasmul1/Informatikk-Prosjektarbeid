@@ -17,9 +17,13 @@ public class User {
         UserValidation.checkValidUsername(username);
         UserValidation.checkValidPassword(password);
 
+        if (noteOverview == null) {
+            this.noteOverview = new NoteOverview();
+        }
+        else this.noteOverview = noteOverview;
+
         this.username = username;
         this.password = password;
-        this.noteOverview = noteOverview;
     }
 
     /**
