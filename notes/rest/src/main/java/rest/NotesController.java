@@ -23,6 +23,7 @@ import core.NoteOverview;
 import core.User;
 import json.AccountsPersistence;
 import rest.exceptions.InvalidLoginException;
+import rest.exceptions.NoteNotFoundException;
 import rest.exceptions.UserAlreadyExistsException;
 import rest.exceptions.UserNotFoundException;
 
@@ -84,6 +85,15 @@ public class NotesController {
             throw new UserNotFoundException();
         }
         return notesService.getUserByUsername(username);
+    }
+
+    // localhost:8080/notes/user/note?username={username}&index={index}
+    @GetMapping(path = "user/note")
+    public Note getNote(@RequestParam String username, @RequestParam String index) {
+        if (notesService.getNote(username, Integer.parseInt(index)) == null) {
+            throw new NoteNotFoundException();
+        }
+        return notesService.getNote(username, Integer.parseInt(index));
     }
 
     /**
