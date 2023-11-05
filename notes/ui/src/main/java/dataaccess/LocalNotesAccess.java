@@ -16,6 +16,7 @@ public class LocalNotesAccess implements NotesAccess {
     private Accounts accounts;
     private User user;
     private final AccountsPersistence persistence = new AccountsPersistence();
+    private int selectedIndex;
 
     /**
      * Loads accounts from json-file.
@@ -120,13 +121,11 @@ public class LocalNotesAccess implements NotesAccess {
 
     @Override
     public void setSelectedIndex(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setSelectedIndex'");
+        this.selectedIndex = index;
     }
 
     @Override
     public int getSelectedIndex() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSelectedIndex'");
+        return this.selectedIndex;
     }
 }
