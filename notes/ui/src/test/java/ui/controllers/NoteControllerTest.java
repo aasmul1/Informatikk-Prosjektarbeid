@@ -1,5 +1,6 @@
 package ui.controllers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
@@ -9,27 +10,34 @@ import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import core.NoteOverview;
+import core.User;
 import dataaccess.LocalNotesAccess;
 import dataaccess.NotesAccess;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.App;
 
-public class NoteControllerTest extends ApplicationTest{
+public class NoteControllerTest extends ApplicationTest {
 
     private TextArea newNoteInputText;
     private TextField newNoteInputTitle;
     private NotesAccess dataAccess = new LocalNotesAccess();
     private Text errorMessage;
+    private Button saveNoteButton;
     private FxRobot robot = new FxRobot();
 
     @Override
     public void start(Stage stage) throws IOException {
+
+        loginUser();
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(App.class.getResource("Note.fxml"));
 
@@ -51,6 +59,7 @@ public class NoteControllerTest extends ApplicationTest{
         newNoteInputText = lookup("#newNoteInputText").query();
         newNoteInputTitle = lookup("#newNoteInputTitle").query();
         errorMessage = lookup("#errorMessage").query();
+        saveNoteButton = lookup("#saveNoteButton").query();
     }
 
     @Test
@@ -58,6 +67,18 @@ public class NoteControllerTest extends ApplicationTest{
         assertNotNull(newNoteInputText);
         assertNotNull(newNoteInputTitle);
         assertNotNull(errorMessage);
+        assertNotNull(saveNoteButton);  
+    }
+
+    public void loginUser() throws IOException {
+
+        NoteOverview noteoverview = new NoteOverview();
+        User user = new User("User", "Password1", noteoverview);
+
+        if (!dataAccess.readAccounts().containsUser(user)) {
+            dataAccess.createUser(user);
+        }
+        dataAccess.userLogin("User", "Password1");
     }
 
 }
