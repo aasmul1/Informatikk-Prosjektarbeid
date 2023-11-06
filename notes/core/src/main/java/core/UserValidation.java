@@ -90,7 +90,7 @@ public class UserValidation {
      * @throws IllegalArgumentException if all fields are empty
      */
     public static void allFieldsEmpty(String username, String password) {
-        System.out.println(username+ password);
+        System.out.println(username + password);
         if(isEmpty(username) && isEmpty(password)){
             throw new IllegalArgumentException(Errors.EVERYTHING_EMPTY.getMessage());
         }
@@ -104,11 +104,28 @@ public class UserValidation {
      * @throws IllegalArgumentException if user dont exist
      */
     public static void isValidLogin(String username, String password, Accounts accounts) {
-        checkValidUsername(username);
-        checkValidPassword(password);
+        //checks if all fields are filled out
+        allFieldsEmpty(username, password);
 
+        //checks if username field is empty
+        if (username == null || username.trim().isEmpty()) {
+            throw new IllegalArgumentException(Errors.USERNAME_FIELD_EMPTY.getMessage());
+        }
+    
+        // checks if password fiels is empty.
+        if (password == null || password.trim().isEmpty()) {
+            throw new IllegalArgumentException(Errors.PWD_FIELD_EMPTY.getMessage());
+        }
+
+        //checks if username exists in system
+        User user = accounts.getUser(username);
+        if (user == null) {
+            throw new IllegalArgumentException(Errors.NOT_REGISTERED.getMessage());
+        }
+
+        //checks if password is valid and matches the username
         if(!accounts.checkValidUserLogin(username, password)) {
-            throw new IllegalArgumentException(Errors.INVALID_USERNAME_AND_OR_PWD.getMessage());
+            throw new IllegalArgumentException(Errors.WRONG_PASSWORD.getMessage());
         }
     }
 
