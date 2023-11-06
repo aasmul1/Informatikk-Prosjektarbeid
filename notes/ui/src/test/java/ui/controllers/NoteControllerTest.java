@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import core.NoteOverview;
@@ -31,7 +30,6 @@ public class NoteControllerTest extends ApplicationTest {
     private NotesAccess dataAccess = new LocalNotesAccess();
     private Text errorMessage;
     private Button saveNoteButton;
-    private FxRobot robot = new FxRobot();
 
     @Override
     public void start(Stage stage) throws IOException {
