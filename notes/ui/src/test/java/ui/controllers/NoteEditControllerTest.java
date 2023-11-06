@@ -3,11 +3,15 @@ package ui.controllers;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import core.Note;
+import core.NoteOverview;
+import core.User;
 import dataaccess.LocalNotesAccess;
 import dataaccess.NotesAccess;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +35,6 @@ public class NoteEditControllerTest extends ApplicationTest {
     @Override
     public void start(Stage stage) throws IOException {
 
-
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(App.class.getResource("NoteEdit.fxml"));
 
@@ -43,6 +46,28 @@ public class NoteEditControllerTest extends ApplicationTest {
         final Parent parent = fxmlLoader.load();
         stage.setScene(new Scene(parent));
         stage.show();
+
+        loginUserWithSelectedNote();
+    }
+
+    public void loginUserWithSelectedNote() throws IOException {
+
+        NoteOverview noteoverview = new NoteOverview();
+        User user = new User("User", "Password1", noteoverview);
+
+        if (!dataAccess.readAccounts().containsUser(user)) {
+            dataAccess.createUser(user);
+        }
+        dataAccess.userLogin("User", "Password1");
+
+        // creates Note to edit
+        LocalDate editedDate = LocalDate.parse("2023-10-11");
+        LocalDate createdDate = LocalDate.parse("2023-10-05");
+        Note note = new Note("Selected Note", "Text", createdDate, editedDate);
+        dataAccess.addNote(note);
+
+        // Set the note to edit in NoteEditController
+        dataAccess.setNoteToEdit(note);
     }
 
     /**
@@ -55,6 +80,15 @@ public class NoteEditControllerTest extends ApplicationTest {
         errorMessage = lookup("#errorMessage").query();
         saveNoteButton = lookup("#saveNoteButton").query();
         undoChangesButton = lookup("#undoChangesButton").query();
+
+        // Load the user's note and set it in the controller
+        Note note = dataAccess.getNoteToEdit();
+
+        // clickOn(noteInputTitle).write(note.getTitle());
+        // clickOn(noteInputText).write(note.getText());
+
+        interact(() -> noteInputTitle.setText(note.getTitle()));
+        interact(() -> noteInputText.setText(note.getText()));
     }
 
     @Test
@@ -65,5 +99,4 @@ public class NoteEditControllerTest extends ApplicationTest {
         assertNotNull(saveNoteButton);
         assertNotNull(undoChangesButton);
     }
-
 }
