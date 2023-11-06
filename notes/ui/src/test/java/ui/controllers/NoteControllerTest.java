@@ -43,4 +43,21 @@ public class NoteControllerTest extends ApplicationTest{
         stage.show();
     }
 
+    /**
+     * Initializes the user interface elements before each test method.
+     */
+    @BeforeEach
+    public void initFields() {
+        newNoteInputText = lookup("#newNoteInputText").query();
+        newNoteInputTitle = lookup("#newNoteInputTitle").query();
+        errorMessage = lookup("#errorMessage").query();
+    }
+
+    @Test
+    public void testUIComponentsExist() {
+        assertNotNull(newNoteInputText);
+        assertNotNull(newNoteInputTitle);
+        assertNotNull(errorMessage);
+    }
+
 }
