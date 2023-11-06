@@ -81,4 +81,16 @@ public class NoteControllerTest extends ApplicationTest {
         dataAccess.userLogin("User", "Password1");
     }
 
+    @Test
+    public void testNewNoteEmptyFields() {
+        // Click "Save Note" without entering any text
+        clickOn(saveNoteButton);
+
+        // Verify: An error message should be displayed
+        assertNotNull(errorMessage);
+
+        // Verify: No new notes should be added to the user's note overview
+        assertEquals(0, dataAccess.getUserNoteOverview().getNotes().size());
+    }
+
 }
