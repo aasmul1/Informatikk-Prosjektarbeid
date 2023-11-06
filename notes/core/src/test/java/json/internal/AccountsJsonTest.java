@@ -2,6 +2,7 @@ package json.internal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.time.LocalDate;
@@ -97,7 +98,7 @@ public class AccountsJsonTest {
         User user = objectMapper.readValue(json, User.class);
         assertEquals("sampleUser", user.getUsername());
         assertEquals("samplePassword123", user.getPassword());
-        assertNull(user.getNoteOverview());
+        assertNotNull(user.getNoteOverview());
     }
 
     @Test
