@@ -12,7 +12,7 @@ public class NotesConfig {
         try {
             properties.load(App.class.getResourceAsStream("notes.properties"));
         } catch (IOException e) {
-            throw new IllegalStateException("Could not load salarychecker.properties");
+            throw new IllegalStateException("Could not load notes.properties");
         }
     }
 
