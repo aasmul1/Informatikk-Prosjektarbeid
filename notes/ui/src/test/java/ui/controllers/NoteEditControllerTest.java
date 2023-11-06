@@ -1,5 +1,6 @@
 package ui.controllers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import core.Note;
@@ -31,6 +33,9 @@ public class NoteEditControllerTest extends ApplicationTest {
     private TextArea noteInputText;
     private Text errorMessage;
     private NotesAccess dataAccess = new LocalNotesAccess();
+    private FxRobot robot = new FxRobot();
+
+    private Note note; 
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -63,7 +68,7 @@ public class NoteEditControllerTest extends ApplicationTest {
         // creates Note to edit
         LocalDate editedDate = LocalDate.parse("2023-10-11");
         LocalDate createdDate = LocalDate.parse("2023-10-05");
-        Note note = new Note("Selected Note", "Text", createdDate, editedDate);
+        note = new Note("Selected Note", "Text", createdDate, editedDate);
         dataAccess.addNote(note);
 
         // Set the note to edit in NoteEditController
@@ -99,4 +104,18 @@ public class NoteEditControllerTest extends ApplicationTest {
         assertNotNull(saveNoteButton);
         assertNotNull(undoChangesButton);
     }
+
+    @Test
+    public void testUndoButton(){
+
+        String editedTitle = "Edited Note Title";
+        String editedText = "Edited Text";
+        robot.clickOn(noteInputTitle).eraseText(13).write(editedTitle);
+        robot.clickOn(noteInputText).eraseText(4).write(editedText);
+
+        clickOn(undoChangesButton);
+
+        assertEquals("Selected Note", dataAccess.getLoggedInUser().getNote(note).getTitle());
+        assertEquals("Text", dataAccess.getLoggedInUser().getNote(note).getText());
+    }   
 }
