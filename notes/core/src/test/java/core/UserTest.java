@@ -1,22 +1,30 @@
 package core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+* Class that tests the entire User class
+*/
 public class UserTest {
 
     private NoteOverview noteOverview;
     private User user;
-
+    /**
+     * Makes the setup before each test
+     */
     @BeforeEach
     public void setUp(){
         noteOverview = new NoteOverview();
         user = new User("Username", "Password123", noteOverview);
     }
-
+    /**
+     * Tests the constructor for the class
+     */
     @Test
     public void testConstructors() {
         NoteOverview testOverview = new NoteOverview();
@@ -27,7 +35,9 @@ public class UserTest {
     }
 
     
-    
+    /**
+     * Tests the getters for the class
+     */
     @Test
     public void testGetters(){
         Assertions.assertEquals("Username", user.getUsername());
@@ -36,9 +46,17 @@ public class UserTest {
         Note note = new Note("Note", "Text");
         noteOverview.addNote(note);
         Assertions.assertEquals(note, user.getNote(note));
+        assertThrows(IllegalArgumentException.class, () -> user.getNoteByIndex(-1));
+        assertThrows(IllegalArgumentException.class, () -> user.getNoteByIndex(2));
+        Assertions.assertEquals(note, user.getNoteByIndex(0));
+
+
+
 
     }
-
+    /**
+     * Tests the setters in the class
+     */
     @Test
     public void testSetters(){
         user.setUsername("NewUsername");
@@ -47,7 +65,9 @@ public class UserTest {
         Assertions.assertEquals("NewPassword123", user.getPassword());
         
     }
-
+    /**
+     * Tests the addNote method in the class
+     */
     @Test
     public void testAddNote() {
         // Test adding a new note to the user's note overview
@@ -59,7 +79,9 @@ public class UserTest {
         user.addNote(note);
         Assertions.assertEquals(1, user.getNoteOverview().getNotes().size());
     }
-
+    /**
+     * Tests the noteExists method in the class
+     */
     @Test
     public void testNoteExists() {
         // Test noteExists method when a note exists and when it doesn't
