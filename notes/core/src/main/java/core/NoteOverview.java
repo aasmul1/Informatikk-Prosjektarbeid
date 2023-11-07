@@ -1,13 +1,11 @@
 package core;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public class NoteOverview implements NoteListener {
+public class NoteOverview {
     private List<Note> notes = new ArrayList<Note>();
-    private Collection<NoteOverviewListener> listeners = new ArrayList<>();
 
     /**
      * Constructs a new NoteOverview with the specified list of notes
@@ -23,21 +21,7 @@ public class NoteOverview implements NoteListener {
     public NoteOverview() {
     }
 
-    /**
-     * Registers the specified NoteOverviewListener with this object.
-     * @param noteOverviewListener the NoteOverviewListener to be registered
-     */
-    public void addListener(NoteOverviewListener noteOverviewListener) {
-        listeners.add(noteOverviewListener);    
-    }
-
-    /**
-     * Removes the specified NoteOverviewListener with this object
-     * @param noteOverviewListener the NoteOverviewListener to be registred
-     */
-    public void removeListener(NoteOverviewListener noteOverviewListener) {
-        listeners.remove(noteOverviewListener);
-    }
+    
 
     /**
      * Adds the specified Note to the internal collection of notes
@@ -49,9 +33,8 @@ public class NoteOverview implements NoteListener {
         if (notes.stream().anyMatch(x -> x.getTitle().equals(note.getTitle()))) {
             throw new IllegalArgumentException(Errors.EQUAL_NOTE_TITLE.getMessage());
         }
-        note.addNoteListener(this);
         notes.add(note);
-        fireNoteOverviewChanged();
+        
     }
 
     /**
@@ -62,7 +45,6 @@ public class NoteOverview implements NoteListener {
     public void deleteNote(Note note) {
         if (!notes.contains(note)) throw new IllegalArgumentException(Errors.NOTE_DOESNT_EXIST.getMessage());
         notes.remove(note);
-        fireNoteOverviewChanged();
     }
 
     /**
@@ -74,7 +56,6 @@ public class NoteOverview implements NoteListener {
         if(index < 0) throw new IllegalArgumentException(Errors.SELECT_NOTE.getMessage());
         if (notes.size()-1 < index) throw new IllegalArgumentException(Errors.NOTE_DOESNT_EXIST.getMessage()); 
         notes.remove(index);
-        fireNoteOverviewChanged();
     }
 
     /**
@@ -98,7 +79,6 @@ public class NoteOverview implements NoteListener {
      */
     public void sortNotesByCreatedDate() {
         notes.sort(new CreatedDateComparator().reversed());
-        fireNoteOverviewChanged();
     }
 
     /**
@@ -106,7 +86,7 @@ public class NoteOverview implements NoteListener {
      */
     public void sortNotesByLastEditedDate() {
         notes.sort(new EditedDateComparator().reversed());
-        fireNoteOverviewChanged();
+        
     }
 
     /**
@@ -114,27 +94,9 @@ public class NoteOverview implements NoteListener {
      */
     public void sortNotesByTitle() {
         notes.sort(new TitleComparator());
-        fireNoteOverviewChanged();
     }
 
-    /**
-     * Notifies all registered NoteOverviewListeners of a change in the note overview
-     */
-    public void fireNoteOverviewChanged() {
-        for (NoteOverviewListener noteOverviewListener: listeners) {
-            noteOverviewListener.noteOverviewChanged();
-        }
-    }
+    
 
-    /**
-     * Handles the event when a note has changed.
-     */
-    @Override
-    public void noteChanged() {
-        fireNoteOverviewChanged();
-    }
-
-    public List<NoteOverviewListener> getNoteListeners(){
-        return new ArrayList<NoteOverviewListener>(this.listeners);
-    }
+    
 }
