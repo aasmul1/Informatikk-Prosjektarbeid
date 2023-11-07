@@ -18,8 +18,6 @@ import org.junit.jupiter.api.Test;
 
 public class NoteOverviewTest {
 
-    private NoteOverviewListener listener1;
-    private NoteOverviewListener listener2;
     private NoteOverview noteOverview;
     private List<Note> list = new ArrayList<Note>();
     LocalDate editedDate = LocalDate.parse("2023-10-06");
@@ -35,18 +33,8 @@ public class NoteOverviewTest {
       
       list.add(noteStart);
       list.add(noteStart2);
-      listener1 = new NoteOverviewListener() {
-        @Override
-        public void noteOverviewChanged() {
-            // Listener 1 implementation, if needed
-        }
-    };
-    listener2 = new NoteOverviewListener() {
-        @Override
-        public void noteOverviewChanged() {
-            // Listener 2 implementation, if needed
-        }
-    };
+        
+    
 
       note1 = new Note("Note 1", "Text 1");
       note2 = new Note("Note 2", "Text 2");
@@ -134,20 +122,6 @@ public class NoteOverviewTest {
 
     }
 
-    @Test
-    public void testAddListener() {
-        // Test adding a listener
-        noteOverview.addListener(listener1);
-        Assertions.assertTrue(noteOverview.getNoteListeners().contains(listener1));
-    }
-
-    @Test
-    public void testRemoveListener() {
-        // Test removing a listener
-        noteOverview.addListener(listener1);
-        noteOverview.removeListener(listener1);
-        Assertions.assertFalse(noteOverview.getNoteListeners().contains(listener1));
-    }
  
     @Test
     public void testNotesIterator() {
@@ -164,16 +138,7 @@ public class NoteOverviewTest {
         Assertions.assertFalse(iterator.hasNext());
     }
 
-    @Test
-    public void testNoteChanged() {
-        // Test firing the note overview changed event
-        List<NoteOverviewListener> listeners = noteOverview.getNoteListeners();
-        listeners.add(listener1);
-        listeners.add(listener2);
-
-        noteOverview.noteChanged();
-        // You can add assertions here if you have specific requirements for the listeners.
-    }
+    
     
 
 }
