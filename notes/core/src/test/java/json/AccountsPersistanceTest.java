@@ -20,13 +20,17 @@ import core.Accounts;
 import core.Note;
 import core.NoteOverview;
 import core.User;
-
+/**
+ * This class tests the serialization and deserialization logic for the Accounts class.
+ */
 public class AccountsPersistanceTest {
     
     private AccountsPersistence persistence  = new AccountsPersistence();
     private NoteOverview noteOverview = new NoteOverview();
 
-
+  /**
+     * Tests the serialization and deserialization processes for Accounts objects.
+     */
   @Test
   public void testSerializersDeserializers() {
     Accounts accounts = new Accounts();
