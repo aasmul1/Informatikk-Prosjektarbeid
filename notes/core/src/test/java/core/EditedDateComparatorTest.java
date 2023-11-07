@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
-
+/**
+* Test class that tests the editedDate class
+*/
 public class EditedDateComparatorTest {
     
      LocalDate today = LocalDate.now();
@@ -18,7 +20,9 @@ public class EditedDateComparatorTest {
 
     // Create an instance of your comparator
     EditedDateComparator comparator = new EditedDateComparator();
-
+    /**
+     * Tests the compare method in the class
+     */
     @Test
     public void testCompare() {
         // Test the comparison results
