@@ -26,6 +26,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.App;
 
+/**
+ * This class provides test cases for the NoteEditController class
+ * 
+ */
 public class NoteEditControllerTest extends ApplicationTest {
 
     private TextField noteInputTitle;
@@ -35,8 +39,15 @@ public class NoteEditControllerTest extends ApplicationTest {
     private NotesAccess dataAccess = new LocalNotesAccess();
     private FxRobot robot = new FxRobot();
 
-    private Note note; 
+    private Note note;
 
+    /**
+     * Overrides the start method from ApplicationTest to set up the JavaFX stage
+     * and load the FXML file for the note editing screen.
+     *
+     * @param stage The JavaFX stage to set up.
+     * @throws IOException If an error occurs during the loading of the FXML file.
+     */
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -52,18 +63,23 @@ public class NoteEditControllerTest extends ApplicationTest {
         stage.setScene(new Scene(parent));
         stage.show();
 
-        loginUserWithSelectedNote();
+        loginUser();
     }
 
-    public void loginUserWithSelectedNote() throws IOException {
+    /**
+     * Login a user and create a note before running the tests.
+     *
+     * @throws IOException If an error occurs during user login or note creation.
+     */
+    public void loginUser() throws IOException {
 
         NoteOverview noteoverview = new NoteOverview();
-        User user = new User("User", "Password1", noteoverview);
+        User user = new User("User1", "Password1", noteoverview);
 
         if (!dataAccess.readAccounts().containsUser(user)) {
             dataAccess.createUser(user);
         }
-        dataAccess.userLogin("User", "Password1");
+        dataAccess.userLogin("User1", "Password1");
 
         // creates Note to edit
         LocalDate editedDate = LocalDate.parse("2023-10-11");
@@ -86,15 +102,16 @@ public class NoteEditControllerTest extends ApplicationTest {
         saveNoteButton = lookup("#saveNoteButton").query();
         undoChangesButton = lookup("#undoChangesButton").query();
 
-        // Load the user's note and set it in the controller
-        Note note = dataAccess.getNoteToEdit();
-
         // clickOn(noteInputTitle).write(note.getTitle());
         // clickOn(noteInputText).write(note.getText());
 
         interact(() -> noteInputTitle.setText(note.getTitle()));
         interact(() -> noteInputText.setText(note.getText()));
     }
+
+    /**
+     * Tests the existence of UI components on the note editing screen.
+     */
 
     @Test
     public void testUIComponentsExist() {
@@ -105,8 +122,11 @@ public class NoteEditControllerTest extends ApplicationTest {
         assertNotNull(undoChangesButton);
     }
 
+    /**
+     * Tests the behavior of the "Undo" button when changes are made to the note.
+     */
     @Test
-    public void testUndoButton(){
+    public void testUndoButton() {
 
         String editedTitle = "Edited Note Title";
         String editedText = "Edited Text";
@@ -117,5 +137,5 @@ public class NoteEditControllerTest extends ApplicationTest {
 
         assertEquals("Selected Note", dataAccess.getLoggedInUser().getNote(note).getTitle());
         assertEquals("Text", dataAccess.getLoggedInUser().getNote(note).getText());
-    }   
+    }
 }
