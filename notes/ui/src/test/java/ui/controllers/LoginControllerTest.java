@@ -106,9 +106,9 @@ public class LoginControllerTest extends ApplicationTest {
 
     @Test
     public void testLoginButtonExistingUser() throws IOException {
-        // Username and Password fields are empty
-        assertTrue(usernameField.getText().isEmpty());
-        assertTrue(passwordField.getText().isEmpty());
+                // Username and Password fields are empty
+                assertTrue(usernameField.getText().isEmpty());
+                assertTrue(passwordField.getText().isEmpty());
 
         createTestUser();
 
@@ -119,7 +119,32 @@ public class LoginControllerTest extends ApplicationTest {
 
         assertTrue(errorMessage.getText().isEmpty());
 
-        //teste om overganger funker? 
+        // Load the Add scene
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("App.fxml"));
+        AppController createUserController = new AppController();
+        loader.setController(createUserController);
+        AnchorPane expectedPane;
+        try {
+            expectedPane = loader.load();
+        } catch (IOException e) {
+            throw new AssertionError("Failed to load App.fxml", e);
+        }
+
+        // Get the current window's root pane
+        Window currentWindow = robot.window(0); // the primary window
+        Scene currentScene = currentWindow.getScene();
+        Parent currentRoot = currentScene.getRoot();
+        if (!(currentRoot instanceof AnchorPane)) {
+            throw new AssertionError("Expected root to be instance of AnchorPane");
+        }
+        AnchorPane currentPane = (AnchorPane) currentRoot;
+
+        // Compare children nodes, ensure that the scene transition works as expected
+        ObservableList<Node> nodeListCurrentWindow = currentPane.getChildren();
+        ObservableList<Node> nodeListExpectedWindow = expectedPane.getChildren();
+        for (int i = 0; i < nodeListCurrentWindow.size(); i++) {
+            assertEquals(nodeListCurrentWindow.get(i).getId(), nodeListExpectedWindow.get(i).getId());
+        }
     }
 
     @Test
@@ -133,7 +158,6 @@ public class LoginControllerTest extends ApplicationTest {
         // Type into the Username and Password fields and press the Login button
         robot.clickOn(usernameField).write("testUserNonExisting");
         robot.clickOn(passwordField).write("testUserPassword1");
-
         robot.clickOn("#loginButton");
 
         assertNotNull(errorMessage, "Error message should be displayed");
