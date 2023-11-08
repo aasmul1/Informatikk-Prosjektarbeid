@@ -15,6 +15,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+* Class that tests the NoteOverview
+*/
 
 public class NoteOverviewTest {
 
@@ -27,29 +30,30 @@ public class NoteOverviewTest {
     private Note note1;
     private Note note2;
 
+    /**
+     * Setup for each test run in the class
+     */
     @BeforeEach
     void setUp() {
-      
-      
+
       list.add(noteStart);
       list.add(noteStart2);
-        
-    
-
       note1 = new Note("Note 1", "Text 1");
       note2 = new Note("Note 2", "Text 2");
-      
       this.noteOverview = new NoteOverview(list);
-        
-        
-    }
 
+    }
+    /**
+     * Tests the constructor in the class
+     */
     @Test
     public void testConstructor(){
         assertEquals(list, noteOverview.getNotes());
          
     }
-
+    /**
+     * Tests the addNote method in the class
+     */
     @Test
     public void testAdd(){
         Note note = new Note("Title3", "Content");
@@ -68,19 +72,19 @@ public class NoteOverviewTest {
         assertTrue(noteOverview.getNotes().contains(note1));
         assertFalse(noteOverview.getNotes().contains(note2));
 
-        // Test adding a note listener
-        // Note note3 = new Note("Another Title", "Another Content");
-        // noteOverview.addNoteListener(new NoteListener());
-        // noteOverview.addNote(note3);
-        // assertTrue(note3.getNoteListeners().contains(noteOverview));
     }
-
+    /**
+     * Tests the deleteNote method in the class
+     */
     @Test
     public void testDelete(){
       Note note = new Note("Title3", "Content");
       noteOverview.addNote(note);
       noteOverview.deleteNote(note);
       assertFalse(noteOverview.getNotes().contains(note));
+
+      //Test delete negative index note
+      assertThrows(IllegalArgumentException.class, () -> noteOverview.deleteNote(-1));
 
       // Test deleting a null note
       assertThrows(IllegalArgumentException.class, () -> noteOverview.deleteNote(null));
@@ -106,7 +110,9 @@ public class NoteOverviewTest {
 
   
     }
-
+    /**
+     * Tests the sort methods in the class
+     */
     @Test
     public void testSort(){
         noteOverview.sortNotesByCreatedDate();
@@ -122,7 +128,9 @@ public class NoteOverviewTest {
 
     }
 
- 
+    /**
+     * Tests the iterator in the class
+     */
     @Test
     public void testNotesIterator() {
         // Test iterating over notes

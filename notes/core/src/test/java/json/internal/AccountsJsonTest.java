@@ -18,7 +18,9 @@ import core.Accounts;
 import core.Note;
 import core.NoteOverview;
 import core.User;
-
+/**
+ * Tests for JSON serialization and deserialization of various components
+ */
 public class AccountsJsonTest {
     private final ObjectMapper objectMapper = new ObjectMapper();
     {
@@ -27,8 +29,12 @@ public class AccountsJsonTest {
 
     private void assertEqualsIgnoreWhitespace(final String expected, final String actual) throws Exception {
         assertEquals(expected, actual.replaceAll("\\s+", ""));
-}
-
+    }
+    /**
+     * Tests the serialization of a NoteOverview object into a JSON string.
+     * 
+     * @throws Exception if serialization fails
+     */
     @Test
     public void testNoteOverviewSerialization() throws Exception {
         LocalDate localDate = java.time.LocalDate.of(2022, 1, 1);
@@ -39,7 +45,11 @@ public class AccountsJsonTest {
                 "[{\"title\":\"title\",\"text\":\"text\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"},{\"title\":\"title2\",\"text\":\"text2\",\"created\":\"2022-01-01\",\"edited\":\"2022-01-01\"}]";
         assertEqualsIgnoreWhitespace(expectedJson, actualJson);
     }
-
+    /**
+     * Tests the deserialization of a JSON string into a NoteOverview object.
+     * 
+     * @throws Exception if deserialization fails
+     */
     @Test
     public void testNoteOverviewDeserialization() throws Exception {
         
@@ -69,7 +79,11 @@ public class AccountsJsonTest {
         assertEquals(LocalDate.of(2022, 1, 1), noteOverview.getNotes().get(0).getEditedDate());
 
     }
-
+    /**
+     * Tests the deserialization of a JSON string into an array of Note objects.
+     * 
+     * @throws Exception if deserialization fails
+     */
     @Test
     public void testNoteDeserialization() throws Exception{
         final String json = 
@@ -89,7 +103,11 @@ public class AccountsJsonTest {
         assertEquals(LocalDate.of(2022, 1, 1), notes[1].getCreatedDate());
         assertEquals(LocalDate.of(2022, 1, 1), notes[1].getEditedDate());
     }
-
+    /**
+     * Tests the deserialization of a JSON string into a User object.
+     * 
+     * @throws Exception if deserialization fails
+     */
     @Test
     public void testUserDeserialization() throws Exception{
         final String json = 
@@ -100,7 +118,11 @@ public class AccountsJsonTest {
         assertEquals("samplePassword123", user.getPassword());
         assertNotNull(user.getNoteOverview());
     }
-
+    /**
+     * Tests the serialization of an Accounts object into a JSON string.
+     * 
+     * @throws Exception if serialization fails
+     */
     @Test
     public void testAccountsSerialization() throws Exception {
         final LocalDate localDate = java.time.LocalDate.of(2022, 1, 1);
@@ -119,7 +141,11 @@ public class AccountsJsonTest {
 
 
     }
-
+    /**
+     * Tests the deserialization of a JSON string into an Accounts object.
+     * 
+     * @throws Exception if deserialization fails
+     */
     @Test
     public void testAccountsDeserialization() throws Exception {
         final String jsonT = "{\"key\":\"value\"}"; // This is a JSON object, not an array

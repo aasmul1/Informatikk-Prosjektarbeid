@@ -8,16 +8,23 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+* Class that tests the UserValidation class
+*/
 public class UserValidationTest {
 
     private User testUser;
     private NoteOverview noteOverview;
-
+    /**
+     * Set up for each test in this class
+     */
     @BeforeEach
     public void setUp() {
         testUser = new User("Username", "Pasword123", noteOverview);
     }
-
+    /**
+     * Tests the constructor in the class
+     */
     @Test
     public void testDefaultConstructor() {
         UserValidation userVal = new UserValidation(); // Create an instance using the default constructor
@@ -26,7 +33,9 @@ public class UserValidationTest {
         assertNotNull(userVal); // Make sure the object is not null
         // Add more assertions as needed to verify the default state of the object
     }
-    
+    /**
+     * Tests the usercredentials method in the class
+     */
     @Test
     public void testUserCredentials(){
         

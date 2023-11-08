@@ -11,13 +11,17 @@ import java.util.Iterator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+/**
+* Test class that tests the Accounts class
+*/
 public class AccountsTest {
 
     private Accounts accounts;
     private User user1;
     private User user2;
-
+    /**
+     * Setup before each test in the class
+     */
     @BeforeEach
     public void setUp() {
         accounts = new Accounts();
@@ -30,12 +34,16 @@ public class AccountsTest {
         accounts.addUser(user1);
         accounts.addUser(user2);
     }
-
+    /**
+     * Test the getAccounts method
+     */
     @Test
     public void getAccountsTest() {
         assertNotNull(accounts.getAccounts());
     }
-
+    /**
+     * Test the addUser method
+     */
     @Test
     public void testAddUser() {
         NoteOverview noteOverview = new NoteOverview();
@@ -51,12 +59,16 @@ public class AccountsTest {
         // Test if accounts now contains newUser
         assertTrue(accounts.containsUser(newUser));
     }
-
+    /**
+     * Test the containsUser method
+     */
     @Test
     public void containsTest() {
         assertTrue(accounts.containsUser(user1));
     }
-
+    /**
+     * Test the removeUser method
+     */
     @Test
     public void testRemoveUser() {
         NoteOverview noteOverview = new NoteOverview();
@@ -69,7 +81,9 @@ public class AccountsTest {
         accounts.addUser(user);
         assertDoesNotThrow(() -> accounts.removeUser(user));
     }
-
+    /**
+     * Test the iterator in the class
+     */
     @Test
     public void testIterator() {
         Iterator<User> userIterator = accounts.iterator();
@@ -79,7 +93,9 @@ public class AccountsTest {
         assertEquals(user2, userIterator.next());
         assertFalse(userIterator.hasNext());
     }
-
+    /**
+     * Test the getUser method
+     */
     @Test
     public void testGetUser() {
 
@@ -89,7 +105,9 @@ public class AccountsTest {
         // Wrong password to username
         assertEquals(null, accounts.getUser("defaultUserTWO", "defaultPassword1"));
     }
-
+    /**
+     * Test the validUserLogin method
+     */
     @Test
     public void testValidUserLogin() {
         NoteOverview noteOverview = new NoteOverview();
@@ -109,38 +127,5 @@ public class AccountsTest {
         assertFalse(accounts.checkValidUserLogin("invalidUser", password));
     }
 
-    /* @Test
-    public void testUpdateUserObject() {
-
-        // Updates user1 info
-        user1.setUsername("updatedUsername");
-        user1.setPassword("updatedPassword1");
-
-        // Update the user1 object in the accounts
-        int index = accounts.indexOf(user1);
-        accounts.updateUserObject(user1, index);
-
-        // Retrieve the updated user based on the changed username
-        User updatedUserFromAccounts = accounts.getUser("updatedUsername");
-
-        assertNotNull(updatedUserFromAccounts); // Ensure the user is retrieved successfully
-        assertEquals("updatedUsername", updatedUserFromAccounts.getUsername()); // Check updated username
-        assertEquals("updatedPassword1", updatedUserFromAccounts.getPassword()); // Check updated password
-    } */
-
-    /* @Test
-    public void testUserInfoChanged() {
-        // Update user1 attributes
-        user1.setUsername("changedUsername");
-        user1.setPassword("changedPassword1");
-
-        // Notify that the user info has changed
-        accounts.userInfoChanged(user1);
-
-        // Check that the user info in accounts is  updated
-        User updatedUser = accounts.getUser("changedUsername");
-        assertNotNull(updatedUser);
-        assertEquals("changedPassword1", updatedUser.getPassword());
-    } */
 
 }
