@@ -2,6 +2,7 @@ package json;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
@@ -13,17 +14,23 @@ import java.util.Iterator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import core.Accounts;
 import core.Note;
 import core.NoteOverview;
 import core.User;
-
+/**
+ * This class tests the serialization and deserialization logic for the Accounts class.
+ */
 public class AccountsPersistanceTest {
     
     private AccountsPersistence persistence  = new AccountsPersistence();
     private NoteOverview noteOverview = new NoteOverview();
 
-
+  /**
+     * Tests the serialization and deserialization processes for Accounts objects.
+     */
   @Test
   public void testSerializersDeserializers() {
     Accounts accounts = new Accounts();
@@ -31,7 +38,8 @@ public class AccountsPersistanceTest {
     LocalDate crDate = LocalDate.now();
     LocalDate edDate = LocalDate.now();
 
-    
+    ObjectMapper mapper = AccountsPersistence.getObjectMapper(); 
+    assertNotNull(mapper, "ObjectMapper should not be null");
     Note note = new Note("Januar 2021", "Text", crDate, edDate);
     hammad.addNote(note);
     accounts.addUser(hammad);
