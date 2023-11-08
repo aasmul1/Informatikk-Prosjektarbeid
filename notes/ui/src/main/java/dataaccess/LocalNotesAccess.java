@@ -128,4 +128,10 @@ public class LocalNotesAccess implements NotesAccess {
     public int getSelectedIndex() {
         return this.selectedIndex;
     }
+
+    @Override
+    public void setTestMode() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setTestMode'");
+    }
 }

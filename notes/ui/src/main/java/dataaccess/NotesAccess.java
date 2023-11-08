@@ -98,4 +98,6 @@ public interface NotesAccess {
     public void setSelectedIndex(int index);
     
     public int getSelectedIndex();
+
+    public void setTestMode();
 }
