@@ -27,49 +27,6 @@ In our project, JSON files are structured as follows:
 
 ```
 
-## Build and running of project
-
-
-To set up the project, you have to be in root level `GR2311` 
-
-```
-mvn clean install
-```
-
-
-To run the projekt, when in root level run:
-
-```
-cd ui
-mvn javafx:run
-```
-
-
-
-## Testing of project
-
-The project 
-
-To run all tests, run: 
-
-```
-mvn test
-```
-
-To only run `graphical` test:
-
-```
-cd ui
-mvn test
-```
-
-To only run `core` tests:
-
-```
-cd core
-mvn test
-```
-
 ## User Stories
 User Stories can you find [here](../notes/UserStories.md). They are linked up with the issues in GitLab.
 
