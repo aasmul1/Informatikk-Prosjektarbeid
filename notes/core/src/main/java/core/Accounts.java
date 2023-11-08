@@ -74,7 +74,7 @@ public class Accounts {
         if(user == null) {
             return false; //user doesnt exist
         }
-        return user != null && user.getPassword().equals(password);
+        return user.getPassword().equals(password);
     }
 
     /**

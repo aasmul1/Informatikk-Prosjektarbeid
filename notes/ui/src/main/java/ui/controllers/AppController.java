@@ -6,7 +6,6 @@ import java.util.List;
 
 import javafx.util.Callback;
 import core.Note;
-import core.NoteOverviewListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -19,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import ui.CustomListCell;
 
-public class AppController extends AbstractController implements NoteOverviewListener {
+public class AppController extends AbstractController {
 
     private List<String> sortList = Arrays.asList("Date created", "Last edited date", "Title (A-Z)");
 
@@ -130,11 +129,6 @@ public class AppController extends AbstractController implements NoteOverviewLis
         alert.show();
     }
 
-    @Override
-    public void noteOverviewChanged() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'noteOverviewChanged'");
-    }
 
     public void updateView() {
         NoteListView.getItems().clear();

@@ -15,11 +15,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+* Class that tests the NoteOverview
+*/
 
 public class NoteOverviewTest {
 
-    private NoteOverviewListener listener1;
-    private NoteOverviewListener listener2;
     private NoteOverview noteOverview;
     private List<Note> list = new ArrayList<Note>();
     LocalDate editedDate = LocalDate.parse("2023-10-06");
@@ -29,39 +30,30 @@ public class NoteOverviewTest {
     private Note note1;
     private Note note2;
 
+    /**
+     * Setup for each test run in the class
+     */
     @BeforeEach
     void setUp() {
-      
-      
+
       list.add(noteStart);
       list.add(noteStart2);
-      listener1 = new NoteOverviewListener() {
-        @Override
-        public void noteOverviewChanged() {
-            // Listener 1 implementation, if needed
-        }
-    };
-    listener2 = new NoteOverviewListener() {
-        @Override
-        public void noteOverviewChanged() {
-            // Listener 2 implementation, if needed
-        }
-    };
-
       note1 = new Note("Note 1", "Text 1");
       note2 = new Note("Note 2", "Text 2");
-      
       this.noteOverview = new NoteOverview(list);
-        
-        
-    }
 
+    }
+    /**
+     * Tests the constructor in the class
+     */
     @Test
     public void testConstructor(){
         assertEquals(list, noteOverview.getNotes());
          
     }
-
+    /**
+     * Tests the addNote method in the class
+     */
     @Test
     public void testAdd(){
         Note note = new Note("Title3", "Content");
@@ -80,19 +72,19 @@ public class NoteOverviewTest {
         assertTrue(noteOverview.getNotes().contains(note1));
         assertFalse(noteOverview.getNotes().contains(note2));
 
-        // Test adding a note listener
-        // Note note3 = new Note("Another Title", "Another Content");
-        // noteOverview.addNoteListener(new NoteListener());
-        // noteOverview.addNote(note3);
-        // assertTrue(note3.getNoteListeners().contains(noteOverview));
     }
-
+    /**
+     * Tests the deleteNote method in the class
+     */
     @Test
     public void testDelete(){
       Note note = new Note("Title3", "Content");
       noteOverview.addNote(note);
       noteOverview.deleteNote(note);
       assertFalse(noteOverview.getNotes().contains(note));
+
+      //Test delete negative index note
+      assertThrows(IllegalArgumentException.class, () -> noteOverview.deleteNote(-1));
 
       // Test deleting a null note
       assertThrows(IllegalArgumentException.class, () -> noteOverview.deleteNote(null));
@@ -118,7 +110,9 @@ public class NoteOverviewTest {
 
   
     }
-
+    /**
+     * Tests the sort methods in the class
+     */
     @Test
     public void testSort(){
         noteOverview.sortNotesByCreatedDate();
@@ -134,21 +128,9 @@ public class NoteOverviewTest {
 
     }
 
-    @Test
-    public void testAddListener() {
-        // Test adding a listener
-        noteOverview.addListener(listener1);
-        Assertions.assertTrue(noteOverview.getNoteListeners().contains(listener1));
-    }
-
-    @Test
-    public void testRemoveListener() {
-        // Test removing a listener
-        noteOverview.addListener(listener1);
-        noteOverview.removeListener(listener1);
-        Assertions.assertFalse(noteOverview.getNoteListeners().contains(listener1));
-    }
- 
+    /**
+     * Tests the iterator in the class
+     */
     @Test
     public void testNotesIterator() {
         // Test iterating over notes
@@ -164,16 +146,7 @@ public class NoteOverviewTest {
         Assertions.assertFalse(iterator.hasNext());
     }
 
-    @Test
-    public void testNoteChanged() {
-        // Test firing the note overview changed event
-        List<NoteOverviewListener> listeners = noteOverview.getNoteListeners();
-        listeners.add(listener1);
-        listeners.add(listener2);
-
-        noteOverview.noteChanged();
-        // You can add assertions here if you have specific requirements for the listeners.
-    }
+    
     
 
 }
