@@ -11,6 +11,21 @@ In Release 1, we focused on establishing the core structure and functionality of
 - **Edit Note**: Implemented editNote logic, with a new controller (**`NoteEditController.java`**) and fxml-file (**`NoteEdit.fxml`**), that facilitates editing of existing notes. Users can modify note content, ensuring their notes remain up-to-date and relevant.
 - **Listeners/Observers** (implementation described under **Code Quality**) 
 
+### User Story for realease 2: 
+
+```
+Edit Notes (US-2): "A user wants to have the capability to edit their existing notes when necessary. The user also wants the option to revert any changes in case they have second thoughts."
+``````
+
+```
+Sort Notes (US-3): "A user desire the ability to organize their notes by date or title for enhanced organization. The user also wishes to have control over the sorting preferences, allowing them to choose how they want their notes sorted."
+```
+
+```
+Delete a Note (US-4): "A user should be able to delete notes that are no longer needed or relevant."
+```
+
+For a more detailed description of the User Stories, please refer to this [page](../notes/UserStories.md).
 
 ## Code quality
 
