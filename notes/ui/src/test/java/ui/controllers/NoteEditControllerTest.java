@@ -87,8 +87,8 @@ public class NoteEditControllerTest extends ApplicationTest {
         note = new Note("Selected Note", "Text", createdDate, editedDate);
         dataAccess.addNote(note);
 
-        // Set the note to edit in NoteEditController
-        dataAccess.setNoteToEdit(note);
+        // // Set the note to edit in NoteEditController
+        // dataAccess.setNoteToEdit(note);
     }
 
     /**
