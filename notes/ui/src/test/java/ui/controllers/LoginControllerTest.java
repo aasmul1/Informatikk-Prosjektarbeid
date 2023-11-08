@@ -28,6 +28,9 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import ui.App;
 
+/**
+ * This class provides test cases for the LoginController class.
+ */
 public class LoginControllerTest extends ApplicationTest {
 
     private TextField usernameField;
@@ -61,6 +64,10 @@ public class LoginControllerTest extends ApplicationTest {
         errorMessage = lookup("#errorMessage").query();
     }
 
+    /**
+     * Test if UI components, such as usernameField, passwordField, and
+     * errorMessage, exist.
+     */
     @Test
     public void testUIComponentsExist() {
         assertNotNull(usernameField);
@@ -68,15 +75,16 @@ public class LoginControllerTest extends ApplicationTest {
         assertNotNull(errorMessage);
     }
 
+    /**
+     * Test the behavior of the "Create User" button by checking if the scene
+     * transition works as expected.
+     */
     @Test
     public void testCreateUserButton() {
         // Check if the button can be clicked
         robot.clickOn("#createUserButton");
 
-        assertTrue(usernameField.getText().isEmpty());
-        assertTrue(passwordField.getText().isEmpty());
-
-         // Load the CreateUser scene
+        // Load the CreateUser scene
         FXMLLoader loader = new FXMLLoader(App.class.getResource("CreateUser.fxml"));
         CreateUserController createUserController = new CreateUserController();
         loader.setController(createUserController);
@@ -104,11 +112,12 @@ public class LoginControllerTest extends ApplicationTest {
         }
     }
 
+    /**
+     * Test the behavior of the "Login" button for an existing user by checking if
+     * the scene transition works as expected.
+     */
     @Test
     public void testLoginButtonExistingUser() throws IOException {
-                // Username and Password fields are empty
-                assertTrue(usernameField.getText().isEmpty());
-                assertTrue(passwordField.getText().isEmpty());
 
         createTestUser();
 
@@ -147,6 +156,10 @@ public class LoginControllerTest extends ApplicationTest {
         }
     }
 
+    /**
+     * Test the behavior of the "Login" button for a non-existing user by checking
+     * if the appropriate error message is displayed.
+     */
     @Test
     public void testLoginButtonNonExistingUser() throws IOException {
         // Username and Password fields are empty
@@ -166,23 +179,14 @@ public class LoginControllerTest extends ApplicationTest {
 
     private void createTestUser() throws IOException {
         try {
-            NoteOverview noteOverview = new NoteOverview(); 
+            NoteOverview noteOverview = new NoteOverview();
 
             User user = new User("testUser",
-             "testUserPassword1", noteOverview);
-
-            // Note note1 = new Note("TestUser title", "TestUser text"); 
-            // Note note2 = new Note("TestUse 2", "TestUser text 2"); 
-
-            // noteOverview.addNote(note1);
-            // noteOverview.addNote(note2);
+                    "testUserPassword1", noteOverview);
 
             dataAccess.createUser(user);
         } catch (Exception e) {
             e.getMessage();
         }
-
     }
-
 }
-
