@@ -22,7 +22,6 @@ import core.Note;
 import core.NoteOverview;
 import core.User;
 import json.AccountsPersistence;
-import rest.exceptions.InvalidLoginException;
 import rest.exceptions.NoteNotFoundException;
 import rest.exceptions.UserAlreadyExistsException;
 import rest.exceptions.UserNotFoundException;
@@ -80,7 +79,7 @@ public class NotesController {
      */
     // localhost:8080/notes/user?username={username}
     @GetMapping(path = "user")
-    public User getUser(@RequestParam String username) {
+    public User getUser(@RequestParam("username") String username) {
         if (notesService.getUserByUsername(username) == null) {
             throw new UserNotFoundException();
         }
@@ -164,7 +163,7 @@ public class NotesController {
     @PostMapping(path = "authenticate-user")
     public User authenticateUser(@RequestParam("username") String username, @RequestParam("password") String password) {
         if (!notesService.validLogin(username, password)) {
-            throw new InvalidLoginException();
+                throw new UserNotFoundException("Invalid login");
         }
         return notesService.getUser(username, password);
     }
