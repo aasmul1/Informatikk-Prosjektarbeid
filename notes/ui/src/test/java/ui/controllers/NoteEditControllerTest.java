@@ -138,4 +138,18 @@ public class NoteEditControllerTest extends ApplicationTest {
         assertEquals("Selected Note", dataAccess.getLoggedInUser().getNote(note).getTitle());
         assertEquals("Text", dataAccess.getLoggedInUser().getNote(note).getText());
     }
+
+    @Test 
+    public void testSaveButton(){
+        String editedTitle = "Edited Note Title";
+        String editedText = "Edited Text";
+        robot.clickOn(noteInputTitle).eraseText(13).write(editedTitle);
+        robot.clickOn(noteInputText).eraseText(4).write(editedText);
+
+        clickOn(saveNoteButton);
+        int index = dataAccess.getLoggedInUser().getNoteOverview().getNotes().size()-1;
+        assertEquals("Edited Note Title", dataAccess.getLoggedInUser().getNoteByIndex(index).getTitle());
+        assertEquals("Edited Text", dataAccess.getLoggedInUser().getNoteByIndex(index).getText());
+
+    }
 }
