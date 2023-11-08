@@ -93,7 +93,9 @@ public class CreateUserControllerTest extends ApplicationTest {
         robot.clickOn(confirmPasswordInput).write("TestPassword2"); //Matching passwords
 
         robot.clickOn(createUserButton);
-
+        dataAccess.userLogin("TestUserTwo", "TestPassword2");
+        assertNotNull(dataAccess.getLoggedInUser());
+                
         assertNotNull(errorMessageDisplay, "Error message should be displayed");
         assertNotEquals(Errors.NOT_EQUAL_PASSWORD.getMessage(), errorMessageDisplay.getText());
     }
