@@ -1,16 +1,13 @@
 package core;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+
 
 public class Note {
     private String title;
     private String text;
     private LocalDate created;
     private LocalDate edited;
-    private Collection<NoteListener> listeners = new ArrayList<>();
 
     /**
      * 
@@ -78,7 +75,6 @@ public class Note {
             throw new IllegalArgumentException(Errors.EMPTY_TITLE.getMessage());
         }
         this.title = title;
-        fireNoteChanged(listeners);
     }
 
     /**
@@ -98,7 +94,6 @@ public class Note {
             throw new IllegalArgumentException(Errors.EMPTY_TEXT.getMessage());
         }
         this.text = text;
-        fireNoteChanged(listeners);
     }
 
     /**
@@ -123,40 +118,6 @@ public class Note {
      */
     public void setEditedDate() {
         this.edited = LocalDate.now();
-        fireNoteChanged(listeners);
     } 
 
-    /**
-     * Adds a specified NoteListener to this objects list of listeners, if its not already present
-     * @param listener to be added
-     */
-    public void addNoteListener(NoteListener listener){
-        if(!listeners.contains(listener)){
-            listeners.add(listener);
-        }
-    }
-
-    /**
-     * Removes the specified NoteListener from this objects list of listeners
-     * @param listener to be removed
-     */
-    public void removeNoteListener(NoteListener listener){
-        if(listeners.contains(listener)){
-            listeners.remove(listener);
-        }
-    }
-
-    /** 
-     * Fire changes in Note to all listeners
-     * @param listeners a collection of NoteListeners to be notified 
-     */
-    public void fireNoteChanged(Collection<NoteListener> listeners){
-        for (NoteListener listener : listeners) {
-            listener.noteChanged();
-        }
-    }    
-
-    public List<NoteListener> getNoteListeners(){
-        return new ArrayList<NoteListener>(this.listeners);
-    }
 }

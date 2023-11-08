@@ -125,7 +125,9 @@
     <modules>
         <module>core</module>
         <module>ui</module>
+        <module>rest</module>
         <module>report</module>
+        <module>integrationtest</module>
         
     </modules>
 </project>
