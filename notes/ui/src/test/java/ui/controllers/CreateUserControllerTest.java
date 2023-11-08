@@ -23,6 +23,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.App;
 
+/**
+ * This class provides test cases for the CreateUserController class.
+ */
 public class CreateUserControllerTest extends ApplicationTest {
 
     private TextField createUsernameInput;
@@ -60,6 +63,10 @@ public class CreateUserControllerTest extends ApplicationTest {
         errorMessageDisplay = lookup("#errorMessageDisplay").query();
     }
 
+    /**
+     * Test if UI components, such as createUsernameInput, createPasswordInput, 
+     * confirmPasswordInput, createUserButton, and errorMessageDisplay, exist.
+     */
     @Test
     public void testUIComponentsExist() {
         assertNotNull(createUsernameInput);
@@ -69,6 +76,10 @@ public class CreateUserControllerTest extends ApplicationTest {
         assertNotNull(errorMessageDisplay);  
     }
 
+    /**
+     * Test the behavior of the "Create User" button when the entered passwords do not match,
+     * by checking if the appropriate error message is displayed.
+     */
     @Test
     public void testCreateUserButtonNonMatchingPassword(){
 
@@ -82,6 +93,10 @@ public class CreateUserControllerTest extends ApplicationTest {
         assertEquals(Errors.NOT_EQUAL_PASSWORD.getMessage(), errorMessageDisplay.getText());
     }
 
+    /**
+     * Test the behavior of the "Create User" button when the entered passwords match,
+     * by checking if the user is created and no error message is displayed.
+     */
     @Test
     public void testCreateUserButtonMatchingPassword(){
         createUsernameInput.clear();
@@ -99,7 +114,4 @@ public class CreateUserControllerTest extends ApplicationTest {
         assertNotNull(errorMessageDisplay, "Error message should be displayed");
         assertNotEquals(Errors.NOT_EQUAL_PASSWORD.getMessage(), errorMessageDisplay.getText());
     }
-
-
-
 }
