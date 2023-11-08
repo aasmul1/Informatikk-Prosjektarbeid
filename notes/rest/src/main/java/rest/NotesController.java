@@ -81,7 +81,7 @@ public class NotesController {
     // localhost:8080/notes/user?username={username}
     @GetMapping(path = "user")
     public User getUser(@RequestParam String username) {
-        if (notesService.getNoteOverviewByUsername(username) == null) {
+        if (notesService.getUserByUsername(username) == null) {
             throw new UserNotFoundException();
         }
         return notesService.getUserByUsername(username);
@@ -210,5 +210,15 @@ public class NotesController {
     @Primary
     public ObjectMapper objectMapper() {
         return AccountsPersistence.getObjectMapper();
+    }
+
+    @PostMapping(path = "test-mode") 
+    public void setTestMode() {
+        notesService.setTestMode();
+    }
+
+    @PostMapping(path = "normal-mode")
+    public void setNormalMode() {
+        notesService.setNormalMode();
     }
 }

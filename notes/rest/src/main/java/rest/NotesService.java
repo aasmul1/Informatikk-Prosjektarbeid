@@ -23,9 +23,9 @@ public class NotesService {
     // private Path fileLocation;
 
     public NotesService(Accounts accounts) {
-        // TODO: get saved users in json
         this.accounts = accounts;
         PERSISTENCE.setFilePath("springbootserver-notes.json");
+        save();
     }
 
     @Autowired
@@ -38,6 +38,33 @@ public class NotesService {
             this.accounts = manuallyCreateAccounts();
             save();
         }
+    }
+
+    public void setTestMode() {
+        PERSISTENCE.setFilePath("springbootserver-test.json");
+        this.accounts = createTestAccounts();
+        loadAccounts();
+        save();
+    }
+
+    public void setNormalMode() {
+        PERSISTENCE.setFilePath("springbootserver-notes.json");
+        this.accounts = loadAccounts();
+        save();
+    }
+
+    public Accounts createTestAccounts() {
+        NoteOverview noteOverview = new NoteOverview();
+        NoteOverview noteOverview2 = new NoteOverview();
+        Accounts accounts = new Accounts();
+        
+        noteOverview.addNote(new Note("title", "text"));
+        noteOverview2.addNote(new Note("title", "text"));
+        noteOverview.addNote(new Note("title2", "text2"));
+        noteOverview2.addNote(new Note("title2", "text2"));
+        accounts.addUser(new User("testuserone", "Password1", noteOverview));
+        accounts.addUser(new User("testusertwo", "Password2", noteOverview2));
+        return accounts;
     }
 
     public AccountsPersistence getPersistence() {
