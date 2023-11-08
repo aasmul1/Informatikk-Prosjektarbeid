@@ -194,53 +194,51 @@ public class AppControllerTest extends ApplicationTest{
     }
 
     @Test
-public void testSort(){
-    assertNotNull(comboBox.getItems());
+    public void testSort(){
+        assertNotNull(comboBox.getItems());
 
-    // Sort by Title (A-Z)
-    robot.clickOn("#sortComboBox");
-    robot.clickOn("Title (A-Z)");
-    sleep(500); // Wait for the sorting to complete
+        // Sort by Title (A-Z)
+        robot.clickOn("#sortComboBox");
+        robot.clickOn("Title (A-Z)");
+        sleep(500); // Wait for the sorting to complete
 
-    // Check order after sorting by Title
-    verifyOrderOfNotes("alphabetically", 0);
+        // Check order after sorting by Title
+        verifyOrderOfNotes("alphabetically", 0);
 
-    // Sort by Last edited date
-    robot.clickOn("#sortComboBox");
-    robot.clickOn("Last edited date");
-    sleep(500); // Wait for the sorting to complete
+        // Sort by Last edited date
+        robot.clickOn("#sortComboBox");
+        robot.clickOn("Last edited date");
+        sleep(500); // Wait for the sorting to complete
 
-    // Check order after sorting by Last edited date
-    verifyOrderOfNotes("by last edited date", 1);
+        // Check order after sorting by Last edited date
+        verifyOrderOfNotes("by last edited date", 1);
 
-    // Sort by Date created
-    robot.clickOn("#sortComboBox");
-    robot.clickOn("Date created");
-    sleep(500); // Wait for the sorting to complete
+        // Sort by Date created
+        robot.clickOn("#sortComboBox");
+        robot.clickOn("Date created");
+        sleep(500); // Wait for the sorting to complete
 
-    // Check order after sorting by Date created
-    verifyOrderOfNotes("by creation date", 2);
-}
-
-private void verifyOrderOfNotes(String orderDescription, int k) {
-    ListView<Note> notesListView = lookup("#NoteListView").query();
-    ObservableList<Note> items = notesListView.getItems();
-    if(k==0){
-        String firstNoteTitle = items.get(0).getTitle();
-        String secondNoteTitle = items.get(1).getTitle();
-        System.out.println(firstNoteTitle);
-
-        assertTrue(firstNoteTitle.compareTo(secondNoteTitle) < 0, "After sorting " + orderDescription + ", the first note should be before the second note.");  
+        // Check order after sorting by Date created
+        verifyOrderOfNotes("by creation date", 2);
     }
-    else if(k==1){
-        LocalDate firstNoteEditDate = items.get(0).getEditedDate();  
-        LocalDate secondNoteEditDate = items.get(1).getEditedDate();
-        assertTrue(secondNoteEditDate.isBefore(firstNoteEditDate), "The first note's editing date should be after the second note's editing date.");
-    }
-    else{
-        LocalDate firstNoteCreatedDate = items.get(0).getCreatedDate();  
-        LocalDate secondNoteCreatedDate = items.get(1).getCreatedDate();
-        assertTrue(secondNoteCreatedDate.isBefore(firstNoteCreatedDate), "The first note's creation date should be before the second note's creation date.");
+
+    private void verifyOrderOfNotes(String orderDescription, int k) {
+        ListView<Note> notesListView = lookup("#NoteListView").query();
+        ObservableList<Note> items = notesListView.getItems();
+        if(k==0){
+            String firstNoteTitle = items.get(0).getTitle();
+            String secondNoteTitle = items.get(1).getTitle();
+            System.out.println(firstNoteTitle);
+
+            assertTrue(firstNoteTitle.compareTo(secondNoteTitle) < 0, "After sorting " + orderDescription + ", the first note should be before the second note.");  
+        }else if(k==1){
+            LocalDate firstNoteEditDate = items.get(0).getEditedDate();  
+            LocalDate secondNoteEditDate = items.get(1).getEditedDate();
+            assertTrue(secondNoteEditDate.isBefore(firstNoteEditDate), "The first note's editing date should be after the second note's editing date.");
+        }else{
+            LocalDate firstNoteCreatedDate = items.get(0).getCreatedDate();  
+            LocalDate secondNoteCreatedDate = items.get(1).getCreatedDate();
+            assertTrue(secondNoteCreatedDate.isBefore(firstNoteCreatedDate), "The first note's creation date should be before the second note's creation date.");
     }
 
     
