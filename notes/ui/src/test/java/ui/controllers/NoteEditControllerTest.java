@@ -1,7 +1,10 @@
 package ui.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -150,6 +153,28 @@ public class NoteEditControllerTest extends ApplicationTest {
         int index = dataAccess.getLoggedInUser().getNoteOverview().getNotes().size()-1;
         assertEquals("Edited Note Title", dataAccess.getLoggedInUser().getNoteByIndex(index).getTitle());
         assertEquals("Edited Text", dataAccess.getLoggedInUser().getNoteByIndex(index).getText());
-
     }
+
+    // @Test
+    // public void testSaveButtonRemoveFields() {
+    //     robot.clickOn(noteInputTitle).eraseText(13);
+    //     robot.clickOn(noteInputText).eraseText(4);
+
+    //     clickOn(saveNoteButton);
+
+    //     int index = dataAccess.getLoggedInUser().getNoteOverview().getNotes().size() - 1;
+    //     Note savedNote = dataAccess.getLoggedInUser().getNoteByIndex(index);
+
+    //     assertEquals("Selected Note", savedNote.getTitle());
+    //     assertEquals("Text", savedNote.getText());
+
+    //     System.out.println("Error message" + errorMessage.getText());
+
+    //     // Verify that an error message is displayed
+    //     assertTrue(errorMessage.getText().isEmpty());
+
+    //     assertEquals("Selected Note", dataAccess.getLoggedInUser().getNoteByIndex(index).getTitle());
+    //     assertEquals("Text", dataAccess.getLoggedInUser().getNoteByIndex(index).getText());
+    // }
+
 }
