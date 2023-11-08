@@ -1,11 +1,13 @@
-## Eclicse-Che
-Open [this](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2311/gr2311?new) link. 
-
 # __Notes-App__
 
 The Notes-App is a simple application designed to help users create, edit, manage, and securely log in to handle their notes. For a more detailed description of the app, please refer to [this README file](/notes/README.md).
 
-## Build and running the application
+## Eclicse-Che
+Open [this](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2311/gr2311?new) link. 
+
+TODO skrive hvordan man kjører i ecplise
+
+## Building and running the application
 ___
 
 The project requires Maven for building and running the app from the command line. Hoewever, when running the application within Eclipse Che, Maven is not necessary. 
@@ -57,20 +59,35 @@ ___
 
 To run all tests, run: 
 
-```
+```sh
+1)
+cd notes
+
+2)
 mvn test
+
+#To get a report of the tests, run this command. 
+3)
+mvn jacoco:report
+#Report can be found under /report/target/site/index.html
 ```
 
 To only run `graphical` test:
 
-```
+```sh 
+1)
 cd ui
+
+2)
 mvn test
 ```
 
 To only run `core` tests:
 
-```
+```sh
+1)
 cd core
+
+2)
 mvn test
 ```
