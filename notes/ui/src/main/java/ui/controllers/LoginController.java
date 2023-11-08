@@ -48,10 +48,8 @@ public class LoginController extends AbstractController {
         String username = usernameInput.getText();
         String password = passwordInput.getText();
         try {
-            UserValidation.checkValidUsername(username);
-            UserValidation.checkValidPassword(password);
-            UserValidation.isNotExistingUser(username, password, getDataAccess().readAccounts());
             UserValidation.isValidLogin(username, password, getDataAccess().readAccounts());
+
             dataAccess.userLogin(username, password);
 
             setScene(Controllers.NOTEOVERVIEW, event, getDataAccess());
