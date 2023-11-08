@@ -68,6 +68,7 @@ public class NoteEditController extends AbstractController {
     public void saveNote(ActionEvent event) throws IOException {
         String title = noteInputTitle.getText();
         String noteText = noteInputText.getText();
+        this.oldNote = dataAccess.getNote(dataAccess.getLoggedInUser().getUsername(), dataAccess.getSelectedIndex());        
         newNote = new Note(title, noteText, oldNote.getCreatedDate(), oldNote.getEditedDate());
         try {
             newNote.setTitle(title);
