@@ -10,6 +10,9 @@ In Release 3, we actively embraced GitLab's task management features more, enhan
 ## New Features 
 
 ### New classes:
+In Release 3, several new classes have been introduced across different modules. To improve the applications functionality we have implemented user login, this has introduced several new files across different modules. We have also introduced `AbstractController.java´, establishes a foundational framework for all controllers in our application. Further details about this can be found under code improvement.
+
+The integration test class NotesAppIT.java has been introduced, serving as an integration test class to ensure the application's functionality. Additionally, the group has introduced essential classes and files necessary for configuring a RESTful application.
 
 ### UI: 
 
