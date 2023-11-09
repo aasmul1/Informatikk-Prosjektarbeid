@@ -38,11 +38,15 @@ public class LocalNotesAccess implements NotesAccess {
     @Override
     public void setTestMode() {
         persistence.setFilePath("AccountsTest.json");
-        this.accounts = new Accounts();
         try {
-            persistence.saveAccounts(this.accounts);
-            } catch (IllegalStateException | IOException e1) {
+          this.accounts = persistence.loadAccounts();
+        } catch (IllegalStateException | IOException e) {
+          this.accounts = new Accounts();
+          try {
+            persistence.saveAccounts(accounts);
+          } catch (IllegalStateException | IOException e1) {
             System.out.println(e1.getMessage());
+          }
         }
         
     }
