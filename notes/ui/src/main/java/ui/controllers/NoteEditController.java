@@ -69,14 +69,11 @@ public class NoteEditController extends AbstractController {
         String title = noteInputTitle.getText();
         String noteText = noteInputText.getText();
         this.oldNote = dataAccess.getNote(dataAccess.getLoggedInUser().getUsername(), dataAccess.getSelectedIndex());        
-        newNote = new Note(title, noteText, oldNote.getCreatedDate(), oldNote.getEditedDate());
+        
         try {
-            newNote.setTitle(title);
-            newNote.setText(noteText);
+            newNote = new Note(title, noteText, oldNote.getCreatedDate(), oldNote.getEditedDate());
             dataAccess.deleteNote(dataAccess.getSelectedIndex());
             dataAccess.addNote(newNote);
-
-            // dataAccess.editNote(dataAccess.getLoggedInUser().getUsername(), dataAccess.getNoteToEdit(), newNote);
 
             setScene(Controllers.NOTEOVERVIEW, event, dataAccess);
         } catch (IllegalArgumentException e) {
