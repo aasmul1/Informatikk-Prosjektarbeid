@@ -57,12 +57,7 @@ public class AppControllerTest extends ApplicationTest{
     
     @Override
     public void start(Stage stage) throws IOException {
-        if(!dataAccess.readAccounts().containsUser(user)){
-            dataAccess.createUser(user);
-        }
-        dataAccess.userLogin("Osman", "Password3");
-        dataAccess.addNote(note);
-        dataAccess.addNote(note2);
+        loginUser();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(App.class.getResource("App.fxml"));
 
@@ -75,6 +70,7 @@ public class AppControllerTest extends ApplicationTest{
         stage.setScene(new Scene(parent));
         stage.show();
         controller.startScene();
+        
     }
 
     @BeforeEach
@@ -85,6 +81,27 @@ public class AppControllerTest extends ApplicationTest{
         listView = lookup("#NoteListView").query();
         comboBox = lookup("#sortComboBox").query();
         errorMessage = lookup("#errorMessage").query();
+    }
+
+    /**
+     * Login a user and create a note before running the tests.
+     *
+     * @throws IOException If an error occurs during user login or note creation.
+     */
+    public void loginUser() throws IOException {
+
+
+        if (!dataAccess.readAccounts().containsUser(user)) {
+            dataAccess.createUser(user);
+        }
+        dataAccess.userLogin("Osman", "Password3");
+
+        
+        dataAccess.addNote(note);
+        dataAccess.addNote(note2);
+
+        // // Set the note to edit in NoteEditController
+        // dataAccess.setNoteToEdit(note);
     }
 
     @Test
