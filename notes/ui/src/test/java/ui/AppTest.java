@@ -9,14 +9,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.AfterEach;
-
+/**
+* Tests that the app runs and that elements are shown.
+*/
 public class AppTest extends ApplicationTest {
 
     @Start
     public void start(Stage stage) throws Exception {
         new App().start(stage);
     }
-
+    /**
+     * Tests that elements are shown.
+     */
     @Test
     public void testLoginScreenLoaded() {
         assertThat(lookup("#loginButton").tryQuery()).isPresent();
@@ -28,6 +32,9 @@ public class AppTest extends ApplicationTest {
 
     }
 
+    /**
+     * Tests that the method supportHeadless method works
+     */
     @Test
     void testSupportHeadlessWhenHeadlessIsTrue() {
         // Arrange
@@ -45,13 +52,14 @@ public class AppTest extends ApplicationTest {
 
     }
 
-
+    /**
+     * Method that clears properties
+     */
     @AfterEach
-    void tearDown() {
+    void tearDownProperties() {
         System.clearProperty("testfx.robot");
         System.clearProperty("testfx.headless");
         System.clearProperty("prism.order");
         System.clearProperty("prism.text");
-        // Be cautious about clearing "java.awt.headless" as it might affect other parts of the test suite.
     }
 }
