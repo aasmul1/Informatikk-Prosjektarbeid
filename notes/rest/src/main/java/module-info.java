@@ -15,4 +15,5 @@ module notes.rest {
     opens rest to spring.beans, spring.context, spring.web, spring.core;
     // exports notes.rest.properties to spring.beans, spring.boot;
     exports rest;
+    exports rest.exceptions;
 }

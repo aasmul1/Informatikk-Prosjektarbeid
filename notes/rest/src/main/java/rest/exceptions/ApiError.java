@@ -6,11 +6,12 @@ import org.springframework.http.HttpStatus;
 /**
  * Exception shown when API error occurs.
  */
-public class APIExceptionHandler {
+public class ApiError {
 
   private final String message;
   private final int status;
   private final HttpStatus httpStatus;
+  private final LocalDateTime timestamp;
   
   /**
    * Api error message including following.
@@ -20,10 +21,11 @@ public class APIExceptionHandler {
    * @param httpStatus the http status
    * @param timestamp a timestamp
    */
-  public APIExceptionHandler(String message, int status, HttpStatus httpStatus) {
+  public ApiError(String message, int status, HttpStatus httpStatus, LocalDateTime timestamp) {
     this.message = message;
     this.status = status;
     this.httpStatus = httpStatus;
+    this.timestamp = timestamp;
   } 
 
   public String getMessage() {
@@ -38,5 +40,7 @@ public class APIExceptionHandler {
     return httpStatus;
   }
 
-
+  public LocalDateTime getTimestamp() {
+    return timestamp;
+  }
 }
