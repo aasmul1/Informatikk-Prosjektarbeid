@@ -5,8 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
@@ -51,7 +53,7 @@ public class NoteEditControllerTest extends ApplicationTest {
      */
     @Override
     public void start(Stage stage) throws IOException {
-
+        dataAccess.setTestMode();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(App.class.getResource("NoteEdit.fxml"));
 
@@ -169,5 +171,14 @@ public class NoteEditControllerTest extends ApplicationTest {
 
        
     }
+    /**
+     * Deletes testfile after all the tests are run
+     */
+    @AfterAll
+    public static void tearDown(){
+        Path.of(System.getProperty("user.home") + "AccountsTest.json").toFile().delete();
+
+    }
+    
 
 }
