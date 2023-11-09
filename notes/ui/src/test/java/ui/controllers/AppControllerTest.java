@@ -5,9 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -31,6 +34,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import ui.App;
+
+ /**
+* Test for the AppController
+*/
 
 public class AppControllerTest extends ApplicationTest{
 
@@ -57,6 +64,7 @@ public class AppControllerTest extends ApplicationTest{
     
     @Override
     public void start(Stage stage) throws IOException {
+        dataAccess.setTestMode();
         loginUser();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(App.class.getResource("App.fxml"));
@@ -72,7 +80,9 @@ public class AppControllerTest extends ApplicationTest{
         controller.startScene();
         
     }
-
+    /**
+    * Help method that looks up that elements in ui are there
+    */
     @BeforeEach
     public void initFields() {
         deleteButton = lookup("#DeleteNoteButton").query();
@@ -100,10 +110,10 @@ public class AppControllerTest extends ApplicationTest{
         dataAccess.addNote(note);
         dataAccess.addNote(note2);
 
-        // // Set the note to edit in NoteEditController
-        // dataAccess.setNoteToEdit(note);
     }
-
+    /**
+     * Tests that the components are not null.
+     */
     @Test
     public void testUIComponentsExist() {
         assertNotNull(deleteButton);
@@ -115,7 +125,10 @@ public class AppControllerTest extends ApplicationTest{
 
     }
 
-
+    /**
+     * Tests the deleteNote button.
+     * Checks both deleting with a selcted note and without.
+     */
     @Test
     public void deleteNote(){
         listView.refresh();
@@ -165,6 +178,10 @@ public class AppControllerTest extends ApplicationTest{
 
     }
 
+    /**
+     * Tests the editbutton.
+     * Checks both editing with a selcted note and without.
+     */
     @Test
     public void editNote(){
         listView.refresh();
@@ -210,6 +227,10 @@ public class AppControllerTest extends ApplicationTest{
 
     }
 
+    /**
+     * Tests the sortNote button.
+     * Checks all three possibilities.
+     */
     @Test
     public void testSort(){
         assertNotNull(comboBox.getItems());
@@ -239,6 +260,9 @@ public class AppControllerTest extends ApplicationTest{
         verifyOrderOfNotes("by creation date", 2);
     }
 
+    /**
+     * Help method to verify that sorting button works
+     */
     private void verifyOrderOfNotes(String orderDescription, int k) {
         ListView<Note> notesListView = lookup("#NoteListView").query();
         ObservableList<Note> items = notesListView.getItems();
@@ -256,9 +280,19 @@ public class AppControllerTest extends ApplicationTest{
             LocalDate firstNoteCreatedDate = items.get(0).getCreatedDate();  
             LocalDate secondNoteCreatedDate = items.get(1).getCreatedDate();
             assertTrue(secondNoteCreatedDate.isBefore(firstNoteCreatedDate), "The first note's creation date should be before the second note's creation date.");
+    
+        }
     }
+   
+    /**
+     * Method that deletes file after tests are completed
+     */
+    @AfterAll
+    public static void tearDown(){
+        Path.of(System.getProperty("user.home"), "AccountsTest.json").toFile().delete();
 
+    }
     
 }
 
-}
+
