@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+/**
+* Class that tests the TitleComparator class
+*/
 public class TitleComparatorTest {
 
     private Note noteA;
@@ -13,7 +15,9 @@ public class TitleComparatorTest {
 
     // Create an instance of your comparator
     private TitleComparator comparator;
-
+    /**
+     * Setup before each test in the class
+     */
     @BeforeEach
     public void setUp() {
         noteA = new Note("A", "Text to A");
@@ -22,7 +26,10 @@ public class TitleComparatorTest {
         comparator = new TitleComparator();
     }
 
-        @Test
+    /**
+     * Tests the compare method in the class
+     */
+    @Test
     public void testCompare() {
 
         // Expect a negative value because the first title is lexicographically before the second

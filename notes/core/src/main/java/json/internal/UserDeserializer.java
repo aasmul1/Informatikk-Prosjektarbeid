@@ -7,7 +7,6 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import core.NoteOverview;
@@ -23,7 +22,6 @@ public class UserDeserializer extends JsonDeserializer<User> {
         JsonNode node = jsonParser.readValueAsTree();
         String username = node.get(UserSerializer.USERNAME_FIELD_NAME).asText();
         String password = node.get(UserSerializer.PASSWORD_FIELD_NAME).asText();
-        ArrayNode n = (ArrayNode) node.get(UserSerializer.NOTEOVERVIEW_FIELD_NAME);
         NoteOverview noteOverview = noteOverviewDeserializer.deserialize(jsonParser, ctxt);
 
         return new User(username, password, noteOverview);
