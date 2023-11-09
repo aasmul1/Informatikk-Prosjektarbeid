@@ -1,7 +1,5 @@
 # Release-3
-TODO introduction
-
-For realease 3 the group intends to present the fina product for Notes app. During this realease we have focused on implementing login, and setting up an API and server connection. 
+In Release 3, the team intends to delivering the final version of the Notes app. Throughout this release, our primary focus has been on implementing robust login functionality, establishing a reliable API and server connection, and conducting extensive code enhancements across the application. In addition we have thoroughly written a comprehensive suite of tests to ensure the stability and reliability of the entire system. 
 
 ## Work Habits
 
@@ -15,5 +13,4 @@ User Login (US-5): "A user desire a secure and efficient login process to access
 ```
 
 ## Code quality 
-
 
