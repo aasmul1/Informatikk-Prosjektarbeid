@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
@@ -38,6 +40,7 @@ public class CreateUserControllerTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws IOException {
+        dataAccess.setTestMode();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(App.class.getResource("CreateUser.fxml"));
 
@@ -93,6 +96,8 @@ public class CreateUserControllerTest extends ApplicationTest {
         assertEquals(Errors.NOT_EQUAL_PASSWORD.getMessage(), errorMessageDisplay.getText());
     }
 
+
+
     /**
      * Test the behavior of the "Create User" button when the entered passwords match,
      * by checking if the user is created and no error message is displayed.
@@ -114,4 +119,15 @@ public class CreateUserControllerTest extends ApplicationTest {
         assertNotNull(errorMessageDisplay, "Error message should be displayed");
         assertNotEquals(Errors.NOT_EQUAL_PASSWORD.getMessage(), errorMessageDisplay.getText());
     }
+
+    
+    /**
+     * Method that deletes file after all the tests are completed
+     */
+    @AfterAll
+    public static void tearDown(){
+        Path.of(System.getProperty("user.home") + "AccountsTest.json").toFile().delete();
+
+    }
+    
 }
