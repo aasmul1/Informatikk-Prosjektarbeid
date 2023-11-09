@@ -7,6 +7,8 @@ In Release 3, we have built upon the successful work habits established in the p
 ### Task Management
 In Release 3, we actively embraced GitLab's task management features more, enhancing our ability to clearly define the tasks associated with each issue. This approach ensures that all group members have a clear understanding of the specific tasks and goals related to any given issue, further optimizing our development process.
 
+TODO
+
 ## New Features 
 
 ### New classes:
@@ -70,3 +72,17 @@ User Login (US-5): "A user desire a secure and efficient login process to access
 ```
 
 ## Code improvments 
+In Release 3, we continued to prioritize code quality and readability, building upon our previous implemented tools Checkstyle and spotbugs. We actively addressed and improved upon the issues that Checkstyle had previously identified, ensuring a more consistent code style. Additionally, we used SpotBugs to detect and resolve common Java issues, resulting in enhanced overall code quality.
+
+We have significantly improved the test coverage for this release, for all modules. Just as in our previous releases, we've maintained our utilization of Jacoco, a tool that evaluates the extent of code coverage achieved by our testing endeavors. Notably, this release introduces a dedicated module report to consolidate all test results into a single comprehensive report, improving the overall testing process.
+
+### Controller Organization 
+
+
+### AccountsPersistence.java
+
+### Error class 
+
+
+
+
