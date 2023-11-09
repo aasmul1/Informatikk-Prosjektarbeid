@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxRobot;
@@ -41,6 +43,7 @@ public class LoginControllerTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws IOException {
+        dataAccess.setTestMode();
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(App.class.getResource("Login.fxml"));
 
@@ -177,6 +180,10 @@ public class LoginControllerTest extends ApplicationTest {
         assertEquals(Errors.NOT_REGISTERED.getMessage(), errorMessage.getText());
     }
 
+
+    /**
+     * Method that adds a user for test purposes
+     */
     private void createTestUser() throws IOException {
         try {
             NoteOverview noteOverview = new NoteOverview();
@@ -189,4 +196,14 @@ public class LoginControllerTest extends ApplicationTest {
             e.getMessage();
         }
     }
+
+    /**
+     * Method that deletes file after tests are done
+     */
+    @AfterAll
+    public static void tearDown(){
+        Path.of(System.getProperty("user.home") + "AccountsTest.json").toFile().delete();
+
+    }
+    
 }
