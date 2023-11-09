@@ -4,16 +4,12 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
-
 import core.Accounts;
 import core.Note;
 import core.NoteOverview;
 import core.User;
 import json.AccountsPersistence;
 import rest.exceptions.FileException;
-import rest.exceptions.UserNotFoundException;
 
 @Service
 public class NotesService {
@@ -43,8 +39,8 @@ public class NotesService {
     public void setTestMode() {
         PERSISTENCE.setFilePath("springbootserver-test.json");
         this.accounts = createTestAccounts();
-        loadAccounts();
         save();
+        loadAccounts();
     }
 
     public void setNormalMode() {
@@ -102,16 +98,10 @@ public class NotesService {
     }
 
     public User getUserByUsername(String username) {
-        if (accounts.getUser(username) == null) {
-            throw new UserNotFoundException();
-        }
         return accounts.getUser(username);
     }
 
     public NoteOverview getNoteOverviewByUsername(String username) {
-        if (accounts.getUser(username) == null) {
-            throw new UserNotFoundException();
-        }
         return accounts.getUser(username).getNoteOverview();
     }
 
