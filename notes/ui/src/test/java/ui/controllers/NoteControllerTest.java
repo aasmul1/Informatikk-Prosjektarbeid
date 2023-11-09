@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
+import java.nio.file.Path;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -23,6 +25,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ui.App;
 
+/**
+* Tests the NoteController class.
+*/
+
 public class NoteControllerTest extends ApplicationTest {
 
     private TextArea newNoteInputText;
@@ -33,7 +39,7 @@ public class NoteControllerTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws IOException {
-
+        dataAccess.setTestMode();
         loginUser();
 
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -59,7 +65,9 @@ public class NoteControllerTest extends ApplicationTest {
         errorMessage = lookup("#errorMessage").query();
         saveNoteButton = lookup("#saveNoteButton").query();
     }
-
+    /**
+     * Tests to make sure the components of teh scene are visible.
+     */
     @Test
     public void testUIComponentsExist() {
         assertNotNull(newNoteInputText);
@@ -68,6 +76,10 @@ public class NoteControllerTest extends ApplicationTest {
         assertNotNull(saveNoteButton);  
     }
 
+    /**
+     * Help method that logs in a user.
+     * @throws Exception if userlogin fails
+     */
     public void loginUser() throws IOException {
 
         NoteOverview noteoverview = new NoteOverview();
@@ -79,6 +91,9 @@ public class NoteControllerTest extends ApplicationTest {
         dataAccess.userLogin("User", "Password1");
     }
 
+    /**
+     * Tests the behavior of the button that makes a new note with out any title/text
+     */
     @Test
     public void testNewNoteEmptyFields() {
         // Click "Save Note" without entering any text
@@ -90,5 +105,15 @@ public class NoteControllerTest extends ApplicationTest {
         // Verify: No new notes should be added to the user's note overview
         assertEquals(0, dataAccess.getUserNoteOverview().getNotes().size());
     }
+
+    /**
+     * Tests the behavior of the "Save" button when changes are made to the note that are not valid.
+     */
+    @AfterAll
+    public static void tearDown(){
+        Path.of(System.getProperty("user.home") + "AccountsTest.json").toFile().delete();
+
+    }
+    
 
 }
