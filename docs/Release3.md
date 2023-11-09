@@ -1,5 +1,5 @@
 # Release-3
-In Release 3, the team intends to delivering the final version of the Notes app. Throughout this release, our primary focus has been on implementing robust login functionality, establishing a reliable API and server connection, and conducting extensive code enhancements across the application. In addition we have thoroughly written a comprehensive suite of tests to ensure the stability and reliability of the entire system. 
+In Release 3, the group intends to delivering the final version of the Notes app. Throughout this release, our primary focus has been on implementing robust login functionality, establishing a reliable API and server connection, and conducting extensive code enhancements across the application. In addition we have thoroughly written a comprehensive suite of tests to ensure the stability and reliability of the entire system. 
 
 ## Work Habits
 In Release 3, we have built upon the successful work habits established in the previous release while also making improvements to our workflow. We have elevated our commitment by creating more comprehensive and detailed commit messages, to further promote clear and informative communication. 
@@ -9,7 +9,56 @@ In Release 3, we actively embraced GitLab's task management features more, enhan
 
 ## New Features 
 
-### New classes 
+### New classes:
+
+### UI: 
+
+#### Controller classes:
+``````
+- AbstractController.java
+- LoginController.java
+- CreateUserController.java
+``````
+#### FXML Files:
+```
+- Login.fxml
+- CreateUser.fxml
+```
+
+#### DataAccess classes:
+```
+- LocalNotesAcess.java
+- NotesAccess.java
+- RemoteNotesAccess.java
+```
+___
+### Core:
+```
+- User.java
+- Accounts.java
+- Errors.java
+```
+___
+### RestServer:
+```
+- NotesController.java
+- NotesService.java
+- RestServerApplication.java
+
+Execptions classes:
+    - ApiError.java
+    - AppException.java
+    - FileException.java
+    - NoteNotFoundException.java
+    - UserAlreaduExistsException.java
+    - UserNotFoundException.java
+```
+___
+### IntegrationTest
+```
+- NotesAppIT.java
+```
+___
 
 
 ## New User Story for release 3 
