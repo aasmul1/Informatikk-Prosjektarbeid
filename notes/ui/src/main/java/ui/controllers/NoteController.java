@@ -20,7 +20,7 @@ public class NoteController extends AbstractController {
     private TextField newNoteInputTitle;
 
     @FXML
-    private Button addNewNote;
+    private Button saveNoteButton;
 
     @FXML
     private TextArea newNoteInputText;

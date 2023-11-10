@@ -36,6 +36,22 @@ public class LocalNotesAccess implements NotesAccess {
     }
 
     @Override
+    public void setTestMode() {
+        persistence.setFilePath("AccountsTest.json");
+        try {
+          this.accounts = persistence.loadAccounts();
+        } catch (IllegalStateException | IOException e) {
+          this.accounts = new Accounts();
+          try {
+            persistence.saveAccounts(accounts);
+          } catch (IllegalStateException | IOException e1) {
+            System.out.println(e1.getMessage());
+          }
+        }
+        
+    }
+
+    @Override
     public void createUser(User user) {
         if (user != null) {
             accounts.addUser(user);
@@ -129,9 +145,5 @@ public class LocalNotesAccess implements NotesAccess {
         return this.selectedIndex;
     }
 
-    @Override
-    public void setTestMode() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setTestMode'");
-    }
+    
 }

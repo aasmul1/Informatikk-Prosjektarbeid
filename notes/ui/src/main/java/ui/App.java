@@ -29,6 +29,7 @@ public class App extends Application {
         stage.show();
     }
 
+    
     public static void supportHeadless() {
         if (Boolean.getBoolean("headless")) {
           System.setProperty("testfx.robot", "glass");
@@ -39,8 +40,4 @@ public class App extends Application {
         }
       }
     
-
-    public static void main(String[] args) {
-        launch();
-    }
 }
