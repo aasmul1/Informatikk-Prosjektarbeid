@@ -56,3 +56,20 @@
 #### Important to Do
 - US-4-2 Allow deleting the selected note.
 - US-4-3 Ensure that the note is deleted from the file.
+
+## UserStory for release 3: 
+
+## User Login (US-5)
+```
+"A user desire a secure and efficient login process to access their notes within the application. If the user does not have an existing account, they should also be able to create one."
+```
+
+### Important to See
+- US-5-1 Present a login screen or page.
+- US-5-2 Include fields for entering a username and password.
+- US-5-3 Display the user's list of notes.
+
+### Important to Do
+- US-5-4 Enable users to enter their login credentials.
+- US-5-5 Authenticate the user and grant access to the application.
+- US-5-6 Provide an option to create a new user if one does not exist.
