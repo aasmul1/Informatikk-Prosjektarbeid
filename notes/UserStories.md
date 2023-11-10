@@ -1,31 +1,58 @@
-## Se og opprette notater (US-1)
 
-Når det er hektisk ønsker jeg å holde oversikt over notatene jeg skriver i hverdagen.
-Brukeren har behov for å lage notater med tittel, tekst og dato, og enkelt kunne se på disse når det er behov for det. 
+# User Stories 
 
-### Viktig å kunne se
+#### User stories for future releases will be updated as functionality advances in later releases.
 
-- US-1-1 Oversikt over notater
-- US-1-2 Opprett nytt notat
+## UserStory for release 1: 
 
-### Viktig å kunne gjøre
+### View and Create Notes (US-1)
+```
+"To keep track of the notes composed in daily life, users wants to be able to create notes with titles, text, and dates and access them effortlessly."
+```
 
-- US-1-3 Legge til nye notater
-- US-1-4 Lagre notater i fil
+#### Important to See
+- US-1-1 Display a list of notes.
+- US-1-2 Provide an option to create new notes.
 
-## Redigere og sortere notater (US-2)
+#### Important to Do
+- US-1-3 Enable to add a new note.
+- US-1-4 The ability to save notes to a file.
 
-Dersom man har skrevet feil i et notat er det greit å kunne redigere eller slette dette notatet. I tillegg er det greit å kunne sortere etter dato og tittel. I tillegg er det ønskelig å kunne slette et notat.
+## UserStories for release 2: 
 
-### Viktig å kunne se
+### Edit Notes (US-2)
+```
+"A user wants to have the capability to edit their existing notes when necessary. The user also wants the option to revert any changes in case they have second thoughts."
+```
 
-- US-2-1 Oversikt over notater
-- US-2-2 Knapp for sortering
-- US-2-3 Knapp for redigering
-- US-2-4 Knapp for sletting
+#### Important to See
+- US-2-1 An overview of existing notes.
+- US-2-2 Button to edit a selected note.
 
-### Viktig å kunne gjøre
+#### Important to Do
+- US-2-3 Allow editing of note fields.
+- US-2-4 Implement an option to revert changes made to a note.
 
-- US-2-5 Redigere notater
-- US-2-6 Sortere listen over notater
-- US-2-7 Slette notater
+### Sort Notes (US-3)
+```
+"A user desire the ability to organize their notes by date or title for enhanced organization. The user also wishes to have control over the sorting preferences, allowing them to choose how they want their notes sorted."
+```
+
+#### Important to See
+- US-3-1 Overview of existing notes. 
+- US-3-2 Button to sort notes. 
+
+#### Important to Do
+- US-3-3 Enable sorting of notes by date or title.
+
+### Delete a Note (US-4)
+```
+ "A user should be able to delete notes that are no longer needed or relevant."
+ ```
+
+#### Important to See
+- US-4-1 Button to delete a note.
+
+#### Important to Do
+- US-4-2 Allow deleting the selected note.
+- US-4-3 Ensure that the note is deleted from the file.
