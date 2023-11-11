@@ -1,4 +1,4 @@
-@startuml
+@startuml architecture.puml
 
 component core {
 	package notes.core
