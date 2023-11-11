@@ -11,7 +11,8 @@ component jackson {
 notes.json ..> jackson
 
 component ui {
- 	package notes.ui
+ 	folder notes.ui
+    folder notes.dataAccess
 }
 
 notes.ui ..> notes.core
@@ -24,7 +25,15 @@ component javafx {
 
 ui ..> javafx
 ui ..> fxml
+notes.ui ..> notes.dataAccess
 
 
+component rest {
+	package notes.rest
+}
+
+notes.rest ..> notes.core
+
+notes.rest ..> notes.json
 
 @enduml
