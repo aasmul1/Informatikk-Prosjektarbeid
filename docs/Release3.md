@@ -84,6 +84,8 @@ An important change in this release involves the reallocation of core logic resp
 ### Test Coverage 
 We have significantly improved the test coverage for this release, for all modules. Just as in our previous releases, we have used Jacoco to evaluate the extent of test coverage. This release also introduces a dedicated module `report´ to compile all test results into a single unified report, which improves the overall testing process.
 
+For this release, our goal was to achieve atleast 90% test coverage for each module. Esspesially with a focus on testing all fundamental functionalities of the code. For more detailed information on individual test coverage scores, refer to the module's readme.
+
 ### Controller Organization 
 In the UI module, we have introduced several significant changes to the controllers to improve code structure. Firstly, we have restructured our controllers by placing them in a dedicated folder / directory. This approach enhances the overall structure our codebase, and makes it easier to navigate to the many controllers. 
 
