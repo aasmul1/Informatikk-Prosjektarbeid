@@ -1,0 +1,11 @@
+@startuml sequenceDiagram
+    actor User
+    User -> AppController: logs in
+    AppController -> "NotesAccess : RemoteNotesAccess": initialize()
+    "NotesAccess : RemoteNotesAccess" -> RESTAPI: getContainer()
+    RESTAPI -> DATABASE: getContainer()
+    DATABASE -> RESTAPI: returns Container as json
+    RESTAPI -> "NotesAccess : RemoteNotesAccess": returns Container as object
+    "NotesAccess : RemoteNotesAccess" -> AppController: sets Container as Notes object
+    AppController -> User: visualisation over current Notes
+@enduml
