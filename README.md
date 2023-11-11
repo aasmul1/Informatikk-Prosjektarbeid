@@ -91,3 +91,25 @@ cd core
 2)
 mvn test
 ```
+
+## Milestone reports
+___
+The project has three releases, and you can read about them in the [docs directory](/docs).
+
+**Release 1** 
+
+The first release focused on establishing basic and essential functionality for the application, and initiated on testing of the core module. 
+
+Read more [here](/docs/Release1.md).
+
+**Release 2**
+
+In this release we continued to expand the functionality, implemented additional core testing, and initiated user interface testing. 
+
+Read more [here](/docs/Release2.md).
+
+**Release 3**
+
+In the third release, we focused on adding more functionality, including implementing a login system, and the contruction of a REST API. We also prioritezed achieving high test coverage on all testing areas. 
+
+Read more [here](/docs/Release3.md).
