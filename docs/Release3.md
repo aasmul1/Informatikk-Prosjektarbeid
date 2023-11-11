@@ -1,13 +1,17 @@
 # Release-3
-In Release 3, the group intends to delivering the final version of the Notes app. Throughout this release, our primary focus has been on implementing robust login functionality, establishing a reliable API and server connection, and conducting extensive code enhancements across the application. In addition we have thoroughly written a comprehensive suite of tests to ensure the stability and reliability of the entire system. 
+In Release 3, the group intends to delivering the final version of the Notes app. Throughout this release, our primary focus has been on implementing login functionality, establishing a reliable API and server connection, and making significant improvements to the code quality throughout the application. In addition we have thoroughly written a comprehensive set of tests to ensure the stability and reliability of the entire application. 
 
 ## Work Habits
-In Release 3, we have built upon the successful work habits established in the previous release while also making improvements to our workflow. We have elevated our commitment by creating more comprehensive and detailed commit messages, to further promote clear and informative communication. 
+In Release 3, we have built upon the successful work habits established in the previous release, while also making improvements to our workflow. Before the start of the last sprint, the group discussed and agreed that a slight adjustment to task management was necessary. 
+
+The team realized the importance for clearer communication and agreed we needed more detailed commit messages. ..... Each of our merge requests is also linked to a specific branch and issue, removing the need for extensive merge commit messages, since we don't squash commits. By maintaining individual commit histories for all issues in GitLab, it is unnecessary to duplicate this information in an extra merge commit message.  
+
 
 ### Task Management
-In Release 3, we actively embraced GitLab's task management features more, enhancing our ability to clearly define the tasks associated with each issue. This approach ensures that all group members have a clear understanding of the specific tasks and goals related to any given issue, further optimizing our development process.
+In Release 3, we actively embraced GitLab's task management features more. This enhanced our ability to clearly define the smaller tasks associated with each issue. This approach ensures that all group members have a clear understanding of the specific tasks and goals related to any given issue, further optimizing our development process, while also organizing what is left to do in an issue. 
 
 TODO
+- Pair programming 
 
 ## New Features 
 
