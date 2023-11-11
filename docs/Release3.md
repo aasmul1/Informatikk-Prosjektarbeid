@@ -4,6 +4,7 @@ In Release 3, the group intends to delivering the final version of the Notes app
 ## Work Habits
 In Release 3, we have built upon the successful work habits established in the previous release, while also making improvements to our workflow. Before the start of the last sprint, the group discussed and agreed that a slight adjustment to task management was necessary. 
 
+### Commit messages 
 The team realized the importance for clearer communication and agreed we needed more detailed commit messages. ..... Each of our merge requests is also linked to a specific branch and issue, removing the need for extensive merge commit messages, since we don't squash commits. By maintaining individual commit histories for all issues in GitLab, it is unnecessary to duplicate this information in an extra merge commit message.  
 
 
@@ -76,17 +77,16 @@ User Login (US-5): "A user desire a secure and efficient login process to access
 ```
 
 ## Code improvments 
-In Release 3, we continued to prioritize code quality and readability, building upon our previous implemented tools Checkstyle and spotbugs. We actively addressed and improved upon the issues that Checkstyle had previously identified, ensuring a more consistent code style. Additionally, we used SpotBugs to detect and resolve common Java issues, resulting in enhanced overall code quality.
+In Release 3, we continued to prioritize code quality and readability, building upon our previous implemented tools Checkstyle and spotbugs. We actively addressed and improved issues that Checkstyle had previously identified, ensuring a more consistent code style. Additionally, we used SpotBugs to detect and resolve common Java issues, resulting in enhanced overall code quality.
 
-We have significantly improved the test coverage for this release, for all modules. Just as in our previous releases, we've maintained our utilization of Jacoco, a tool that evaluates the extent of code coverage achieved by our testing endeavors. Notably, this release introduces a dedicated module report to consolidate all test results into a single comprehensive report, improving the overall testing process.
+### Test Coverage 
+We have significantly improved the test coverage for this release, for all modules. Just as in our previous releases, we have used Jacoco to evaluate the extent of test coverage. This release also introduces a dedicated module `report´ to compile all test results into a single unified report, which improves the overall testing process.
 
 ### Controller Organization 
-
 
 ### AccountsPersistence.java
 
 ### Error class 
-
 
 
 
