@@ -7,8 +7,6 @@ Our app is an intuitive note-taking application designed for ease and efficiency
 ## Project structure
 ___
 
-Diagram of project structure here TODO LAG DIAGRAM
-TODO LEGG VED LINKER PÅ "HERE"
 ### **Modules**
 ### `core` ### 
 Read more about the core-module here
@@ -22,20 +20,7 @@ Read more about the rest-module here
 Read more about the ui-module here
 
 ### **Diagrams**
-Diagrams for our Notes-App can be found here TODO LINK
-
-## JSON File Format
-___
-Our project utilizes JSON (JavaScript Object Notation) as the data interchange format for storing and retrieving information. JSON is a lightweight and human-readable data format that is widely supported in various programming languages. This section provides an overview of the JSON file format used in our project.
-
-### File Structure
-
-In our project, JSON files are structured as follows:
-
-```
-{"title":"Titel ","text":"text", "created":"createdDate","edited":"editedDate"}
-
-```
+Diagrams for our Notes-App can be found [here](/notes/diagrams/README.md).
 
 ## Functionality of the application
 ___
