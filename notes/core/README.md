@@ -1,11 +1,13 @@
 # Core
 The core module is the main part of the application. It's made up of important Java code that runs the main functions of the app. This part is separate from the user interface, and it deals with the main tasks and processes that the app needs to do.
 
-### Structure
+### **Structure**
 In the core directory, there are two subfolders: core and json. The core folder contains code related to logic, while the json folder houses the code for file management.
 
+Class diagram of the core class can be found [here](/diagrams/README.md). TODO fikse link
+
 ### JSON File Format
-___
+#
 Our project utilizes JSON (JavaScript Object Notation) as the data interchange format for storing and retrieving information. JSON is a lightweight and human-readable data format that is widely supported in various programming languages. This section provides an overview of the JSON file format used in our project.
 
 ### File Structure
@@ -15,9 +17,9 @@ In our project, JSON files are structured as follows:
 ```sh
 {"title":"Titel ","text":"text", "created":"createdDate","edited":"editedDate"}
 ```
+#
 
-
-### Classes
+### **Classes**
 **core**
 - [Accounts.java](src/main/java/core/Accounts.java): 
 - [CreatedDateComparator.java](src/main/java/core/CreatedDateComparator.java):
@@ -38,6 +40,7 @@ The three classes `CreatedDateComaprator`, `EditedDateComaprator` and `TitleComa
 `Accounts` class contains logic for managing all users of the app, it allows adding new users, checking if a given user exists in the system, and removing users. The class provides methods to validate user login. 
 
 `Errors` enum is a collection of predefined error messages, where each enum constant represents a spesific type of scenario. 
+#
 
 **json**
 - [AccountsPersistence.java](src/main/java(json/AccountsPersistance.java))
@@ -54,6 +57,8 @@ The three classes `CreatedDateComaprator`, `EditedDateComaprator` and `TitleComa
     - [UserDeserializer.java](src/main/java/json/internal/UserDeserializer.java)
     - [UserSerializer.java](src/main/java/json/internal/UserSerializer.java) 
 
+### **Tests**
+#
 ### Test classes
 TODO skrive om tester, testdekningsgrad
 
@@ -72,6 +77,9 @@ TODO skrive om tester, testdekningsgrad
 
     **internal**
     - [AccountsJsonTest.java](src/test/java/json/internal/AccountsJsonTest.java)
+
+### Test coverage
+#
 
 
 
