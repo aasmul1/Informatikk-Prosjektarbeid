@@ -1,0 +1,50 @@
+@startuml architecture.puml
+
+component core {
+	package notes.core
+	package notes.json
+}
+
+component jackson {
+}
+
+notes.json ..> jackson
+
+component ui {
+ 	folder notes.ui
+    folder notes.dataAccess
+}
+
+
+component javafx {
+ 	component fxml {
+ 	}
+}
+
+
+
+
+
+component rest {
+	package notes.rest
+}
+
+component springboot{
+
+}
+ui ..> javafx
+ui ..> fxml
+notes.ui ..> notes.dataAccess
+notes.dataAccess ..> notes.json
+notes.dataAccess ..> notes.core
+notes.dataAccess ..> notes.rest
+
+
+notes.rest ..> notes.core
+notes.rest ..> notes.json
+rest ..> springboot
+
+
+
+
+@enduml
