@@ -6,11 +6,13 @@ The UI also includes classes for data-access in the application, which are vital
 
 The UI module includes all visual compentets, layout and elements the user interact with. It is crucial for providing a user-friendly experience while interaction with the application. 
 
-### Structure
+### **Structure**
 The UI module seperates controller, dataaccess classes and FXML files, to enchance organization. The dataaccess classes are seperated in an own directory/folder `dataaccess`, positioned at the same level as the internal ui directory. 
 Controllers are located in the `ui/controllers` directory. The FXML files are located in `ui/resources`. 
 
-### The UI module consists of the following classes 
+#
+
+### **The UI module consists of the following classes**
 
 #### Controller classes 
 
@@ -26,6 +28,7 @@ The `AbstractController` class is an abstract class for all the controller class
 
 The `LoginController` initiates the application's start scene and manages login functionality. It also includes a button to create a user, leading to the `CreateUserController` scene. The `AppController` administers the scene displaying all user notes. The `NoteController` handles the creation of new notes, while the `NoteEditController` is responsible for editing existing notes.
 
+#
 
 #### FXML files 
 
@@ -36,6 +39,8 @@ The `LoginController` initiates the application's start scene and manages login 
 - [NoteEdit.fxml](src/main/resources/ui/NoteEdit.fxml)
 
 The FXML files define the stucture of the user interface. 
+
+#
 
 #### DatAccess classes
 
@@ -49,4 +54,26 @@ The FXML files define the stucture of the user interface.
 
 `LocalNotesAccess` also extends the NotesAccess interface, but gets data stored locally in accounts.json, which is located on user.home. Its main functionality include handling user logins, managing note operations and, updating the local storage after each relevant operation. 
 
-## Test Coverage 
+ ### **Test classes for UI**
+
+ We hav written a testclasses for all controllers. 
+
+ ### Test classes 
+
+ #### Controller tests
+- [AppControllerTest.java](src/test/java/ui/controllers/AppControllerTest.java)
+- [CreateUserControllerTest.java](src/test/java/ui/controllers/CreateUserControllerTest.java)
+- [LoginControllerTest.java](src/test/java/ui/controllers/LoginControllerTest.java)
+- [NoteControllerTest.java](src/test/java/ui/controllers/NoteControllerTest.java)
+- [NoteEditControllerTest.java](src/test/java/ui/controllers/NoteEditControllerTest.java)
+
+#### DataAccess test
+- [RemoteNotesAccessTest.java](src/test/java/dataaccess/RemoteNotesAccessTest.java)
+
+### Test Coverage
+For the UI module we aimed to test as much as we could. The test coverage for this module is X. Testing the UI extensiavly is important because these tests simulate real user interactions, and helps us catch bugs and issues early that might be missed by other testing methods. 
+ 
+ The goal of testing is to ensure the application functions well, and provides a  user-friendly experience. 
+
+
+ 
