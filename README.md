@@ -3,9 +3,7 @@
 The Notes-App is a simple application designed to help users create, edit, manage, and securely log in to handle their notes. For a more detailed description of the app, please refer to [this README file](/notes/README.md).
 
 ## Eclicse-Che
-Open [this](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2311/gr2311?new) link. 
-
-TODO skrive hvordan man kjører i ecplise
+Open [this](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2311/gr2311?new) link to run in Eclipse che. 
 
 ## Building and running the application
 ___
