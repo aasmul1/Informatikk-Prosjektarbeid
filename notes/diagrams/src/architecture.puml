@@ -11,19 +11,39 @@ component jackson {
 notes.json ..> jackson
 
 component ui {
- 	package notes.ui
+ 	folder notes.ui
+    folder notes.dataAccess
 }
 
-notes.ui ..> notes.core
-notes.ui ..> notes.json
 
 component javafx {
  	component fxml {
  	}
 }
 
+
+
+
+
+component rest {
+	package notes.rest
+}
+
+component springboot{
+
+}
 ui ..> javafx
 ui ..> fxml
+notes.ui ..> notes.dataAccess
+notes.dataAccess ..> notes.json
+notes.dataAccess ..> notes.core
+notes.dataAccess ..> notes.rest
+
+
+notes.rest ..> notes.core
+notes.rest ..> notes.json
+rest ..> springboot
+
 
 
 

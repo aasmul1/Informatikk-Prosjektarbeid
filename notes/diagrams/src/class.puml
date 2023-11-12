@@ -1,0 +1,68 @@
+@startuml classDiagramCore
+
+class NoteOverview {
+    - List<Note> notes
+    --
+    + NoteOverview()
+    + NoteOverview(List<Note>)
+    + void addNote(Note)
+    + void deleteNote(Note)
+    + void deleteNote(int)
+    + List<Note> getNotes()
+    + Iterator<Note> notesIterator()
+    + void sortNotesByCreatedDate()
+    + void sortNotesByLastEditedDate()
+    + void sortNotesByTitle()
+}
+
+class Note {
+    - String title
+    - String text
+    - LocalDate created
+    - LocalDate edited
+    --
+    + Note(String, String)
+    + Note(String, String, LocalDate, LocalDate)
+    + String getTitle()
+    + void setTitle(String)
+    + String getText()
+    + void setText(String)
+    + LocalDate getCreatedDate()
+    + LocalDate getEditedDate()
+    + void setEditedDate()
+}
+
+class User {
+    - String username
+    - String password
+    - NoteOverview noteOverview
+    --
+    + User(String, String, NoteOverview)
+    + String getUsername()
+    + void setUsername(String)
+    + String getPassword()
+    + void setPassword(String)
+    + NoteOverview getNoteOverview()
+    + Note getNote(Note)
+    + void addNote(Note)
+    + boolean noteExists(Note)
+    + Note getNoteByIndex(int)
+}
+
+class Accounts {
+    - List<User> accounts
+    --
+    + List<User> getAccounts()
+    + void addUser(User)
+    + void removeUser(User)
+    + Iterator<User> iterator()
+    + boolean containsUser(User)
+    + boolean checkValidUserLogin(String, String)
+    + User getUser(String, String)
+    + User getUser(String)
+}
+
+NoteOverview "1" --> "*" Note : "Contains"
+User "1" --> "1" NoteOverview : "Contains"
+Accounts "1" --> "*" User : "Contains"
+@enduml

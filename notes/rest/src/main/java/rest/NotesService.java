@@ -4,16 +4,12 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
-
 import core.Accounts;
 import core.Note;
 import core.NoteOverview;
 import core.User;
 import json.AccountsPersistence;
 import rest.exceptions.FileException;
-import rest.exceptions.UserNotFoundException;
 
 @Service
 public class NotesService {
@@ -23,9 +19,9 @@ public class NotesService {
     // private Path fileLocation;
 
     public NotesService(Accounts accounts) {
-        // TODO: get saved users in json
         this.accounts = accounts;
         PERSISTENCE.setFilePath("springbootserver-notes.json");
+        save();
     }
 
     @Autowired
@@ -38,6 +34,33 @@ public class NotesService {
             this.accounts = manuallyCreateAccounts();
             save();
         }
+    }
+
+    public void setTestMode() {
+        PERSISTENCE.setFilePath("springbootserver-test.json");
+        this.accounts = createTestAccounts();
+        save();
+        loadAccounts();
+    }
+
+    public void setNormalMode() {
+        PERSISTENCE.setFilePath("springbootserver-notes.json");
+        this.accounts = loadAccounts();
+        save();
+    }
+
+    public Accounts createTestAccounts() {
+        NoteOverview noteOverview = new NoteOverview();
+        NoteOverview noteOverview2 = new NoteOverview();
+        Accounts accounts = new Accounts();
+        
+        noteOverview.addNote(new Note("title", "text"));
+        noteOverview2.addNote(new Note("title", "text"));
+        noteOverview.addNote(new Note("title2", "text2"));
+        noteOverview2.addNote(new Note("title2", "text2"));
+        accounts.addUser(new User("testuserone", "Password1", noteOverview));
+        accounts.addUser(new User("testusertwo", "Password2", noteOverview2));
+        return accounts;
     }
 
     public AccountsPersistence getPersistence() {
@@ -75,16 +98,10 @@ public class NotesService {
     }
 
     public User getUserByUsername(String username) {
-        if (accounts.getUser(username) == null) {
-            throw new UserNotFoundException();
-        }
         return accounts.getUser(username);
     }
 
     public NoteOverview getNoteOverviewByUsername(String username) {
-        if (accounts.getUser(username) == null) {
-            throw new UserNotFoundException();
-        }
         return accounts.getUser(username).getNoteOverview();
     }
 

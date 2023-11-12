@@ -124,7 +124,8 @@ public class RemoteNotesAccess implements NotesAccess {
     }
 
     /**
-     * Sends HTTP PUT message to create new note and add it to the users noteoverview.
+     * Sends HTTP PUT message to create new note and add it to the users
+     * noteoverview.
      */
     @Override
     public void addNote(Note note) {
@@ -133,7 +134,7 @@ public class RemoteNotesAccess implements NotesAccess {
         String value = getLoggedInUser().getUsername();
         try {
             String json = objectMapper.writeValueAsString(note);
-            HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(putMappingPath+key+value))
+            HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(putMappingPath + key + value))
                     .header("Accept", "application/json")
                     .header("Content-Type", "application/json")
                     .PUT(BodyPublishers.ofString(json))
@@ -182,7 +183,7 @@ public class RemoteNotesAccess implements NotesAccess {
         String value = getLoggedInUser().getUsername();
         NoteOverview noteOverview;
 
-        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(getMappingPath+key+value))
+        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(getMappingPath + key + value))
                 .header("Accept", "application/json").GET().build();
 
         try {
@@ -190,7 +191,7 @@ public class RemoteNotesAccess implements NotesAccess {
                     .build()
                     .send(httpRequest, HttpResponse.BodyHandlers.ofString());
             noteOverview = objectMapper.readValue(httpResponse.body(), NoteOverview.class);
-            return noteOverview;        
+            return noteOverview;
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -207,15 +208,15 @@ public class RemoteNotesAccess implements NotesAccess {
         String key2 = "&index=";
         String value2 = Integer.toString(index);
 
-        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(deleteMappingPath+key1+value1+key2+value2))
+        HttpRequest httpRequest = HttpRequest
+                .newBuilder(resolveUriAccounts(deleteMappingPath + key1 + value1 + key2 + value2))
                 .header("Accept", "application/json").DELETE().build();
 
         try {
-        HttpClient.newBuilder()
-        .build()
-        .send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        }
-        catch (IOException | InterruptedException e) {
+            HttpClient.newBuilder()
+                    .build()
+                    .send(httpRequest, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
@@ -229,13 +230,13 @@ public class RemoteNotesAccess implements NotesAccess {
         String key = "username=";
         String value = getLoggedInUser().getUsername();
 
-        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(postMapping+key+value))
-        .header("Accept", "application/json")
-        .POST(BodyPublishers.ofString(getLoggedInUser().getUsername()))
-        .build();
+        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(postMapping + key + value))
+                .header("Accept", "application/json")
+                .POST(BodyPublishers.ofString(getLoggedInUser().getUsername()))
+                .build();
 
         try {
-        HttpClient.newBuilder()
+            HttpClient.newBuilder()
                     .build()
                     .send(httpRequest, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
@@ -252,13 +253,13 @@ public class RemoteNotesAccess implements NotesAccess {
         String key = "username=";
         String value = getLoggedInUser().getUsername();
 
-        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(postMapping+key+value))
-        .header("Accept", "application/json")
-        .POST(BodyPublishers.ofString(getLoggedInUser().getUsername()))
-        .build();
+        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(postMapping + key + value))
+                .header("Accept", "application/json")
+                .POST(BodyPublishers.ofString(getLoggedInUser().getUsername()))
+                .build();
 
         try {
-        HttpClient.newBuilder()
+            HttpClient.newBuilder()
                     .build()
                     .send(httpRequest, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
@@ -275,13 +276,13 @@ public class RemoteNotesAccess implements NotesAccess {
         String key = "username=";
         String value = getLoggedInUser().getUsername();
 
-        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(postMapping+key+value))
-        .header("Accept", "application/json")
-        .POST(BodyPublishers.ofString(getLoggedInUser().getUsername()))
-        .build();
+        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(postMapping + key + value))
+                .header("Accept", "application/json")
+                .POST(BodyPublishers.ofString(getLoggedInUser().getUsername()))
+                .build();
 
         try {
-        HttpClient.newBuilder()
+            HttpClient.newBuilder()
                     .build()
                     .send(httpRequest, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
@@ -301,7 +302,8 @@ public class RemoteNotesAccess implements NotesAccess {
         String value2 = Integer.toString(index);
         Note note;
 
-        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(getMappingPath+key1+value1+key2+value2))
+        HttpRequest httpRequest = HttpRequest
+                .newBuilder(resolveUriAccounts(getMappingPath + key1 + value1 + key2 + value2))
                 .header("Accept", "application/json").GET().build();
 
         try {
@@ -331,4 +333,36 @@ public class RemoteNotesAccess implements NotesAccess {
         return this.selectedIndex;
     }
 
+    @Override
+    public void setTestMode() {
+        String postMappingPath = "test-mode";
+
+        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(postMappingPath))
+                .header("Accept", "application/json")
+                .POST(BodyPublishers.noBody())
+                .build();
+        try {
+            HttpClient.newBuilder()
+                    .build()
+                    .send(httpRequest, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setNormalMode() {
+        String postMappingPath = "normal-mode";
+
+        HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(postMappingPath))
+                .header("Accept", "application/json")
+                .POST(BodyPublishers.noBody())
+                .build();
+        try {
+            HttpClient.newBuilder()
+                    .build()
+                    .send(httpRequest, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

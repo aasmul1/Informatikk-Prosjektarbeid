@@ -8,12 +8,10 @@ import javafx.util.Callback;
 import core.Note;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import ui.CustomListCell;
@@ -119,15 +117,6 @@ public class AppController extends AbstractController {
         updateView();
     }
 
-    /**
-     * Method for displaying a warning message in the form of an Alert.
-     * 
-     * @param message The message to display in the warning.
-     */
-    public void handleWrongInput(String message) {
-        Alert alert = new Alert(AlertType.WARNING, message);
-        alert.show();
-    }
 
 
     public void updateView() {

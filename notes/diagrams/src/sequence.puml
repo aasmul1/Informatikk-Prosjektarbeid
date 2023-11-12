@@ -1,0 +1,11 @@
+@startuml sequenceDiagram
+    actor User
+    User -> AppController: logs in
+    AppController -> "NotesAccess : RemoteNotesAccess": initialize()
+    "NotesAccess : RemoteNotesAccess" -> NotesController: getLoggedInUser()
+    NotesController -> DATABASE: get()
+    DATABASE -> NotesController: returns User as json
+    NotesController -> "NotesAccess : RemoteNotesAccess": returns User as object
+    "NotesAccess : RemoteNotesAccess" -> AppController: sets User notes as NoteOverview object
+    AppController -> User: visualisation over current Notes
+@enduml
