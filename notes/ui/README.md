@@ -1,15 +1,20 @@
 # UI
-TODO indtroduction 
 
-To construct the user interface for our application, the groups utilized JavaFX to generate FXML files for all scenes. 
+To set up the user interface for our application, the groups utilized JavaFX to generate FXML files for all scenes. Each scene has its own controller, which areresponsible for handling specific UI functionalities. To ensure clearity in the project the controller´s name match, such as Login.fxml and LoginController.java. 
 
-To handle user inputs and execute the wanted functionality, the group utilized controller classes. Each UI scene is assignied one controller.
+The UI also includes classes for data-access in the application, which are vital for managing interactions with the core logic. 
+
+The UI module includes all visual compentets, layout and elements the user interact with. It is crucial for providing a user-friendly experience while interaction with the application. 
+
+### Structure
+The UI module seperates controller, dataaccess classes and FXML files, to enchance organization. The dataaccess classes are seperated in an own directory/folder `dataaccess`, positioned at the same level as the internal ui directory. 
+Controllers are located in the `ui/controllers` directory. The FXML files are located in `ui/resources`. 
 
 ### The UI module consists of the following classes 
 
 #### Controller classes 
 
-- [AbstractController.java](src/main/java/ui/controllers/AbstractController.java)
+- [AbstractController.java](src/main/java/ui/controllers/AbstractController.java) 
 - [AppController.java](src/main/java/ui/controllers/AppController.java)
 - [CreateUserController.java](src/main/java/ui/controllers/CreateUserController.java)
 - [LoginController.java](src/main/java/ui/controllers/LoginController.java)
@@ -30,7 +35,7 @@ The `LoginController` initiates the application's start scene and manages login 
 - [Note.fxml](src/main/resources/ui/Note.fxml)
 - [NoteEdit.fxml](src/main/resources/ui/NoteEdit.fxml)
 
-The FXML files are located under `/ui/src/main/resources/ui/` and defines the stucture of the user interface. 
+The FXML files define the stucture of the user interface. 
 
 #### DatAccess classes
 
