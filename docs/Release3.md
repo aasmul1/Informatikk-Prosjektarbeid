@@ -37,50 +37,48 @@ The integration test class NotesAppIT.java has been introduced, serving as an in
 ### UI: 
 
 #### Controller classes:
-``````
-- AbstractController.java
-- LoginController.java
-- CreateUserController.java
-``````
+
+- [AbstractController.java](../notes/ui/src/main/java/ui/controllers/AbstractController.java) 
+- [LoginController.java](../notes/ui/src/main/java/ui/controllers/LoginController.java) 
+- [CreateUserController.java](../notes/ui/src/main/java/ui/controllers/CreateUserController.java) 
+
 #### FXML Files:
-```
-- Login.fxml
-- CreateUser.fxml
-```
+
+- [Login.fxml](../notes/ui/src/main/resources/ui/Login.fxml) 
+- [CreateUser.fxml](../notes/ui/src/main/resources/ui/CreateUser.fxml) 
 
 #### DataAccess classes:
-```
-- LocalNotesAcess.java
-- NotesAccess.java
-- RemoteNotesAccess.java
-```
+
+- [LocalNotesAcess.java](../notes/ui/src/main/java/dataaccess/LocalNotesAccess.java) 
+- [RemoteNotesAcess.java](../notes/ui/src/main/java/dataaccess/RemoteNotesAccess.java) 
+- [NotesAcess.java](../notes/ui/src/main/java/dataaccess/NotesAccess.java) 
 ___
 ### Core:
-```
-- User.java
-- Accounts.java
-- Errors.java
-```
+- [Accounts.java](../notes/core/src/main/java/core/Accounts.java) 
+- [User.java](../notes/core/src/main/java/core/User.java) 
+- [Errors.java](../notes/core/src/main/java/core/Errors.java) 
+
 ___
 ### RestServer:
-```
-- NotesController.java
-- NotesService.java
-- RestServerApplication.java
+
+- [NotesController.java](../notes/rest/src/main/java/rest/NotesController.java) 
+- [NotesService.java](../notes/rest/src/main/java/rest/NotesService.java) 
+- [RestServerApplication.java](../notes/rest/src/main/java/rest/RestServerApplication.java) 
 
 Execptions classes:
-    - ApiError.java
-    - AppException.java
-    - FileException.java
-    - NoteNotFoundException.java
-    - UserAlreaduExistsException.java
-    - UserNotFoundException.java
-```
+
+- [ApiError.java](../notes/rest/src/main/java/rest/exceptions/ApiError.java) 
+- [AppExceptionHandler.java](../notes/rest/src/main/java/rest/exceptions/AppExceptionHandler.java) 
+- [FileException.java](../notes/rest/src/main/java/rest/exceptions/FileException.java) 
+- [NoteNotFoundException.java](../notes/rest/src/main/java/rest/exceptions/NoteNotFoundException.java) 
+- [UserAlreadyExistsException.java](../notes/rest/src/main/java/rest/exceptions/UserAlreadyExistsException.java) 
+- [UserNotFoundException.java](../notes/rest/src/main/java/rest/exceptions/UserNotFoundException.java) 
+
 ___
 ### IntegrationTest
-```
-- NotesAppIT.java
-```
+
+- [NotesAppIT.java](../notes/integrationtest/src/test/java/NotesAppIT.java) 
+
 ___
 
 
