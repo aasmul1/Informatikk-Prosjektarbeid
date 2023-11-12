@@ -15,25 +15,36 @@ component ui {
     folder notes.dataAccess
 }
 
-notes.ui ..> notes.core
-notes.ui ..> notes.json
 
 component javafx {
  	component fxml {
  	}
 }
 
-ui ..> javafx
-ui ..> fxml
-notes.ui ..> notes.dataAccess
+
+
 
 
 component rest {
 	package notes.rest
 }
 
-notes.rest ..> notes.core
+component springboot{
 
+}
+ui ..> javafx
+ui ..> fxml
+notes.ui ..> notes.dataAccess
+notes.dataAccess ..> notes.json
+notes.dataAccess ..> notes.core
+notes.dataAccess ..> notes.rest
+
+
+notes.rest ..> notes.core
 notes.rest ..> notes.json
+rest ..> springboot
+
+
+
 
 @enduml
