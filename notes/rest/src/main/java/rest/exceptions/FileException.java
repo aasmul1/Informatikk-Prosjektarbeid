@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "No such note")
 public class FileException extends RuntimeException {
 
-    public FileException(String message) {
-        super(message);
-    }
+  public FileException(String message) {
+    super(message);
+  }
 
-    public FileException() {
-        super("No matching note exists");
-    }
+  public FileException() {
+    super("No matching note exists");
+  }
 
 }

@@ -11,13 +11,14 @@ import core.NoteOverview;
 
 public class NoteOverviewSerializer extends JsonSerializer<NoteOverview> {
 
-    @Override
-    public void serialize(NoteOverview noteOverview, JsonGenerator jsonGen, SerializerProvider provider) throws IOException {
-        jsonGen.writeStartArray();
-        for (Note note: noteOverview.getNotes()) {
-            jsonGen.writeObject(note);
-        }
-        jsonGen.writeEndArray();
+  @Override
+  public void serialize(NoteOverview noteOverview, JsonGenerator jsonGen,
+      SerializerProvider provider) throws IOException {
+    jsonGen.writeStartArray();
+    for (Note note : noteOverview.getNotes()) {
+      jsonGen.writeObject(note);
     }
-    
+    jsonGen.writeEndArray();
+  }
+
 }

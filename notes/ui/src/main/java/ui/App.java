@@ -16,28 +16,28 @@ import dataaccess.LocalNotesAccess;
  */
 public class App extends Application {
 
-    @Override
-    public void start(Stage stage) throws IOException {
-        final FXMLLoader loader = new FXMLLoader();
+  @Override
+  public void start(Stage stage) throws IOException {
+    final FXMLLoader loader = new FXMLLoader();
 
-        LoginController controller = new LoginController();
-        controller.setDataAccess(new LocalNotesAccess()); // TODO: remote/local
-        loader.setController(controller);
-        loader.setLocation(App.class.getResource("/ui/Login.fxml"));
-        final Parent parent = loader.load();
-        stage.setScene(new Scene(parent));
-        stage.show();
+    LoginController controller = new LoginController();
+    controller.setDataAccess(new LocalNotesAccess()); // TODO: remote/local
+    loader.setController(controller);
+    loader.setLocation(App.class.getResource("/ui/Login.fxml"));
+    final Parent parent = loader.load();
+    stage.setScene(new Scene(parent));
+    stage.show();
+  }
+
+
+  public static void supportHeadless() {
+    if (Boolean.getBoolean("headless")) {
+      System.setProperty("testfx.robot", "glass");
+      System.setProperty("testfx.headless", "true");
+      System.setProperty("prism.order", "sw");
+      System.setProperty("prism.text", "t2k");
+      System.setProperty("java.awt.headless", "true");
     }
+  }
 
-    
-    public static void supportHeadless() {
-        if (Boolean.getBoolean("headless")) {
-          System.setProperty("testfx.robot", "glass");
-          System.setProperty("testfx.headless", "true");
-          System.setProperty("prism.order", "sw");
-          System.setProperty("prism.text", "t2k");
-          System.setProperty("java.awt.headless", "true");
-        }
-      }
-    
 }

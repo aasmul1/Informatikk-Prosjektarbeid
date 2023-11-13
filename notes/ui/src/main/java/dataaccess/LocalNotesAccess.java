@@ -13,137 +13,137 @@ import json.AccountsPersistence;
 
 public class LocalNotesAccess implements NotesAccess {
 
-    private Accounts accounts;
-    private User user;
-    private final AccountsPersistence persistence = new AccountsPersistence();
-    private int selectedIndex;
+  private Accounts accounts;
+  private User user;
+  private final AccountsPersistence persistence = new AccountsPersistence();
+  private int selectedIndex;
 
-    /**
-     * Loads accounts from json-file.
-     */
-    public LocalNotesAccess() {
-        persistence.setFilePath("Accounts.json");
-        try {
-          this.accounts = persistence.loadAccounts();
-        } catch (IllegalStateException | IOException e) {
-          this.accounts = new Accounts();
-          try {
-            persistence.saveAccounts(accounts);
-          } catch (IllegalStateException | IOException e1) {
-            System.out.println(e1.getMessage());
-          }
-        }
+  /**
+   * Loads accounts from json-file.
+   */
+  public LocalNotesAccess() {
+    persistence.setFilePath("Accounts.json");
+    try {
+      this.accounts = persistence.loadAccounts();
+    } catch (IllegalStateException | IOException e) {
+      this.accounts = new Accounts();
+      try {
+        persistence.saveAccounts(accounts);
+      } catch (IllegalStateException | IOException e1) {
+        System.out.println(e1.getMessage());
+      }
+    }
+  }
+
+  @Override
+  public void setTestMode() {
+    persistence.setFilePath("AccountsTest.json");
+    try {
+      this.accounts = persistence.loadAccounts();
+    } catch (IllegalStateException | IOException e) {
+      this.accounts = new Accounts();
+      try {
+        persistence.saveAccounts(accounts);
+      } catch (IllegalStateException | IOException e1) {
+        System.out.println(e1.getMessage());
+      }
     }
 
-    @Override
-    public void setTestMode() {
-        persistence.setFilePath("AccountsTest.json");
-        try {
-          this.accounts = persistence.loadAccounts();
-        } catch (IllegalStateException | IOException e) {
-          this.accounts = new Accounts();
-          try {
-            persistence.saveAccounts(accounts);
-          } catch (IllegalStateException | IOException e1) {
-            System.out.println(e1.getMessage());
-          }
-        }
-        
+  }
+
+  @Override
+  public void createUser(User user) {
+    if (user != null) {
+      accounts.addUser(user);
+      update();
     }
+  }
 
-    @Override
-    public void createUser(User user) {
-        if (user != null) {
-            accounts.addUser(user);
-            update();
-        }
+  @Override
+  public Accounts readAccounts() throws IOException {
+    return persistence.loadAccounts();
+  }
+
+  @Override
+  public User userLogin(String username, String password) {
+    this.user = accounts.getUser(username, password);
+    return user;
+
+  }
+
+  @Override
+  public User getLoggedInUser() {
+    if (user == null)
+      throw new IllegalArgumentException("User not logged in"); // TODO: user not logged inn error
+    return this.user;
+  }
+
+  @Override
+  public void addNote(Note note) {
+    getLoggedInUser().addNote(note);
+    update();
+  }
+
+  @Override
+  public void updateNotes(String username) {
+    update();
+  }
+
+  public void update() {
+    try {
+      persistence.saveAccounts(accounts);
+    } catch (StreamWriteException e) {
+      // TODO: error
+    } catch (DatabindException e) {
+      // TODO: error
+    } catch (IOException e) {
+      // TODO: error
     }
+  }
 
-    @Override
-    public Accounts readAccounts() throws IOException {
-        return persistence.loadAccounts();
-    }
+  @Override
+  public NoteOverview getUserNoteOverview() {
+    return getLoggedInUser().getNoteOverview();
+  }
 
-    @Override
-    public User userLogin(String username, String password) {
-        this.user = accounts.getUser(username, password);
-        return user;
+  @Override
+  public void deleteNote(int index) {
+    getUserNoteOverview().deleteNote(index);
+    update();
+  }
 
-    }
+  @Override
+  public void sortNotesByCreatedDate() {
+    getUserNoteOverview().sortNotesByCreatedDate();
+    update();
+  }
 
-    @Override
-    public User getLoggedInUser() {
-        if (user == null)
-            throw new IllegalArgumentException("User not logged in"); // TODO: user not logged inn error
-        return this.user;
-    }
+  @Override
+  public void sortNotesByTitle() {
+    getUserNoteOverview().sortNotesByTitle();
+    update();
+  }
 
-    @Override
-    public void addNote(Note note) {
-        getLoggedInUser().addNote(note);
-        update();
-    }
+  @Override
+  public void sortNotesByLastEditedDate() {
+    getUserNoteOverview().sortNotesByLastEditedDate();
+    update();
+  }
 
-    @Override
-    public void updateNotes(String username) {
-        update();
-    }
+  @Override
+  public Note getNote(String username, int index) {
+    return user.getNoteByIndex(index);
+  }
 
-    public void update() {
-        try {
-            persistence.saveAccounts(accounts);
-        } catch (StreamWriteException e) {
-            // TODO: error
-        } catch (DatabindException e) {
-            // TODO: error
-        } catch (IOException e) {
-            // TODO: error
-        }
-    }
+  @Override
+  public void setSelectedIndex(int index) {
+    this.selectedIndex = index;
+  }
 
-    @Override
-    public NoteOverview getUserNoteOverview() {
-        return getLoggedInUser().getNoteOverview();
-    }
+  @Override
+  public int getSelectedIndex() {
+    return this.selectedIndex;
+  }
 
-    @Override
-    public void deleteNote(int index) {
-        getUserNoteOverview().deleteNote(index);
-        update();
-    }
 
-    @Override
-    public void sortNotesByCreatedDate() {
-        getUserNoteOverview().sortNotesByCreatedDate();
-        update();
-    }
-
-    @Override
-    public void sortNotesByTitle() {
-        getUserNoteOverview().sortNotesByTitle();
-        update();
-    }
-
-    @Override
-    public void sortNotesByLastEditedDate() {
-        getUserNoteOverview().sortNotesByLastEditedDate();
-        update();
-    }
-
-    @Override
-    public Note getNote(String username, int index) {
-        return user.getNoteByIndex(index);
-    }
-
-    @Override
-    public void setSelectedIndex(int index) {
-        this.selectedIndex = index;
-    }
-
-    @Override
-    public int getSelectedIndex() {
-        return this.selectedIndex;
-    }
-
-    
 }

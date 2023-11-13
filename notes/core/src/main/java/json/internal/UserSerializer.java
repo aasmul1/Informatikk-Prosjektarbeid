@@ -10,21 +10,22 @@ import core.User;
 
 public class UserSerializer extends JsonSerializer<User> {
 
-    public static final String USERNAME_FIELD_NAME = "username";
-    public static final String PASSWORD_FIELD_NAME = "password";
-    public static final String NOTEOVERVIEW_FIELD_NAME = "noteOverview";
+  public static final String USERNAME_FIELD_NAME = "username";
+  public static final String PASSWORD_FIELD_NAME = "password";
+  public static final String NOTEOVERVIEW_FIELD_NAME = "noteOverview";
 
-    
-    /** Format: {username: username, password: password, noteOverview: [notes]} */
-    @Override
-    public void serialize(User user, JsonGenerator jsonGen, SerializerProvider serializers) throws IOException {
-        jsonGen.writeStartObject();
-        jsonGen.writeFieldName(USERNAME_FIELD_NAME);
-        jsonGen.writeString(user.getUsername());
-        jsonGen.writeFieldName(PASSWORD_FIELD_NAME);
-        jsonGen.writeString(user.getPassword());
-        jsonGen.writeFieldName(NOTEOVERVIEW_FIELD_NAME);
-        jsonGen.writeObject(user.getNoteOverview());
-        jsonGen.writeEndObject();
-    }
+
+  /** Format: {username: username, password: password, noteOverview: [notes]} */
+  @Override
+  public void serialize(User user, JsonGenerator jsonGen, SerializerProvider serializers)
+      throws IOException {
+    jsonGen.writeStartObject();
+    jsonGen.writeFieldName(USERNAME_FIELD_NAME);
+    jsonGen.writeString(user.getUsername());
+    jsonGen.writeFieldName(PASSWORD_FIELD_NAME);
+    jsonGen.writeString(user.getPassword());
+    jsonGen.writeFieldName(NOTEOVERVIEW_FIELD_NAME);
+    jsonGen.writeObject(user.getNoteOverview());
+    jsonGen.writeEndObject();
+  }
 }

@@ -17,40 +17,40 @@ import core.User;
 
 public class CreateUserController extends AbstractController {
 
-    @FXML
-    private TextField createUsernameInput;
-    @FXML
-    private TextField createPasswordInput;
-    @FXML
-    private TextField confirmPasswordInput;
-    @FXML
-    private Button createUser;
-    @FXML
-    private Text errorMessageDisplay;
+  @FXML
+  private TextField createUsernameInput;
+  @FXML
+  private TextField createPasswordInput;
+  @FXML
+  private TextField confirmPasswordInput;
+  @FXML
+  private Button createUser;
+  @FXML
+  private Text errorMessageDisplay;
 
-    private String username;
-    private String password;
-    private String confirmPassword;
+  private String username;
+  private String password;
+  private String confirmPassword;
 
-    @FXML
-    private void createUser(ActionEvent event) throws IOException {
+  @FXML
+  private void createUser(ActionEvent event) throws IOException {
 
-        try {
-            UserValidation.checkValidUsername(createUsernameInput.getText());
-            username = createUsernameInput.getText();
-            UserValidation.checkValidPassword(createPasswordInput.getText());
-            password = createPasswordInput.getText();
-            confirmPassword = confirmPasswordInput.getText().trim();
-            UserValidation.checkEqualPassword(password, confirmPassword);
+    try {
+      UserValidation.checkValidUsername(createUsernameInput.getText());
+      username = createUsernameInput.getText();
+      UserValidation.checkValidPassword(createPasswordInput.getText());
+      password = createPasswordInput.getText();
+      confirmPassword = confirmPasswordInput.getText().trim();
+      UserValidation.checkEqualPassword(password, confirmPassword);
 
-            NoteOverview noteOverview = new NoteOverview(); // empty noteoverview
-            User user = new User(username, password, noteOverview);
-            getDataAccess().createUser(user);
+      NoteOverview noteOverview = new NoteOverview(); // empty noteoverview
+      User user = new User(username, password, noteOverview);
+      getDataAccess().createUser(user);
 
-            setScene(Controllers.LOGIN, event, getDataAccess());
+      setScene(Controllers.LOGIN, event, getDataAccess());
 
-        } catch (IllegalArgumentException e) {
-            errorMessageDisplay.setText(e.getMessage());
-        }
+    } catch (IllegalArgumentException e) {
+      errorMessageDisplay.setText(e.getMessage());
     }
+  }
 }

@@ -12,7 +12,7 @@ public class ApiError {
   private final int status;
   private final HttpStatus httpStatus;
   private final LocalDateTime timestamp;
-  
+
   /**
    * Api error message including following.
    *
@@ -26,7 +26,7 @@ public class ApiError {
     this.status = status;
     this.httpStatus = httpStatus;
     this.timestamp = timestamp;
-  } 
+  }
 
   public String getMessage() {
     return message;

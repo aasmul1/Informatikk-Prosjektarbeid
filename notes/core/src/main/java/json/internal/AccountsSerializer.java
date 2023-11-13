@@ -10,14 +10,14 @@ import core.User;
 import core.Accounts;
 
 public class AccountsSerializer extends JsonSerializer<Accounts> {
-    
 
-    @Override
-    public void serialize(Accounts accounts, JsonGenerator jsonGen, SerializerProvider provider) throws IOException {
-        jsonGen.writeStartArray();
-        for (User user: accounts.getAccounts()) {
-            jsonGen.writeObject(user);
-        }
-        jsonGen.writeEndArray();
+  @Override
+  public void serialize(Accounts accounts, JsonGenerator jsonGen, SerializerProvider provider)
+      throws IOException {
+    jsonGen.writeStartArray();
+    for (User user : accounts.getAccounts()) {
+      jsonGen.writeObject(user);
     }
+    jsonGen.writeEndArray();
+  }
 }

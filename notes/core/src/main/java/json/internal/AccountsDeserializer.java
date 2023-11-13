@@ -13,21 +13,22 @@ import core.Accounts;
 import core.User;
 
 public class AccountsDeserializer extends JsonDeserializer<Accounts> {
-    private final UserDeserializer userDeserializer = new UserDeserializer();
+  private final UserDeserializer userDeserializer = new UserDeserializer();
 
-    
-    @Override
-    public Accounts deserialize(JsonParser jsonParser, DeserializationContext deserContext) throws IOException, JacksonException {
-        final JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
-        Accounts accounts = new Accounts();
-        if (jsonNode instanceof ArrayNode) {
-            ArrayNode userArray = (ArrayNode) jsonNode;
-            for (JsonNode userNode : userArray) {
-                User user = userDeserializer.deserialize(userNode);
-                accounts.addUser(user);
-            }
-            return accounts;
-        }
-        return null;
+
+  @Override
+  public Accounts deserialize(JsonParser jsonParser, DeserializationContext deserContext)
+      throws IOException, JacksonException {
+    final JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
+    Accounts accounts = new Accounts();
+    if (jsonNode instanceof ArrayNode) {
+      ArrayNode userArray = (ArrayNode) jsonNode;
+      for (JsonNode userNode : userArray) {
+        User user = userDeserializer.deserialize(userNode);
+        accounts.addUser(user);
+      }
+      return accounts;
     }
+    return null;
+  }
 }

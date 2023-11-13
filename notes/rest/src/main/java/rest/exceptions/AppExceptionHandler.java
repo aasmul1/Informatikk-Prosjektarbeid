@@ -16,17 +16,18 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<Object> handleUserNotFound(UserNotFoundException e,
-            WebRequest webRequest) {
-        return new ResponseEntity<>(new ApiError(e.getMessage(), 404,
-                HttpStatus.NOT_FOUND, LocalDateTime.now()), HttpStatus.NOT_FOUND);
-    }
+  @ExceptionHandler(UserNotFoundException.class)
+  public ResponseEntity<Object> handleUserNotFound(UserNotFoundException e, WebRequest webRequest) {
+    return new ResponseEntity<>(
+        new ApiError(e.getMessage(), 404, HttpStatus.NOT_FOUND, LocalDateTime.now()),
+        HttpStatus.NOT_FOUND);
+  }
 
-    @ExceptionHandler(UserAlreadyExistsException.class)
-    public ResponseEntity<Object> handleUserAlreadyExists(UserAlreadyExistsException e,
-            WebRequest webRequest) {
-        return new ResponseEntity<>(new ApiError(e.getMessage(), 409,
-                HttpStatus.CONFLICT, LocalDateTime.now()), HttpStatus.CONFLICT);
-    }
+  @ExceptionHandler(UserAlreadyExistsException.class)
+  public ResponseEntity<Object> handleUserAlreadyExists(UserAlreadyExistsException e,
+      WebRequest webRequest) {
+    return new ResponseEntity<>(
+        new ApiError(e.getMessage(), 409, HttpStatus.CONFLICT, LocalDateTime.now()),
+        HttpStatus.CONFLICT);
+  }
 }
