@@ -1,7 +1,7 @@
 
 # RestServer 
 
-The team chose to use the SpringBoot-framework to establish the REST server.
+The team chose to use the SpringBoot-framework to establish the REST server. 
 
 ### Structure 
 
@@ -25,15 +25,49 @@ For all methodes the Host is `localhost:8080`.
 
 - Get User by Username
     - Request: GET `/notes/user?username={username}`
-    - Response: Returns the user with the specified username.
+    - Response: Returns the user object with the specified username, and 200 OK response if successful. Otherwise it returns a 404 Not Found response.
 
 - Authenticate User
     - Request: POST `/notes/authenticate-user?username={username}&password={password}`
-    - Response: Authenticates a user with the provided username and password.
+    - Response: Authenticates the user with the provided username and password, and return this user if successful with HTTP status 200 OK. Else it returns a 404 Not Found response. 
 
 - Create User
     - Request: PUT `/notes/create-user`
     - Content-Type: application/json
-    - Response: Creates a new user.
+    - Response: Creates a new user. A successful creation will result in a 200 OK response. Otherwise, a response with a status code of 409 and the message "......." will be received.
+
+```
+{
+  "username" : "User",
+
+  "password" : "Password1",
+}
+```
+
+**Notes**
+- Get User`s Note By Index
+    - Request: GET `/notes/user/note?username={username}&index={index}`
+    - Response: Returns the note object for the specified index and user. 
+
+- Create Note
+    - Request: PUT `/notes/create-note?username={username}
+    - Content-Type: application/json
+    - Response: Creates a new note for the specified user. A successful creation of a user will result in a 200 OK response. Otherwise, a response with a status code of 409 and the message "........." will be received.
+
+- Delete Note
+    - Request: DELETE `/notes/delete-note?username={username}&index={index}`
+    - Response: Deletes a note for the specified index and user. If the note was deleted successfully the response will be 200 OK. //TODO
+
+- Sort Notes by Created Date
+    - Request: POST `/notes/user/sort-created?username={username}`
+    - Response: Sorts the user's notes list by created date.
+
+- Sort Notes by Title
+    - Request: POST `/notes/user/sort-title?username={username}`
+    - Response: Sorts the user's notes list by title.
+
+- Sort Notes by Last Edited Date
+    - Request: POST `/notes/user/sort-edited?username={username}`
+    - Response: Sorts the user's notes list by last edited date.
 
 
