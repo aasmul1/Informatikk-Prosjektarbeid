@@ -62,6 +62,54 @@ class Accounts {
     + User getUser(String)
 }
 
+class UserValidation {
+    - USERNAME_REGEX: Pattern 
+    - PASSWORD_REGEX: Pattern
+    --
+    + void checkValidUsername(String)
+    + void checkValidPassword(String)
+    + void isNotExistingUser(String, String, Accounts)
+    + void checkValidUser(String, String)
+    + void checkEqualPassword(String, String)
+    + void allFieldsEmpty(String, String)
+    + void isValidLogin(String, String, Accounts)
+    + boolean isEmpty(String)
+}
+
+class CreatedDateComparator {
+    + compare(Note, Note)
+}
+
+class EditedDateComparator {
+    + compare(Note, Note)
+}
+
+class TitleComparator {
+    + compare(Note, Note)
+}
+
+class Errors {
+    USERNAME_FIELD_EMPTY
+    PWD_FIELD_EMPTY
+    EVERYTHING_EMPTY
+    INVALID_USERNAME
+    INVALID_PWD
+    WRONG_PASSWORD
+    NOT_REGISTERED
+    NOT_EQUAL_PASSWORD
+    NOT_EQUAL_USERNAME
+    EQUAL_NOTE_TITLE
+    NOTE_DOESNT_EXIST
+    INVALID_CREATE_DATE
+    EXISTING_USER
+    NOT_EXISTING_USER
+    SELECT_NOTE
+    EMPTY_TITLE
+    EMPTY_TEXT
+    INVALID_INDEX
+}
+
+
 NoteOverview "1" --> "*" Note : "Contains"
 User "1" --> "1" NoteOverview : "Contains"
 Accounts "1" --> "*" User : "Contains"
