@@ -4,7 +4,7 @@ The core module is the main part of the application. It's made up of important J
 ### **Structure**
 In the core directory, there are two subfolders: core and json. The core folder contains code related to logic, while the json folder houses the code for file management.
 
-Class diagram of the core class can be found [here](/diagrams/README.md). TODO fikse link
+Class diagram of the core class can be found [here](../diagrams/README.md). 
 
 ### JSON File Format
 #
@@ -28,6 +28,9 @@ In our project, JSON files are structured as follows:
 - [Note.java](src/main/java/core/Note.java):
 - [NoteOverview.java](src/main/java/core/NoteOverview.java):
 - [TitleComparator.java](src/main/java/core/TitleComparator.java):
+- [User.java](src/main/java/core/User.java):
+- [UserValidation.java](src/main/java/core/UserValidation.java):
+
 
 `Note` class handles represents an individual note. It enforces non-empty title and text through validation in the setters. `NoteOverview` manages a collection of Note objects, and has functionality such as add, remove and sort notes. 
 
@@ -56,30 +59,36 @@ The three classes `CreatedDateComaprator`, `EditedDateComaprator` and `TitleComa
     - [NoteSerializer.java](src/main/java/json/internal/NoteSerializer.java)
     - [UserDeserializer.java](src/main/java/json/internal/UserDeserializer.java)
     - [UserSerializer.java](src/main/java/json/internal/UserSerializer.java) 
-
+#
 ### **Tests**
+
+Listed below are the test classes that validate their corresponding classes in the core module. Our goal has been to achieve a test coverage of 90%, using the Jacoco plugin. In pursuit of this target, we've employed JUnit for our testing procedures.
 #
 ### Test classes
-TODO skrive om tester, testdekningsgrad
 
 **core tests**
-- [AccountsTest.java](src/test/java/core/AccountsTest.java)
-- [CreatedDateComparatorTest.java](src/test/java/core/CreatedDateComparatorTest.java)
-- [EditedDateComparatorTest.java](src/test/java/core/EditedDateComparatorTest.java)
-- [NoteOverviewTest.java](src/test/java/core/NoteOverviewTest.java)
-- [NoteTest.java](src/test/java/core/NoteTest.java)
-- [TitleComparatorTest.java](src/test/java/core/TitleComparatorTest.java)
-- [UserTest.java](src/test/java/core/UserTest.java)
-- [UserValidationTest.java](src/test/java/core/UserValidationTest.java)
+- [AccountsTest.java](src/test/java/core/AccountsTest.java) &rarr; Test for  [Accounts.java](src/main/java/core/Accounts.java) 
+- [CreatedDateComparatorTest.java](src/test/java/core/CreatedDateComparatorTest.java) &rarr; Test for [CreatedDateComparator.java](src/main/java/core/CreatedDateComparator.java)
+
+- [EditedDateComparatorTest.java](src/test/java/core/EditedDateComparatorTest.java) &rarr; Test for [EditedDateComparator.java](src/main/java/core/EditedDateComparator.java)
+
+- [NoteOverviewTest.java](src/test/java/core/NoteOverviewTest.java) &rarr; Test for [NoteOverview.java](src/main/java/core/NoteOverview.java)
+
+- [NoteTest.java](src/test/java/core/NoteTest.java) &rarr; Test for [Note.java](src/main/java/core/Note.java)
+- [TitleComparatorTest.java](src/test/java/core/TitleComparatorTest.java) &rarr; Test for [TitleComparator.java](src/main/java/core/TitleComparator.java)
+
+- [UserTest.java](src/test/java/core/UserTest.java) &rarr; Test for [User.java](src/main/java/core/User.java)
+
+- [UserValidationTest.java](src/test/java/core/UserValidationTest.java) &rarr; Test for [UserValidation.java](src/main/java/core/UserValidation.java):
+
 
 **json tests**
-- [AccountsPersistanceTest.java](src/test/java/json/AccountsPersistanceTest.java)
+- [AccountsPersistanceTest.java](src/test/java/json/AccountsPersistanceTest.java) &rarr; Test for [AccountsPersistence.java](src/main/java(json/AccountsPersistance.java))
 
     **internal**
-    - [AccountsJsonTest.java](src/test/java/json/internal/AccountsJsonTest.java)
+    - [AccountsJsonTest.java](src/test/java/json/internal/AccountsJsonTest.java) &rarr; Test for all classes in internal folder
 
-### Test coverage
-#
+
 
 
 
