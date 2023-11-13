@@ -96,8 +96,6 @@ public class CreateUserControllerTest extends ApplicationTest {
         assertEquals(Errors.NOT_EQUAL_PASSWORD.getMessage(), errorMessageDisplay.getText());
     }
 
-
-
     /**
      * Test the behavior of the "Create User" button when the entered passwords match,
      * by checking if the user is created and no error message is displayed.
@@ -120,14 +118,11 @@ public class CreateUserControllerTest extends ApplicationTest {
         assertNotEquals(Errors.NOT_EQUAL_PASSWORD.getMessage(), errorMessageDisplay.getText());
     }
 
-    
     /**
-     * Method that deletes file after all the tests are completed
+     * Method that deletes file after all the tests are completed.
      */
     @AfterAll
     public static void tearDown(){
         Path.of(System.getProperty("user.home") + "AccountsTest.json").toFile().delete();
-
-    }
-    
+    } 
 }

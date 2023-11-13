@@ -1,20 +1,19 @@
 package ui.controllers;
 
-import java.io.IOException;
-
+import core.NoteOverview;
+import core.User;
+import core.UserValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import java.io.IOException;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import core.UserValidation;
-import core.NoteOverview;
-import core.User;
 
 /**
- * This is the class for controlling CreateUser scene.
+ * The CreateUserController class manages the user creation interface of the application.
+ * It provides functionalities to input new user details and create a user account.
  */
-
 public class CreateUserController extends AbstractController {
 
   @FXML
@@ -32,6 +31,15 @@ public class CreateUserController extends AbstractController {
   private String password;
   private String confirmPassword;
 
+  /**
+   * Handles the creation of a new user account when the "Create User" button is clicked.
+   * Validates the input fields for the username and passwords.
+   * Checks if they meet the specified criteria and that passwords match.
+   * If validation passes, a new User object is made and is added to data access layer.
+   *
+   * @param event The ActionEvent triggered by clicking the "Create User" button.
+   * @throws IOException If there is an issue with transitioning scenes.
+   */
   @FXML
   private void createUser(ActionEvent event) throws IOException {
 

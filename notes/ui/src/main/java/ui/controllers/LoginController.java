@@ -1,7 +1,6 @@
 package ui.controllers;
 
 import java.io.IOException;
-
 import core.UserValidation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,19 +8,29 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+/**
+ * The LoginController class manages the login interface of the application.
+ * It handles user authentication and navigation to different parts of the application.
+ */
 public class LoginController extends AbstractController {
 
   /**
-   * Input fields
+   * Input field.
    */
   @FXML
-  private TextField usernameInput, passwordInput;
+  private TextField usernameInput;
+  
+  /**
+   * Input field.
+   */
+  @FXML
+  private TextField passwordInput;
 
   @FXML
   private Text errorMessage;
 
   /**
-   * Button to initialize login
+   * Button to initialize login.
    */
   @FXML
   private Button loginButton;
@@ -29,6 +38,14 @@ public class LoginController extends AbstractController {
   @FXML
   private Button createUserButton;
 
+
+  /**
+   * Handles the action triggered by the "Create User" button.
+   * Navigates to the user creation interface.
+   *
+   * @param event The ActionEvent triggered by clicking the "Create User" button.
+   * @throws IOException If there is an issue with transitioning scenes.
+   */
   @FXML
   public void createUserAction(ActionEvent event) throws IOException {
     setScene(Controllers.CREATE_USER, event, getDataAccess());
@@ -37,7 +54,7 @@ public class LoginController extends AbstractController {
   /**
    * Handles the user login action Initiates the user login process by first accessing and
    * retrieving user information .json-file Displays any issues directly on the UI.
-   * 
+   *
    * @param event when clicking on "logg inn"
    * @throws IOException if something goes wrong when reading from file
    */

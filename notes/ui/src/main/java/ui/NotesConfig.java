@@ -3,9 +3,15 @@ package ui;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * NotesConfig is responsible for loading access to configuration properties for the application.
+ */
 public class NotesConfig {
   private Properties properties;
 
+  /**
+   * Constructor for NotesConfig.
+   */
   public NotesConfig() {
     this.properties = new Properties();
 
@@ -17,7 +23,7 @@ public class NotesConfig {
   }
 
   /**
-   * With a key, value from notes.properties will be returned
+   * With a key, value from notes.properties will be returned.
    *
    * @param key the key
    * @return the value

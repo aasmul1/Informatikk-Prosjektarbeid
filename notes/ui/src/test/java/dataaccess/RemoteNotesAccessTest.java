@@ -41,22 +41,12 @@ public class RemoteNotesAccessTest {
 
     @BeforeEach
     private void setup() throws URISyntaxException {
-        // wireMockConfig = WireMockConfiguration.wireMockConfig().port(8080);
-        // wireMockServer = new WireMockServer(wireMockConfig.portNumber());
-        // wireMockServer.start();
-        // WireMock.configureFor("localhost", wireMockConfig.portNumber());
-        // NotesConfig notesConfig = new NotesConfig();
-        // dataAccess = new RemoteNotesAccess(
-        // new URI(notesConfig.getProperty("serverURI"))
-        // );
-        // dataAccess.setTestMode();
         wireMockConfig = WireMockConfiguration.wireMockConfig().port(8089);
         wireMockServer = new WireMockServer(wireMockConfig.portNumber());
         wireMockServer.start();
         WireMock.configureFor("localhost", wireMockConfig.portNumber());
         dataAccess = new RemoteNotesAccess(new URI("http://localhost:8089/notes"));
         addTestUsers();
-
     }
 
     private void addTestUsers() {
@@ -78,7 +68,6 @@ public class RemoteNotesAccessTest {
         testAccounts = new Accounts();
         testAccounts.addUser(employee1);
         testAccounts.addUser(employee2);
-
     }
 
     @Test
@@ -90,7 +79,6 @@ public class RemoteNotesAccessTest {
         assertEquals(3, dataAccess.getSelectedIndex());
     }
 
-    
     @Test
     public void testGetAccounts() throws Exception {
         WireMock.stubFor(WireMock.get(urlEqualTo("/accounts"))
@@ -115,7 +103,6 @@ public class RemoteNotesAccessTest {
         WireMock.stubFor(WireMock.post(urlEqualTo("/authenticate-user?username=testuserone&password=Password1"))
         .willReturn(WireMock.aResponse()
         .withStatus(404)
-        // .withHeader("Content-Type", "application/json")
         .withBody(objectmapper.writeValueAsString(testAccounts.getUser("testuserone")))));
     }
     
@@ -126,7 +113,6 @@ public class RemoteNotesAccessTest {
         WireMock.stubFor(WireMock.post(urlEqualTo("/authenticate-user?username=testuserone&password=Password1"))
         .willReturn(WireMock.aResponse()
         .withStatus(200)
-        // .withHeader("Content-Type", "application/json")
         .withBody(objectmapper.writeValueAsString(testAccounts.getUser("testuserone")))));
         dataAccess.userLogin("testuserone", "Password1");
         

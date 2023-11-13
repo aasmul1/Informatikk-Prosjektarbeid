@@ -1,45 +1,53 @@
 package dataaccess;
 
-import java.io.IOException;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.net.URI;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.http.HttpRequest.BodyPublishers;
-import java.net.http.HttpClient;
-
 import core.Accounts;
 import core.Note;
 import core.NoteOverview;
 import core.User;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
+import java.net.http.HttpResponse;
 import json.AccountsPersistence;
 
+/**
+ * RemoteNotesAccess provides data access functionalities for a remote note-taking application.
+ * It handles interactions with a server for operations, 
+ * like user authentication, note creation, deletion, and sorting.
+ */
 public class RemoteNotesAccess implements NotesAccess {
 
-  private final URI URI;
+  private final URI uri;
   private ObjectMapper objectMapper;
   private User user;
   private int selectedIndex;
 
+  /**
+   * Constructor for RemoteNotesAccess.
+   *
+   * @param uri The base URI for the remote server. 
+   */
   public RemoteNotesAccess(final URI uri) {
-    this.URI = uri;
+    this.uri = uri;
     this.objectMapper = AccountsPersistence.getObjectMapper();
   }
 
   /**
    * Creates a URI by resolving the input string against the uri for fetching from the server.
    *
-   * @param uri the path.
+   * @param serverUri the path.
    * @return the URI on the server with the given path.
    */
-  public URI resolveUriAccounts(String uri) {
-    return URI.resolve(uri);
+  public URI resolveUriAccounts(String serverUri) {
+    return uri.resolve(serverUri);
   }
 
   /**
-   * Sends HTTP GET message to fetch Accounts object from server
-   */
+   * Sends HTTP GET message to fetch Accounts object from server.
+   */ 
   @Override
   public Accounts readAccounts() {
     Accounts accounts;
@@ -104,13 +112,14 @@ public class RemoteNotesAccess implements NotesAccess {
 
   /**
    * Get method that returns logged in user.
-   * 
+   *
    * @throws IllegalArgumentException if user is not logged in.
    */
   @Override
   public User getLoggedInUser() {
-    if (user == null)
-      throw new IllegalArgumentException("User not logged in"); // TODO: user not logged inn error
+    if (user == null) {
+      throw new IllegalArgumentException("User not logged in"); 
+    }
     return userLogin(user.getUsername(), user.getPassword());
   }
 
@@ -305,6 +314,11 @@ public class RemoteNotesAccess implements NotesAccess {
     return this.selectedIndex;
   }
 
+  /**
+   * Sets the application to test mode by sending an HTTP POST request to the 'test-mode' endpoint.
+   *
+   * @throws RuntimeException if there is an IOException or InterruptedException during the HTTP request.
+   */
   @Override
   public void setTestMode() {
     String postMappingPath = "test-mode";
@@ -318,6 +332,11 @@ public class RemoteNotesAccess implements NotesAccess {
     }
   }
 
+  /**
+   * Switches the application back to normal mode from test mode by sending an HTTP POST request to the 'normal-mode' endpoint.
+   *
+   * @throws RuntimeException if there is an IOException or InterruptedException during the HTTP request.
+   */
   public void setNormalMode() {
     String postMappingPath = "normal-mode";
 

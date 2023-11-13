@@ -1,8 +1,7 @@
 package ui.controllers;
 
+import core.Note;  
 import java.io.IOException;
-
-import core.Note;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+/**
+ * NoteController is responsible for controlling new note creation interface in the application.
+ * It allows users to input the details of a new note and save it to the application.
+ */
 public class NoteController extends AbstractController {
 
   @FXML
@@ -32,7 +35,7 @@ public class NoteController extends AbstractController {
    * Method to handle the creation of a new note when the "Save Note" button is clicked.
    *
    * @param event the ActionEvent triggered by the "Save Note" button click.
-   * @throws IOException
+   * @throws IOException if an I/O error occurs.
    */
   @FXML
   public void newNote(ActionEvent event) throws IOException {
@@ -47,8 +50,5 @@ public class NoteController extends AbstractController {
     } catch (IllegalArgumentException e) {
       errorMessage.setText(e.getMessage());
     }
-
-
   }
-
 }

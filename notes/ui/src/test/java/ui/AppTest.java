@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.AfterEach;
+
 /**
 * Tests that the app runs and that elements are shown.
 */
@@ -28,12 +29,10 @@ public class AppTest extends ApplicationTest {
         assertThat(lookup("#usernameInput").tryQuery()).isPresent();
         assertThat(lookup("#passwordInput").tryQuery()).isPresent();
         assertThat(lookup("#errorMessage").tryQuery()).isPresent();
-
-
     }
 
     /**
-     * Tests that the method supportHeadless method works
+     * Tests that the method supportHeadless method works.
      */
     @Test
     void testSupportHeadlessWhenHeadlessIsTrue() {
@@ -49,11 +48,10 @@ public class AppTest extends ApplicationTest {
         assertEquals("sw", System.getProperty("prism.order"));
         assertEquals("t2k", System.getProperty("prism.text"));
         assertEquals("true", System.getProperty("java.awt.headless"));
-
     }
 
     /**
-     * Method that clears properties
+     * Method that clears properties.
      */
     @AfterEach
     void tearDownProperties() {

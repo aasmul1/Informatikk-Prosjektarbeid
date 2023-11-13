@@ -59,9 +59,7 @@ public class AppControllerTest extends ApplicationTest{
     private LocalDate createdDate2 = LocalDate.parse("2023-10-10");   
     private Note note = new Note("B test", "Test Text",createdDate,editedDate2);
     private Note note2 = new Note("A test", "Test text",createdDate2, editedDate);
-    
-    
-    
+  
     @Override
     public void start(Stage stage) throws IOException {
         dataAccess.setTestMode();
@@ -77,11 +75,10 @@ public class AppControllerTest extends ApplicationTest{
         final Parent parent = fxmlLoader.load();
         stage.setScene(new Scene(parent));
         stage.show();
-        controller.startScene();
-        
+        controller.startScene();   
     }
     /**
-    * Help method that looks up that elements in ui are there
+    * Help method that looks up that elements in ui are there.
     */
     @BeforeEach
     public void initFields() {
@@ -100,7 +97,6 @@ public class AppControllerTest extends ApplicationTest{
      */
     public void loginUser() throws IOException {
 
-
         if (!dataAccess.readAccounts().containsUser(user)) {
             dataAccess.createUser(user);
         }
@@ -109,8 +105,8 @@ public class AppControllerTest extends ApplicationTest{
         
         dataAccess.addNote(note);
         dataAccess.addNote(note2);
-
     }
+
     /**
      * Tests that the components are not null.
      */
@@ -121,8 +117,7 @@ public class AppControllerTest extends ApplicationTest{
         assertNotNull(newNoteButton);
         assertNotNull(listView);
         assertNotNull(comboBox);  
-        assertNotNull(errorMessage);  
-
+        assertNotNull(errorMessage);
     }
 
     /**
@@ -173,9 +168,6 @@ public class AppControllerTest extends ApplicationTest{
         robot.clickOn("Note to delete");
         robot.clickOn("#DeleteNoteButton");
         assertTrue(node2.getItems().size()==3);
-        
-
-
     }
 
     /**
@@ -222,9 +214,6 @@ public class AppControllerTest extends ApplicationTest{
         robot.clickOn("#editNoteButton");
         anchorpane = lookup("#noteeditpane").query();
         assertTrue(anchorpane.isVisible());
-        
-        
-
     }
 
     /**
@@ -261,7 +250,7 @@ public class AppControllerTest extends ApplicationTest{
     }
 
     /**
-     * Help method to verify that sorting button works
+     * Help method to verify that sorting button works.
      */
     private void verifyOrderOfNotes(String orderDescription, int k) {
         ListView<Note> notesListView = lookup("#NoteListView").query();
@@ -280,19 +269,16 @@ public class AppControllerTest extends ApplicationTest{
             LocalDate firstNoteCreatedDate = items.get(0).getCreatedDate();  
             LocalDate secondNoteCreatedDate = items.get(1).getCreatedDate();
             assertTrue(secondNoteCreatedDate.isBefore(firstNoteCreatedDate), "The first note's creation date should be before the second note's creation date.");
-    
         }
     }
    
     /**
-     * Method that deletes file after tests are completed
+     * Method that deletes file after tests are completed.
      */
     @AfterAll
     public static void tearDown(){
         Path.of(System.getProperty("user.home"), "AccountsTest.json").toFile().delete();
-
     }
-    
 }
 
 

@@ -1,8 +1,7 @@
 package ui.controllers;
 
+import core.Note;  
 import java.io.IOException;
-
-import core.Note;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+/**
+ * The NoteEditController class is responsible for controlling the note editing.
+ * It allows users to make changes to an existing note, save these changes, or undo them.
+ */
 public class NoteEditController extends AbstractController {
 
   private Note oldNote;
@@ -23,7 +26,10 @@ public class NoteEditController extends AbstractController {
   private TextField noteInputTitle;
 
   @FXML
-  private Button saveNoteButton, undoChangesButton;
+  private Button saveNoteButton;
+
+  @FXML
+  private Button undoChangesButton;
 
   @FXML
   private TextArea noteInputText;
@@ -32,10 +38,8 @@ public class NoteEditController extends AbstractController {
   private Text errorMessage;
 
   /**
-   * Sets the current note for editing to the selected note from AppController and updates the text
-   * fields in the with the details of the provided note object.
-   *
-   * @param note the Note object to be edited.
+   * Sets the current note for editing to the selected note from AppController. 
+   * Updates the text fields in the with the details of the provided note object.
    */
   public void loadEditInfo() {
     this.oldNote = dataAccess.getNote(dataAccess.getLoggedInUser().getUsername(),
@@ -79,9 +83,6 @@ public class NoteEditController extends AbstractController {
     } catch (IllegalArgumentException e) {
       errorMessage.setText(e.getMessage());
     }
-
-
-
   }
 
   /**
@@ -94,5 +95,4 @@ public class NoteEditController extends AbstractController {
   public void undo(ActionEvent event) throws IOException {
     setScene(Controllers.NOTEOVERVIEW, event, dataAccess);
   }
-
 }

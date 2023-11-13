@@ -9,6 +9,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+/**
+ * CustomListCell is a custom cell for displaying Note objects in a JavaFX ListView.
+ */
 public class CustomListCell extends ListCell<Note> {
   private HBox content;
   private Text title = new Text();
@@ -23,15 +26,15 @@ public class CustomListCell extends ListCell<Note> {
    */
   public CustomListCell() {
     super();
-    VBox vBox = new VBox(title, text);
-    HBox hBox = new HBox(date);
+    VBox vbox = new VBox(title, text);
+    HBox hbox = new HBox(date);
 
-    content = new HBox(vBox, hBox);
+    content = new HBox(vbox, hbox);
     content.setSpacing(10);
 
     // Set alignment for the child HBoxes
-    HBox.setHgrow(vBox, Priority.ALWAYS); // Makes vBox take as much space as possible on the left
-    HBox.setHgrow(hBox, Priority.NEVER);
+    HBox.setHgrow(vbox, Priority.ALWAYS); // Makes vBox take as much space as possible on the left
+    HBox.setHgrow(hbox, Priority.NEVER);
   }
 
   /**
