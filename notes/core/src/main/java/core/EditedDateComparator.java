@@ -2,10 +2,13 @@ package core;
 
 import java.util.Comparator;
 
+/**
+ * Comparator for Notes based on their last edited date.
+ */
 public class EditedDateComparator implements Comparator<Note> {
 
   /**
-   * Compares two notes based on their last edited date
+   * Compares two notes based on their last edited date.
    *
    * @param note1 the first note to be compared
    * @param note2 the second note to be compared

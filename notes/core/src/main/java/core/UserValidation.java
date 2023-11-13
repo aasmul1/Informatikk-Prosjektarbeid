@@ -2,6 +2,9 @@ package core;
 
 import java.util.regex.Pattern;
 
+/**
+ * Class for validating users.
+ */
 public class UserValidation {
 
   private static final Pattern USERNAME_REGEX = Pattern.compile("^([a-åA-Å0-9]{3,})$");
@@ -9,7 +12,7 @@ public class UserValidation {
       Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[a-zA-Z]).{8,}$");
 
   /**
-   * Check if string is valid according to REGEX pattern
+   * Check if string is valid according to REGEX pattern.
    *
    * @param regex to match with
    * @param string to match
@@ -21,8 +24,8 @@ public class UserValidation {
 
 
   /**
-   * Validates username
-   * 
+   * Validates username.
+   *
    * @param username to check
    * @throws IllegalArgumentException if field is empty or if username is invalid
    */
@@ -36,8 +39,8 @@ public class UserValidation {
   }
 
   /**
-   * Validates the password
-   * 
+   * Validates the password.
+   *
    * @param password to check
    * @throws IllegalArgumentException if password is empty or invalid
    */
@@ -51,8 +54,8 @@ public class UserValidation {
   }
 
   /**
-   * Check if user exists
-   * 
+   * Check if user exists.
+   *
    * @param username to check
    * @param password to check
    * @param accounts check if user exists in accounts
@@ -67,7 +70,7 @@ public class UserValidation {
 
   /**
    * Checks if an attempt to create new user is valid.
-   * 
+   *
    * @param username users username
    * @param password users password
    */
@@ -77,6 +80,12 @@ public class UserValidation {
     checkValidPassword(password);
   }
 
+  /**
+   * Checks if two passwords are equal.
+   *
+   * @param password to check
+   * @param confirmedPassword whick is correct
+   */
   public static void checkEqualPassword(String password, String confirmedPassword) {
     if (!password.equals(confirmedPassword)) {
       throw new IllegalArgumentException(Errors.NOT_EQUAL_PASSWORD.getMessage());
@@ -84,8 +93,8 @@ public class UserValidation {
   }
 
   /**
-   * Checks if all fields are empty
-   * 
+   * Checks if all fields are empty.
+   *
    * @param username to check
    * @param password to check
    * @throws IllegalArgumentException if all fields are empty
@@ -98,8 +107,8 @@ public class UserValidation {
   }
 
   /**
-   * Checks if user exists
-   * 
+   * Checks if user exists.
+   *
    * @param username to check
    * @param password to check
    * @param accounts check if user exists in accounts
@@ -132,10 +141,10 @@ public class UserValidation {
   }
 
   /**
-   * Checks if a string is empty
-   * 
+   * Checks if a string is empty.
+   *
    * @param string to check if empty
-   * @return
+   * @return true if empty, else false
    */
   public static boolean isEmpty(String string) {
     if (string.equals("")) {

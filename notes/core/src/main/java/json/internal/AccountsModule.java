@@ -4,12 +4,14 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
-
 import core.Accounts;
 import core.Note;
 import core.NoteOverview;
 import core.User;
 
+/**
+ * Jackson module for Accounts.
+ */
 public class AccountsModule extends Module {
 
   @Override
@@ -25,6 +27,10 @@ public class AccountsModule extends Module {
   private final SimpleDeserializers deserializers = new SimpleDeserializers();
   private final SimpleSerializers serializers = new SimpleSerializers();
 
+  /**
+   * Constructor that adds all the seria- deserializers.
+   *
+   */
   public AccountsModule() {
     serializers.addSerializer(Note.class, new NoteSerializer());
     serializers.addSerializer(NoteOverview.class, new NoteOverviewSerializer());
@@ -41,5 +47,4 @@ public class AccountsModule extends Module {
     context.addSerializers(serializers);
     context.addDeserializers(deserializers);
   }
-
 }

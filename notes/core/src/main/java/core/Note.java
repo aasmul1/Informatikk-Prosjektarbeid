@@ -2,7 +2,9 @@ package core;
 
 import java.time.LocalDate;
 
-
+/**
+ * Class for note with title, text, created date and edited date.
+ */
 public class Note {
   private String title;
   private String text;
@@ -10,9 +12,10 @@ public class Note {
   private LocalDate edited;
 
   /**
-   * 
-   * @param title
-   * @param text
+   * Constructor for Note class with title and text parameters.
+   *
+   * @param title of the note
+   * @param text of the note
    */
   public Note(String title, String text) {
     if (title.equals("")) {
@@ -29,12 +32,12 @@ public class Note {
   }
 
   /**
-   * Constructs a new Note with the specified title, text, creation date, and edited date. The
-   * creation date must not be after the edited date. It it is, an IllegalArgumentExeption will be
-   * thrown LocalDate format: year-month-day Example: 2023-09-25
-   * 
-   * @param title title of note
-   * @param text text describing the note
+   * Constructor for Note class with specified dates. 
+   * Creation date must not be after the edited date. 
+   * LocalDate format: year-month-day Example: 2023-09-25.
+   *
+   * @param title of note
+   * @param text describing the note
    * @param created local date when the Note was created
    * @param edited local date when the Note was last edited
    * @throws IllegalArgumentException if the creation date is after the edited date
@@ -57,8 +60,9 @@ public class Note {
     this.edited = edited;
   }
 
-  /**
-   * 
+  /** 
+   * Get method for title field.
+   *
    * @return the the title of the Note
    */
   public String getTitle() {
@@ -66,7 +70,8 @@ public class Note {
   }
 
   /**
-   * 
+   * Set method for title field.
+   *
    * @param title of the Note
    */
   public void setTitle(String title) {
@@ -77,7 +82,8 @@ public class Note {
   }
 
   /**
-   * 
+   * Get method for text field.
+   *
    * @return the text in the Note
    */
   public String getText() {
@@ -85,7 +91,8 @@ public class Note {
   }
 
   /**
-   * 
+   * Set method for text field.
+   *
    * @param text text in the note
    */
   public void setText(String text) {
@@ -96,16 +103,17 @@ public class Note {
   }
 
   /**
-   * 
+   * Get method for created date.
+   *
    * @return when the Note was created
-   * 
    */
   public LocalDate getCreatedDate() {
     return created;
   }
 
   /**
-   * 
+   * Get method for edited date.
+   *
    * @return when the Note last was edited
    */
   public LocalDate getEditedDate() {
@@ -113,7 +121,7 @@ public class Note {
   }
 
   /**
-   * If note is edited, this method sets edited date to todays date
+   * Sets edited date to todays date.
    */
   public void setEditedDate() {
     this.edited = LocalDate.now();

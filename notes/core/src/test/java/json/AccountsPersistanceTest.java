@@ -22,7 +22,7 @@ import core.NoteOverview;
 import core.User;
 
 /**
- * This class tests the serialization and deserialization logic for the Accounts class.
+ * Tests the serialization and deserialization logic for the Accounts class.
  */
 public class AccountsPersistanceTest {
 

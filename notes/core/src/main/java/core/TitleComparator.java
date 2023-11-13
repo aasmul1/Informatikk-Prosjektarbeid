@@ -2,10 +2,13 @@ package core;
 
 import java.util.Comparator;
 
+/**
+ * Comparator for Notes based on their title.
+ */
 public class TitleComparator implements Comparator<Note> {
 
   /**
-   * Compares two notes based on their titles in a case-insensitive manner
+   * Compares two notes based on their titles in a case-insensitive manner.
    *
    * @param note1 the first note to be compared
    * @param note2 the second note to be compared

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Class that stores users.
+ */
 public class Accounts {
   protected final List<User> accounts = new ArrayList<>();
 
@@ -30,9 +33,9 @@ public class Accounts {
   }
 
   /**
-   * Removes already existing user
+   * Removes already existing user.
    *
-   * @param user the user to remove
+   * @param user to remove
    * @throws IllegalStateException if the user dosen't already exists.
    */
   public void removeUser(User user) {
@@ -43,7 +46,7 @@ public class Accounts {
   }
 
   /**
-   * Iterator to iterate over objects in list
+   * Iterator to iterate over objects in list.
    *
    * @return iterator of accounts
    */
@@ -63,7 +66,7 @@ public class Accounts {
 
   /**
    * Checks if the user login is valid.
-   * 
+   *
    * @param username username to check
    * @param password password to check
    * @return boolean

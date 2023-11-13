@@ -1,14 +1,16 @@
 package json.internal;
 
-import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-
-import core.User;
 import core.Accounts;
+import core.User;
+import java.io.IOException;
 
+/**
+ * Serializer for Accounts.
+ */
 public class AccountsSerializer extends JsonSerializer<Accounts> {
 
   @Override

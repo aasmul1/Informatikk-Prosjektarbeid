@@ -1,26 +1,29 @@
 package core;
 
+/**
+ * Class for storing user information in user object.
+ */
 public class User {
   private String username;
   private String password;
   private NoteOverview noteOverview;
 
   /**
-   * Constructor that is used to create a instance of this class.
-   * 
+   * Constructor that is used to create an instance of this class.
+   *
    * @param username users username
    * @param password users password
    * @param noteOverview the users note overview
    */
-
   public User(String username, String password, NoteOverview noteOverview) {
     UserValidation.checkValidUsername(username);
     UserValidation.checkValidPassword(password);
 
     if (noteOverview == null) {
       this.noteOverview = new NoteOverview();
-    } else
+    } else {
       this.noteOverview = noteOverview;
+    }
 
     this.username = username;
     this.password = password;
@@ -28,7 +31,7 @@ public class User {
 
   /**
    * Access method for username.
-   * 
+   *
    * @return the username
    */
   public String getUsername() {
@@ -36,8 +39,8 @@ public class User {
   }
 
   /**
-   * Set method for new username.
-   * 
+   * Set method for a new username.
+   *
    * @param username users username
    */
   public void setUsername(String username) {
@@ -46,8 +49,8 @@ public class User {
   }
 
   /**
-   * Access method for users password
-   * 
+   * Access method for users password.
+   *
    * @return users password
    */
   public String getPassword() {
@@ -55,8 +58,8 @@ public class User {
   }
 
   /**
-   * Set method for new password
-   * 
+   * Set method for a new password.
+   *
    * @param password users password
    */
   public void setPassword(String password) {
@@ -65,28 +68,29 @@ public class User {
   }
 
   /**
-   * Access method for users notes
-   * 
-   * @return a copy of users noteoverview-list
+   * Access method for users notes.
+   *
+   * @return a copy of users note overview-list
    */
   public NoteOverview getNoteOverview() {
     return this.noteOverview;
   }
 
   /**
-   * Access method for a specified note
-   * 
+   * Access method for a specified note.
+   *
    * @param note to be accessed
    * @return the note
    */
   public Note getNote(Note note) {
-    return getNoteOverview().getNotes().stream().filter(n -> n.getTitle().equals(note.getTitle()))
+    return getNoteOverview().getNotes().stream()
+        .filter(n -> n.getTitle().equals(note.getTitle()))
         .findAny().orElse(null);
   }
 
   /**
-   * Adds note to users noteoverview
-   * 
+   * Adds note to users note overview.
+   *
    * @param note to be added
    */
   public void addNote(Note note) {
@@ -96,8 +100,8 @@ public class User {
   }
 
   /**
-   * Checks if the note exists in noteoverview
-   * 
+   * Checks if the note exists in the note overview.
+   *
    * @param note the note to check
    * @return boolean
    */
@@ -110,6 +114,12 @@ public class User {
     return false;
   }
 
+  /**
+   * Get method for getting note by index.
+   *
+   * @param index of the note
+   * @return note
+   */
   public Note getNoteByIndex(int index) {
     if (index < 0) {
       throw new IllegalArgumentException(Errors.SELECT_NOTE.getMessage());
@@ -119,5 +129,4 @@ public class User {
     }
     return noteOverview.getNotes().get(index);
   }
-
 }

@@ -1,21 +1,22 @@
 package json.internal;
 
-import java.io.IOException;
-
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-
 import core.User;
+import java.io.IOException;
 
+/**
+ * Serializer for User.
+ */
 public class UserSerializer extends JsonSerializer<User> {
 
-  public static final String USERNAME_FIELD_NAME = "username";
-  public static final String PASSWORD_FIELD_NAME = "password";
   public static final String NOTEOVERVIEW_FIELD_NAME = "noteOverview";
+  public static final String PASSWORD_FIELD_NAME = "password";
+  public static final String USERNAME_FIELD_NAME = "username";
 
-
-  /** Format: {username: username, password: password, noteOverview: [notes]} */
+  
+  // Format: {username: username, password: password, noteOverview: [notes]}
   @Override
   public void serialize(User user, JsonGenerator jsonGen, SerializerProvider serializers)
       throws IOException {
