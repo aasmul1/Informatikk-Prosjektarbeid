@@ -74,6 +74,15 @@ For all methodes the Host is `localhost:8080`.
     - Request: POST `/notes/user/sort-edited?username={username}`
     - Response: Sorts the user's notes list by last edited date.
 
+**Test and Normal Modes**
+- Set Test Mode
+    - Request: POST `/notes/test-mode`
+    - Response: Sets the server to test mode.
+
+- Set Normal Mode
+    - Request: POST `/notes/normal-mode`
+    - Response: Sets the server to normal mode.
+
 
 
 
