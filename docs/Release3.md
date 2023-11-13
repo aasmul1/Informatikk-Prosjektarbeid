@@ -4,15 +4,19 @@ In Release 3, the group intends to delivering the final version of the Notes app
 ## Work Habits
 In Release 3, we have built upon the successful work habits established in the previous release, while also making improvements to our workflow. Before the start of the last sprint, the group discussed and agreed that a slight adjustment to task management was necessary. 
 
-Throughout the whole period, we maintained a routine of multiple weekly meetings. In these sessions,particularly at the beginning of the week, we sit down toghether and and discuss what goals we shoud have this week and what goals its realistic to achieve in the coming days. After release 2, we realised that we had a lot more work to do in the final release, so we decided to increase the frequency of out meetings. 
+Throughout the whole period, we maintained a routine of multiple weekly meetings. In the first meeting of the week, typically held on Mondays, we sit down toghether and and discuss what goals we shoud have this week and what goals its realistic to achieve in the coming days. After release 2, we realised that we had a lot more work to do in the final release, so we decided to increase the frequency of out meetings. 
 
-Out strategy involved doing larger tasks collectively, and fix smaller issues independently, minimizing the need for constant communication on less critical tasks. 
+Out work strategy for the last sprint involved doing larger tasks when we sit togheter, and fix smaller issues independently, minimizing the need for constant communication on less critical tasks. Each team member was assigned a spesific segment of the project to concentrate on. This method allowed us to get a deeper understanding of our respective areas. Although we often worked in the same space, our tasks were more individualized, which we think led to more an effective process. 
 
-In this release, each team member was assigned a spesific segment of the project to concentrate on. This method allowed us to get a deeper understanding of our respective areas. Although we often worked in the same space, our tasks were more individualized, whcich we think led to more an effective process. 
+This approach proved to be an effective solution when the project progressed smoothly. However, it had its drawbacks, and it could be challenging when larger problems or bugs arose, because the other team members were not as deeply familiar with the spesific segment. 
+In the end, everything worked out, evon though some things took some more time than expected. 
+
+To keep eachother updated on the various parts of the code, and to maintain high code quality, we use "code review" in GitLab, where another group member reviews, and if necessary, gives feedback on the code before merging into dev branch. 
+ 
+- Par progging
+
 
 //TODO SKRIV FERDIG HER
-
-This was an effective solution when things were working, but the problem is when you need to fix an issue or bug, the other participants on the group were not enough into the code, so you could possibly sit alone with a huge problem to solve alone. 
 
 . hvordan unittestene har påvirket arbeidet 
 - mye endringer etterfulgt av testene, men kunne skrevet tester litt mer forsløpende 
