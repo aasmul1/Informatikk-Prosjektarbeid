@@ -19,14 +19,12 @@ public class RemoteNotesAccess implements NotesAccess {
 
     private final URI URI;
     private ObjectMapper objectMapper;
-    private Accounts accounts;
     private User user;
     private int selectedIndex;
 
     public RemoteNotesAccess(final URI uri) {
         this.URI = uri;
         this.objectMapper = AccountsPersistence.getObjectMapper();
-        this.accounts = readAccounts();
     }
 
     /**
@@ -45,6 +43,7 @@ public class RemoteNotesAccess implements NotesAccess {
      */
     @Override
     public Accounts readAccounts() {
+        Accounts accounts;
         String getMappingPath = "accounts";
         HttpRequest httpRequest = HttpRequest.newBuilder(resolveUriAccounts(getMappingPath))
                 .header("Accept", "application/json").GET().build();
@@ -54,7 +53,7 @@ public class RemoteNotesAccess implements NotesAccess {
                     .build()
                     .send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
-            this.accounts = objectMapper.readValue(httpResponse.body(), Accounts.class);
+            accounts = objectMapper.readValue(httpResponse.body(), Accounts.class);
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
