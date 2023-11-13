@@ -1,7 +1,7 @@
 package ui.controllers;
 
-import java.io.IOException;
 import core.UserValidation;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

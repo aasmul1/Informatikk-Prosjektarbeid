@@ -317,7 +317,7 @@ public class RemoteNotesAccess implements NotesAccess {
   /**
    * Sets the application to test mode by sending an HTTP POST request to the 'test-mode' endpoint.
    *
-   * @throws RuntimeException if there is an IOException or InterruptedException during the HTTP request.
+   * @throws RuntimeException if there is an IOException or InterruptedException.
    */
   @Override
   public void setTestMode() {
@@ -333,9 +333,10 @@ public class RemoteNotesAccess implements NotesAccess {
   }
 
   /**
-   * Switches the application back to normal mode from test mode by sending an HTTP POST request to the 'normal-mode' endpoint.
+   * Switches the application back to normal mode from test mode,
+   * by sending an HTTP POST request to the 'normal-mode' endpoint.
    *
-   * @throws RuntimeException if there is an IOException or InterruptedException during the HTTP request.
+   * @throws RuntimeException if there is an IOException or InterruptedException.
    */
   public void setNormalMode() {
     String postMappingPath = "normal-mode";

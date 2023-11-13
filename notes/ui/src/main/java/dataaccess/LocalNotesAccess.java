@@ -104,8 +104,9 @@ public class LocalNotesAccess implements NotesAccess {
    */
   @Override
   public User getLoggedInUser() {
-    if (user == null)
-      throw new IllegalArgumentException("User not logged in"); // 
+    if (user == null) {
+      throw new IllegalArgumentException("User not logged in"); 
+    }
     return this.user;
   }
 
@@ -155,7 +156,7 @@ public class LocalNotesAccess implements NotesAccess {
     return getLoggedInUser().getNoteOverview();
   }
 
-   /**
+  /**
    * Deletes a note from the logged-in user's note overview.
    *
    * @param index The index of the note to be deleted.
@@ -184,7 +185,7 @@ public class LocalNotesAccess implements NotesAccess {
     update();
   }
 
-   /**
+  /**
    * Sorts the notes of the logged-in user by their last edited date.
    */
   @Override

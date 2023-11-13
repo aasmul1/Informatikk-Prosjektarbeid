@@ -91,7 +91,7 @@ public interface NotesAccess {
    *
    * @param username username of user
    * @param index index of note
-   * @return
+   * @return the Note.
    */
   public Note getNote(String username, int index);
 
@@ -109,7 +109,7 @@ public interface NotesAccess {
    */
   public int getSelectedIndex();
 
-   /**
+  /**
    * Sets the application to test mode. 
    */
   public void setTestMode();
