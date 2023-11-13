@@ -6,20 +6,18 @@ In Release 3, we have built upon the successful work habits established in the p
 
 Throughout the whole period, we maintained a routine of multiple weekly meetings. In the first meeting of the week, typically held on Mondays, we sit down toghether and and discuss what goals we shoud have this week and what goals its realistic to achieve in the coming days. After release 2, we realised that we had a lot more work to do in the final release, so we decided to increase the frequency of out meetings. 
 
-Out work strategy for the last sprint involved doing larger tasks when we sit togheter, and fix smaller issues independently, minimizing the need for constant communication on less critical tasks. Each team member was assigned a spesific segment of the project to concentrate on. This method allowed us to get a deeper understanding of our respective areas. Although we often worked in the same space, our tasks were more individualized, which we think led to more an effective process. 
+Our work strategy for the last sprint involved doing larger tasks when we sit togheter, and fix smaller issues independently, minimizing the need for constant communication on less critical tasks. Each team member was assigned a spesific segment of the project to concentrate on. This method allowed us to get a deeper understanding of our respective areas. Although we often worked in the same space, our tasks were more individualized, which we think led to more an effective process. 
 
 This approach proved to be an effective solution when the project progressed smoothly. However, it had its drawbacks, and it could be challenging when larger problems or bugs arose, because the other team members were not as deeply familiar with the spesific segment. 
-In the end, everything worked out, evon though some things took some more time than expected. 
+In the end, everything worked out, even though some things took some more time than expected. 
 
 To keep eachother updated on the various parts of the code, and to maintain high code quality, we use "code review" in GitLab, where another group member reviews, and if necessary, gives feedback on the code before merging into dev branch. 
  
-- Par progging
-
 
 //TODO SKRIV FERDIG HER
 
-. hvordan unittestene har påvirket arbeidet 
-- mye endringer etterfulgt av testene, men kunne skrevet tester litt mer forsløpende 
+Upon reflecting on our work, we've identified a work habit that should have been implemented earlier. That is the practice of creating tests more consistently and developing them as we go. Although we started with tests towards the end of Release 2, the effort required to create tests for both the core and UI modules turned out to be more work than anticipated. As we caught up with testing in Release 3, it revealed several flaws in our application, allowing us to address multiple issues. In hindsight, we acknowledge that testing more frequently would have been a better strategy, ultimately improving our code base.
+
 - endret hvor vi knytter issues til userstoryes, usikre på 
 - par progging 
 
@@ -94,6 +92,8 @@ User Login (US-5): "A user desire a secure and efficient login process to access
 ## Code improvments 
 In Release 3, we continued to improve the code quality and readability, building upon our previous implemented tools Checkstyle and spotbugs. We addressed and improved issues that Checkstyle had previously identified, ensuring a more consistent code. Additionally, we used SpotBugs to detect and resolve common Java issues, resulting overall better code quality.
 
+In Release 3, we dedicated increased attention to the usage of the checkstyle-plugin. This focus helped us to eliminate unnecessary imports, maintain consistent line spacing, and overall enhance the readability and thoroughness of our code.
+
 - feilhåndtering 
 - se på mer 
 
@@ -109,13 +109,10 @@ In the UI module, we have introduced several significant changes to the controll
 
 For code consistency in our application, we have implemented an abstract controller, allowing us to share methods and properties between different controllers. This reduces redundancy and establishes a unified coding standard throughout the application.
 
-TODO
-- unesseccary imports removed
 
 ### AccountsPersistence.java
 
 ### Error class 
 
-
-
+In Release 3, the team collectively decided to establish a way for managing error handling within the core module. The solution involved developing an Error enum class that contains all error messages. This approach ensures consistency in providing feedback to the user across the entire system.
 
