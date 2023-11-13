@@ -11,6 +11,8 @@ The Notes RestServer consists of the following classes:
 - [NotesController.java](src/main/java/rest/NotesController.java): REST controller class, handles HTTP requests and defines API endpoints. 
 - [RestServerApplication.java](src/main/java/rest/RestServerApplication.java): Contains the start method for the server application and configures CORS.
 
+Class diagram for rest module you can find [here](../diagrams/README.md).
+
 ### Supported Requests
 
 For all methodes the Host is `localhost:8080`.

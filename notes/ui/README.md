@@ -10,6 +10,8 @@ The UI module includes all visual compentets, layout and elements the user inter
 The UI module seperates controller, dataaccess classes and FXML files, to enchance organization. The dataaccess classes are seperated in an own directory/folder `dataaccess`, positioned at the same level as the internal ui directory. 
 Controllers are located in the `ui/controllers` directory. The FXML files are located in `ui/resources`. 
 
+Class diagram for the controllers you can find [here](../diagrams/README.md)
+
 #
 
 ### **The UI module consists of the following classes**
@@ -42,7 +44,7 @@ The FXML files define the stucture of the user interface.
 
 #
 
-#### DatAccess classes
+#### DataAccess classes
 
 - [NoteAccess.fxml](src/main/java/dataaccess/NotesAccess.java)
 - [LocalNoteAccess.fxml](src/main/java/dataaccess/LocalNotesAccess.java)
@@ -56,7 +58,7 @@ The FXML files define the stucture of the user interface.
 
  ### **Test classes for UI**
 
- We hav written a testclasses for all controllers. 
+ We have written a testclasses for all controllers. 
 
  ### Test classes 
 
