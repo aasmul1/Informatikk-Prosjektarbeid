@@ -82,10 +82,10 @@ public class AppControllerTest extends ApplicationTest{
     */
     @BeforeEach
     public void initFields() {
-        deleteButton = lookup("#DeleteNoteButton").query();
+        deleteButton = lookup("#deleteNoteButton").query();
         editButton = lookup("#editNoteButton").query();
-        newNoteButton = lookup("#NewNoteButton").query();
-        listView = lookup("#NoteListView").query();
+        newNoteButton = lookup("#newNoteButton").query();
+        listView = lookup("#noteListView").query();
         comboBox = lookup("#sortComboBox").query();
         errorMessage = lookup("#errorMessage").query();
     }
@@ -128,9 +128,9 @@ public class AppControllerTest extends ApplicationTest{
     public void deleteNote(){
         listView.refresh();
 
-        robot.clickOn("#DeleteNoteButton");
+        robot.clickOn("#deleteNoteButton");
         assertEquals(Errors.SELECT_NOTE.getMessage(), errorMessage.getText());
-        robot.clickOn("#NewNoteButton");        
+        robot.clickOn("#newNoteButton");        
 
          // Load the NewNote scene
         FXMLLoader loader = new FXMLLoader(App.class.getResource("Note.fxml"));
@@ -161,12 +161,12 @@ public class AppControllerTest extends ApplicationTest{
         robot.clickOn("#newNoteInputTitle").write("Note to delete");
         robot.clickOn("#newNoteInputText").write("Delete");
         robot.clickOn("#saveNoteButton");
-        ListView<String> node2 = lookup("#NoteListView").query();
+        ListView<String> node2 = lookup("#noteListView").query();
 
 
         // Add an item to the ListView using the controller
         robot.clickOn("Note to delete");
-        robot.clickOn("#DeleteNoteButton");
+        robot.clickOn("#deleteNoteButton");
         assertTrue(node2.getItems().size()==3);
     }
 
@@ -179,7 +179,7 @@ public class AppControllerTest extends ApplicationTest{
         listView.refresh();
         robot.clickOn("#editNoteButton");
         assertEquals(Errors.SELECT_NOTE.getMessage(), errorMessage.getText());
-        robot.clickOn("#NewNoteButton");    
+        robot.clickOn("#newNoteButton");    
           // Load the NewNote scene
         FXMLLoader loader = new FXMLLoader(App.class.getResource("Note.fxml"));
         NoteController noteController = new NoteController();
@@ -253,7 +253,7 @@ public class AppControllerTest extends ApplicationTest{
      * Help method to verify that sorting button works.
      */
     private void verifyOrderOfNotes(String orderDescription, int k) {
-        ListView<Note> notesListView = lookup("#NoteListView").query();
+        ListView<Note> notesListView = lookup("#noteListView").query();
         ObservableList<Note> items = notesListView.getItems();
         if(k==0){
             String firstNoteTitle = items.get(0).getTitle();
