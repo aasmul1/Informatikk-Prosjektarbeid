@@ -16,7 +16,7 @@ public class NotesConfig {
     this.properties = new Properties();
 
     try {
-      properties.load(App.class.getResourceAsStream("notes.properties"));
+      properties.load(App.class.getClassLoader().getResourceAsStream("notes.properties"));
     } catch (IOException e) {
       throw new IllegalStateException("Could not load notes.properties");
     }
