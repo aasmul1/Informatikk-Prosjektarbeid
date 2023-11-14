@@ -1,11 +1,12 @@
 package core;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * Comparator for Notes based on their created date.
  */
-public class CreatedDateComparator implements Comparator<Note> {
+public class CreatedDateComparator implements Comparator<Note>, Serializable {
 
   /**
    * Compares two notes based on their created date.
