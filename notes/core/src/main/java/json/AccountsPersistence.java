@@ -66,9 +66,11 @@ public class AccountsPersistence {
     if (filePath == null) {
       throw new IllegalArgumentException("file path not set");
     }
-    Reader reader = new FileReader(filePath.toFile(), StandardCharsets.UTF_8);
-    return mapper.readValue(reader, Accounts.class);
+    try (Reader reader = new FileReader(filePath.toFile(), StandardCharsets.UTF_8)) {
+        return mapper.readValue(reader, Accounts.class);
+    }
   }
+
 
   /**
    * Saves accounts to the file.
@@ -83,7 +85,9 @@ public class AccountsPersistence {
     if (filePath == null) {
       throw new IllegalStateException("file path is not set");
     }
-    Writer writer = new FileWriter(filePath.toFile(), StandardCharsets.UTF_8);
-    mapper.writeValue(writer, accounts);
+    try (Writer writer = new FileWriter(filePath.toFile(), StandardCharsets.UTF_8)) {
+        mapper.writeValue(writer, accounts);
+    }
   }
+
 }
