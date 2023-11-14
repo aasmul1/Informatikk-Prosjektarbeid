@@ -73,19 +73,19 @@ For all methodes the Host is `localhost:8080`.
 
 - Delete Note
     - Request: DELETE `/notes/delete-note?username={username}&index={index}`
-    - Response: Deletes a note for the specified index and user. If the note was deleted successfully the response will be 200 OK. //TODO
+    - Response: Deletes a note for the specified index and user. If the note was deleted successfully the response will be 200 OK. If the note is not found, the HTTP status is 404 NOT FOUND.  
 
 - Sort Notes by Created Date
     - Request: POST `/notes/user/sort-created?username={username}`
-    - Response: Sorts the user's notes list by created date.
+    - Response: Sorts the user's notes list by created date. If the user is not found, the HTTP status is 404 NOT FOUND. 
 
 - Sort Notes by Title
     - Request: POST `/notes/user/sort-title?username={username}`
-    - Response: Sorts the user's notes list by title.
+    - Response: Sorts the user's notes list by title. If the user is not found, the HTTP status is 404 NOT FOUND. 
 
 - Sort Notes by Last Edited Date
     - Request: POST `/notes/user/sort-edited?username={username}`
-    - Response: Sorts the user's notes list by last edited date. 
+    - Response: Sorts the user's notes list by last edited date. If the user is not found, the HTTP status is 404 NOT FOUND. 
 
 **Test and Normal Modes**
 
