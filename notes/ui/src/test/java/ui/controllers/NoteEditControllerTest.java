@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 import ui.App;
 
 /**
- * This class provides test cases for the NoteEditController class
+ * This class provides test cases for the NoteEditController class.
  * 
  */
 public class NoteEditControllerTest extends ApplicationTest {
@@ -89,9 +89,6 @@ public class NoteEditControllerTest extends ApplicationTest {
         LocalDate createdDate = LocalDate.parse("2023-10-05");
         note = new Note("Selected Note", "Text", createdDate, editedDate);
         dataAccess.addNote(note);
-
-        // // Set the note to edit in NoteEditController
-        // dataAccess.setNoteToEdit(note);
     }
 
     /**
@@ -105,9 +102,6 @@ public class NoteEditControllerTest extends ApplicationTest {
         saveNoteButton = lookup("#saveNoteButton").query();
         undoChangesButton = lookup("#undoChangesButton").query();
 
-        // clickOn(noteInputTitle).write(note.getTitle());
-        // clickOn(noteInputText).write(note.getText());
-
         interact(() -> noteInputTitle.setText(note.getTitle()));
         interact(() -> noteInputText.setText(note.getText()));
     }
@@ -115,7 +109,6 @@ public class NoteEditControllerTest extends ApplicationTest {
     /**
      * Tests the existence of UI components on the note editing screen.
      */
-
     @Test
     public void testUIComponentsExist() {
         assertNotNull(noteInputTitle);
@@ -141,6 +134,7 @@ public class NoteEditControllerTest extends ApplicationTest {
         assertEquals("Selected Note", dataAccess.getLoggedInUser().getNote(note).getTitle());
         assertEquals("Text", dataAccess.getLoggedInUser().getNote(note).getText());
     }
+
     /**
      * Tests the behavior of the "save" button when note is saved.
      */
@@ -156,6 +150,7 @@ public class NoteEditControllerTest extends ApplicationTest {
         assertEquals("Edited Note Title", dataAccess.getLoggedInUser().getNoteByIndex(index).getTitle());
         assertEquals("Edited Text", dataAccess.getLoggedInUser().getNoteByIndex(index).getText());
     }
+
     /**
      * Tests the behavior of the "Save" button when changes are made to the note that are not valid.
      */
@@ -168,17 +163,12 @@ public class NoteEditControllerTest extends ApplicationTest {
         
         // Verify that an error message is displayed
         assertFalse(errorMessage.getText().isEmpty());
-
-       
     }
     /**
-     * Deletes testfile after all the tests are run
+     * Deletes testfile after all the tests are run.
      */
     @AfterAll
     public static void tearDown(){
         Path.of(System.getProperty("user.home") + "AccountsTest.json").toFile().delete();
-
     }
-    
-
 }

@@ -186,9 +186,5 @@
         </plugins>
     </build>
 
-    <properties>
-        <!-- Skip SpotBugs when running -->
-        <skipSpotbugs>true</skipSpotbugs>
-    </properties>
     
 </project>

@@ -17,7 +17,6 @@ public class ApiError {
    * @param message a message
    * @param status the status
    * @param httpStatus the http status
-   * @param timestamp a timestamp
    */
   public ApiError(String message, int status, HttpStatus httpStatus) {
     this.message = message;

@@ -25,7 +25,8 @@ import json.AccountsPersistence;
 
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@ContextConfiguration(classes = { NotesController.class, NotesService.class, RestServerApplication.class })
+@ContextConfiguration(
+    classes = {NotesController.class, NotesService.class, RestServerApplication.class})
 @WebMvcTest
 public class RestServerApplicationTest {
 
