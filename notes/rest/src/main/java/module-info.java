@@ -6,14 +6,15 @@ module notes.rest {
     requires spring.context;
     requires spring.data.rest.core;
     requires spring.data.commons;
-    requires spring.web;
+    requires transitive spring.web;
     requires transitive spring.webmvc;
 
     requires transitive notes.core;
     requires transitive com.fasterxml.jackson.databind;
+    requires transitive com.fasterxml.jackson.core;
 
     opens rest to spring.beans, spring.context, spring.web, spring.core;
-    // exports notes.rest.properties to spring.beans, spring.boot;
+    opens rest.exceptions to spring.beans, spring.context, spring.web, spring.core;
     exports rest;
     exports rest.exceptions;
 }
