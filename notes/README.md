@@ -9,15 +9,15 @@ ___
 
 ### **Modules**
 ### `core` ### 
-Read more about the core-module here
+Read more about the core-module [here](core/README.md)
 ### `integrationtest` ###
-Read more about the integrationtest-module here
+Read more about the integrationtest-module [here](integrationtest/README.md)
 ### `report` ###
-Read more about the report-module here
+Read more about the report-module [here](report/README.md)
 ### `rest` ###
-Read more about the rest-module here
+Read more about the rest-module [here](rest/README.md)
 ### `ui` ###
-Read more about the ui-module here
+Read more about the ui-module [here](ui/README.md)
 
 ### **Diagrams**
 Diagrams for our Notes-App can be found [here](/notes/diagrams/README.md).
@@ -39,7 +39,7 @@ ___
 
 ### **User Stories**
 
-User Stories can be find [here](../notes/UserStories.md). They are linked up with the issues in GitLab.
+User Stories can be found [here](../notes/UserStories.md). They are linked up with the issues in GitLab.
 
 ## User interface
 ___

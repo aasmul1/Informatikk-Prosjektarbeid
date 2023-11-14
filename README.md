@@ -3,9 +3,7 @@
 The Notes-App is a simple application designed to help users create, edit, manage, and securely log in to handle their notes. For a more detailed description of the app, please refer to [this README file](/notes/README.md).
 
 ## Eclicse-Che
-Open [this](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2311/gr2311?new) link. 
-
-TODO skrive hvordan man kjører i ecplise
+Open [this](https://che.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2023/gr2311/gr2311?new) link to run in Eclipse che. 
 
 ## Building and running the application
 ___
@@ -72,26 +70,32 @@ mvn jacoco:report
 #Report can be found under /report/target/site/index.html
 ```
 
-To only run `graphical` test:
+To only run `ui` tests:
 
 ```sh 
-1)
-cd ui
-
-2)
-mvn test
+mvn test -pl ui
 ```
 
 To only run `core` tests:
 
 ```sh
-1)
-cd core
-
-2)
-mvn test
+mvn test -pl core
 ```
 
+## Shippable version of product
+
+To load shippable version:
+```sh
+1)
+cd notes
+
+2)
+mvn javafx:jlink -f ./ui/pom.xml
+
+3)
+mvn jpackage:jpackage -f ./ui/pom.xml
+```
+If not downloaded automaticly, navigate to `ui/target/dist/NotesFX-1.0.0` and reveal on local storage. Then follow computer instructions.  
 ## Milestone reports
 ___
 The project has three releases, and you can read about them in the [docs directory](/docs).
