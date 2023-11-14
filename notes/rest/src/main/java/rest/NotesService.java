@@ -101,6 +101,9 @@ public class NotesService {
   }
 
   public NoteOverview getNoteOverviewByUsername(String username) {
+    if (accounts.getUser(username) == null) {
+      throw new IllegalArgumentException();
+    }
     return accounts.getUser(username).getNoteOverview();
   }
 
@@ -140,17 +143,20 @@ public class NotesService {
   }
 
   public void sortNotesByCreatedDate(String username) {
-    getNoteOverviewByUsername(username).sortNotesByCreatedDate();
+    NoteOverview noteOverview = getNoteOverviewByUsername(username);
+    noteOverview.sortNotesByCreatedDate();
     save();
   }
 
   public void sortNotesByLastEditedDate(String username) {
-    getNoteOverviewByUsername(username).sortNotesByLastEditedDate();
+    NoteOverview noteOverview = getNoteOverviewByUsername(username);
+    noteOverview.sortNotesByLastEditedDate();
     save();
   }
 
   public void sortNotesByTitle(String username) {
-    getNoteOverviewByUsername(username).sortNotesByTitle();
+    NoteOverview noteOverview = getNoteOverviewByUsername(username);
+    noteOverview.sortNotesByTitle();
     save();
   }
 

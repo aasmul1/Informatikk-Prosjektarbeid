@@ -41,7 +41,6 @@ import rest.exceptions.UserNotFoundException;
 @RequestMapping(NotesController.NOTES_SERVICE_PATH)
 public class NotesController {
 
-  // TODO: Fix proper error handling
   public static final String NOTES_SERVICE_PATH = "notes";
   private final NotesService notesService;
 
@@ -57,8 +56,6 @@ public class NotesController {
    */
   @GetMapping(path = "accounts")
   public ResponseEntity<?> getAccounts() {
-    // TODO: find out which method is best for GET. This alternative is different
-    // from the rest.
     try {
       Accounts accounts = notesService.getAccounts();
       return ResponseEntity.ok(accounts);
@@ -87,10 +84,11 @@ public class NotesController {
   // localhost:8080/notes/user/note?username={username}&index={index}
   @GetMapping(path = "user/note")
   public Note getNote(@RequestParam String username, @RequestParam String index) {
-    if (notesService.getNote(username, Integer.parseInt(index)) == null) {
+    try {
+      return notesService.getNote(username, Integer.parseInt(index));
+    } catch (IllegalArgumentException e) {
       throw new NoteNotFoundException();
     }
-    return notesService.getNote(username, Integer.parseInt(index));
   }
 
   /**
@@ -145,13 +143,17 @@ public class NotesController {
   // localhost:8080/notes/delete-note?username={username}&index={index}
   @DeleteMapping(path = "delete-note")
   public void deleteNote(@RequestParam String username, @RequestParam int index) {
-    // TODO: NoteNotFoundException if note is not found
+    try {
     notesService.deleteNote(username, index);
+    }
+    catch (IllegalArgumentException e) {
+      throw new NoteNotFoundException();
+    }
   }
 
   /**
-   * Authenticates login information - username and password. Using post because GET will expose
-   * user data
+   * Authenticates login information - username and password.
+   * Using post because GET will expose user data
    * 
    * @param username
    * @param password
@@ -159,8 +161,7 @@ public class NotesController {
    */
   // localhost:8080/notes/authenticate-user?username={username}&password={password}
   @PostMapping(path = "authenticate-user")
-  public User authenticateUser(@RequestParam("username") String username,
-      @RequestParam("password") String password) {
+  public User authenticateUser(@RequestParam("username") String username, @RequestParam("password") String password) {
     if (!notesService.validLogin(username, password)) {
       throw new UserNotFoundException("Invalid login");
     }
@@ -175,7 +176,12 @@ public class NotesController {
   // localhost:8080/notes/user/sort-created?username={username}
   @PostMapping(path = "user/sort-created")
   public void sortNotesByCreatedDate(@RequestParam String username) {
-    notesService.sortNotesByCreatedDate(username);
+    try {
+      notesService.sortNotesByCreatedDate(username);
+    }
+    catch (IllegalArgumentException e) {
+      throw new UserNotFoundException();
+    }
   }
 
   /**
@@ -186,7 +192,12 @@ public class NotesController {
   // localhost:8080/notes/user/sort-title?username={username}
   @PostMapping(path = "user/sort-title")
   public void sortNotesByTitle(@RequestParam String username) {
-    notesService.sortNotesByTitle(username);
+    try {
+      notesService.sortNotesByTitle(username);
+    }
+    catch (IllegalArgumentException e) {
+      throw new UserNotFoundException();
+    }
   }
 
   /**
@@ -197,7 +208,12 @@ public class NotesController {
   // localhost:8080/notes/user/sort-edited?username={username}
   @PostMapping(path = "user/sort-edited")
   public void sortNotesByLastEditedDate(@RequestParam String username) {
-    notesService.sortNotesByLastEditedDate(username);
+    try {
+      notesService.sortNotesByLastEditedDate(username);
+    }
+    catch (IllegalArgumentException e) {
+      throw new UserNotFoundException();
+    }
   }
 
   /**

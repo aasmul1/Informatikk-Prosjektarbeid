@@ -1,6 +1,5 @@
 package rest.exceptions;
 
-import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -11,8 +10,7 @@ public class ApiError {
   private final String message;
   private final int status;
   private final HttpStatus httpStatus;
-  private final LocalDateTime timestamp;
-
+  
   /**
    * Api error message including following.
    *
@@ -21,12 +19,11 @@ public class ApiError {
    * @param httpStatus the http status
    * @param timestamp a timestamp
    */
-  public ApiError(String message, int status, HttpStatus httpStatus, LocalDateTime timestamp) {
+  public ApiError(String message, int status, HttpStatus httpStatus) {
     this.message = message;
     this.status = status;
     this.httpStatus = httpStatus;
-    this.timestamp = timestamp;
-  }
+  } 
 
   public String getMessage() {
     return message;
@@ -38,9 +35,5 @@ public class ApiError {
 
   public HttpStatus getHttpStatus() {
     return httpStatus;
-  }
-
-  public LocalDateTime getTimestamp() {
-    return timestamp;
   }
 }
