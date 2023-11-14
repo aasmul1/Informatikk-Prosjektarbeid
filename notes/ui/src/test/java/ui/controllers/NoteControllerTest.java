@@ -28,7 +28,6 @@ import ui.App;
 /**
 * Tests the NoteController class.
 */
-
 public class NoteControllerTest extends ApplicationTest {
 
     private TextArea newNoteInputText;
@@ -78,6 +77,7 @@ public class NoteControllerTest extends ApplicationTest {
 
     /**
      * Help method that logs in a user.
+     *
      * @throws Exception if userlogin fails
      */
     public void loginUser() throws IOException {
@@ -92,7 +92,7 @@ public class NoteControllerTest extends ApplicationTest {
     }
 
     /**
-     * Tests the behavior of the button that makes a new note with out any title/text
+     * Tests the behavior of the button that makes a new note with out any title/text.
      */
     @Test
     public void testNewNoteEmptyFields() {
@@ -112,8 +112,5 @@ public class NoteControllerTest extends ApplicationTest {
     @AfterAll
     public static void tearDown(){
         Path.of(System.getProperty("user.home") + "AccountsTest.json").toFile().delete();
-
     }
-    
-
 }

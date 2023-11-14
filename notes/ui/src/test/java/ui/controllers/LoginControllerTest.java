@@ -180,9 +180,8 @@ public class LoginControllerTest extends ApplicationTest {
         assertEquals(Errors.NOT_REGISTERED.getMessage(), errorMessage.getText());
     }
 
-
     /**
-     * Method that adds a user for test purposes
+     * Method that adds a user for test purposes.
      */
     private void createTestUser() throws IOException {
         try {
@@ -198,12 +197,11 @@ public class LoginControllerTest extends ApplicationTest {
     }
 
     /**
-     * Method that deletes file after tests are done
+     * Method that deletes file after tests are done.
      */
     @AfterAll
     public static void tearDown(){
         Path.of(System.getProperty("user.home") + "AccountsTest.json").toFile().delete();
 
     }
-    
 }
