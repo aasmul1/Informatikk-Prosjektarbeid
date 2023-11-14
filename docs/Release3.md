@@ -94,23 +94,27 @@ In Release 3, we dedicated increased attention to the usage of the checkstyle-pl
 
 - feilhåndtering 
 - se på mer 
+- Spotbug
 
 ### Test Coverage 
-We have significantly improved the overall test coverage for this release. Just as in our previous releases, we have used Jacoco to evaluate the extent of test coverage. This release also introduces a dedicated module `report´ to compile all test results into a single unified report, which simplified the overall testing process.
+We have significantly improved the overall test coverage for this release. Just as in our previous releases, we have used Jacoco to evaluate the extent of test coverage. This release also introduces a dedicated module `report` to add all test results into a single unified report.
 
 For this release, our goal was to achieve 90% test coverage overall for the application, with a particular focis on testing all fundamental functionalities. For more detailed information on individual test coverage scores, refer to the module's readme.
 
 ### Controller Organization 
-An important change in this release involves the reallocation of core logic responsibilities from the controllers to the core module via data access. Consequently, our controllers now primarily handle user interface interactions, while the critical logic resides in the core module. This architectural change enhances code clarity.
+An important change in this release involves the reallocation of logic from the controllers to Data Access (local and remote). Consequently, our controllers now primarily handle user interface interactions, while the critical logic resides in the core module. This architectural change enhances code clarity, and makes it possible to use both local and remote data access without changing our code.
 
-In the UI module, we have introduced several significant changes to the controllers to improve code structure. Firstly, we have restructured our controllers by placing them in a dedicated folder / directory. This approach enhances the overall structure our codebase, and makes it easier to navigate to the many controllers. 
+In the UI module, we have introduced several significant changes to the controllers to improve code structure. Firstly, we have restructured our controllers by placing them in a dedicated folder / directory. This approach enhances the overall structure our codebase, and makes it easier to navigate between controllers.
 
 For code consistency in our application, we have implemented an abstract controller, allowing us to share methods and properties between different controllers. This reduces redundancy and establishes a unified coding standard throughout the application.
 
 
-### AccountsPersistence.java
+### AccountsPersistence
+When we introduced the possibility to have multiple users stored in Accounts, we needed to change our persistence classes. Accounts stores users, which stores noteoverview, which then stores notes. We have added serializer and deserializer for Accounts, and modified the module and persistence class to match the changes in structure -> `AccountsPersistence` and `AccountsModule`.
 
 ### Error class 
 
-In Release 3, the team collectively decided to establish a way for managing error handling within the core module. The solution involved developing an Error enum class that contains all error messages. This approach ensures consistency in providing feedback to the user across the entire system.
+In Release 3, we collectively decided to establish a way for managing error handling within `core`. The solution involved making an Error enum class that contains all error messages. This approach ensures consistency in providing feedback to the user across the entire system.
+
+This is also true for rest module, and is specified in the README.
 
