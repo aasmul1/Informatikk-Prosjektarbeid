@@ -26,8 +26,8 @@
 ```
 
 #### Important to See
-- US-2-1 An overview of existing notes.
-- US-2-2 Button to edit a selected note.
+- US-2-1 Button to edit a selected note.
+- US-2-2 Scene to edit note. 
 
 #### Important to Do
 - US-2-3 Allow editing of note fields.
@@ -39,11 +39,10 @@
 ```
 
 #### Important to See
-- US-3-1 Overview of existing notes. 
-- US-3-2 Button to sort notes. 
+- US-3-1 Button to sort notes. 
 
 #### Important to Do
-- US-3-3 Enable sorting of notes by date or title.
+- US-3-2 Enable sorting of notes by date or title.
 
 ### Delete a Note (US-4)
 ```
@@ -73,3 +72,4 @@
 - US-5-4 Enable users to enter their login credentials.
 - US-5-5 Authenticate the user and grant access to the application.
 - US-5-6 Provide an option to create a new user if one does not exist.
+- US-5-7 File with information about user authentication and users notes 
