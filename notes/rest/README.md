@@ -1,15 +1,24 @@
 
 # RestServer 
 
-The team chose to use the SpringBoot-framework to establish the REST server. 
+The team chose to use the SpringBoot-framework to establish the REST server. The main reason for this choice was that one of the group members had experience using SpringBoot, and it was therefore convenient.
 
 ### Structure 
 
-The Notes RestServer consists of the following classes:
+The rest server consists of the following classes:
 
 - [NotesService.java](src/main/java/rest/NotesService.java): Service class, responsible for managing user accounts, notes, and various operations.
 - [NotesController.java](src/main/java/rest/NotesController.java): REST controller class, handles HTTP requests and defines API endpoints. 
 - [RestServerApplication.java](src/main/java/rest/RestServerApplication.java): Contains the start method for the server application and configures CORS.
+
+In addition there are classes for handling exceptions:
+- [AppExceptionHandler.java](src/main/java/rest//exceptions/AppExceptionHandler.java): Handles all the exceptions and connects to HTTP message.
+- [ApiError.java](src/main/java/rest//exceptions/ApiError.java): Class for exceptions.
+- [FileException.java](src/main/java/rest//exceptions/FileException.java): Exception when file not found. Status is `404 NOT FOUND`.
+- [NoteNotFoundException.java](src/main/java/rest//exceptions/NoteNotFoundException.java): Exception when Note not found. Status is `404 NOT FOUND`.
+- [UserAlreadyExistsException.java](src/main/java/rest//exceptions/UserAlreadyExistsException.java): Exception when user already exists. Status is `409 CONFLICT`.
+- [UserNotFoundException.java](src/main/java/rest//exceptions/UserNotFoundException.java): Exception when user is not found. Status is `404 NOT FOUND`.
+
 
 Class diagram for rest module you can find [here](../diagrams/README.md).
 
@@ -21,28 +30,30 @@ For all methodes the Host is `localhost:8080`.
 
 - Get Accounts: 
     - Request: GET `/notes/accounts`
-    - Response: Returns a list of user accounts. If successful the HTTP status is set to 200 OK. If an exception is thrown the status is set to 500 Internal Server Error. 
+    - Response: By this request Accounts will be returned. If successful the HTTP status is 200 OK. If an exception is thrown the status is 500 Internal Server Error. 
 
 **Users and Authentication**
 
 - Get User by Username
     - Request: GET `/notes/user?username={username}`
-    - Response: Returns the user object with the specified username, and 200 OK response if successful. Otherwise it returns a 404 Not Found response.
+    - Response: Returns the user object with the specified username, and 200 OK response if successful. Otherwise response is 404 Not Found.
 
 - Authenticate User
     - Request: POST `/notes/authenticate-user?username={username}&password={password}`
-    - Response: Authenticates the user with the provided username and password.If this is successful, the response includes the user information with an HTTP status code of 200 OK. In case of unsuccessful authentication, a response with a status code of 404 Not Found is returned.
+    - Response: Authenticates the user with the provided username and password. If successful, the response includes the user with an HTTP status code of 200 OK. In case of unsuccessful authentication, response status code is 404 Not Found.
 
 - Create User
     - Request: PUT `/notes/create-user`
     - Content-Type: application/json
-    - Response: Creates a new user. A successful creation will result in a 200 OK response. Otherwise, a response with a status code of 409 and the message "......." will be received.
+    - Response: Creates a new user. A successful creation will result in a 200 OK response. Otherwise, a response with a response status is 409 CONFLICT.
 
 ```
 {
   "username" : "User",
 
   "password" : "Password1",
+
+  "noteOverview" : []
 }
 ```
 
@@ -74,9 +85,12 @@ For all methodes the Host is `localhost:8080`.
 
 - Sort Notes by Last Edited Date
     - Request: POST `/notes/user/sort-edited?username={username}`
-    - Response: Sorts the user's notes list by last edited date.
+    - Response: Sorts the user's notes list by last edited date. 
 
 **Test and Normal Modes**
+
+The following methods are there to avoid overwriting server data when tests are run.
+
 - Set Test Mode
     - Request: POST `/notes/test-mode`
     - Response: Sets the server to test mode.
