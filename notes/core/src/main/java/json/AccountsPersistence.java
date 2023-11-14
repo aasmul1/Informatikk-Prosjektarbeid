@@ -28,7 +28,7 @@ public class AccountsPersistence {
   }
 
   /**
-   * Get method for objectmapper with AccountsModule registrered. 
+   * Get method for objectmapper with AccountsModule registrered.
    *
    * @return objectmapper
    */
@@ -67,7 +67,7 @@ public class AccountsPersistence {
       throw new IllegalArgumentException("file path not set");
     }
     try (Reader reader = new FileReader(filePath.toFile(), StandardCharsets.UTF_8)) {
-        return mapper.readValue(reader, Accounts.class);
+      return mapper.readValue(reader, Accounts.class);
     }
   }
 
@@ -86,7 +86,7 @@ public class AccountsPersistence {
       throw new IllegalStateException("file path is not set");
     }
     try (Writer writer = new FileWriter(filePath.toFile(), StandardCharsets.UTF_8)) {
-        mapper.writeValue(writer, accounts);
+      mapper.writeValue(writer, accounts);
     }
   }
 

@@ -33,6 +33,15 @@ public class NoteOverviewDeserializer extends JsonDeserializer<NoteOverview> {
     return null;
   }
 
+  /**
+   * Deserialize a JSON representation of NoteOverview
+   * from a JsonNode object into a NoteOverview object.
+   *
+   * @param node The JsonNode containing the JSON representation of NoteOverview. 
+   * @return A NoteOverview object deserialized from JSON. 
+   * @throws IOException If there is an I/O error during deserialization. 
+   * @throws JacksonException If there is an issue with Jackson JSON processing. 
+   */
   public NoteOverview deserialize(JsonNode node) throws IOException, JacksonException {
     if (node instanceof ArrayNode) {
       final ArrayNode noteArray = (ArrayNode) node;

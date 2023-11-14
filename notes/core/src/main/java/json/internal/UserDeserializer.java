@@ -25,6 +25,13 @@ public class UserDeserializer extends JsonDeserializer<User> {
     return new User(username, password, noteOverview);
   }
 
+  /**
+   * Deserialize a JSON representation of a User object from JsonNode object.
+   *
+   * @param node The JsonNode containing the JSON representation of User.
+   * @return A User object deserialized from JSON.
+   * @throws IOException IOException If there is an I/O error during deserialization.
+   */
   public User deserialize(JsonNode node) throws IOException {
     ObjectNode objectNode = (ObjectNode) node;
     String password = objectNode.get(UserSerializer.PASSWORD_FIELD_NAME).asText();
