@@ -1,11 +1,12 @@
 package core;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * Comparator for Notes based on their title.
  */
-public class TitleComparator implements Comparator<Note> {
+public class TitleComparator implements Comparator<Note>, Serializable {
 
   /**
    * Compares two notes based on their titles in a case-insensitive manner.
