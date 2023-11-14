@@ -13,13 +13,11 @@ In the end, everything worked out, even though some things took some more time t
 
 To keep eachother updated on the various parts of the code, and to maintain high code quality, we use "code review" in GitLab, where another group member reviews, and if necessary, gives feedback on the code before merging into dev branch. 
  
-
-//TODO SKRIV FERDIG HER
+In this final release, we noticed a shift in our approach, utilizing pair programming with Live Share less frquent than earlier in the process. This is primarily due to a focus on doing our tasks more induvidually as mentioned earlier. However, we still used pair programming when it was beneficial, particularly solving for larger problems. During Live Share sessions, we continued with our practice of including "Co-Authored-by:" fotter in our commit messages. 
 
 Upon reflecting on our work, we've identified a work habit that should have been implemented earlier. That is the practice of creating tests more consistently and developing them as we go. Although we started with tests towards the end of Release 2, the effort required to create tests for both the core and UI modules turned out to be more work than anticipated. As we caught up with testing in Release 3, it revealed several flaws in our application, allowing us to address multiple issues. In hindsight, we acknowledge that testing more frequently would have been a better strategy, ultimately improving our code base.
 
 - endret hvor vi knytter issues til userstoryes, usikre på 
-- par progging 
 
 ### Commit messages and merge requests 
 The team realized the importance for clearer communication and agreed we needed more detailed commit messages forward. Although we have aimed to improved commit messages for this release, there has not always been a pressing need for them in our collaboration, as we often work closely together and verbally communicate our changes.  
