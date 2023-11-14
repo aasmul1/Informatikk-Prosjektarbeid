@@ -119,9 +119,10 @@ public class UserValidation {
     allFieldsEmpty(username, password);
 
     // checks if username field is empty
-    if (username == null || username.trim().isEmpty()) {
-      throw new IllegalArgumentException(Errors.USERNAME_FIELD_EMPTY.getMessage());
-    }
+    // if (username == null || username.trim().isEmpty()) {
+    //   throw new IllegalArgumentException(Errors.USERNAME_FIELD_EMPTY.getMessage());
+    // }
+    checkValidUsername(username);
 
     // checks if password fiels is empty.
     if (password == null || password.trim().isEmpty()) {
@@ -134,7 +135,7 @@ public class UserValidation {
       throw new IllegalArgumentException(Errors.NOT_REGISTERED.getMessage());
     }
 
-    // checks if password is valid and matches the username
+    //checks if password is valid and matches the username
     if (!accounts.checkValidUserLogin(username, password)) {
       throw new IllegalArgumentException(Errors.WRONG_PASSWORD.getMessage());
     }
