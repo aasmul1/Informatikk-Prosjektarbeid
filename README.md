@@ -70,26 +70,32 @@ mvn jacoco:report
 #Report can be found under /report/target/site/index.html
 ```
 
-To only run `graphical` test:
+To only run `ui` tests:
 
 ```sh 
-1)
-cd ui
-
-2)
-mvn test
+mvn test -pl ui
 ```
 
 To only run `core` tests:
 
 ```sh
-1)
-cd core
-
-2)
-mvn test
+mvn test -pl core
 ```
 
+## Shippable version of product
+
+To load shippable version:
+```sh
+1)
+cd notes
+
+2)
+mvn javafx:jlink -f ./ui/pom.xml
+
+3)
+mvn jpackage:jpackage -f ./ui/pom.xml
+```
+If not downloaded automaticly, navigate to `ui/target/dist/NotesFX-1.0.0` and reveal on local storage. Then follow computer instructions.  
 ## Milestone reports
 ___
 The project has three releases, and you can read about them in the [docs directory](/docs).
