@@ -110,7 +110,7 @@ public class AppController extends AbstractController {
   @FXML
   public void sortNoteOverview() {
     String sort = sortComboBox.getValue();
-    if (sort.equals(null)) {
+    if (sort == null) {
       return;
     }
     if (sort.equals(sortList.get(0))) { // "Created date"
