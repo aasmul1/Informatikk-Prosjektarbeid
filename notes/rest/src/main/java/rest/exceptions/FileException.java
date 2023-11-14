@@ -13,8 +13,8 @@ public class FileException extends RuntimeException {
     super(message);
   }
 
-    public FileException() {
-        super("No such file");
-    }
+  public FileException() {
+    super("No such file");
+  }
 
 }

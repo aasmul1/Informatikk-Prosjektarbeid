@@ -16,6 +16,11 @@ public class RestServerApplication {
     SpringApplication.run(RestServerApplication.class, args);
   }
 
+  /**
+   * Configures Cross-Origin Resource Sharing (CORS) settings for the application.
+   *
+   * @return registry The CorsRegistry to configure.
+   */
   @Bean
   public WebMvcConfigurer corsConfigurer() {
     return new WebMvcConfigurer() {
@@ -26,5 +31,4 @@ public class RestServerApplication {
       }
     };
   }
-
 }
