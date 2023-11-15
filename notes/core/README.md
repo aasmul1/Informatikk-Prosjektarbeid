@@ -62,7 +62,7 @@ The three classes `CreatedDateComaprator`, `EditedDateComaprator` and `TitleComa
 #
 ### **Tests**
 
-Listed below are the test classes that validate their corresponding classes in the core module. Our goal has been to achieve a test coverage of 90%, using the Jacoco plugin. In pursuit of this target, we've employed JUnit for our testing procedures.
+Listed below are the test classes that validate their corresponding classes in the core module. Our goal has been to achieve a test coverage of 90%, using the Jacoco plugin. In pursuit of this target, we've employed JUnit for our testing procedures. In the core module, our test coverage is at 99%. 
 #
 ### Test classes
 
