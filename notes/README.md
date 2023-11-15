@@ -7,7 +7,7 @@ Our app is an intuitive note-taking application designed for ease and efficiency
 ## Project structure
 
 
-### **Modules**
+### Modules
 ### `core` ### 
 Read more about the core-module [here](core/README.md)
 ### `integrationtest` ###
@@ -19,11 +19,10 @@ Read more about the rest-module [here](rest/README.md)
 ### `ui` ###
 Read more about the ui-module [here](ui/README.md)
 
-### **Diagrams**
+### Diagrams
 Diagrams for our Notes-App can be found [here](/notes/diagrams/README.md).
 
 ## Functionality of the application
-
 
 - Log in to an already existing user or create a new user
 - Creating notes
@@ -37,7 +36,7 @@ Diagrams for our Notes-App can be found [here](/notes/diagrams/README.md).
     - Last edited date
     - Alphabetically (A-Z)
 
-### **User Stories**
+## User Stories
 
 User Stories can be found [here](../notes/UserStories.md). They are linked up with the issues in GitLab.
 
