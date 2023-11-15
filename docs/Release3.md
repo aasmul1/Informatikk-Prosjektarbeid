@@ -77,6 +77,14 @@ ___
 
 - [NotesAppIT.java](../notes/integrationtest/src/test/java/NotesAppIT.java) 
 
+### Missed features
+Our app is functioning well, but there are a few functionalities missing that would make it truly optimal. 
+
+One notable omission is the implementation of a 'Log Out' button. Such a feature would not only be convenient for users but would also bolster security. Due to time constraints, however, prioritizing this addition has been challenging.
+
+Additionally, our app currently lacks a 'Go Back' button on the 'Create User' screen. This would be a useful feature for users who navigate to this screen unintentionally and wish to return to the login screen without creating a new account. Similar to the 'Log Out' button, the implementation of this feature has been deprioritized due to limited development time.
+
+Finally, a crucial area for improvement is the visibility of passwords during entry. Currently, passwords are not obscured when typed into the app, posing a potential security risk. Addressing this issue is vital for enhancing user privacy and security.
 ___
 
 
