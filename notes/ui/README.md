@@ -73,9 +73,7 @@ The FXML files define the stucture of the user interface.
 - [RemoteNotesAccessTest.java](src/test/java/dataaccess/RemoteNotesAccessTest.java)
 
 ### Test Coverage
-For the UI module we aimed to test as much as we could. The test coverage for this module is X. Testing the UI extensiavly is important because these tests simulate real user interactions, and helps us catch bugs and issues early that might be missed by other testing methods. 
- 
- The goal of testing is to ensure the application functions well, and provides a user-friendly experience. 
+For the UI module we aimed to test as much as we could. The test coverage for this module is 82%, and the controllers have 99% test coverage. Testing the UI extensively is important because these tests simulate real user interactions, and helps us catch bugs and issues early that might be missed by other testing methods. It is crucial to test user interactions, therefore we have prioritized achieving a high percentage of UI controller tests. 
 
 
  
