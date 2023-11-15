@@ -1,10 +1,10 @@
 # UI
 
-To set up the user interface for our application, the groups utilized JavaFX to generate FXML files for all scenes. Each scene has its own controller, which areresponsible for handling specific UI functionalities. To ensure clearity in the project the controller´s name match, such as Login.fxml and LoginController.java. 
-
-The UI also includes classes for data-access in the application, which are vital for managing interactions with the core logic. 
+To set up the user interface for our application, the groups utilized JavaFX to generate FXML files for all scenes. Each scene has its own controller, which are responsible for handling specific UI functionalities. To ensure clearity in the project the controller´s name match the fxml-file, such as Login.fxml and LoginController.java. 
 
 The UI module includes all visual compentets, layout and elements the user interact with. It is crucial for providing a user-friendly experience while interaction with the application. 
+
+The UI also includes classes for data-access in the application, which are vital for managing interactions with the core logic. 
 
 ### **Structure**
 The UI module seperates controller, dataaccess classes and FXML files, to enchance organization. The dataaccess classes are seperated in an own directory/folder `dataaccess`, positioned at the same level as the internal ui directory. 
@@ -58,7 +58,7 @@ The FXML files define the stucture of the user interface.
 
  ### **Test classes for UI**
 
- We have written a testclasses for all controllers. 
+ We have written a test classes for all controllers. 
 
  ### Test classes 
 
@@ -75,7 +75,7 @@ The FXML files define the stucture of the user interface.
 ### Test Coverage
 For the UI module we aimed to test as much as we could. The test coverage for this module is X. Testing the UI extensiavly is important because these tests simulate real user interactions, and helps us catch bugs and issues early that might be missed by other testing methods. 
  
- The goal of testing is to ensure the application functions well, and provides a  user-friendly experience. 
+ The goal of testing is to ensure the application functions well, and provides a user-friendly experience. 
 
 
  
