@@ -97,7 +97,7 @@ In Release 3, we dedicated increased attention to the usage of the checkstyle-pl
 ### Test Coverage 
 We have significantly improved the overall test coverage for this release. Just as in our previous releases, we have used Jacoco to evaluate the extent of test coverage. This release also introduces a dedicated module `report` to add all test results into a single unified report.
 
-For this release, our goal was to achieve 90% test coverage overall for the application, with a particular focis on testing all fundamental functionalities. For more detailed information on individual test coverage scores, refer to the module's readme.
+For this release, our goal was to achieve 90% test coverage overall for the application, with a particular focis on testing all fundamental functionalities. For more detailed information on individual test coverage scores, refer to the module's readme. The overall test coverage is 86%.
 
 ### Controller Organization 
 An important change in this release involves the reallocation of logic from the controllers to Data Access (local and remote). Consequently, our controllers now primarily handle user interface interactions, while the critical logic resides in the core module. This architectural change enhances code clarity, and makes it possible to use both local and remote data access without changing our code.
