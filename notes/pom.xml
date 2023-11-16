@@ -12,6 +12,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <jackson.version>2.14.0-rc2</jackson.version>
         <skipTests>false</skipTests>
+        <skipCheckstyle>false</skipCheckstyle>
     </properties>
 
     <dependencyManagement>
@@ -87,6 +88,55 @@
                         </execution>
                     </executions>
                 </plugin>
+                <!-- Run the checkstyle code quality tool -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>3.1.2</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.puppycrawl.tools</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>9.0</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <configLocation>google_checks.xml</configLocation>
+                        <encoding>UTF-8</encoding>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>true</failsOnError>
+                        <linkXRef>false</linkXRef>
+                        <skip>${skipCheckstyle}</skip>
+                    </configuration>
+                    <executions>
+                        <execution>
+                        <id>checkstyle-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>4.7.3.6</version>
+                    <configuration>
+                        <xmlOutput>false</xmlOutput>
+                        <htmlOutput>true</htmlOutput>
+                        <excludeFilterFile>config/exclude.xml</excludeFilterFile>
+                    </configuration>
+                    <executions>
+                        <execution>
+                        <id>spotbugs-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -94,5 +144,9 @@
     <modules>
         <module>core</module>
         <module>ui</module>
+        <module>rest</module>
+        <module>report</module>
+        <module>integrationtest</module>
+        
     </modules>
 </project>

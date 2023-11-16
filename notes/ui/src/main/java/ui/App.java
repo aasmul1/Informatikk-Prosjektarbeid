@@ -1,55 +1,46 @@
 package ui;
 
+import dataaccess.LocalNotesAccess;
+import java.io.IOException;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-
+import ui.controllers.LoginController;
+ 
 /**
- * JavaFX App
+ * The App class is the main JavaFX application class which sets up and displays the primary stage
+ * of the user interface.
  */
 public class App extends Application {
 
-    @FXML
-    private ListView<String> NoteListView; 
+  /**
+   * Starts the primary stage of the JavaFX application.
+   */
+  @Override
+  public void start(Stage stage) throws IOException {
+    final FXMLLoader loader = new FXMLLoader();
 
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("App.fxml"));
-        Parent parent = fxmlLoader.load();
+    LoginController controller = new LoginController();
+    controller.setDataAccess(new LocalNotesAccess()); 
+    loader.setController(controller);
+    loader.setLocation(App.class.getResource("/ui/Login.fxml"));
+    final Parent parent = loader.load();
+    stage.setScene(new Scene(parent));
+    stage.show();
+  }
 
-        NoteListView = (ListView<String>) fxmlLoader.getNamespace().get("NoteListView"); 
-        
-        NoteListView.setCellFactory(param -> {
-            ListCell<String> cell = new ListCell<String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                        setGraphic(null);
-                    } else {
-                        setText(item);
-                    }
-                }
-            };
-            
-            cell.setStyle("-fx-border-width: 0 0 1px 0; -fx-border-color: grey;");
-            return cell;
-        });
-
-
-        stage.setScene(new Scene(parent));
-        stage.show();
+  /**
+   * Configures the application to run in a headless environment, if required.
+   */
+  public static void supportHeadless() {
+    if (Boolean.getBoolean("headless")) {
+      System.setProperty("testfx.robot", "glass");
+      System.setProperty("testfx.headless", "true");
+      System.setProperty("prism.order", "sw");
+      System.setProperty("prism.text", "t2k");
+      System.setProperty("java.awt.headless", "true");
     }
-
-    public static void main(String[] args) {
-        launch();
-    }
+  }
 }
