@@ -2,7 +2,7 @@
 
 ## Project description
 
-Our app is an intuitive note-taking application designed for ease and efficiency. Users must log in with username and password, or create a user to use the app. When logging in, all notes are stored. Users can swiftly create new notes, and when they return, making modifications or deleting notes is easy. All notes are initially presented in a clear list, organized chronologically based on their creation date. To cater to individual preferences, we've incorporated a sorting feature. Users can choose to sort their notes based on 'Created date', 'Last edited date', or alphabetically by 'Title (A-Z)'. This added functionality ensures that users have quick access to their information, streamlining their note management process.
+Our app is an intuitive note-taking application. Users must log in with username and password, or create a user to use the app. When logged in, the user have access to their saved notes. Users can create, edit and delete notes. All notes are presented in a list, where title, text and creation date is displayed for each note. Users can choose to sort their notes based on 'Created date', 'Last edited date', or alphabetically by 'Title (A-Z)'. 
 
 ## Project structure
 
@@ -47,7 +47,7 @@ User interface of the application
 - Note user interface here [here](../docs/pictures/Notes-App-ui1.png)
 
 
-### Architectural Decision Records
+## Architectural Decision Records
 
 You can find the detailed Architecture Decision Record (ADR) [here](../docs/ADR.md). It documents important architectural decisions the group made during the development process for this project. 
 

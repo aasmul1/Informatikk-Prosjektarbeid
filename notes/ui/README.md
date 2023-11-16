@@ -2,9 +2,7 @@
 
 To set up the user interface for our application, the groups utilized JavaFX to generate FXML files for all scenes. Each scene has its own controller, which are responsible for handling specific UI functionalities. To ensure clearity in the project the controller´s name match the fxml-file, such as Login.fxml and LoginController.java. 
 
-The UI module includes all visual compentets, layout and elements the user interact with. It is crucial for providing a user-friendly experience while interaction with the application. 
-
-The UI also includes classes for data-access in the application, which are vital for managing interactions with the core logic. 
+The UI module includes all visual compentets, layout and elements the user interact with. It is crucial for providing a user-friendly experience while interaction with the application. The UI also includes classes for data-access in the application, which are vital for managing interactions with the core logic. 
 
 ### **Structure**
 The UI module seperates controller, dataaccess classes and FXML files, to enchance organization. The dataaccess classes are seperated in an own directory/folder `dataaccess`, positioned at the same level as the internal ui directory. 
