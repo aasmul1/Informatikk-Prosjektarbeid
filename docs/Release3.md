@@ -110,6 +110,8 @@ One potential improvement a 'Log Out' button. Such a feature would not only be c
 
 Additionally, our app lacks a 'Go Back' button on the 'Create User' screen. This would be a useful feature for users who navigate here unintentionally and wish to return to the login screen without creating a new account. Similar to the 'Log Out' button, the implementation of this feature has been deprioritized due to limited time.
 
+A minor yet unaddressed detail is that the user interface currently displays only the 'Created date' of a note, without showing its 'Last edited date.' Although the note object includes this information, it's not visible in the interface.
+
 Finally, a crucial area for improvement is the visibility of passwords during entry. Currently, passwords are not obscured when typed into the app, posing a potential security risk. Addressing this issue is vital for enhancing user privacy and security. 
 ___
 

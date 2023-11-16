@@ -1,8 +1,7 @@
 
 # RestServer 
 
-The team chose to use the SpringBoot-framework to establish the REST server. The main reason for this choice was that one of the group members had experience using SpringBoot, and it was therefore convenient.
-
+The reason behind our choice of framework is explained in detail in the [ADR](/docs/ADR.md).
 ### Structure 
 
 The rest server consists of the following classes:
@@ -100,5 +99,16 @@ The following methods are there to avoid overwriting server data when tests are 
     - Response: Sets the server to normal mode.
 
 
+### **Rest tests**
 
+We have written tests for the rest server and obtained a test coverage of 
+
+ ### Test classes 
+
+- [RestServerApplicationTest.java](src/test/java/rest/RestServerApplicationTest.java)
+
+### Test Coverage
+For the rest module we aimed to test as much as we could, but because of limited time we did not achieve 90% test coverage in rest. With that being said, we achieved a test coverage of 67% and covered the most important parts. 
+
+We used MockMvc to test the rest API and server.
 
