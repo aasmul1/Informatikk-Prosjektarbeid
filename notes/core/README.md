@@ -1,8 +1,8 @@
 # Core
-The core module is the main part of the application. It's made up of important Java code that runs the main functions of the app. This part is separate from the user interface, and it deals with the main tasks and processes that the app needs to do.
+The core module is the main part of the application. It consists of the classes with the core functions of the app. This part is separate from the user interface, and it deals with the main tasks and processes that the app needs to do.
 
 ### **Structure**
-In the core directory, there are two subfolders: core and json. The core folder contains code related to logic, while the json folder houses the code for file management.
+In the core directory, there are two subfolders: core and json. The core folder contains code related to logic for the core functions of the app, while the json folder houses the code for file management and translation between object and json stirngs.
 
 Class diagram of the core class can be found [here](../diagrams/README.md). 
 
@@ -15,21 +15,40 @@ Our project utilizes JSON (JavaScript Object Notation) as the data interchange f
 In our project, JSON files are structured as follows:
 
 ```sh
-{"title":"Titel ","text":"text", "created":"createdDate","edited":"editedDate"}
+[
+    {
+        "username": {username},
+        "password": {password},
+        "noteOverview": [
+            {
+                "title": {title},
+                "text": {text}, 
+                "created": {createdDate},
+                "edited": {editedDate}
+            },
+            .
+            .
+            .
+        ]
+    },
+    .
+    .
+    .
+]
 ```
 #
 
 ### **Classes**
 **core**
-- [Accounts.java](src/main/java/core/Accounts.java): 
-- [CreatedDateComparator.java](src/main/java/core/CreatedDateComparator.java):
-- [EditedDateComparator.java](src/main/java/core/EditedDateComparator.java):
-- [Errors.java](src/main/java/core/Errors.java):
-- [Note.java](src/main/java/core/Note.java):
-- [NoteOverview.java](src/main/java/core/NoteOverview.java):
-- [TitleComparator.java](src/main/java/core/TitleComparator.java):
-- [User.java](src/main/java/core/User.java):
-- [UserValidation.java](src/main/java/core/UserValidation.java):
+- [Accounts.java](src/main/java/core/Accounts.java)
+- [CreatedDateComparator.java](src/main/java/core/CreatedDateComparator.java)
+- [EditedDateComparator.java](src/main/java/core/EditedDateComparator.java)
+- [Errors.java](src/main/java/core/Errors.java)
+- [Note.java](src/main/java/core/Note.java)
+- [NoteOverview.java](src/main/java/core/NoteOverview.java)
+- [TitleComparator.java](src/main/java/core/TitleComparator.java)
+- [User.java](src/main/java/core/User.java)
+- [UserValidation.java](src/main/java/core/UserValidation.java)
 
 
 `Note` class handles represents an individual note. It enforces non-empty title and text through validation in the setters. `NoteOverview` manages a collection of Note objects, and has functionality such as add, remove and sort notes. 
@@ -59,10 +78,15 @@ The three classes `CreatedDateComaprator`, `EditedDateComaprator` and `TitleComa
     - [NoteSerializer.java](src/main/java/json/internal/NoteSerializer.java)
     - [UserDeserializer.java](src/main/java/json/internal/UserDeserializer.java)
     - [UserSerializer.java](src/main/java/json/internal/UserSerializer.java) 
+
+ `AccountsModule.java` handles serialization and deserialization specifically for Accounts and related classes as Note, NotOoverview and User.
+
+ `AccountsPersistence.java` is responsible for managing storage and retrieval of Accounts data using json file format. It sets the file path for data storage and provides methods to load Accounts from and save Accounts to specified file.
+ 
 #
 ### **Tests**
 
-Listed below are the test classes that validate their corresponding classes in the core module. Our goal has been to achieve a test coverage of 90%, using the Jacoco plugin. In pursuit of this target, we've employed JUnit for our testing procedures.
+Listed below are the test classes that validate their corresponding classes in the core module. Our goal has been to achieve a test coverage of 90%, using the JaCoCo plugin. In pursuit of this target, we've employed JUnit for our testing procedures. In the core module, our **test coverage is at 99%.**
 #
 ### Test classes
 

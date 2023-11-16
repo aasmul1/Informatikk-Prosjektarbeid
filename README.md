@@ -33,7 +33,7 @@ mvn javafx:run -pl ui
 1) Change the directory to the notes folder
 2) Execute a clean build of the Maven project and install the package into the local repository
 3) Start server
-4) Open a new terminal window. Run the JavaFX application user interface module with Maven
+4) Open a new terminal window. Run the JavaFX application UI module with Maven
 
 ```sh
 1) 
@@ -73,13 +73,22 @@ mvn jacoco:report
 To only run `ui` tests:
 
 ```sh 
-mvn test -pl ui
+1) cd notes
+2. mvn test -pl ui
 ```
 
 To only run `core` tests:
 
 ```sh
-mvn test -pl core
+1) cd notes
+2) mvn test -pl core
+```
+
+To only run `rest` tests:
+
+```sh
+1) cd notes
+2) mvn test -pl rest
 ```
 
 ## Shippable version of product
@@ -114,6 +123,6 @@ Read more [here](/docs/Release2.md).
 
 **Release 3**
 
-In the third release, we focused on adding more functionality, including implementing a login system, and the contruction of a REST API. We also prioritezed achieving high test coverage on all testing areas. 
+In the third release, we focused on adding more functionality, including implementing a login system with users, improving code quality, REST API and server. We also prioritezed achieving high test coverage on all testing areas. 
 
 Read more [here](/docs/Release3.md).
