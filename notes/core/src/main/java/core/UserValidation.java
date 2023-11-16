@@ -100,7 +100,6 @@ public class UserValidation {
    * @throws IllegalArgumentException if all fields are empty
    */
   public static void allFieldsEmpty(String username, String password) {
-    System.out.println(username + password);
     if (isEmpty(username) && isEmpty(password)) {
       throw new IllegalArgumentException(Errors.EVERYTHING_EMPTY.getMessage());
     }
